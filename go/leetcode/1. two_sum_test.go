@@ -45,7 +45,7 @@ func TestTwoSum(t *testing.T) {
 func BenchmarkTwoSumBruteForce(b *testing.B) {
 	nums := []int{2, 7, 11, 15, 1, 8, 3, 6, 4, 5, 9, 10}
 	target := 19
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		twoSumBruteForce(nums, target)
 	}
 }
@@ -53,7 +53,7 @@ func BenchmarkTwoSumBruteForce(b *testing.B) {
 func BenchmarkTwoSumHashMap(b *testing.B) {
 	nums := []int{2, 7, 11, 15, 1, 8, 3, 6, 4, 5, 9, 10}
 	target := 19
-	for i := 0; i < b.N; i++ {
+	for b.Loop() {
 		twoSumHashMap(nums, target)
 	}
 }
