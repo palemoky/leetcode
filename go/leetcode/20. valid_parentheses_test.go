@@ -23,11 +23,34 @@ func TestIsValid(t *testing.T) {
 	t.Run("isValid", func(t *testing.T) {
 		for _, tc := range testCases {
 			t.Run(tc.name, func(t *testing.T) {
-				got := isValid(tc.braces)
+				got := isValidIfElse(tc.braces)
 				if got != tc.want {
 					t.Errorf("isValid(%q) = %v; want %v", tc.braces, got, tc.want)
 				}
 			})
 		}
 	})
+
+		t.Run("isValid", func(t *testing.T) {
+		for _, tc := range testCases {
+			t.Run(tc.name, func(t *testing.T) {
+				got := isValidSwitchCase(tc.braces)
+				if got != tc.want {
+					t.Errorf("isValid(%q) = %v; want %v", tc.braces, got, tc.want)
+				}
+			})
+		}
+	})
+}
+
+func BenchmarkIsValidIfElse(b *testing.B) {
+    for i := 0; i < b.N; i++ {
+        isValidIfElse("{[()]}[]{}({[]})")
+    }
+}
+
+func BenchmarkIsValidSwitchCase(b *testing.B) {
+    for i := 0; i < b.N; i++ {
+        isValidSwitchCase("{[()]}[]{}({[]})")
+    }
 }
