@@ -1,5 +1,6 @@
 package leetcode
 
+// Time: O(n), Space: O(n)
 func singleNumberHashMap(nums []int) int {
 	counter := map[int]int{}
 	for _, num := range nums {
