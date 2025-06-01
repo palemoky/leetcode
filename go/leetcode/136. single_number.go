@@ -15,3 +15,13 @@ func singleNumberHashMap(nums []int) int {
 
 	return 0
 }
+
+// Time: O(n), Space: O(1)
+func singleNumberBitWise(nums []int) int {
+	ans := 0
+	for _, num := range nums {
+		ans ^= num
+	}
+
+	return ans
+}

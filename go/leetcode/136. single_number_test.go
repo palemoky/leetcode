@@ -26,10 +26,27 @@ func TestSingleNumberHashMap(t *testing.T) {
 			})
 		}
 	})
+
+	t.Run("singleNumberBitWise", func(t *testing.T) {
+		for _, tc := range testCases {
+			t.Run(tc.name, func(t *testing.T) {
+				got := singleNumberBitWise(tc.nums)
+				if got != tc.want {
+					t.Errorf("singleNumberBitWise(%q) = %v; want %v", tc.nums, got, tc.want)
+				}
+			})
+		}
+	})
 }
 
 func BenchmarkSingleNumberHashMap(b *testing.B) {
 	for b.Loop() {
 		singleNumberHashMap([]int{1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5})
+	}
+}
+
+func BenchmarkSingleNumberBitWise(b *testing.B) {
+	for b.Loop() {
+		singleNumberBitWise([]int{1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5})
 	}
 }
