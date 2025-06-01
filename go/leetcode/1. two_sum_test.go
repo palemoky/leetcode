@@ -7,7 +7,7 @@ import (
 
 func TestTwoSum(t *testing.T) {
 	testCases := []struct {
-		name   string 
+		name   string
 		nums   []int
 		target int
 		want   []int
@@ -21,7 +21,7 @@ func TestTwoSum(t *testing.T) {
 	t.Run("BruteForce", func(t *testing.T) {
 		for _, tc := range testCases {
 			t.Run(tc.name, func(t *testing.T) {
-				got := twoSumBruteForce(tc.nums, tc.target) 
+				got := twoSumBruteForce(tc.nums, tc.target)
 				if !reflect.DeepEqual(got, tc.want) && !reflect.DeepEqual(got, []int{tc.want[1], tc.want[0]}) { // 简单处理顺序问题
 					t.Errorf("twoSumBruteForce() = %v; want %v", got, tc.want)
 				}
@@ -33,11 +33,27 @@ func TestTwoSum(t *testing.T) {
 	t.Run("HashMap", func(t *testing.T) {
 		for _, tc := range testCases {
 			t.Run(tc.name, func(t *testing.T) {
-				got := twoSumHashMap(tc.nums, tc.target) 
+				got := twoSumHashMap(tc.nums, tc.target)
 				if !reflect.DeepEqual(got, tc.want) && !reflect.DeepEqual(got, []int{tc.want[1], tc.want[0]}) {
 					t.Errorf("twoSumHashMap() = %v; want %v", got, tc.want)
 				}
 			})
 		}
 	})
+}
+
+func BenchmarkTwoSumBruteForce(b *testing.B) {
+	nums := []int{2, 7, 11, 15, 1, 8, 3, 6, 4, 5, 9, 10}
+	target := 19
+	for i := 0; i < b.N; i++ {
+		twoSumBruteForce(nums, target)
+	}
+}
+
+func BenchmarkTwoSumHashMap(b *testing.B) {
+	nums := []int{2, 7, 11, 15, 1, 8, 3, 6, 4, 5, 9, 10}
+	target := 19
+	for i := 0; i < b.N; i++ {
+		twoSumHashMap(nums, target)
+	}
 }
