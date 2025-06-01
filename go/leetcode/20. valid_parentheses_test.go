@@ -20,7 +20,7 @@ func TestIsValid(t *testing.T) {
 		{"Example 8", "{([)]", false},
 	}
 
-	t.Run("isValid", func(t *testing.T) {
+	t.Run("isValidIfElse", func(t *testing.T) {
 		for _, tc := range testCases {
 			t.Run(tc.name, func(t *testing.T) {
 				got := isValidIfElse(tc.braces)
@@ -31,7 +31,7 @@ func TestIsValid(t *testing.T) {
 		}
 	})
 
-		t.Run("isValid", func(t *testing.T) {
+	t.Run("isValidSwitchCase", func(t *testing.T) {
 		for _, tc := range testCases {
 			t.Run(tc.name, func(t *testing.T) {
 				got := isValidSwitchCase(tc.braces)
@@ -44,13 +44,13 @@ func TestIsValid(t *testing.T) {
 }
 
 func BenchmarkIsValidIfElse(b *testing.B) {
-    for i := 0; i < b.N; i++ {
-        isValidIfElse("{[()]}[]{}({[]})")
-    }
+	for b.Loop() {
+		isValidIfElse("{[()]}[]{}({[]})")
+	}
 }
 
 func BenchmarkIsValidSwitchCase(b *testing.B) {
-    for i := 0; i < b.N; i++ {
-        isValidSwitchCase("{[()]}[]{}({[]})")
-    }
+	for b.Loop() {
+		isValidSwitchCase("{[()]}[]{}({[]})")
+	}
 }
