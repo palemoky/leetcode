@@ -3,14 +3,16 @@
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 cd "$REPO_ROOT" || exit 1
 
-if git diff --cached --name-only | grep '\.go$' > /dev/null; then
-    cd ./go && go fmt ./... && cd -
-fi
+langs="go python rust"
+dirs="go python rust"
+fmts=("go fmt ./..." "black ." "cargo fmt")
 
-if git diff --cached --name-only | grep '\.py$' > /dev/null; then
-    cd ./python && ??? && cd -
-fi
-
-if git diff --cached --name-only | grep '\.rust$' > /dev/null; then
-    cd ./rust && ??? && cd -
-fi
+i=0
+for lang in $langs; do
+    if git diff --cached --name-only | grep "\.${lang}$" > /dev/null; then
+        dir=$(echo $dirs | cut -d' ' -f$((i+1)))
+        fmt_cmd=$(echo ${fmts[$i]})
+        cd ./$dir && eval "$fmt_cmd" && cd -
+    fi
+    i=$((i+1))
+done
