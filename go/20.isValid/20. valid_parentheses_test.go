@@ -6,6 +6,14 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+var algorithms = []struct {
+	name string
+	fn   func(string) bool
+}{
+	{"IfElse", isValidIfElse},
+	{"SwitchCase", isValidSwitchCase},
+}
+
 func TestIsValid(t *testing.T) {
 	testCases := []struct {
 		name   string
@@ -22,14 +30,6 @@ func TestIsValid(t *testing.T) {
 		{"Example 8", "{([)]", false},
 	}
 
-	algorithms := []struct {
-		name string
-		fn   func(string) bool
-	}{
-		{"IfElse", isValidIfElse},
-		{"SwitchCase", isValidSwitchCase},
-	}
-
 	for _, algo := range algorithms {
 		t.Run(algo.name, func(t *testing.T) {
 			for _, tc := range testCases {
@@ -42,14 +42,13 @@ func TestIsValid(t *testing.T) {
 	}
 }
 
-func BenchmarkIsValidIfElse(b *testing.B) {
-	for b.Loop() {
-		isValidIfElse("{[()]}[]{}({[]})")
-	}
-}
-
-func BenchmarkIsValidSwitchCase(b *testing.B) {
-	for b.Loop() {
-		isValidSwitchCase("{[()]}[]{}({[]})")
+func BenchmarkIsValid(b *testing.B) {
+	braces := "{[()]}[]{}({[]})"
+	for _, algo := range algorithms {
+		b.Run(algo.name, func(b *testing.B) {
+			for b.Loop() {
+				algo.fn(braces)
+			}
+		})
 	}
 }
