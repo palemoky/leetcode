@@ -6,6 +6,14 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+var algorithms = []struct {
+	name string
+	fn   func([]int) int
+}{
+	{"HashMap", singleNumberHashMap},
+	{"BitWise", singleNumberBitWise},
+}
+
 func TestSingleNumberHashMap(t *testing.T) {
 	testCases := []struct {
 		name string
@@ -16,14 +24,6 @@ func TestSingleNumberHashMap(t *testing.T) {
 		{"Example 2", []int{4, 1, 2, 1, 2}, 4},
 		{"Example 3", []int{1}, 1},
 		{"Example 4", []int{}, 0},
-	}
-
-	algorithms := []struct {
-		name string
-		fn   func([]int) int
-	}{
-		{"HashMap", singleNumberHashMap},
-		{"BitWise", singleNumberBitWise},
 	}
 
 	for _, algo := range algorithms {
@@ -40,13 +40,6 @@ func TestSingleNumberHashMap(t *testing.T) {
 
 func BenchmarkSingleNumber(b *testing.B) {
 	nums := []int{1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5}
-	algorithms := []struct {
-		name string
-		fn   func([]int) int
-	}{
-		{"HashMap", singleNumberHashMap},
-		{"BitWise", singleNumberBitWise},
-	}
 
 	for _, algo := range algorithms {
 		b.Run(algo.name, func(b *testing.B) {
