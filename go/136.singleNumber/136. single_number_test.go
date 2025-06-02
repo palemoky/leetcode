@@ -39,20 +39,20 @@ func TestSingleNumberHashMap(t *testing.T) {
 }
 
 func BenchmarkSingleNumber(b *testing.B) {
-    nums := []int{1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5}
-    algorithms := []struct {
-        name string
-        fn   func([]int) int
-    }{
-        {"HashMap", singleNumberHashMap},
-        {"BitWise", singleNumberBitWise},
-    }
+	nums := []int{1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5}
+	algorithms := []struct {
+		name string
+		fn   func([]int) int
+	}{
+		{"HashMap", singleNumberHashMap},
+		{"BitWise", singleNumberBitWise},
+	}
 
-    for _, algo := range algorithms {
-        b.Run(algo.name, func(b *testing.B) {
-            for b.Loop() {
-                algo.fn(nums)
-            }
-        })
-    }
+	for _, algo := range algorithms {
+		b.Run(algo.name, func(b *testing.B) {
+			for b.Loop() {
+				algo.fn(nums)
+			}
+		})
+	}
 }
