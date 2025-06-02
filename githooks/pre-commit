@@ -13,6 +13,8 @@ for lang in $langs; do
         dir=$(echo $dirs | cut -d' ' -f$((i+1)))
         fmt_cmd=$(echo ${fmts[$i]})
         cd ./$dir && eval "$fmt_cmd" && cd -
+        git ls-files --modified | grep "\.${lang}$" | xargs git add
+        echo "Some $lang files were reformatted and re-staged. Please review the changes and commit again."
     fi
     i=$((i+1))
 done
