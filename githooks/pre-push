@@ -5,14 +5,18 @@ cd "$REPO_ROOT" || exit 1
 
 langs="go python rust"
 dirs="go python rust"
-tests=("go test ./... && go test -cover ./..." "pytest" "cargo test")
+tests=("go test -coverprofile=cover.out ./... && go tool cover -func=cover.out | awk '/^total:/ { if (\$3 != \"100.0%\") exit 1 }'" "pytest" "cargo test")
 
 i=0
 for lang in $langs; do
     if git diff --cached --name-only | grep "\.${lang}$" > /dev/null; then
         dir=$(echo $dirs | cut -d' ' -f$((i+1)))
-        test_cmd=$(echo ${tests[$i]})
+        test_cmd=$(echo "${tests[$i]}")
         cd ./$dir && eval "$test_cmd" && cd -
+        if [ $? -ne 0 ]; then
+            echo "Tests failed or coverage is not 100% for $lang. Push aborted."
+            exit 1
+        fi
     fi
     i=$((i+1))
 done
