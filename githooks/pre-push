@@ -3,8 +3,14 @@
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 cd "$REPO_ROOT" || exit 1
 
-# Test, and check coverage for Go code
-cd ./go \
-&& go test ./... \
-&& go test -cover ./...
-&& cd -
+if git diff --cached --name-only | grep '\.go$' > /dev/null; then
+    cd ./go && go test ./... && go test -cover ./... && cd -
+fi
+
+if git diff --cached --name-only | grep '\.py$' > /dev/null; then
+    cd ./python && ??? && cd -
+fi
+
+if git diff --cached --name-only | grep '\.rs$' > /dev/null; then
+    cd ./rust && ??? && cd -
+fi
