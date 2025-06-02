@@ -6,6 +6,14 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
+var algorithms = []struct {
+	name string
+	fn   func([]int, int) []int
+}{
+	{"BruteForce", twoSumBruteForce},
+	{"HashMap", twoSumHashMap},
+}
+
 func TestTwoSum(t *testing.T) {
 	testCases := []struct {
 		name   string
@@ -17,14 +25,6 @@ func TestTwoSum(t *testing.T) {
 		{"Example 2", []int{3, 2, 4}, 6, []int{1, 2}},
 		{"Example 3", []int{3, 3}, 6, []int{0, 1}},
 		{"Example 4", []int{3, 3}, 5, []int{}},
-	}
-
-	algorithms := []struct {
-		name string
-		fn   func([]int, int) []int
-	}{
-		{"BruteForce", twoSumBruteForce},
-		{"HashMap", twoSumHashMap},
 	}
 
 	for _, algo := range algorithms {
@@ -39,18 +39,14 @@ func TestTwoSum(t *testing.T) {
 	}
 }
 
-func BenchmarkTwoSumBruteForce(b *testing.B) {
+func BenchmarkTwoSum(b *testing.B) {
 	nums := []int{2, 7, 11, 15, 1, 8, 3, 6, 4, 5, 9, 10}
 	target := 19
-	for b.Loop() {
-		twoSumBruteForce(nums, target)
-	}
-}
-
-func BenchmarkTwoSumHashMap(b *testing.B) {
-	nums := []int{2, 7, 11, 15, 1, 8, 3, 6, 4, 5, 9, 10}
-	target := 19
-	for b.Loop() {
-		twoSumHashMap(nums, target)
+	for _, algo := range algorithms {
+		b.Run(algo.name, func(b *testing.B) {
+			for b.Loop() {
+				algo.fn(nums, target)
+			}
+		})
 	}
 }
