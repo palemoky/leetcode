@@ -3,16 +3,16 @@ name: Multi-language CI
 on:
   push:
     paths:
-      - 'go/**'
-      - 'python/**'
-      - 'rust/**'
-      - '.github/workflows/ci.yml'
+      - "go/**"
+      - "python/**"
+      - "rust/**"
+      - ".github/workflows/ci.yml"
   pull_request:
     paths:
-      - 'go/**'
-      - 'python/**'
-      - 'rust/**'
-      - '.github/workflows/ci.yml'
+      - "go/**"
+      - "python/**"
+      - "rust/**"
+      - ".github/workflows/ci.yml"
 
 jobs:
   go:
@@ -26,7 +26,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.24'
+          go-version: "1.24"
 
       - name: Install goimports and staticcheck
         run: |
@@ -59,7 +59,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
-          python-version: '3.13'
+          python-version: "3.13"
 
       - name: Install dependencies
         run: |
@@ -68,7 +68,7 @@ jobs:
       - name: Run black
         run: |
           black --check .
-      
+
       - name: Run flake8
         run: flake8 .
 
@@ -94,4 +94,3 @@ jobs:
 
       - name: Run cargo test
         run: cargo test --all
-        
