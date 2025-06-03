@@ -5,7 +5,7 @@ cd "$REPO_ROOT" || exit 1
 
 langs="go python rust"
 dirs="go python rust"
-fmts=("go fmt ./..." "black ." "cargo fmt")
+fmts=("goimports -w ." "black ." "cargo fmt")
 
 i=0
 for lang in $langs; do
