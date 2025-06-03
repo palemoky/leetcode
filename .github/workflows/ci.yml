@@ -1,0 +1,97 @@
+name: Multi-language CI
+
+on:
+  push:
+    paths:
+      - 'go/**'
+      - 'python/**'
+      - 'rust/**'
+      - '.github/workflows/ci.yml'
+  pull_request:
+    paths:
+      - 'go/**'
+      - 'python/**'
+      - 'rust/**'
+      - '.github/workflows/ci.yml'
+
+jobs:
+  go:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: go
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.24'
+
+      - name: Install goimports and staticcheck
+        run: |
+          go install golang.org/x/tools/cmd/goimports@latest
+          go install honnef.co/go/tools/cmd/staticcheck@latest
+          export PATH=$PATH:$(go env GOPATH)/bin
+
+      - name: Run goimports
+        run: |
+          goimports -w .
+          git diff --exit-code
+
+      - name: Run staticcheck
+        run: staticcheck ./...
+
+      - name: Run tests with coverage
+        run: |
+          go test -coverprofile=cover.out ./...
+          go tool cover -func=cover.out
+          go tool cover -func=cover.out | awk '/^total:/ { if ($3 != "100.0%") exit 1 }'
+
+  python:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: python
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: Install dependencies
+        run: |
+          pip install black flake8 pytest
+
+      - name: Run black
+        run: |
+          black --check .
+      
+      - name: Run flake8
+        run: flake8 .
+
+      - name: Run pytest
+        run: pytest
+
+  rust:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: rust
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Rust
+        uses: dtolnay/rust-toolchain@stable
+
+      - name: Run cargo fmt
+        run: cargo fmt -- --check
+
+      - name: Run cargo clippy
+        run: cargo clippy -- -D warnings
+
+      - name: Run cargo test
+        run: cargo test --all
+        
