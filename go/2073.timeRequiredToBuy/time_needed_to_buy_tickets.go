@@ -48,7 +48,7 @@ func timeRequiredToBuyPointer(tickets []int, k int) (steps int) {
 		}
 	}
 
-	return
+	return steps // unreachable, but added for clarity
 }
 
 // Time: O(n), Space: O(1)
