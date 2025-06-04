@@ -1,5 +1,13 @@
+# IDE/editor config files
 .idea/
 .vscode/
 .DS_Store
+
+# Go test coverage output
 cover.out
+
+# Temporary main file for debugging (do not commit)
 main.go
+
+# Rust build output (do not commit compiled files)
+rust/target/
