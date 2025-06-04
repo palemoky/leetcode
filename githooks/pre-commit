@@ -12,8 +12,10 @@ for lang in $langs; do
     if git diff --cached --name-only | grep "\.${lang}$" > /dev/null; then
         dir=$(echo $dirs | cut -d' ' -f$((i+1)))
         fmt_cmd=$(echo ${fmts[$i]})
-        cd ./$dir && eval "$fmt_cmd" && cd -
-        git ls-files --modified | grep "\.${lang}$" | xargs git add
+        cd ./$dir || { echo "Failed to cd to $dir"; exit 1; }
+        eval "$fmt_cmd" || { echo "Failed to run formatter for $lang"; exit 1; }
+        cd - > /dev/null
+        git ls-files --modified | grep "\.${lang}$" | xargs git add || { echo "Failed to git add $lang files"; exit 1; }
         echo "Some $lang files were reformatted and re-staged. Please review the changes and commit again."
     fi
     i=$((i+1))
