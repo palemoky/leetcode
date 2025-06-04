@@ -19,16 +19,24 @@ func TestContainsDuplicateHashMap(t *testing.T) {
 		nums []int
 		want bool
 	}{
-		{"Example 1", []int{1, 2, 3, 1}, true},
-		{"Example 2", []int{1, 2, 3, 4}, false},
-		{"Example 3", []int{1, 1, 1, 3, 3, 4, 3, 2, 4, 2}, true},
-		{"Example 4", []int{}, false},
-		{"Example 5", []int{0}, false},
+		{"Empty array", []int{}, false},
+		{"Single element", []int{0}, false},
+		{"Two same", []int{1, 1}, true},
+		{"Two different", []int{1, 2}, false},
+		{"Duplicate at start", []int{2, 2, 3, 4}, true},
+		{"Duplicate at end", []int{1, 2, 3, 3}, true},
+		{"All unique", []int{1, 2, 3, 4, 5}, false},
+		{"All same", []int{7, 7, 7, 7}, true},
+		{"Negative numbers", []int{-1, -2, -3, -1}, true},
+		{"Mixed positive and negative", []int{-1, 2, -3, 2}, true},
+		{"Large numbers", []int{1, 2, 3, 1 << 30, 1 << 30}, true},
+		{"No duplicate, large", []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, false},
 	}
 
 	for _, algo := range algorithms {
 		t.Run(algo.name, func(t *testing.T) {
 			for _, tc := range testCases {
+				tc := tc // Capture range variable to avoid data race
 				t.Run(tc.name, func(t *testing.T) {
 					got := algo.fn(tc.nums)
 					assert.Equal(t, tc.want, got, "%s: input=%v", algo.name, tc.nums)
