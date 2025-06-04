@@ -46,7 +46,7 @@ jobs:
         run: |
           go test -coverprofile=cover.out ./...
           go tool cover -func=cover.out
-          go tool cover -func=cover.out | awk '/^total:/ { gsub(/%/, \"\", \$3); if (\$3 < 97.0) exit 1 }'
+          go tool cover -func=cover.out | awk '/^total:/ { gsub(/%/, "", $3); if ($3 < 97.0) exit 1 }'
 
   python:
     runs-on: ubuntu-latest
