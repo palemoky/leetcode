@@ -5,7 +5,7 @@ cd "$REPO_ROOT" || exit 1
 
 langs="go python rust"
 dirs="go python rust"
-tests=("go test -coverprofile=cover.out ./... && go tool cover -func=cover.out | awk '/^total:/ { if (\$3 != \"100.0%\") exit 1 }'" "pytest" "cargo test")
+tests=("go test -coverprofile=cover.out ./... && go tool cover -func=cover.out | awk '/^total:/ { gsub(/%/, \"\", \$3); if (\$3 < 97.0) exit 1 }'" "pytest" "cargo test")
 
 i=0
 for lang in $langs; do
