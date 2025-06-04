@@ -3,7 +3,7 @@ package leetcode
 // Time: O(n), Space: O(n)
 func timeRequiredToBuyQueue(tickets []int, k int) (steps int) {
 	if len(tickets) == 0 || tickets[k] == 0 {
-		return 
+		return
 	}
 
 	for {
@@ -11,7 +11,7 @@ func timeRequiredToBuyQueue(tickets []int, k int) (steps int) {
 		tickets[0]--
 
 		if k == 0 && tickets[0] == 0 {
-			return 
+			return
 		}
 
 		// Rotate the queue
@@ -33,22 +33,22 @@ func timeRequiredToBuyQueue(tickets []int, k int) (steps int) {
 // Time: O(n), Space: O(1)
 func timeRequiredToBuyPointer(tickets []int, k int) (steps int) {
 	if len(tickets) == 0 || tickets[k] == 0 {
-		return 
+		return
 	}
 
-    for tickets[k] > 0 {
-        for i := 0; i < len(tickets); i++ {
-            if tickets[i] > 0 {
-                tickets[i]--
-                steps++
-                if i == k && tickets[i] == 0 {
-                    return 
-                }
-            }
-        }
-    }
+	for tickets[k] > 0 {
+		for i := 0; i < len(tickets); i++ {
+			if tickets[i] > 0 {
+				tickets[i]--
+				steps++
+				if i == k && tickets[i] == 0 {
+					return
+				}
+			}
+		}
+	}
 
-    return 
+	return
 }
 
 // Time: O(n), Space: O(1)
@@ -67,7 +67,12 @@ func timeRequiredToBuyMath(tickets []int, k int) (steps int) {
 		}
 	}
 
-	return 
+	return
 }
 
-func min(a, b int) int { if a < b { return a }; return b }
+func min(a, b int) int {
+	if a < b {
+		return a
+	}
+	return b
+}

@@ -25,12 +25,12 @@ func TestTwoSum(t *testing.T) {
 		{"LeetCode Example 2", []int{3, 2, 4}, 6, []int{1, 2}},
 		{"LeetCode Example 3", []int{3, 3}, 6, []int{0, 1}},
 		{"No solution", []int{1, 2, 3}, 7, []int{}},
-        {"Empty array", []int{}, 0, []int{}},
-        {"Single element", []int{1}, 1, []int{}},
-        {"Negative numbers", []int{-1, -2, -3, -4, -5}, -8, []int{2, 4}},
-        {"Zero target", []int{0, 4, 3, 0}, 0, []int{0, 3}},
-        {"Multiple pairs", []int{1, 2, 3, 4, 4}, 8, []int{3, 4}},
-        {"Duplicate numbers", []int{1, 5, 1, 5}, 10, []int{1, 3}},
+		{"Empty array", []int{}, 0, []int{}},
+		{"Single element", []int{1}, 1, []int{}},
+		{"Negative numbers", []int{-1, -2, -3, -4, -5}, -8, []int{2, 4}},
+		{"Zero target", []int{0, 4, 3, 0}, 0, []int{0, 3}},
+		{"Multiple pairs", []int{1, 2, 3, 4, 4}, 8, []int{3, 4}},
+		{"Duplicate numbers", []int{1, 5, 1, 5}, 10, []int{1, 3}},
 	}
 
 	for _, algo := range algorithms {
