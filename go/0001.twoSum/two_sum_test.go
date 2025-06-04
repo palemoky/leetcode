@@ -21,15 +21,22 @@ func TestTwoSum(t *testing.T) {
 		target int
 		want   []int
 	}{
-		{"Example 1", []int{2, 7, 11, 15}, 9, []int{0, 1}},
-		{"Example 2", []int{3, 2, 4}, 6, []int{1, 2}},
-		{"Example 3", []int{3, 3}, 6, []int{0, 1}},
-		{"Example 4", []int{3, 3}, 5, []int{}},
+		{"LeetCode Example 1", []int{2, 7, 11, 15}, 9, []int{0, 1}},
+		{"LeetCode Example 2", []int{3, 2, 4}, 6, []int{1, 2}},
+		{"LeetCode Example 3", []int{3, 3}, 6, []int{0, 1}},
+		{"No solution", []int{1, 2, 3}, 7, []int{}},
+        {"Empty array", []int{}, 0, []int{}},
+        {"Single element", []int{1}, 1, []int{}},
+        {"Negative numbers", []int{-1, -2, -3, -4, -5}, -8, []int{2, 4}},
+        {"Zero target", []int{0, 4, 3, 0}, 0, []int{0, 3}},
+        {"Multiple pairs", []int{1, 2, 3, 4, 4}, 8, []int{3, 4}},
+        {"Duplicate numbers", []int{1, 5, 1, 5}, 10, []int{1, 3}},
 	}
 
 	for _, algo := range algorithms {
 		t.Run(algo.name, func(t *testing.T) {
 			for _, tc := range testCases {
+				tc := tc // Capture range variable to avoid data race
 				t.Run(tc.name, func(t *testing.T) {
 					got := algo.fn(tc.nums, tc.target)
 					assert.ElementsMatch(t, tc.want, got, "%s: input=%v, target=%d", algo.name, tc.nums, tc.target)
