@@ -1,6 +1,7 @@
 use std::collections::HashMap;
+
 impl Solution {
-    pub fn two_sum_bruteforce(nums: Vec<i32>, target: i32) -> Vec<i32> {
+    pub fn two_sum_brute_force(nums: Vec<i32>, target: i32) -> Vec<i32> {
         for i in 0..nums.len() { 
             for j in i + 1..nums.len() { 
                 if nums[i] + nums[j] == target { 
@@ -44,7 +45,7 @@ mod tests {
         ];
 
         for case in test_cases.iter() {
-            let got1 = Solution::two_sum_bruteforce(case.nums.clone(), case.target);
+            let got1 = Solution::two_sum_brute_force(case.nums.clone(), case.target);
             let got2 = Solution::two_sum_hashmap(case.nums.clone(), case.target);
             assert_eq!(got1, case.want, "bruteforce failed for nums={:?}, target={}", case.nums, case.target);
             assert_eq!(got2, case.want, "hashmap failed for nums={:?}, target={}", case.nums, case.target);
