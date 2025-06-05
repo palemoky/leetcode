@@ -11,3 +11,6 @@ main.go
 
 # Rust build output (do not commit compiled files)
 rust/target/
+
+# Drawio backup file
+*.bkp
