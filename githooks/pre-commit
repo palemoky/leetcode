@@ -3,7 +3,7 @@
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 cd "$REPO_ROOT" || exit 1
 
-langs="go python rust"
+langs="go py rs"
 dirs="go python rust"
 fmts=("goimports -w ." "black ." "cargo fmt")
 
