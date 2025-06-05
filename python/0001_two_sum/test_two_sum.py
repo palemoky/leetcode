@@ -1,6 +1,7 @@
 import unittest
 from two_sum import Solution
 
+
 class TestTwoSum(unittest.TestCase):
     def setUp(self):
         self.s = Solution()
@@ -19,5 +20,6 @@ class TestTwoSum(unittest.TestCase):
         self.assertEqual(self.s.twoSumHashMap([1, 2], 3), [0, 1])
         self.assertEqual(self.s.twoSumHashMap([0, 4, 3, 0], 0), [0, 3])
 
-if __name__ == '__main__':
+
+if __name__ == "__main__":
     unittest.main()
