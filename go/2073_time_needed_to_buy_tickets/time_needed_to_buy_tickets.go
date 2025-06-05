@@ -1,4 +1,4 @@
-package leetcode
+package solution
 
 // Time: O(n), Space: O(n)
 func timeRequiredToBuyQueue(tickets []int, k int) (steps int) {

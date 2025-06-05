@@ -1,4 +1,4 @@
-module github.com/palemoky/leetcode
+module solution
 
 go 1.24.0
 

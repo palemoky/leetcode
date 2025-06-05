@@ -1,4 +1,4 @@
-package leetcode
+package solution
 
 // Time: O(n), Space: O(n)
 func containsDuplicateHashMap(nums []int) bool {
