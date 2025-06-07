@@ -9,6 +9,9 @@ cover.out
 # Temporary main file for debugging (do not commit)
 main.go
 
+# Python cache
+__pycache__/
+
 # Rust build output (do not commit compiled files)
 rust/target/
 
