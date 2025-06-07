@@ -1,4 +1,4 @@
-name: Multi-language CI
+name: LeetBot
 
 on:
   push:
