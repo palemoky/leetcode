@@ -14,7 +14,7 @@ var algorithms = []struct {
 	{"BitWise", singleNumberBitWise},
 }
 
-func TestSingleNumberHashMap(t *testing.T) {
+func TestSingleNumber(t *testing.T) {
 	testCases := []struct {
 		name string
 		nums []int

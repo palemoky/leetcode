@@ -13,7 +13,7 @@ var algorithms = []struct {
 	{"HashMap", containsDuplicateHashMap},
 }
 
-func TestContainsDuplicateHashMap(t *testing.T) {
+func TestContainsDuplicate(t *testing.T) {
 	testCases := []struct {
 		name string
 		nums []int
