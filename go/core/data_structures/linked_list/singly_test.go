@@ -27,13 +27,13 @@ func TestLenAndToSlice(t *testing.T) {
 	assert := assert.New(t)
 
 	t.Run("Empty list", func(t *testing.T) {
-		var head *ListNode
+		var head *SinglyListNode
 		assert.Equal(0, Len(head), "Length of a nil list should be 0")
 		assert.Equal([]int{}, ToSlice(head), "ToSlice on a nil list should be an empty slice")
 	})
 
 	t.Run("Single node list", func(t *testing.T) {
-		head := &ListNode{Value: 10}
+		head := &SinglyListNode{Value: 10}
 		assert.Equal(1, Len(head))
 		assert.Equal([]int{10}, ToSlice(head))
 	})
