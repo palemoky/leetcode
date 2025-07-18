@@ -4,97 +4,110 @@ import (
 	"fmt"
 )
 
-type SinglyListNode struct {
+type SinglyNode struct {
 	Value int
-	Next  *SinglyListNode
+	Next  *SinglyNode
 }
 
-func NewLinkedList(arr []int) *SinglyListNode {
-	// If the input slice is empty, return nil (empty list)
+type SinglyList struct {
+	Head *SinglyNode
+	Len  int
+}
+
+func NewSinglyList(arr []int) *SinglyList {
+	list := &SinglyList{}
 	if len(arr) == 0 {
-		return nil
+		return list
 	}
 
-	// Create the head node with the first element of the slice
-	head := &SinglyListNode{Value: arr[0]}
-	// Create a movable pointer
-	current := head
-	// Iterate through the rest of the slice and append nodes to the list
-	for _, value := range arr[1:] { // Start from the second element
-		current.Next = &SinglyListNode{Value: value} // Create a new node and link it
-		current = current.Next                       // Move to the new node
+	headNode := &SinglyNode{Value: arr[0]}
+	list.Head = headNode
+	list.Len = 1
+
+	current := headNode
+	for i := 1; i < len(arr); i++ {
+		newNode := &SinglyNode{Value: arr[i]}
+		current.Next = newNode
+		current = newNode
+		list.Len++
 	}
 
-	// Return the head of the constructed linked list
-	return head
+	return list
 }
 
-func Append(head *SinglyListNode, value int) *SinglyListNode {
-	if head == nil {
-		return &SinglyListNode{Value: value}
+func (list *SinglyList) SinglyAppend(value int) {
+	if list.Len == 0 {
+		list.Head = &SinglyNode{Value: value}
+		list.Len++
+		return
 	}
 
-	current := head
+	current := list.Head
 	for current.Next != nil {
 		current = current.Next
 	}
-	current.Next = &SinglyListNode{Value: value}
-
-	return head
+	current.Next = &SinglyNode{Value: value}
+	list.Len++
 }
 
-func Prepend(head *SinglyListNode, value int) *SinglyListNode {
-	return &SinglyListNode{Value: value, Next: head}
+func (list *SinglyList) SinglyPrepend(value int) {
+	list.Head = &SinglyNode{Value: value, Next: list.Head}
+	list.Len++
 }
 
-func Insert(head *SinglyListNode, index, value int) (*SinglyListNode, error) {
-	if index < 0 || index > Len(head) {
-		return nil, fmt.Errorf("index out of range")
+func (list *SinglyList) SinglyInsert(index, value int) {
+	if index < 0 || index > list.Len {
+		panic(fmt.Errorf("index out of range"))
 	}
 
-	dummy := &SinglyListNode{Next: head}
-	current := dummy
+	dummy := &SinglyNode{Next: list.Head}
+	prev := dummy
 	for range index {
-		current = current.Next
+		prev = prev.Next
 	}
-	newNode := &SinglyListNode{Value: value, Next: current.Next}
-	current.Next = newNode
+	newNode := &SinglyNode{Value: value, Next: prev.Next}
+	prev.Next = newNode
+	list.Len++
 
-	return dummy.Next, nil
+	list.Head = dummy.Next
 }
 
-func Delete(head *SinglyListNode, value int) *SinglyListNode {
-	dummy := &SinglyListNode{Next: head}
+func (list *SinglyList) SinglyDelete(value int) {
+	dummy := &SinglyNode{Next: list.Head}
 
-	current := dummy
-	for current.Next != nil {
-		if current.Next.Value == value {
-			current.Next = current.Next.Next
-			break
+	prev := dummy
+	for prev.Next != nil {
+		if prev.Next.Value == value {
+			prev.Next = prev.Next.Next
+			list.Len--
+		} else {
+			prev = prev.Next
 		}
-		current = current.Next
 	}
-
-	return dummy.Next
+	list.Head = dummy.Next
 }
 
-func DeleteAt(head *SinglyListNode, index int) (*SinglyListNode, error) {
-	if len := Len(head); index < 0 || index >= len {
-		return head, fmt.Errorf("index out of range: index=%d, len=%d", index, len)
+func (list *SinglyList) SinglyDeleteAt(index int) {
+	if index < 0 || index >= list.Len {
+		panic(fmt.Errorf("index out of range: index=%d, len=%d", index, list.Len))
 	}
 
-	dummy := &SinglyListNode{Next: head}
-	current := dummy
+	dummy := &SinglyNode{Next: list.Head}
+	prev := dummy
 	for range index {
-		current = current.Next
+		prev = prev.Next
 	}
-	current.Next = current.Next.Next
 
-	return dummy.Next, nil
+	if prev.Next != nil {
+		prev.Next = prev.Next.Next
+	}
+
+	list.Len--
+	list.Head = dummy.Next
 }
 
-func Find(head *SinglyListNode, value int) *SinglyListNode {
-	current := head
+func (list *SinglyList) SinglyFind(value int) *SinglyNode {
+	current := list.Head
 	for current != nil {
 		if current.Value == value {
 			return current
@@ -105,12 +118,12 @@ func Find(head *SinglyListNode, value int) *SinglyListNode {
 	return nil
 }
 
-func Get(head *SinglyListNode, index int) *SinglyListNode {
-	if index < 0 || index >= Len(head) {
+func (list *SinglyList) SinglyGet(index int) *SinglyNode {
+	if index < 0 || index >= list.Len {
 		return nil
 	}
 
-	current := head
+	current := list.Head
 	for range index {
 		current = current.Next
 	}
@@ -118,16 +131,7 @@ func Get(head *SinglyListNode, index int) *SinglyListNode {
 	return current
 }
 
-func Len(head *SinglyListNode) (length int) {
-	for head != nil {
-		head = head.Next
-		length++
-	}
-
-	return
-}
-
-func ToSlice(head *SinglyListNode) []int {
+func ToSlice(head *SinglyNode) []int {
 	s := []int{}
 	if head == nil {
 		return s
