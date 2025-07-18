@@ -22,29 +22,6 @@ func TestNewLinkedList(t *testing.T) {
 	})
 }
 
-// TestLenAndToSlice covers two fundamental helper functions.
-// func TestLenAndToSlice(t *testing.T) {
-// 	assert := assert.New(t)
-
-// 	t.Run("Empty list", func(t *testing.T) {
-// 		var head *SinglyNode
-// 		assert.Equal(0, SinglyLen(head), "Length of a nil list should be 0")
-// 		assert.Equal([]int{}, ToSlice(head), "ToSlice on a nil list should be an empty slice")
-// 	})
-
-// 	t.Run("Single node list", func(t *testing.T) {
-// 		head := &SinglyNode{Value: 10}
-// 		assert.Equal(1, SinglyLen(head))
-// 		assert.Equal([]int{10}, ToSlice(head))
-// 	})
-
-// 	t.Run("Multi-node list", func(t *testing.T) {
-// 		head := NewSinglyList([]int{10, 20, 30})
-// 		assert.Equal(3, SinglyLen(head))
-// 		assert.Equal([]int{10, 20, 30}, ToSlice(head))
-// 	})
-// }
-
 // TestAppend tests adding a node to the end of the list.
 func TestAppend(t *testing.T) {
 	testCases := []struct {
@@ -59,6 +36,8 @@ func TestAppend(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
+
 			list := NewSinglyList(tc.initial)
 			list.SinglyAppend(tc.value)
 
@@ -83,6 +62,8 @@ func TestPrepend(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
+
 			list := NewSinglyList(tc.initial)
 			list.SinglyPrepend(tc.value)
 
@@ -116,6 +97,8 @@ func TestInsert(t *testing.T) {
 	assert := assert.New(t)
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
+
 			list := NewSinglyList(tc.array)
 
 			if tc.expectPanic {
@@ -162,6 +145,8 @@ func TestDelete(t *testing.T) {
 	assert := assert.New(t)
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
+
 			list := NewSinglyList(tc.array)
 			list.SinglyDelete(tc.value)
 
@@ -201,6 +186,8 @@ func TestDeleteAt(t *testing.T) {
 	assert := assert.New(t)
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
+
 			list := NewSinglyList(tc.array)
 
 			if tc.expectPanic {
@@ -242,6 +229,8 @@ func TestFind(t *testing.T) {
 	assert := assert.New(t)
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
+
 			list := NewSinglyList(tc.array)
 			node := list.SinglyFind(tc.value)
 
@@ -280,6 +269,8 @@ func TestGet(t *testing.T) {
 	assert := assert.New(t)
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
+
 			list := NewSinglyList(tc.array)
 			node := list.SinglyGet(tc.index)
 
@@ -291,6 +282,76 @@ func TestGet(t *testing.T) {
 				if node != nil { // Check for nil to prevent panic on the next line
 					assert.Equal(tc.expectedVal, node.Value, "Node value does not match expected value")
 				}
+			}
+		})
+	}
+}
+
+func TestSinglyReverse(t *testing.T) {
+	testCases := []struct {
+		name     string
+		input    []int
+		expected []int
+	}{
+		{"Empty list", []int{}, []int{}}, // 反转空列表还是空
+		{"Single node list", []int{10}, []int{10}},
+		{"Two nodes list", []int{10, 20}, []int{20, 10}},
+		{"Odd length list", []int{10, 20, 30}, []int{30, 20, 10}},
+		{"Even length list", []int{10, 20, 30, 40}, []int{40, 30, 20, 10}},
+	}
+
+	for _, tc := range testCases {
+		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
+
+			list := NewSinglyList(tc.input)
+			list.SinglyReverse()
+			assert.Equal(t, tc.expected, toSlice(list))
+		})
+	}
+}
+
+var middleNodeMethods = []struct {
+	name string
+	fn   func(*SinglyList) *SinglyNode
+}{
+	{"Array", func(list *SinglyList) *SinglyNode { return list.SinglyMiddleNodeArray() }},
+	{"TwoPointers", func(list *SinglyList) *SinglyNode { return list.SinglyMiddleNodeTwoPointers() }},
+}
+
+func TestSinglyMiddleNode(t *testing.T) {
+	testCases := []struct {
+		name          string
+		input         []int
+		expectNil     bool
+		expectedValue int
+	}{
+		{"Empty list", []int{}, true, 0},
+		{"Single node list", []int{10}, false, 10},
+		{"Two nodes (even)", []int{10, 20}, false, 20},
+		{"Three nodes (odd)", []int{10, 20, 30}, false, 20},
+		{"Four nodes (even)", []int{10, 20, 30, 40}, false, 30},
+		{"Five nodes (odd)", []int{10, 20, 30, 40, 50}, false, 30},
+	}
+
+	for _, method := range middleNodeMethods {
+		t.Run(method.name, func(t *testing.T) {
+			t.Parallel()
+
+			for _, tc := range testCases {
+				t.Run(tc.name, func(t *testing.T) {
+					t.Parallel()
+
+					list := NewSinglyList(tc.input)
+					middleNode := method.fn(list)
+
+					if tc.expectNil {
+						assert.Nil(t, middleNode)
+					} else {
+						assert.NotNil(t, middleNode)
+						assert.Equal(t, tc.expectedValue, middleNode.Value)
+					}
+				})
 			}
 		})
 	}

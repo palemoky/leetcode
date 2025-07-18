@@ -15,6 +15,8 @@ func TestNewDoublyList(t *testing.T) {
 	})
 
 	t.Run("Create from non-empty array", func(t *testing.T) {
+		t.Parallel()
+
 		array := []int{10, 20, 30}
 		list := NewDoublyList(array)
 
@@ -39,6 +41,8 @@ func TestDoublyAppend(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
+
 			list := NewDoublyList(tc.initial)
 			list.DoublyAppend(tc.value)
 
@@ -64,6 +68,8 @@ func TestDoublyPrepend(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
+
 			list := NewDoublyList(tc.initial)
 			list.DoublyPrepend(tc.value)
 
@@ -95,6 +101,8 @@ func TestDoublyInsert(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
+
 			list := NewDoublyList(tc.initial)
 			insertFunc := func() {
 				list.DoublyInsert(tc.value, tc.index)
@@ -129,6 +137,8 @@ func TestDoublyDeleteAt(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
+
 			list := NewDoublyList(tc.initial)
 			list.DoublyDeleteAt(tc.index)
 
@@ -158,6 +168,8 @@ func TestDoublyDelete(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
+
 			list := NewDoublyList(tc.initial)
 			list.DoublyDelete(tc.value)
 
@@ -189,6 +201,8 @@ func TestDoublyGet(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
+
 			node := list.DoublyGet(tc.index)
 			if tc.expectNil {
 				assert.Nil(t, node)
@@ -215,6 +229,8 @@ func TestDoublyFind(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
+
 			list := NewDoublyList(tc.initial)
 			node := list.DoublyFind(tc.target)
 

@@ -146,9 +146,53 @@ func ToSlice(head *SinglyNode) []int {
 }
 
 // 反转链表
-// func reverse() {
+func (list *SinglyList) SinglyReverse() {
+	var prev, next *SinglyNode // 注意不能写 &SinglyNode{}，这样的初始值是0和nil，只有*SinglyNode的值才是nil
 
-// }
+	current := list.Head
+	for current != nil {
+		next = current.Next // 1. 保存下一个节点
+		current.Next = prev // 2. 反转指针
+		prev = current      // 3. prev 前进
+		current = next      // 4. current 前进
+	}
+
+	list.Head = prev // 新的头节点是 prev
+}
 
 // 查找中间节点
+func (list *SinglyList) SinglyMiddleNodeArray() *SinglyNode {
+	if list.Head == nil {
+		return nil
+	}
+
+	nodes := []*SinglyNode{}
+	current := list.Head
+	for current != nil {
+		nodes = append(nodes, current)
+		current = current.Next
+	}
+
+	return nodes[len(nodes)/2]
+}
+
+// 快慢指针法
+// 注意fast指针的非空判断条件
+// 注意链表奇偶长度对结果的影响
+func (list *SinglyList) SinglyMiddleNodeTwoPointers() *SinglyNode {
+	if list.Head == nil {
+		return nil
+	}
+
+	fast, slow := list.Head, list.Head
+	for fast != nil && fast.Next != nil { // 因为fast要跨两步，所以要确定两步都非空
+		fast, slow = fast.Next.Next, slow.Next
+	}
+
+	return slow
+}
+
 // 合并有序链表
+// func (list *SinglyList) SinglyMergeTwoLists(l1, l2 *SinglyList) *SinglyList {
+
+// }
