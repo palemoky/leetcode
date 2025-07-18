@@ -144,3 +144,11 @@ func ToSlice(head *SinglyNode) []int {
 
 	return s
 }
+
+// 反转链表
+// func reverse() {
+
+// }
+
+// 查找中间节点
+// 合并有序链表
