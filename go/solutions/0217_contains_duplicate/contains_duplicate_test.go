@@ -36,7 +36,6 @@ func TestContainsDuplicate(t *testing.T) {
 	for _, algo := range algorithms {
 		t.Run(algo.name, func(t *testing.T) {
 			for _, tc := range testCases {
-				tc := tc // Capture range variable to avoid data race
 				t.Run(tc.name, func(t *testing.T) {
 					got := algo.fn(tc.nums)
 					assert.Equal(t, tc.want, got, "%s: input=%v", algo.name, tc.nums)

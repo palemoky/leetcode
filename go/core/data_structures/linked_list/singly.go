@@ -193,6 +193,6 @@ func (list *SinglyList) SinglyMiddleNodeTwoPointers() *SinglyNode {
 }
 
 // 合并有序链表
-// func (list *SinglyList) SinglyMergeTwoLists(l1, l2 *SinglyList) *SinglyList {
+func (list *SinglyList) SinglyMergeTwoLists(l1, l2 *SinglyList) *SinglyList {
 
-// }
+}

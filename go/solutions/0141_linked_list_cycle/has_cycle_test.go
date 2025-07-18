@@ -53,7 +53,6 @@ func TestHasCycle(t *testing.T) {
 	for _, algo := range algorithms {
 		t.Run(algo.name, func(t *testing.T) {
 			for _, tc := range testCases {
-				tc := tc
 				t.Run(tc.name, func(t *testing.T) {
 					head := makeCycleList(tc.nums, tc.cycleAt)
 					got := algo.fn(head)
