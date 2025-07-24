@@ -191,18 +191,3 @@ func (list *SinglyList) SinglyMiddleNodeTwoPointers() *SinglyNode {
 
 	return slow
 }
-
-// 合并有序链表
-// 两种解法：1. 将另一个有序链表插入正确的位置；2. 合并成为新的链表
-func (list *SinglyList) SinglyMergeSortedTwoLists(l1, l2 *SinglyList) *SinglyList {
-	if list.Len == 0 || l1.Len == 0 || l2.Len == 0 {
-		return list
-	}
-
-	// current := l1.Head
-	for current := l1.Head; current.Next != nil; current = current.Next {
-
-	}
-
-	return l1
-}
