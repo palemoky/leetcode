@@ -1,22 +1,108 @@
 #!/bin/sh
 
-REPO_ROOT="$(git rev-parse --show-toplevel)"
-cd "$REPO_ROOT" || exit 1
+# 定义需要处理的语言、对应的目录和测试阈值。
+LANGS_TO_CHECK="go py rs"
+GO_COVERAGE_THRESHOLD="97.0"
 
-langs="go python rust"
-dirs="go python rust"
-tests=("go test -coverprofile=cover.out ./... && go tool cover -func=cover.out | awk '/^total:/ { gsub(/%/, \"\", \$3); if (\$3 < 97.0) exit 1 }'" "pytest" "cargo test")
-
-i=0
-for lang in $langs; do
-    if git diff --cached --name-only | grep "\.${lang}$" > /dev/null; then
-        dir=$(echo $dirs | cut -d' ' -f$((i+1)))
-        test_cmd=$(echo "${tests[$i]}")
-        cd ./$dir && eval "$test_cmd" && cd -
-        if [ $? -ne 0 ]; then
-            echo "Tests failed or coverage is not 100% for $lang. Push aborted."
-            exit 1
-        fi
+# --- 辅助函数：Go 测试与覆盖率检查 ---
+run_go_tests() {
+    echo "Running Go tests and checking coverage (threshold: ${GO_COVERAGE_THRESHOLD}%)..."
+    # 运行测试并生成覆盖率报告
+    if ! go test -coverprofile=cover.out ./...; then
+        echo "Go tests failed."
+        return 1
     fi
-    i=$((i+1))
+
+    # 从覆盖率报告中提取总覆盖率数值
+    coverage_value=$(go tool cover -func=cover.out | grep '^total:' | awk '{gsub(/%/, "", $3); print $3}')
+
+    if [ -z "$coverage_value" ]; then
+        echo "Could not determine Go test coverage."
+        return 1
+    fi
+
+    # 使用 awk 进行浮点数比较，这比 shell 内置的整数比较更可靠
+    is_ok=$(echo "$coverage_value $GO_COVERAGE_THRESHOLD" | awk '{if ($1 >= $2) print "yes"; else print "no"}')
+
+    if [ "$is_ok" = "yes" ]; then
+        echo "Go test coverage is ${coverage_value}% - OK."
+        return 0
+    else
+        echo "Go test coverage is ${coverage_value}%, which is below the required ${GO_COVERAGE_THRESHOLD}%."
+        return 1
+    fi
+}
+
+
+# --- 主逻辑 ---
+
+# Git 在 pre-push 钩子中通过标准输入（stdin）提供要推送的引用信息，
+# 格式为: <local_ref> <local_sha> <remote_ref> <remote_sha>，
+# 我们需要读取这些信息来确定哪些提交将被推送
+while read local_ref local_sha remote_ref remote_sha; do
+    # 如果 local_sha 是 40 个 0，代表这是一个删除分支的操作，直接跳过。
+    if [ "$local_sha" = "0000000000000000000000000000000000000000" ]; then
+        continue
+    fi
+
+    # 如果 remote_sha 是 40 个 0，代表这是一个新创建的分支
+    # 此时，我们要检查的范围是从第一个提交到当前分支的最新提交
+    if [ "$remote_sha" = "0000000000000000000000000000000000000000" ]; then
+        # 使用 `git rev-list --max-parents=0 HEAD` 查找初始提交
+        commit_range="$local_sha"
+    else
+        # 否则，这是一个更新操作，检查范围是旧提交和新提交之间的差异。
+        commit_range="$remote_sha..$local_sha"
+    fi
+
+    echo "--- Checking commits in range: $commit_range for ref $local_ref ---"
+
+    # 获取该范围内所有被修改过的文件的列表
+    changed_files=$(git diff-tree --no-commit-id --name-only -r "$commit_range")
+
+    for lang in $LANGS_TO_CHECK; do
+        # 检查是否有对应语言的文件在这次推送的提交中被修改了
+        if echo "$changed_files" | grep -q "\.${lang}$"; then
+            echo "Detected changes to .$lang files. Running tests..."
+
+            dir=""
+            test_failed=0
+
+            # 使用 case 语句选择目录和执行测试，这比并行“数组”更健壮和可移植。
+            case "$lang" in
+                "go")
+                    dir="go"
+                    # 在子 shell 中执行测试，这样 `cd` 不会影响脚本的当前目录。
+                    # `if ! command` 是检查失败的推荐方式。
+                    if ! (cd "$dir" && run_go_tests); then
+                        test_failed=1
+                    fi
+                    ;;
+                "py" | "python")
+                    dir="python"
+                    if ! (cd "$dir" && pytest); then
+                        test_failed=1
+                    fi
+                    ;;
+                "rs" | "rust")
+                    dir="rust"
+                    if ! (cd "$dir" && cargo test); then
+                        test_failed=1
+                    fi
+                    ;;
+            esac
+
+            # 如果任何一个测试失败，立即中止推送
+            if [ "$test_failed" -eq 1 ]; then
+                echo "--------------------------------------------------------"
+                echo "ERROR: Tests for '$lang' in directory '$dir' failed."
+                echo "Push aborted. Please fix the tests before pushing."
+                echo "--------------------------------------------------------"
+                exit 1
+            fi
+        fi
+    done
 done
+
+echo "--- All checks passed. Proceeding with push. ---"
+exit 0
