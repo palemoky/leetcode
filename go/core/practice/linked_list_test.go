@@ -224,3 +224,163 @@ func TestMergeSortedTwoLists(t *testing.T) {
 		})
 	}
 }
+
+// createLinkedListWithCycle 从一个整数切片创建链表，并能指定环的入口
+// vals: 链表节点的值
+// cyclePos: 尾节点指向的节点的索引。如果为 -1，则不创建环。
+func createLinkedListWithCycle(vals []int, cyclePos int) *ListNode {
+	if len(vals) == 0 {
+		return nil
+	}
+
+	// 1. 创建所有节点，并用一个切片存起来，方便后续通过索引访问
+	nodes := make([]*ListNode, len(vals))
+	for i, val := range vals {
+		nodes[i] = &ListNode{Val: val}
+	}
+
+	// 2. 将节点线性连接起来
+	for i := 0; i < len(vals)-1; i++ {
+		nodes[i].Next = nodes[i+1]
+	}
+
+	// 3. 如果需要，创建环
+	if cyclePos != -1 && cyclePos < len(vals) {
+		tail := nodes[len(vals)-1]
+		tail.Next = nodes[cyclePos] // 尾节点指向环的入口
+	}
+
+	return nodes[0] // 返回头节点
+}
+
+// ===== 测试是否有环 =====
+
+func TestHasCycle(t *testing.T) {
+	// 定义测试用例表
+	testCases := []struct {
+		name     string
+		input    *ListNode
+		expected bool
+	}{
+		{
+			name:     "nil list",
+			input:    nil,
+			expected: false,
+		},
+		{
+			name:     "single node no cycle",
+			input:    createLinkedListWithCycle([]int{1}, -1),
+			expected: false,
+		},
+		{
+			name:     "multiple nodes no cycle",
+			input:    createLinkedListWithCycle([]int{1, 2, 3, 4}, -1),
+			expected: false,
+		},
+		{
+			name:     "cycle to head",
+			input:    createLinkedListWithCycle([]int{1, 2, 3}, 0),
+			expected: true,
+		},
+		{
+			name:     "cycle to middle",
+			input:    createLinkedListWithCycle([]int{1, 2, 3, 4, 5}, 2),
+			expected: true,
+		},
+		{
+			name:     "cycle to tail (self loop)",
+			input:    createLinkedListWithCycle([]int{1, 2}, 1),
+			expected: true,
+		},
+	}
+
+	// 将待测试的函数放入 map 中
+	functionsToTest := map[string]func(*ListNode) bool{
+		"HashMapMethod":     hasCycleHashMap,
+		"TwoPointersMethod": hasCycleTwoPointers,
+	}
+
+	for funcName, hasCycleFunc := range functionsToTest {
+		t.Run(funcName, func(t *testing.T) {
+			for _, tc := range testCases {
+				t.Run(tc.name, func(t *testing.T) {
+					actual := hasCycleFunc(tc.input)
+					assert.Equal(t, tc.expected, actual)
+				})
+			}
+		})
+	}
+}
+
+// ===== 测试查找环的入口 =====
+
+func TestFindCycleEntry(t *testing.T) {
+	// --- 准备测试数据 ---
+	// 对于查找入口的测试，我们需要获得确切的节点指针作为期望结果
+
+	// Case 1: 无环
+	noCycleList := createLinkedListWithCycle([]int{1, 2, 3}, -1)
+
+	// Case 2: 环指向头部
+	cycleToHeadList := createLinkedListWithCycle([]int{1, 2, 3}, 0)
+	expectedHeadEntry := cycleToHeadList // 入口就是头节点
+
+	// Case 3: 环指向中间
+	// 我们需要手动构建以获取中间节点的指针
+	n1 := &ListNode{Val: 1}
+	n2 := &ListNode{Val: 2}
+	n3 := &ListNode{Val: 3} // 期望的入口节点
+	n4 := &ListNode{Val: 4}
+	n1.Next = n2
+	n2.Next = n3
+	n3.Next = n4
+	n4.Next = n3 // 环指向 n3
+	cycleToMiddleList := n1
+	expectedMiddleEntry := n3
+
+	// 定义测试用例表
+	testCases := []struct {
+		name     string
+		input    *ListNode
+		expected *ListNode
+	}{
+		{
+			name:     "nil list",
+			input:    nil,
+			expected: nil,
+		},
+		{
+			name:     "no cycle list",
+			input:    noCycleList,
+			expected: nil,
+		},
+		{
+			name:     "cycle to head",
+			input:    cycleToHeadList,
+			expected: expectedHeadEntry,
+		},
+		{
+			name:     "cycle to middle",
+			input:    cycleToMiddleList,
+			expected: expectedMiddleEntry,
+		},
+	}
+
+	// 将待测试的函数放入 map 中
+	functionsToTest := map[string]func(*ListNode) *ListNode{
+		"HashMapMethod":         findCycleEnteryHashMap,
+		"MathTwoPointersMethod": findCycleEnteryMathTwoPointers,
+	}
+
+	for funcName, findEntryFunc := range functionsToTest {
+		t.Run(funcName, func(t *testing.T) {
+			for _, tc := range testCases {
+				t.Run(tc.name, func(t *testing.T) {
+					actual := findEntryFunc(tc.input)
+					// 检查返回的指针是否与期望的指针指向同一个内存地址
+					assert.Same(t, tc.expected, actual)
+				})
+			}
+		})
+	}
+}

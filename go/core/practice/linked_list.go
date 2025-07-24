@@ -6,6 +6,7 @@ type ListNode struct {
 }
 
 // 反转链表
+// Time: O(n), Space: O(1)
 func reverse(head *ListNode) *ListNode {
 	if head == nil {
 		return nil
@@ -24,6 +25,7 @@ func reverse(head *ListNode) *ListNode {
 }
 
 // 通过数组的连续性查找中间节点
+// Time: O(n), Space: O(n)
 func findMiddleArray(head *ListNode) *ListNode {
 	if head == nil {
 		return nil
@@ -40,6 +42,7 @@ func findMiddleArray(head *ListNode) *ListNode {
 }
 
 // 通过快慢指针查找中间节点
+// Time: O(n), Space: O(1)
 func findMiddleTwoPointers(head *ListNode) *ListNode {
 	if head == nil {
 		return nil
@@ -54,17 +57,8 @@ func findMiddleTwoPointers(head *ListNode) *ListNode {
 	return slow
 }
 
-func getListLen(head *ListNode) int {
-	len := 0
-	for head != nil {
-		len++
-		head = head.Next
-	}
-
-	return len
-}
-
 // 合并有序链表
+// Time: O(n), Space: O(n)
 func mergeSortedTwoLists(l1, l2 *ListNode) *ListNode {
 	dummy := &ListNode{}
 	current := dummy
@@ -90,3 +84,73 @@ func mergeSortedTwoLists(l1, l2 *ListNode) *ListNode {
 
 	return dummy.Next
 }
+
+// 是否有环
+func hasCycleHashMap(head *ListNode) bool {
+	scanned := map[*ListNode]struct{}{}
+	for head != nil {
+		if _, ok := scanned[head]; ok {
+			return true
+		}
+		scanned[head] = struct{}{}
+		head = head.Next
+	}
+
+	return false
+}
+
+// 该解法的核心在于环形链表会导致快慢指针相遇
+func hasCycleTwoPointers(head *ListNode) bool {
+	fast, slow := head, head
+	for fast != nil && fast.Next != nil {
+		// 快指针以两倍速移动，一定会与慢指针相遇，为什么呢？
+		// 把两个指针的移动看作相对运动，那么就是快指针在每次一个节点的速度靠近慢指针，所以快慢指针必然相遇
+		// 如果快指针每次移动3个节点，则相对运动下，就可能跳过慢指针而不相遇
+		fast = fast.Next.Next
+		slow = slow.Next
+
+		if fast == slow {
+			return true
+		}
+	}
+
+	return false
+}
+
+// 找到环的入口节点
+// Time: O(n), Space: O(n)
+func findCycleEnteryHashMap(head *ListNode) *ListNode {
+	scanned := map[*ListNode]struct{}{}
+	for head != nil {
+		if _, ok := scanned[head]; ok {
+			return head
+		}
+		scanned[head] = struct{}{}
+		head = head.Next
+	}
+
+	return nil
+}
+
+// 数学分析规律，再以双指针求解
+// Time: O(n), Space: O(1)
+func findCycleEnteryMathTwoPointers(head *ListNode) *ListNode {
+	fast, slow := head, head
+	for fast != nil && fast.Next != nil {
+		fast, slow = fast.Next.Next, slow.Next
+		// 先判断是否有环
+		if fast == slow {
+			headPtr, meetPtr := head, fast
+			// 再根据数学推导出的从head到入口点的步数与相遇点到入口点的步数相同获取入口点位置
+			// 此时新建两个指针，分别从head和相遇点以相同的速度移动，当二者相遇时，即为入口点
+			for headPtr != meetPtr {
+				headPtr, meetPtr = headPtr.Next, meetPtr.Next
+			}
+			return headPtr // 返回meetPtr也可以
+		}
+	}
+
+	return nil
+}
+
+// 删除链表的倒数第N个节点

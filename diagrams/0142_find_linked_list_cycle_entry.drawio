@@ -1,0 +1,73 @@
+<mxfile host="Electron" agent="Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) draw.io/28.0.6 Chrome/138.0.7204.100 Electron/37.2.3 Safari/537.36" version="28.0.6">
+  <diagram name="Page-1" id="4sGC1OGF9je-5U0BEd5J">
+    <mxGraphModel dx="1678" dy="911" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ZZEjGukvOw1Lrsak_Tc8-3" value="" style="group" vertex="1" connectable="0" parent="1">
+          <mxGeometry x="540" y="110" width="110" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZZEjGukvOw1Lrsak_Tc8-1" value="" style="ellipse;whiteSpace=wrap;html=1;" vertex="1" parent="ZZEjGukvOw1Lrsak_Tc8-3">
+          <mxGeometry x="30" width="80" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="ZZEjGukvOw1Lrsak_Tc8-2" value="" style="endArrow=none;html=1;rounded=0;" edge="1" parent="ZZEjGukvOw1Lrsak_Tc8-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint as="sourcePoint" />
+            <mxPoint x="70" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ZZEjGukvOw1Lrsak_Tc8-4" value="" style="shape=waypoint;sketch=0;fillStyle=solid;size=6;pointerEvents=1;points=[];fillColor=none;resizable=0;rotatable=0;perimeter=centerPerimeter;snapToPoint=1;" vertex="1" parent="ZZEjGukvOw1Lrsak_Tc8-3">
+          <mxGeometry x="90" y="60" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="ZZEjGukvOw1Lrsak_Tc8-8" value="z" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="ZZEjGukvOw1Lrsak_Tc8-3">
+          <mxGeometry y="40" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZZEjGukvOw1Lrsak_Tc8-9" value="" style="shape=waypoint;sketch=0;fillStyle=solid;size=6;pointerEvents=1;points=[];fillColor=none;resizable=0;rotatable=0;perimeter=centerPerimeter;snapToPoint=1;" vertex="1" parent="ZZEjGukvOw1Lrsak_Tc8-3">
+          <mxGeometry x="60" y="-10" width="20" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="ZZEjGukvOw1Lrsak_Tc8-5" value="相遇点" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="620" y="190" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZZEjGukvOw1Lrsak_Tc8-6" value="x" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="555" y="78" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZZEjGukvOw1Lrsak_Tc8-7" value="y" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="645" y="108" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZZEjGukvOw1Lrsak_Tc8-10" value="入口点" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="580" y="78" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZZEjGukvOw1Lrsak_Tc8-11" value="如图所示，各距离变量含义如下：&lt;div&gt;&lt;ul&gt;&lt;li&gt;x：head到入口点间的距离&lt;/li&gt;&lt;li&gt;y：入口点到相遇点的距离&lt;/li&gt;&lt;li&gt;z：相遇点到入口点的距离&lt;/li&gt;&lt;/ul&gt;&lt;div&gt;我们定义fast和slow指针，fast的移动速度是slow的两倍，&lt;/div&gt;&lt;div&gt;以确保指针可以在环中相遇而不跳过（以相对速度思考）。&lt;/div&gt;&lt;div&gt;由此可得，当fast与slow在环中相遇时，其各自的位置为&lt;/div&gt;&lt;/div&gt;" style="text;html=1;align=left;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="465" y="231" width="330" height="140" as="geometry" />
+        </mxCell>
+        <mxCell id="ZZEjGukvOw1Lrsak_Tc8-12" value="head" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="490" y="96" width="50" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZZEjGukvOw1Lrsak_Tc8-13" value="&lt;div&gt;slow = x+y&lt;/div&gt;&lt;div&gt;fast = x+y+n(y+z)&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="500" y="386" width="120" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ZZEjGukvOw1Lrsak_Tc8-14" value="&lt;i&gt;n为fast的圈数&lt;/i&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="630" y="391" width="100" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZZEjGukvOw1Lrsak_Tc8-15" value="由于fast以slow两倍的速度移动，当快慢指针相遇时，由上述公式关系可得" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="400" y="432.5" width="410" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="ZZEjGukvOw1Lrsak_Tc8-16" value="fast = 2slow&lt;div&gt;x+y+n(y+z) = 2(x+y)&lt;/div&gt;&lt;div&gt;x+y = n(y+z)&lt;/div&gt;&lt;div&gt;x = n(y+z)-y&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="545" y="464" width="130" height="70" as="geometry" />
+        </mxCell>
+        <mxCell id="ZZEjGukvOw1Lrsak_Tc8-17" value="此时我们无法看出什么有用的关系，需要用逆向思维：&lt;div&gt;x = n(y+z)-y 意为跑n圈环再反向跑y的距离即可到达入口点，&lt;/div&gt;&lt;div&gt;那么也可以少跑一圈距离z到达入口点，所以得出以下公式&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="435" y="534" width="340" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ZZEjGukvOw1Lrsak_Tc8-18" value="&lt;div&gt;x =&amp;nbsp;(n-1)(y+z)+(y+z)-y&lt;/div&gt;x = (n-1)(y+z)+z" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="540" y="599" width="140" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ZZEjGukvOw1Lrsak_Tc8-19" value="在以上式子中，(n-1)(y+z)即为圈数，由此我们得到重要信息：&lt;div&gt;当快慢指针相遇时，其相遇点距离入口的距离一定与head距入口点的距离相同！&lt;/div&gt;&lt;div&gt;更直观的来说，当n=1时，x=z&lt;/div&gt;" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="385" y="638" width="450" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="ZZEjGukvOw1Lrsak_Tc8-21" value="来源： https://www.bilibili.com/video/BV1if4y1d7ob" style="text;html=1;align=center;verticalAlign=middle;resizable=0;points=[];autosize=1;strokeColor=none;fillColor=none;" vertex="1" parent="1">
+          <mxGeometry x="450" y="719" width="290" height="30" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
