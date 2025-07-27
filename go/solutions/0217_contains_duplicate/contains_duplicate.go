@@ -1,4 +1,4 @@
-package solution
+package contains_duplicate
 
 // Time: O(n), Space: O(n)
 func containsDuplicateHashMap(nums []int) bool {

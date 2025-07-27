@@ -1,4 +1,4 @@
-package solution
+package valid_parentheses
 
 import (
 	"testing"

@@ -1,4 +1,4 @@
-package solution
+package time_needed_to_buy_tickets
 
 import (
 	"testing"

@@ -1,4 +1,4 @@
-package solution
+package two_sum
 
 // Time: O(n^2), Space: O(1)
 func twoSumBruteForce(nums []int, target int) []int {

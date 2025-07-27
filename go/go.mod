@@ -1,4 +1,4 @@
-module solution
+module solutions
 
 go 1.24.0
 

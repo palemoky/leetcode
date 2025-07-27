@@ -1,4 +1,4 @@
-package solution
+package single_number
 
 // Time: O(n), Space: O(n)
 func singleNumberHashMap(nums []int) int {

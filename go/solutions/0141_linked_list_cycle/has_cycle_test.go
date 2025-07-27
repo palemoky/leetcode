@@ -1,4 +1,4 @@
-package solution
+package has_cycle
 
 import (
 	"testing"

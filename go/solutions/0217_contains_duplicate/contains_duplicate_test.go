@@ -1,4 +1,4 @@
-package solution
+package contains_duplicate
 
 import (
 	"testing"

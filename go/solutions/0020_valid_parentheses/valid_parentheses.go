@@ -1,4 +1,4 @@
-package solution
+package valid_parentheses
 
 // Time: O(n), Space: O(n)
 func isValidIfElse(s string) bool {

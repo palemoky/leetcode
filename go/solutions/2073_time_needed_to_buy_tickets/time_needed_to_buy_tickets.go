@@ -1,4 +1,4 @@
-package solution
+package time_needed_to_buy_tickets
 
 // Time: O(n), Space: O(n)
 func timeRequiredToBuyQueue(tickets []int, k int) (steps int) {
