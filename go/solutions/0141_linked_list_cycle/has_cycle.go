@@ -1,12 +1,9 @@
 package has_cycle
 
-type ListNode struct {
-	Val  int
-	Next *ListNode
-}
+import "leetcode/go/solutions/utils"
 
-func hasCycleHashMap(head *ListNode) bool {
-	m := make(map[*ListNode]struct{})
+func hasCycleHashMap(head *utils.ListNode) bool {
+	m := make(map[*utils.ListNode]struct{})
 	for head != nil {
 		if _, ok := m[head]; ok {
 			return true
@@ -18,7 +15,7 @@ func hasCycleHashMap(head *ListNode) bool {
 	return false
 }
 
-func hasCycleTwoPoints(head *ListNode) bool {
+func hasCycleTwoPoints(head *utils.ListNode) bool {
 	fast, slow := head, head
 	for fast != nil && fast.Next != nil {
 		fast, slow = fast.Next.Next, slow.Next

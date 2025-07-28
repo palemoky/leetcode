@@ -12,10 +12,10 @@ func TestFindCycleEntry(t *testing.T) {
 	// 对于查找入口的测试，我们需要获得确切的节点指针作为期望结果
 
 	// Case 1: 无环
-	noCycleList := utils.CreateLinkedListWithCycle([]int{1, 2, 3}, -1)
+	noCycleList := utils.NewCycleList([]int{1, 2, 3}, -1)
 
 	// Case 2: 环指向头部
-	cycleToHeadList := utils.CreateLinkedListWithCycle([]int{1, 2, 3}, 0)
+	cycleToHeadList := utils.NewCycleList([]int{1, 2, 3}, 0)
 	expectedHeadEntry := cycleToHeadList // 入口就是头节点
 
 	// Case 3: 环指向中间
@@ -31,7 +31,6 @@ func TestFindCycleEntry(t *testing.T) {
 	cycleToMiddleList := n1
 	expectedMiddleEntry := n3
 
-	// 定义测试用例表
 	testCases := []struct {
 		name     string
 		input    *utils.ListNode

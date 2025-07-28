@@ -49,7 +49,7 @@ func TestSwapPairs(t *testing.T) {
 		t.Run(funcName, func(t *testing.T) {
 			for _, tc := range testCases {
 				t.Run(tc.name, func(t *testing.T) {
-					head := utils.CreateLinkedList(tc.inputList)
+					head := utils.NewList(tc.inputList)
 					resultHead := swapFunc(head)
 					resultSlice := utils.ToSlice(resultHead)
 					assert.Equal(t, tc.expectedList, resultSlice)

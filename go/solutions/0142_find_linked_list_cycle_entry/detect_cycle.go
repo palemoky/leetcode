@@ -2,7 +2,6 @@ package find_linked_list_cycle_entry
 
 import "leetcode/go/solutions/utils"
 
-// 找到环的入口节点
 // Time: O(n), Space: O(n)
 func findCycleEnteryHashMap(head *utils.ListNode) *utils.ListNode {
 	scanned := map[*utils.ListNode]struct{}{}

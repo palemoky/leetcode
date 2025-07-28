@@ -5,7 +5,7 @@ type ListNode struct {
 	Next *ListNode
 }
 
-func CreateLinkedList(vals []int) *ListNode {
+func NewList(vals []int) *ListNode {
 	if len(vals) == 0 {
 		return nil
 	}
@@ -20,10 +20,10 @@ func CreateLinkedList(vals []int) *ListNode {
 	return dummy.Next
 }
 
-// createLinkedListWithCycle 从一个整数切片创建链表，并能指定环的入口
+// NewCycleList 从一个整数切片创建链表，并能指定环的入口
 // vals: 链表节点的值
 // cyclePos: 尾节点指向的节点的索引。如果为 -1，则不创建环。
-func CreateLinkedListWithCycle(vals []int, cyclePos int) *ListNode {
+func NewCycleList(vals []int, cyclePos int) *ListNode {
 	if len(vals) == 0 {
 		return nil
 	}
