@@ -36,8 +36,8 @@ func timeRequiredToBuyPointer(tickets []int, k int) (steps int) {
 		return
 	}
 
-	for tickets[k] > 0 {
-		for i := 0; i < len(tickets); i++ {
+	for { // 此处采用无限循环后，编译器不会要求之后必须有return语句
+		for i := range tickets {
 			if tickets[i] > 0 {
 				tickets[i]--
 				steps++
@@ -47,8 +47,6 @@ func timeRequiredToBuyPointer(tickets []int, k int) (steps int) {
 			}
 		}
 	}
-
-	return steps // unreachable, but added for clarity
 }
 
 // Time: O(n), Space: O(1)

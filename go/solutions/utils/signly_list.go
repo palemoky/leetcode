@@ -48,7 +48,7 @@ func NewCycleList(vals []int, cyclePos int) *ListNode {
 	return nodes[0] // 返回头节点
 }
 
-// toSlice 将链表转换回整数切片，方便断言比较
+// ToSlice 将链表转换回整数切片，方便断言比较
 func ToSlice(head *ListNode) []int {
 	if head == nil {
 		return []int{}

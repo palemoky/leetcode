@@ -36,10 +36,11 @@ func longestCommonPrefixHorizontalScanningBuiltin(strs []string) string {
 	for i := 1; i < len(strs); i++ {
 		// 3. 不断缩短 prefix，直到当前字符串 (strs[i]) 以它为前缀为止
 		for !strings.HasPrefix(strs[i], prefix) {
-			if prefix == "" {
-				return ""
-			}
 			prefix = prefix[:len(prefix)-1]
+		}
+
+		if prefix == "" {
+			break
 		}
 	}
 

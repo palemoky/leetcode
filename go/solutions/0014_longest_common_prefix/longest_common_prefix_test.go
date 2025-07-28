@@ -48,7 +48,7 @@ func TestLongestCommonPrefix(t *testing.T) {
 
 func generateTestStrings(count int, str1, str2 string) []string {
 	strs := make([]string, count)
-	for i := 0; i < count; i++ {
+	for i := range count {
 		if i%2 == 0 {
 			strs[i] = str1
 		} else {
