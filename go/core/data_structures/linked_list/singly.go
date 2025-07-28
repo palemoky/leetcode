@@ -133,13 +133,8 @@ func (list *SinglyList) SinglyGet(index int) *SinglyNode {
 
 func ToSlice(head *SinglyNode) []int {
 	s := []int{}
-	if head == nil {
-		return s
-	}
-
-	for head != nil {
-		s = append(s, head.Value)
-		head = head.Next
+	for current := head; current != nil; current = current.Next {
+		s = append(s, current.Value)
 	}
 
 	return s

@@ -50,14 +50,9 @@ func NewCycleList(vals []int, cyclePos int) *ListNode {
 
 // ToSlice 将链表转换回整数切片，方便断言比较
 func ToSlice(head *ListNode) []int {
-	if head == nil {
-		return []int{}
+	s := []int{}
+	for current := head; current != nil; current = current.Next {
+		s = append(s, current.Val)
 	}
-	var res []int
-	current := head
-	for current != nil {
-		res = append(res, current.Val)
-		current = current.Next
-	}
-	return res
+	return s
 }
