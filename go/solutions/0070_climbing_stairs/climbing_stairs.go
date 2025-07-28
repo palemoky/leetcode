@@ -1,5 +1,7 @@
 package climbing_stairs
 
+// 解法一：朴素递归
+// Time: O(2^n), Space: O(1)
 func climbStairsRecursive(n int) int {
 	switch {
 	case n > 2:
@@ -11,6 +13,8 @@ func climbStairsRecursive(n int) int {
 	}
 }
 
+// 解法二：记忆优化递归
+// Time: O(n), Space: O(n)
 var memo = map[int]int{}
 
 func climbStairsRecursiveMemo(n int) int {
@@ -29,18 +33,22 @@ func climbStairsRecursiveMemo(n int) int {
 	}
 }
 
+// 解法三：迭代求解（推荐）
+// Time: O(n), Space: O(1)
 func climbStairsIterative(n int) int {
-	if n < 0 {
+	switch {
+	case n > 2:
+		x, y := 1, 2
+		for i := 3; i <= n; i++ {
+			x, y = y, x+y
+		}
+
+		return y
+
+	case n > 0:
+		return n
+
+	default:
 		return 0
 	}
-	if n < 2 {
-		return n
-	}
-
-	x, y := 1, 2
-	for i := 3; i <= n; i++ {
-		x, y = y, x+y
-	}
-
-	return y
 }

@@ -42,18 +42,21 @@ func fibRecursiveMemo(n int) int {
 // 最高效、最推荐的解法
 // Time: O(n), Space: O(1)
 func fibIterative(n int) int {
-	if n < 0 {
-		return 0
-	} else if n <= 1 {
+	switch {
+	case n > 1:
+		x, y := 0, 1
+		for i := 2; i <= n; i++ { // 注意此处的条件是 <=
+			// x, y 分别代表 f(i-2) 和 f(i-1)
+			// 计算 f(i) 并更新  和 y
+			x, y = y, x+y
+		}
+
+		return y
+
+	case n > 0:
 		return n
-	}
 
-	x, y := 0, 1
-	for i := 2; i <= n; i++ { // 注意此处的条件是 <=
-		// a, b 分别代表 f(i-2) 和 f(i-1)
-		// 计算 f(i) 并更新 a 和 b
-		x, y = y, x+y
+	default:
+		return 0
 	}
-
-	return y
 }
