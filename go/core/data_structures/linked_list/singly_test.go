@@ -6,8 +6,8 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-// TestNewLinkedList tests the creation of a new list from a slice.
-func TestNewLinkedList(t *testing.T) {
+// TestNewSinglyList tests the creation of a new list from a slice.
+func TestNewSinglyList(t *testing.T) {
 	assert := assert.New(t)
 
 	t.Run("Create from empty slice", func(t *testing.T) {

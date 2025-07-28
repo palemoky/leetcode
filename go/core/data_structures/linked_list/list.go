@@ -11,12 +11,14 @@ type List interface {
 
 // Methods to make SinglyNode and SinglyList satisfy the interfaces
 func (n *SinglyNode) GetValue() int { return n.Value }
+
 func (n *SinglyNode) GetNext() Node {
 	if n.Next == nil {
 		return nil
 	}
 	return n.Next
 }
+
 func (l *SinglyList) GetHead() Node {
 	if l.Head == nil {
 		return nil
