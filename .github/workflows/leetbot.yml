@@ -21,7 +21,29 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
+  filter:
+    runs-on: ubuntu-latest
+    outputs:
+      go: ${{ steps.filter.outputs.go }}
+      python: ${{ steps.filter.outputs.python }}
+      rust: ${{ steps.filter.outputs.rust }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          # 使用更精确的 glob 模式来定义过滤器，只有代码变更才会触发
+          filters: |
+            go:
+              - 'go/**/*.go'
+            python:
+              - 'python/**/*.py'
+            rust:
+              - 'rust/**/*.rs'
+
   go:
+    needs: filter
+    if: needs.filter.outputs.go == 'true'
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -58,6 +80,8 @@ jobs:
           awk '/^total:/ { gsub(/%/, "", $3); if ($3 < 97.0) { print "Coverage " $3 "% is below threshold 97.0%"; exit 1 } }' <(go tool cover -func=cover.out)
 
   python:
+    needs: filter
+    if: needs.filter.outputs.python == 'true'
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -84,6 +108,8 @@ jobs:
         run: pytest
 
   rust:
+    needs: filter
+    if: needs.filter.outputs.rust == 'true'
     runs-on: ubuntu-latest
     defaults:
       run:
@@ -91,25 +117,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Rust
+      - name: Set up Rust with cache
         uses: dtolnay/rust-toolchain@stable
-
-      - name: Cache Cargo dependencies
-        uses: actions/cache@v4
         with:
-          path: |
-            ~/.cargo/bin/
-            ~/.cargo/registry/index/
-            ~/.cargo/registry/cache/
-            ~/.cargo/git/db/
-            target/
-          key: ${{ runner.os }}-cargo-${{ hashFiles('**/Cargo.lock') }}
+          components: clippy, rustfmt
+          cache: true
 
       - name: Lint and Format Check
         run: |
           cargo fmt -- --check
           # -D warnings 将所有警告视为错误，是非常好的实践
-          cargo clippy -- -D warnings
+          cargo clippy -- -D warnings 
 
       - name: Run tests
         run: cargo test --all-targets
