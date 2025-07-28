@@ -13,9 +13,9 @@ dirs="go python rust"
 i=0
 for lang in $langs; do
     # 查找在本次提交中 **已暂存（staged）** 的、且文件后缀匹配当前语言的文件列表
-    # `git diff --cached --name-only` 列出所有已暂存的文件名
+    # `git diff --cached --name-only --diff-filter=ACMR` 列出所有已暂存的Added、Copied、Modified、Renamed的文件名
     # `grep "\.${lang}$"` 从中过滤出以 ".<语言后缀>" 结尾的文件
-    staged_files=$(git diff --cached --name-only | grep "\.${lang}$")
+    staged_files=$(git diff --cached --name-only --diff-filter=ACMR | grep "\.${lang}$")
 
     # 检查 `staged_files` 变量是否不为空。如果不为空，说明有匹配的文件需要处理
     if [ -n "$staged_files" ]; then
