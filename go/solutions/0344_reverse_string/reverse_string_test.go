@@ -47,6 +47,7 @@ func TestReverseString(t *testing.T) {
 	functionsToTest := map[string]func([]byte){
 		"Iterative":   reverseStringIterative,
 		"TwoPointers": reverseStringTwoPoints,
+		"Recursive":   reverseStringRecursive,
 	}
 
 	for funcName, reverseStringFunc := range functionsToTest {
