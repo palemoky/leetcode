@@ -2,9 +2,8 @@ package swap_pairs
 
 import "leetcode/go/solutions/utils"
 
-// 两两交换链表的节点（迭代解法）
+// 解法一：迭代解法
 func swapPairsIterative(head *utils.ListNode) *utils.ListNode {
-
 	// 由于交换后首节点会发生变化，因此用dummy节点始终指向首节点
 	dummy := &utils.ListNode{Next: head}
 
@@ -29,7 +28,7 @@ func swapPairsIterative(head *utils.ListNode) *utils.ListNode {
 	return dummy.Next
 }
 
-// 两两交换链表的节点（递归解法）
+// 解法二：递归解法（更简洁，且无需占用额外空间）
 // 最小重复单元：两节点交换
 // 递归终止条件：整个链表不再有可交换的节点
 // 返回交换后的头部节点
