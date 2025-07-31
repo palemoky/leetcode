@@ -8,22 +8,24 @@ import (
 
 // TestNewSinglyList tests the creation of a new list from a slice.
 func TestNewSinglyList(t *testing.T) {
-	assert := assert.New(t)
+	t.Parallel()
 
 	t.Run("Create from empty slice", func(t *testing.T) {
 		list := NewSinglyList([]int{})
-		assert.Nil(list.Head, "NewLinkedList with empty slice should return nil")
+		assert.Nil(t, list.Head, "NewLinkedList with empty slice should return nil")
 	})
 
 	t.Run("Create from non-empty slice", func(t *testing.T) {
 		list := NewSinglyList([]int{1, 2, 3})
-		assert.NotNil(list)
-		assert.Equal([]int{1, 2, 3}, toSlice(list), "The list should match the initial slice")
+		assert.NotNil(t, list)
+		assert.Equal(t, []int{1, 2, 3}, toSlice(list), "The list should match the initial slice")
 	})
 }
 
 // TestAppend tests adding a node to the end of the list.
 func TestAppend(t *testing.T) {
+	t.Parallel()
+
 	testCases := []struct {
 		name     string
 		initial  []int
@@ -50,6 +52,8 @@ func TestAppend(t *testing.T) {
 
 // TestPrepend tests adding a node to the beginning of the list.
 func TestPrepend(t *testing.T) {
+	t.Parallel()
+
 	testCases := []struct {
 		name     string
 		initial  []int
@@ -76,6 +80,8 @@ func TestPrepend(t *testing.T) {
 
 // TestInsert tests inserting a node at a specific index.
 func TestInsert(t *testing.T) {
+	t.Parallel()
+
 	testCases := []struct {
 		name        string
 		array       []int
@@ -94,7 +100,6 @@ func TestInsert(t *testing.T) {
 		{"Index out of range (equal to length)", []int{10, 20}, 3, 30, true, nil},
 	}
 
-	assert := assert.New(t)
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
 			t.Parallel()
@@ -102,19 +107,19 @@ func TestInsert(t *testing.T) {
 			list := NewSinglyList(tc.array)
 
 			if tc.expectPanic {
-				assert.Panics(func() {
+				assert.Panics(t, func() {
 					list.SinglyInsert(tc.index, tc.value)
 				}, "The code panic as expected")
 			} else {
 				list.SinglyInsert(tc.index, tc.value)
 
-				assert.Equal(len(tc.expectVal), list.Len, "List length is incorrect")
+				assert.Equal(t, len(tc.expectVal), list.Len, "List length is incorrect")
 
 				if tc.expectVal == nil {
-					assert.Nil(list.Head, "List head should be nil")
+					assert.Nil(t, list.Head, "List head should be nil")
 				} else {
-					assert.NotNil(list.Head, "List head should not be nil")
-					assert.Equal(tc.expectVal, ToSlice(list.Head), "List content is incorrect")
+					assert.NotNil(t, list.Head, "List head should not be nil")
+					assert.Equal(t, tc.expectVal, ToSlice(list.Head), "List content is incorrect")
 				}
 			}
 		})
@@ -123,6 +128,8 @@ func TestInsert(t *testing.T) {
 
 // TestDelete tests deleting the first occurrence of a value.
 func TestDelete(t *testing.T) {
+	t.Parallel()
+
 	testCases := []struct {
 		name      string
 		array     []int
@@ -142,7 +149,6 @@ func TestDelete(t *testing.T) {
 		{"Delete from single node list", []int{10}, 10, true, nil},
 	}
 
-	assert := assert.New(t)
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
 			t.Parallel()
@@ -151,12 +157,12 @@ func TestDelete(t *testing.T) {
 			list.SinglyDelete(tc.value)
 
 			if tc.expectNil {
-				assert.Nil(list.Head)
+				assert.Nil(t, list.Head)
 			} else {
 				// We can add more assertions for the non-nil case
-				assert.NotNil(list.Head)
+				assert.NotNil(t, list.Head)
 				if list.Head != nil { // Check for nil to prevent panic on the next line
-					assert.Equal(tc.expectVal, ToSlice(list.Head))
+					assert.Equal(t, tc.expectVal, ToSlice(list.Head))
 				}
 			}
 		})
@@ -165,6 +171,8 @@ func TestDelete(t *testing.T) {
 
 // TestDeleteAt tests deleting a node at a specific index.
 func TestDeleteAt(t *testing.T) {
+	t.Parallel()
+
 	testCases := []struct {
 		name        string
 		array       []int
@@ -183,7 +191,6 @@ func TestDeleteAt(t *testing.T) {
 		{"Index out of range (on empty list)", []int{}, 0, true, nil},
 	}
 
-	assert := assert.New(t)
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
 			t.Parallel()
@@ -191,19 +198,19 @@ func TestDeleteAt(t *testing.T) {
 			list := NewSinglyList(tc.array)
 
 			if tc.expectPanic {
-				assert.Panics(func() {
+				assert.Panics(t, func() {
 					list.SinglyDeleteAt(tc.index)
 				}, "The code panic as expected")
 			} else {
 				list.SinglyDeleteAt(tc.index)
 
-				assert.Equal(len(tc.expectedVal), list.Len, "List length is incorrect")
+				assert.Equal(t, len(tc.expectedVal), list.Len, "List length is incorrect")
 
 				if tc.expectedVal == nil {
-					assert.Nil(list.Head, "List head should be nil")
+					assert.Nil(t, list.Head, "List head should be nil")
 				} else {
-					assert.NotNil(list.Head, "List head should not be nil")
-					assert.Equal(tc.expectedVal, ToSlice(list.Head), "List content is incorrect")
+					assert.NotNil(t, list.Head, "List head should not be nil")
+					assert.Equal(t, tc.expectedVal, ToSlice(list.Head), "List content is incorrect")
 				}
 			}
 		})
@@ -212,6 +219,8 @@ func TestDeleteAt(t *testing.T) {
 
 // TestFind tests finding a node with a specific value.
 func TestFind(t *testing.T) {
+	t.Parallel()
+
 	testCases := []struct {
 		name        string
 		array       []int
@@ -226,7 +235,6 @@ func TestFind(t *testing.T) {
 		{"Find in nil list", nil, 10, true, 0},
 	}
 
-	assert := assert.New(t)
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
 			t.Parallel()
@@ -235,12 +243,12 @@ func TestFind(t *testing.T) {
 			node := list.SinglyFind(tc.value)
 
 			if tc.expectNil {
-				assert.Nil(node, "Expected a nil node but got one")
+				assert.Nil(t, node, "Expected a nil node but got one")
 			} else {
 				// We can add more assertions for the non-nil case
-				assert.NotNil(node, "Expected a node but got nil")
+				assert.NotNil(t, node, "Expected a node but got nil")
 				if node != nil { // Check for nil to prevent panic on the next line
-					assert.Equal(tc.expectedVal, node.Value, "Node value does not match expected value")
+					assert.Equal(t, tc.expectedVal, node.Value, "Node value does not match expected value")
 				}
 			}
 		})
@@ -249,6 +257,8 @@ func TestFind(t *testing.T) {
 
 // TestGet tests getting a node at a specific index.
 func TestGet(t *testing.T) {
+	t.Parallel()
+
 	testCases := []struct {
 		name        string
 		array       []int
@@ -266,7 +276,6 @@ func TestGet(t *testing.T) {
 		{"Get with negative index", []int{10, 20, 30}, -1, true, 0}, // Add this case for completeness
 	}
 
-	assert := assert.New(t)
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
 			t.Parallel()
@@ -275,12 +284,12 @@ func TestGet(t *testing.T) {
 			node := list.SinglyGet(tc.index)
 
 			if tc.expectNil {
-				assert.Nil(node, "Expected a nil node but got one")
+				assert.Nil(t, node, "Expected a nil node but got one")
 			} else {
 				// We can add more assertions for the non-nil case
-				assert.NotNil(node, "Expected a node but got nil")
+				assert.NotNil(t, node, "Expected a node but got nil")
 				if node != nil { // Check for nil to prevent panic on the next line
-					assert.Equal(tc.expectedVal, node.Value, "Node value does not match expected value")
+					assert.Equal(t, tc.expectedVal, node.Value, "Node value does not match expected value")
 				}
 			}
 		})

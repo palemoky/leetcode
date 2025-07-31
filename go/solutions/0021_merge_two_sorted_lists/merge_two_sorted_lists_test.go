@@ -8,7 +8,7 @@ import (
 )
 
 func TestMergeSortedTwoLists(t *testing.T) {
-	// 定义测试用例表，覆盖各种情况
+	t.Parallel()
 	testCases := []struct {
 		name     string
 		l1       *utils.ListNode
@@ -73,6 +73,7 @@ func TestMergeSortedTwoLists(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
 			actual := mergeSortedTwoLists(tc.l1, tc.l2)
 			assert.Equal(t, utils.ToSlice(tc.expected), utils.ToSlice(actual))
 		})

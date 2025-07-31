@@ -8,6 +8,7 @@ import (
 )
 
 func TestFindCycleEntry(t *testing.T) {
+	t.Parallel()
 	// --- 准备测试数据 ---
 	// 对于查找入口的测试，我们需要获得确切的节点指针作为期望结果
 
@@ -68,6 +69,7 @@ func TestFindCycleEntry(t *testing.T) {
 		t.Run(funcName, func(t *testing.T) {
 			for _, tc := range testCases {
 				t.Run(tc.name, func(t *testing.T) {
+					t.Parallel()
 					actual := findEntryFunc(tc.input)
 					// 检查返回的指针是否与期望的指针指向同一个内存地址
 					assert.Same(t, tc.expected, actual)

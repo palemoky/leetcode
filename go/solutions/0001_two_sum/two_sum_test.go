@@ -6,15 +6,14 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-var algorithms = []struct {
-	name string
-	fn   func([]int, int) []int
-}{
-	{"BruteForce", twoSumBruteForce},
-	{"HashMap", twoSumHashMap},
+var funcsToTest = map[string]func([]int, int) []int{
+	"BruteForce": twoSumBruteForce,
+	"HashMap":    twoSumHashMap,
 }
 
 func TestTwoSum(t *testing.T) {
+	t.Parallel()
+
 	testCases := []struct {
 		name   string
 		nums   []int
@@ -33,12 +32,14 @@ func TestTwoSum(t *testing.T) {
 		{"Duplicate numbers", []int{1, 5, 1, 5}, 10, []int{1, 3}},
 	}
 
-	for _, algo := range algorithms {
-		t.Run(algo.name, func(t *testing.T) {
+	for fnName, fn := range funcsToTest {
+		t.Run(fnName, func(t *testing.T) {
 			for _, tc := range testCases {
 				t.Run(tc.name, func(t *testing.T) {
-					got := algo.fn(tc.nums, tc.target)
-					assert.ElementsMatch(t, tc.want, got, "%s: input=%v, target=%d", algo.name, tc.nums, tc.target)
+					t.Parallel()
+
+					got := fn(tc.nums, tc.target)
+					assert.ElementsMatch(t, tc.want, got, "%s: input=%v, target=%d", fnName, tc.nums, tc.target)
 				})
 			}
 		})
@@ -48,10 +49,10 @@ func TestTwoSum(t *testing.T) {
 func BenchmarkTwoSum(b *testing.B) {
 	nums := []int{2, 7, 11, 15, 1, 8, 3, 6, 4, 5, 9, 10}
 	target := 19
-	for _, algo := range algorithms {
-		b.Run(algo.name, func(b *testing.B) {
+	for fnName, fn := range funcsToTest {
+		b.Run(fnName, func(b *testing.B) {
 			for b.Loop() {
-				algo.fn(nums, target)
+				fn(nums, target)
 			}
 		})
 	}

@@ -7,6 +7,7 @@ import (
 )
 
 func TestFibonacci(t *testing.T) {
+	t.Parallel()
 	testCases := []struct {
 		name     string
 		input    int
@@ -55,11 +56,12 @@ func TestFibonacci(t *testing.T) {
 		"Recursive": fibRecursive, // 朴素递归对于 n=20 会很慢，可以选择性地不测试它
 	}
 
-	for funcName, fibFunc := range funcsToTest {
-		t.Run(funcName, func(t *testing.T) {
+	for fnName, fn := range funcsToTest {
+		t.Run(fnName, func(t *testing.T) {
 			for _, tc := range testCases {
 				t.Run(tc.name, func(t *testing.T) {
-					result := fibFunc(tc.input)
+					t.Parallel()
+					result := fn(tc.input)
 					assert.Equal(t, tc.expected, result)
 				})
 			}

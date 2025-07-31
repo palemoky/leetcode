@@ -10,13 +10,14 @@ import (
 // TestFindMiddle 统一测试两个查找中间节点的函数
 // 因为它们的行为和预期结果应该完全一样
 func TestFindMiddle(t *testing.T) {
+	t.Parallel()
+
 	// 为测试用例构建链表，并提前获取中间节点的指针
 	list1 := utils.NewList([]int{1, 2, 3, 4, 5}) // 中间节点是 3 (l.Next.Next)
 	list2 := utils.NewList([]int{1, 2, 3, 4})    // 中间节点是 3 (l.Next.Next) - 按实现逻辑，偶数取第二个
 	list3 := utils.NewList([]int{1})             // 中间节点是 1 (l)
 	list4 := utils.NewList([]int{1, 2})          // 中间节点是 2 (l.Next)
 
-	// 定义测试用例的结构体
 	type testCase struct {
 		name     string          // 测试用例名称
 		input    *utils.ListNode // 输入链表
@@ -61,6 +62,7 @@ func TestFindMiddle(t *testing.T) {
 		t.Run(funcName, func(t *testing.T) {
 			for _, tc := range testCases {
 				t.Run(tc.name, func(t *testing.T) {
+					t.Parallel()
 					actual := findMiddleFunc(tc.input)
 
 					// 对于查找中间节点，我们期望返回的是原链表中的某个节点

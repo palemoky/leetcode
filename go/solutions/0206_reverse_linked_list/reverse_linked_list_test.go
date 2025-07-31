@@ -8,6 +8,7 @@ import (
 )
 
 func TestReverse(t *testing.T) {
+	t.Parallel()
 	type testCase struct {
 		name     string
 		input    *utils.ListNode
@@ -44,6 +45,7 @@ func TestReverse(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
 			actual := reverseList(tc.input)
 			assert.Equal(t, utils.ToSlice(tc.expected), utils.ToSlice(actual))
 		})

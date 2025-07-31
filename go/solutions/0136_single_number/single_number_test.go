@@ -6,15 +6,13 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-var algorithms = []struct {
-	name string
-	fn   func([]int) int
-}{
-	{"HashMap", singleNumberHashMap},
-	{"BitWise", singleNumberBitWise},
+var funcsToTests = map[string]func([]int) int{
+	"HashMap": singleNumberHashMap,
+	"BitWise": singleNumberBitWise,
 }
 
 func TestSingleNumber(t *testing.T) {
+	t.Parallel()
 	testCases := []struct {
 		name string
 		nums []int
@@ -31,12 +29,13 @@ func TestSingleNumber(t *testing.T) {
 		// {"All same", []int{5, 5, 5}, 0}, // BitWise cannot handle this case, but HashMap can handle it
 	}
 
-	for _, algo := range algorithms {
-		t.Run(algo.name, func(t *testing.T) {
+	for fnName, fn := range funcsToTests {
+		t.Run(fnName, func(t *testing.T) {
 			for _, tc := range testCases {
 				t.Run(tc.name, func(t *testing.T) {
-					got := algo.fn(tc.nums)
-					assert.Equal(t, tc.want, got, "%s: input=%v", algo.name, tc.nums)
+					t.Parallel()
+					got := fn(tc.nums)
+					assert.Equal(t, tc.want, got, "%s: input=%v", fnName, tc.nums)
 				})
 			}
 		})
@@ -46,10 +45,10 @@ func TestSingleNumber(t *testing.T) {
 func BenchmarkSingleNumber(b *testing.B) {
 	nums := []int{1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5}
 
-	for _, algo := range algorithms {
-		b.Run(algo.name, func(b *testing.B) {
+	for fnName, fn := range funcsToTests {
+		b.Run(fnName, func(b *testing.B) {
 			for b.Loop() {
-				algo.fn(nums)
+				fn(nums)
 			}
 		})
 	}

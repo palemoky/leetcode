@@ -7,15 +7,13 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-var algorithms = []struct {
-	name string
-	fn   func(*utils.ListNode) bool
-}{
-	{"HashMap", hasCycleHashMap},
-	{"TwoPoints", hasCycleTwoPoints},
+var funcsToTest = map[string]func(*utils.ListNode) bool{
+	"HashMap":   hasCycleHashMap,
+	"TwoPoints": hasCycleTwoPoints,
 }
 
 func TestHasCycle(t *testing.T) {
+	t.Parallel()
 	testCases := []struct {
 		name    string
 		nums    []int
@@ -31,13 +29,14 @@ func TestHasCycle(t *testing.T) {
 		{"Cycle at tail", []int{1, 2, 3}, 2, true},
 	}
 
-	for _, algo := range algorithms {
-		t.Run(algo.name, func(t *testing.T) {
+	for fnName, fn := range funcsToTest {
+		t.Run(fnName, func(t *testing.T) {
 			for _, tc := range testCases {
 				t.Run(tc.name, func(t *testing.T) {
+					t.Parallel()
 					head := utils.NewCycleList(tc.nums, tc.cycleAt)
-					got := algo.fn(head)
-					assert.Equal(t, tc.want, got, "%s: input=%v, cycleAt=%d", algo.name, tc.nums, tc.cycleAt)
+					got := fn(head)
+					assert.Equal(t, tc.want, got, "%s: input=%v, cycleAt=%d", fnName, tc.nums, tc.cycleAt)
 				})
 			}
 		})

@@ -6,14 +6,12 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-var algorithms = []struct {
-	name string
-	fn   func([]int) bool
-}{
-	{"HashMap", containsDuplicateHashMap},
+var funcsToTest = map[string]func([]int) bool{
+	"HashMap": containsDuplicateHashMap,
 }
 
 func TestContainsDuplicate(t *testing.T) {
+	t.Parallel()
 	testCases := []struct {
 		name string
 		nums []int
@@ -33,12 +31,13 @@ func TestContainsDuplicate(t *testing.T) {
 		{"No duplicate, large", []int{1, 2, 3, 4, 5, 6, 7, 8, 9, 10}, false},
 	}
 
-	for _, algo := range algorithms {
-		t.Run(algo.name, func(t *testing.T) {
+	for fnName, fn := range funcsToTest {
+		t.Run(fnName, func(t *testing.T) {
 			for _, tc := range testCases {
 				t.Run(tc.name, func(t *testing.T) {
-					got := algo.fn(tc.nums)
-					assert.Equal(t, tc.want, got, "%s: input=%v", algo.name, tc.nums)
+					t.Parallel()
+					got := fn(tc.nums)
+					assert.Equal(t, tc.want, got, "%s: input=%v", fnName, tc.nums)
 				})
 			}
 		})
@@ -47,10 +46,10 @@ func TestContainsDuplicate(t *testing.T) {
 
 func BenchmarkContainsDuplicate(b *testing.B) {
 	nums := []int{1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, 5, 5, 5, 5}
-	for _, algo := range algorithms {
-		b.Run(algo.name, func(b *testing.B) {
+	for fnName, fn := range funcsToTest {
+		b.Run(fnName, func(b *testing.B) {
 			for b.Loop() {
-				algo.fn(nums)
+				fn(nums)
 			}
 		})
 	}

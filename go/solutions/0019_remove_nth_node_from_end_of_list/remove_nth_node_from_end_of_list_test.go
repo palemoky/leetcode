@@ -8,6 +8,8 @@ import (
 )
 
 func TestRemoveNthFromEndTwoPointers(t *testing.T) {
+	t.Parallel()
+
 	testCases := []struct {
 		name         string // 测试用例的描述
 		inputList    []int  // 输入的链表（用切片表示）
@@ -54,6 +56,7 @@ func TestRemoveNthFromEndTwoPointers(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
 			head := utils.NewList(tc.inputList)
 			resultHead := removeNthFromEndTwoPointers(head, tc.n)
 			resultSlice := utils.ToSlice(resultHead)

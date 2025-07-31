@@ -7,6 +7,8 @@ import (
 )
 
 func TestNewDoublyList(t *testing.T) {
+	t.Parallel()
+
 	t.Run("Create from empty array", func(t *testing.T) {
 		list := NewDoublyList([]int{})
 		assert.Equal(t, 0, list.Len)
@@ -29,6 +31,8 @@ func TestNewDoublyList(t *testing.T) {
 }
 
 func TestDoublyAppend(t *testing.T) {
+	t.Parallel()
+
 	testCases := []struct {
 		name     string
 		initial  []int
@@ -56,6 +60,8 @@ func TestDoublyAppend(t *testing.T) {
 }
 
 func TestDoublyPrepend(t *testing.T) {
+	t.Parallel()
+
 	testCases := []struct {
 		name     string
 		initial  []int
@@ -83,6 +89,8 @@ func TestDoublyPrepend(t *testing.T) {
 }
 
 func TestDoublyInsert(t *testing.T) {
+	t.Parallel()
+
 	testCases := []struct {
 		name        string
 		initial     []int
@@ -121,6 +129,8 @@ func TestDoublyInsert(t *testing.T) {
 }
 
 func TestDoublyDeleteAt(t *testing.T) {
+	t.Parallel()
+
 	testCases := []struct {
 		name     string
 		initial  []int
@@ -152,6 +162,8 @@ func TestDoublyDeleteAt(t *testing.T) {
 }
 
 func TestDoublyDelete(t *testing.T) {
+	t.Parallel()
+
 	testCases := []struct {
 		name     string
 		initial  []int
@@ -183,6 +195,8 @@ func TestDoublyDelete(t *testing.T) {
 }
 
 func TestDoublyGet(t *testing.T) {
+	t.Parallel()
+
 	list := NewDoublyList([]int{10, 20, 30, 40, 50})
 
 	testCases := []struct {
@@ -215,6 +229,8 @@ func TestDoublyGet(t *testing.T) {
 }
 
 func TestDoublyFind(t *testing.T) {
+	t.Parallel()
+
 	testCases := []struct {
 		name      string
 		initial   []int

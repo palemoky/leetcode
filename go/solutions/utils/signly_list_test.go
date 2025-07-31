@@ -71,9 +71,8 @@ func TestToSlice(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
-			assert := assert.New(t)
 			actual := ToSlice(tc.input)
-			assert.Equal(tc.expected, actual, "ToSlice conversion should be correct")
+			assert.Equal(t, tc.expected, actual, "ToSlice conversion should be correct")
 		})
 	}
 }

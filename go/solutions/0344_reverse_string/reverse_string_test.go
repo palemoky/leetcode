@@ -7,6 +7,7 @@ import (
 )
 
 func TestReverseString(t *testing.T) {
+	t.Parallel()
 	testCases := []struct {
 		name     string
 		input    []byte
@@ -54,6 +55,7 @@ func TestReverseString(t *testing.T) {
 		t.Run(funcName, func(t *testing.T) {
 			for _, tc := range testCases {
 				t.Run(tc.name, func(t *testing.T) {
+					t.Parallel()
 					// 注意此处是原地修改，这会导致原始数据被污染，因此需使用副本进行测试
 					inputCopy := make([]byte, len(tc.input))
 					copy(inputCopy, tc.input)

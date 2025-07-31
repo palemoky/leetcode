@@ -6,16 +6,14 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-var algorithms = []struct {
-	name string
-	fn   func([]int, int) int
-}{
-	{"Queue", timeRequiredToBuyQueue},
-	{"Pointer", timeRequiredToBuyPointer},
-	{"Math", timeRequiredToBuyMath},
+var funcsToTest = map[string]func([]int, int) int{
+	"Queue":   timeRequiredToBuyQueue,
+	"Pointer": timeRequiredToBuyPointer,
+	"Math":    timeRequiredToBuyMath,
 }
 
 func TestTimeRequiredToBuy(t *testing.T) {
+	t.Parallel()
 	testCases := []struct {
 		name    string
 		tickets []int
@@ -31,14 +29,15 @@ func TestTimeRequiredToBuy(t *testing.T) {
 		{"All zero", []int{0, 0, 0}, 1, 0},
 	}
 
-	for _, algo := range algorithms {
-		t.Run(algo.name, func(t *testing.T) {
+	for fnName, fn := range funcsToTest {
+		t.Run(fnName, func(t *testing.T) {
 			for _, tc := range testCases {
 				t.Run(tc.name, func(t *testing.T) {
+					t.Parallel()
 					ticketsCopy := make([]int, len(tc.tickets))
 					copy(ticketsCopy, tc.tickets)
-					got := algo.fn(ticketsCopy, tc.k)
-					assert.Equal(t, tc.want, got, "%s: input=%v", algo.name, tc.tickets, tc.k)
+					got := fn(ticketsCopy, tc.k)
+					assert.Equal(t, tc.want, got, "%s: input=%v", fnName, tc.tickets, tc.k)
 				})
 			}
 		})
@@ -47,12 +46,12 @@ func TestTimeRequiredToBuy(t *testing.T) {
 
 func BenchmarkTimeRequiredToBuy(b *testing.B) {
 	tickets, k := []int{5, 1, 1, 1}, 0
-	for _, algo := range algorithms {
-		b.Run(algo.name, func(b *testing.B) {
+	for fnName, fn := range funcsToTest {
+		b.Run(fnName, func(b *testing.B) {
 			for b.Loop() {
 				t := make([]int, len(tickets))
 				copy(t, tickets)
-				algo.fn(t, k)
+				fn(t, k)
 			}
 		})
 	}

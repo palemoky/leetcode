@@ -7,6 +7,7 @@ import (
 )
 
 func TestAddBinary(t *testing.T) {
+	t.Parallel()
 	testCases := []struct {
 		name string
 		a    string
@@ -68,11 +69,12 @@ func TestAddBinary(t *testing.T) {
 		"BigInt":     addBinaryWithBigInt,
 	}
 
-	for funcName, addFunc := range funcsToTest {
-		t.Run(funcName, func(t *testing.T) {
+	for fnName, fn := range funcsToTest {
+		t.Run(fnName, func(t *testing.T) {
 			for _, tc := range testCases {
 				t.Run(tc.name, func(t *testing.T) {
-					got := addFunc(tc.a, tc.b)
+					t.Parallel()
+					got := fn(tc.a, tc.b)
 					assert.Equal(t, tc.want, got, "addBinary(%q, %q) ailed", tc.a, tc.b)
 				})
 			}

@@ -6,16 +6,15 @@ import (
 	"github.com/stretchr/testify/assert"
 )
 
-var algorithms = []struct {
-	name string
-	fn   func([]string) string
-}{
-	{"VerticalScanning", longestCommonPrefixVerticalScanning},
-	{"HorizontalScanningBuiltin", longestCommonPrefixHorizontalScanningBuiltin},
-	{"HorizontalScanningByIndex", longestCommonPrefixHorizontalScanningByIndex},
+var funcsToTest = map[string]func([]string) string{
+	"VerticalScanning":          longestCommonPrefixVerticalScanning,
+	"HorizontalScanningBuiltin": longestCommonPrefixHorizontalScanningBuiltin,
+	"HorizontalScanningByIndex": longestCommonPrefixHorizontalScanningByIndex,
 }
 
 func TestLongestCommonPrefix(t *testing.T) {
+	t.Parallel()
+
 	testCases := []struct {
 		name     string
 		input    []string
@@ -34,12 +33,13 @@ func TestLongestCommonPrefix(t *testing.T) {
 		{name: "Long common prefix", input: []string{"interstellar", "intersection", "internal"}, expected: "inter"},
 	}
 
-	for _, algo := range algorithms {
-		t.Run(algo.name, func(t *testing.T) {
+	for fnName, fn := range funcsToTest {
+		t.Run(fnName, func(t *testing.T) {
 			for _, tc := range testCases {
 				t.Run(tc.name, func(t *testing.T) {
-					got := algo.fn(tc.input)
-					assert.Equal(t, tc.expected, got, "Algorithm %s failed for input %v", algo.name, tc.input)
+					t.Parallel()
+					got := fn(tc.input)
+					assert.Equal(t, tc.expected, got, "Algorithm %s failed for input %v", fnName, tc.input)
 				})
 			}
 		})
@@ -67,10 +67,10 @@ func BenchmarkLongestCommonPrefix(b *testing.B) {
 	}
 
 	for _, input := range inputs {
-		for _, algo := range algorithms {
-			b.Run(algo.name, func(b *testing.B) {
+		for fnName, fn := range funcsToTest {
+			b.Run(fnName, func(b *testing.B) {
 				for b.Loop() {
-					algo.fn(input)
+					fn(input)
 				}
 			})
 		}

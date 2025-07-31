@@ -7,6 +7,7 @@ import (
 )
 
 func TestClimbStairs(t *testing.T) {
+	t.Parallel()
 	testCases := []struct {
 		name     string
 		input    int
@@ -60,11 +61,11 @@ func TestClimbStairs(t *testing.T) {
 		"Recursive": climbStairsRecursive, // 朴素递归对于 n=45 会超时，通常不测试它
 	}
 
-	for funcName, climbFunc := range funcsToTest {
-		t.Run(funcName, func(t *testing.T) {
+	for fnName, fn := range funcsToTest {
+		t.Run(fnName, func(t *testing.T) {
 			for _, tc := range testCases {
 				t.Run(tc.name, func(t *testing.T) {
-					result := climbFunc(tc.input)
+					result := fn(tc.input)
 					assert.Equal(t, tc.expected, result)
 				})
 			}

@@ -8,6 +8,7 @@ import (
 )
 
 func TestSwapPairs(t *testing.T) {
+	t.Parallel()
 	testCases := []struct {
 		name         string
 		inputList    []int
@@ -45,12 +46,13 @@ func TestSwapPairs(t *testing.T) {
 		"Recursive": swapPairsRecursive,
 	}
 
-	for funcName, swapFunc := range funcsToTest {
-		t.Run(funcName, func(t *testing.T) {
+	for fnName, fn := range funcsToTest {
+		t.Run(fnName, func(t *testing.T) {
 			for _, tc := range testCases {
 				t.Run(tc.name, func(t *testing.T) {
+					t.Parallel()
 					head := utils.NewList(tc.inputList)
-					resultHead := swapFunc(head)
+					resultHead := fn(head)
 					resultSlice := utils.ToSlice(resultHead)
 					assert.Equal(t, tc.expectedList, resultSlice)
 				})
