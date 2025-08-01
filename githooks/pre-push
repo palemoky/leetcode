@@ -1,23 +1,40 @@
 #!/bin/sh
 
+# 定义颜色常量
+RED='\033[0;31m'
+GREEN='\033[0;32m'
+YELLOW='\033[1;33m'
+BLUE='\033[0;34m'
+CYAN='\033[0;36m'
+NC='\033[0m' # No Color
+
 # 定义需要处理的语言、对应的目录和测试阈值。
 LANGS_TO_CHECK="go py rs"
 GO_COVERAGE_THRESHOLD="97.0"
 
 # --- 辅助函数：Go 测试与覆盖率检查 ---
 run_go_tests() {
-    echo "Running Go tests and checking coverage (threshold: ${GO_COVERAGE_THRESHOLD}%)..."
+    echo "${BLUE}Running Go tests and checking coverage (threshold: ${GO_COVERAGE_THRESHOLD}%)...${NC}"
     # 运行测试并生成覆盖率报告
-    if ! go test -coverprofile=cover.out ./...; then
-        echo "Go tests failed."
-        return 1
+    if command -v gotestsum >/dev/null 2>&1; then
+        echo "${CYAN}Using gotestsum for colored output...${NC}"
+        if ! gotestsum --format short --no-summary=skipped -- -coverprofile=cover.out ./...; then
+            echo "${RED}Go tests failed.${NC}"
+            return 1
+        fi
+    else
+        echo "${YELLOW}gotestsum not found, using standard go test...${NC}"
+        if ! go test -coverprofile=cover.out ./...; then
+            echo "${RED}Go tests failed.${NC}"
+            return 1
+        fi
     fi
 
     # 从覆盖率报告中提取总覆盖率数值
     coverage_value=$(go tool cover -func=cover.out | grep '^total:' | awk '{gsub(/%/, "", $3); print $3}')
 
     if [ -z "$coverage_value" ]; then
-        echo "Could not determine Go test coverage."
+        echo "${RED}Could not determine Go test coverage.${NC}"
         return 1
     fi
 
@@ -25,10 +42,10 @@ run_go_tests() {
     is_ok=$(echo "$coverage_value $GO_COVERAGE_THRESHOLD" | awk '{if ($1 >= $2) print "yes"; else print "no"}')
 
     if [ "$is_ok" = "yes" ]; then
-        echo "Go test coverage is ${coverage_value}% - OK."
+        echo "${GREEN}Go test coverage is ${coverage_value}% - OK.${NC}"
         return 0
     else
-        echo "Go test coverage is ${coverage_value}%, which is below the required ${GO_COVERAGE_THRESHOLD}%."
+        echo "${RED}Go test coverage is ${coverage_value}%, which is below the required ${GO_COVERAGE_THRESHOLD}%.${NC}"
         return 1
     fi
 }
@@ -55,7 +72,7 @@ while read local_ref local_sha remote_ref remote_sha; do
         commit_range="$remote_sha..$local_sha"
     fi
 
-    echo "--- Checking commits in range: $commit_range for ref $local_ref ---"
+    echo "${CYAN}--- Checking commits in range: $commit_range for ref $local_ref ---${NC}"
 
     # 获取该范围内所有被修改过的文件的列表
     changed_files=$(git diff-tree --no-commit-id --name-only -r "$commit_range")
@@ -63,7 +80,7 @@ while read local_ref local_sha remote_ref remote_sha; do
     for lang in $LANGS_TO_CHECK; do
         # 检查是否有对应语言的文件在这次推送的提交中被修改了
         if echo "$changed_files" | grep -q "\.${lang}$"; then
-            echo "Detected changes to .$lang files. Running tests..."
+            echo "${YELLOW}Detected changes to .$lang files. Running tests...${NC}"
 
             dir=""
             test_failed=0
@@ -74,18 +91,21 @@ while read local_ref local_sha remote_ref remote_sha; do
                     dir="go"
                     # 在子 shell 中执行测试，这样 `cd` 不会影响脚本的当前目录。
                     # `if ! command` 是检查失败的推荐方式。
+                    echo "${BLUE}Running Go tests...${NC}"
                     if ! (cd "$dir" && run_go_tests); then
                         test_failed=1
                     fi
                     ;;
                 "py" | "python")
                     dir="python"
+                    echo "${BLUE}Running Python tests...${NC}"
                     if ! (cd "$dir" && pytest); then
                         test_failed=1
                     fi
                     ;;
                 "rs" | "rust")
                     dir="rust"
+                    echo "${BLUE}Running Rust tests...${NC}"
                     if ! (cd "$dir" && cargo test); then
                         test_failed=1
                     fi
@@ -94,15 +114,15 @@ while read local_ref local_sha remote_ref remote_sha; do
 
             # 如果任何一个测试失败，立即中止推送
             if [ "$test_failed" -eq 1 ]; then
-                echo "--------------------------------------------------------"
-                echo "ERROR: Tests for '$lang' in directory '$dir' failed."
-                echo "Push aborted. Please fix the tests before pushing."
-                echo "--------------------------------------------------------"
+                echo "${RED}--------------------------------------------------------${NC}"
+                echo "${RED}ERROR: Tests for '$lang' in directory '$dir' failed.${NC}"
+                echo "${RED}Push aborted. Please fix the tests before pushing.${NC}"
+                echo "${RED}--------------------------------------------------------${NC}"
                 exit 1
             fi
         fi
     done
 done
 
-echo "--- All checks passed. Proceeding with push. ---"
+echo "${GREEN}--- All checks passed. Proceeding with push. ---${NC}"
 exit 0
