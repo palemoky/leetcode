@@ -3,26 +3,45 @@
 在 LeetCode 和算法面试中，“模拟加法”是一个非常经典的模式。这类问题要求我们对两个以非标准形式（如字符串、链表）表示的“大数”进行加法运算。由于数字可能非常大，无法直接装入 int64 等标准整数类型，我们必须模拟手动竖式加法的过程来解决。
 
 适用问题类型:
+- LeetCode #66. [加一](https://leetcode.cn/problems/plus-one/) ([Plus One](https://leetcode.com/problems/plus-one/))
 - LeetCode #67. [二进制求和](https://leetcode.cn/problems/add-binary/) ([Add Binary](https://leetcode.com/problems/add-binary/))
 - LeetCode #2. [两数相加](https://leetcode.cn/problems/add-two-numbers) ([Add Two Numbers](https://leetcode.com/problems/add-two-numbers))
 - LeetCode #415. [字符串相加](https://leetcode.cn/problems/add-strings) ([Add Strings](https://leetcode.com/problems/add-strings))
+- LeetCode #989. [数组形式的整数加法](https://leetcode.cn/problems/add-to-array-form-of-integer/) ([Add to Array-Form of Integer](https://leetcode.com/problems/add-to-array-form-of-integer/))
 - 以及其他类似的大数加法变体。
 
 ---
 
 ## 核心思想：模拟竖式加法
 ### 数学规律
-以十进制的`128+17`为例，我们得到以下竖式：
+以十进制的`99+1`为例，我们得到以下竖式：
 ```
-  128
-+  17
-   ¹
+  99
++  1
+ ¹¹¹
 -----
-  145
+ 100
 ```
+*注意最后的进位处理。*
+
 我们用`base`来表示进制（如二进制、十进制、十六进制等），在进行每位计算时，
-- 留在个位的数字是`sum%base`
-- 送往前一位的进位是`sum/base`（结果为浮点数时舍弃小数部分）
+- `sum%base`：留在当前位的数字是
+- `sum/base`：送往前一位的进位是（结果为浮点数时舍弃小数部分）
+
+以上规律的逆运算即为将整数拆分到逆序数组的规律：
+- `num%base`：取当前位
+- `num/base`：去掉已处理的当前位
+```go
+digits := []int{}
+for n > 0 {
+  digits = append(digits, n%base)
+  n /= base
+}
+```
+以数字123推演上述代码执行过程：
+1.	123 % 10 = 3 👉 得到 个位
+2.	123 / 10 % 10 = 2 👉 得到 十位
+3.	123 / 100 % 10 = 1 👉 得到 百位
 
 ### 操作步骤
 算法的精髓可以分解为以下几个步骤：
