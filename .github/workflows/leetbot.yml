@@ -7,13 +7,13 @@ on:
       - "go/**"
       - "python/**"
       - "rust/**"
-      - ".github/workflows/ci.yml"
+      - ".github/workflows/leetbot.yml"
   pull_request:
     paths:
       - "go/**"
       - "python/**"
       - "rust/**"
-      - ".github/workflows/ci.yml"
+      - ".github/workflows/leetbot.yml"
 
 # 并发控制，自动取消对同一PR的旧CI运行
 concurrency:
@@ -80,7 +80,7 @@ jobs:
 
           coverage=$(go tool cover -func=cover.out | grep '^total:' | awk '{gsub(/%/, "", $3); print $3}')
           echo "Total coverage: ${coverage}%"
-          
+
           # 优先使用 bc 进行精确浮点数比较
           if command -v bc >/dev/null 2>&1; then
             if [ "$(echo "$coverage < 97.0" | bc -l)" = "1" ]; then
@@ -145,7 +145,7 @@ jobs:
         run: |
           cargo fmt -- --check
           # -D warnings 将所有警告视为错误，是非常好的实践
-          cargo clippy -- -D warnings 
+          cargo clippy -- -D warnings
 
       - name: Run tests
         run: cargo test --all-targets
