@@ -91,7 +91,6 @@ while read local_ref local_sha remote_ref remote_sha; do
                     dir="go"
                     # 在子 shell 中执行测试，这样 `cd` 不会影响脚本的当前目录。
                     # `if ! command` 是检查失败的推荐方式。
-                    echo "${BLUE}Running Go tests...${NC}"
                     if ! (cd "$dir" && run_go_tests); then
                         test_failed=1
                     fi
