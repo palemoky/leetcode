@@ -46,9 +46,10 @@ func addBinary(a string, b string) string {
 	// 按题意，至少有一个字符，所以 result 不会为空。
 	// 如果输入都是 "0"，我们的循环会产生一个 "0"，是正确的。
 	// 如果没有结果（比如输入是 ""），返回 "0" 也是合理的。
-	if len(ans) == 0 {
-		return "0"
-	}
+	// 以下代码为不可达代码
+	// if len(ans) == 0 {
+	// 	return "0"
+	// }
 
 	return string(ans)
 }
