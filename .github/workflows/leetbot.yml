@@ -77,7 +77,25 @@ jobs:
           go test -coverprofile=cover.out ./...
           echo "Checking Go test coverage..."
           go tool cover -func=cover.out
-          awk '/^total:/ { gsub(/%/, "", $3); if ($3 < 97.0) { print "Coverage " $3 "% is below threshold 97.0%"; exit 1 } }' <(go tool cover -func=cover.out)
+
+          coverage=$(go tool cover -func=cover.out | grep '^total:' | awk '{gsub(/%/, "", $3); print $3}')
+          echo "Total coverage: ${coverage}%"
+          
+          # 优先使用 bc 进行精确浮点数比较
+          if command -v bc >/dev/null 2>&1; then
+            if [ "$(echo "$coverage < 97.0" | bc -l)" = "1" ]; then
+              echo "Coverage ${coverage}% is below threshold 97.0%"
+              exit 1
+            fi
+          else
+            coverage_int=$(echo "$coverage" | awk '{printf "%.0f", $1}')
+            if [ "$coverage_int" -lt 97 ]; then
+              echo "Coverage ${coverage}% is below threshold 97.0%"
+              exit 1
+            fi
+          fi
+
+          echo "Coverage ${coverage}% meets the threshold ✓"
 
   python:
     needs: filter
