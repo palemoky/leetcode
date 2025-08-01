@@ -60,7 +60,6 @@ func TestFibonacci(t *testing.T) {
 		t.Run(fnName, func(t *testing.T) {
 			for _, tc := range testCases {
 				t.Run(tc.name, func(t *testing.T) {
-					t.Parallel()
 					result := fn(tc.input)
 					assert.Equal(t, tc.expected, result)
 				})
