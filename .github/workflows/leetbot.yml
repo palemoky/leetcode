@@ -75,7 +75,8 @@ jobs:
 
       - name: Run tests with coverage
         run: |
-          go test -coverprofile=cover.out ./...
+          # go test -coverprofile=cover.out ./...
+          gotestsum --format short --no-summary=skipped -- -coverprofile=cover.out ./...
           echo "Checking Go test coverage..."
           go tool cover -func=cover.out
 
