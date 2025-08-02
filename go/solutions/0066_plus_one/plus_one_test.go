@@ -37,7 +37,8 @@ func TestPlusOne(t *testing.T) {
 	}
 
 	funcsToTest := map[string]func(digits []int) []int{
-		"PlusOne": plusOne,
+		"Naive":     plusOneNaive,
+		"Optimized": plusOneOptimized,
 	}
 
 	for fnName, fn := range funcsToTest {
