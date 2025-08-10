@@ -95,6 +95,7 @@ func removeLeadingZeros(s string) string {
 <p align="center">
     <img src="type_convert.png" alt="convert-string-integer" width="50%" />
 </p>
+
 - 字符转数字：`ch - '0'`，利用 ASCII 码差值
 - 数字转字符：`digit + '0'`，加上字符 '0' 的 ASCII 值
 
