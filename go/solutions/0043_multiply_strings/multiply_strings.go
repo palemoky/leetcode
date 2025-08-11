@@ -2,6 +2,8 @@ package multiply_strings
 
 import "strings"
 
+const BASE = 10
+
 // 跳过中间求和的巧妙标准解法
 // Time:(O^2), Space:O(n)
 func multiply(num1 string, num2 string) string {
@@ -29,8 +31,8 @@ func multiply(num1 string, num2 string) string {
 			sum := product + ans[low]
 
 			// 更新低位和高位（进位）
-			ans[low] = sum % 10
-			ans[high] += sum / 10
+			ans[low] = sum % BASE // 进位操作
+			ans[high] += sum / BASE
 		}
 	}
 
