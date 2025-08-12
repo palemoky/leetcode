@@ -37,7 +37,7 @@ func isPalindromeTwoPointersAndReverse(head *utils.ListNode) bool {
 	// 比较前后两半链表
 	firstHalf, secondHalf := head, secondHalfHead
 	isPalindrome := true
-	for secondHalf != nil {
+	for secondHalf != nil { // 注意此处必须使用 secondHalf 以确保只遍历链表后半部分
 		if firstHalf.Val != secondHalf.Val {
 			isPalindrome = false
 			break
