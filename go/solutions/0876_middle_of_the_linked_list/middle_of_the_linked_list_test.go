@@ -58,12 +58,12 @@ func TestFindMiddle(t *testing.T) {
 		"TwoPointersMethod": findMiddleTwoPointers,
 	}
 
-	for funcName, findMiddleFunc := range functionsToTest {
-		t.Run(funcName, func(t *testing.T) {
+	for fnName, fn := range functionsToTest {
+		t.Run(fnName, func(t *testing.T) {
 			for _, tc := range testCases {
 				t.Run(tc.name, func(t *testing.T) {
 					t.Parallel()
-					actual := findMiddleFunc(tc.input)
+					actual := fn(tc.input)
 
 					// 对于查找中间节点，我们期望返回的是原链表中的某个节点
 					// 因此，我们应该比较它们的指针地址是否相同

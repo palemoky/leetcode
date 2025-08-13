@@ -92,14 +92,14 @@ func TestIsPowerOfThree(t *testing.T) {
 		"MathMax":   isPowerOfThreeMax,
 	}
 
-	for funcName, isPowerOfThreeFunc := range funcToTest {
-		t.Run(funcName, func(t *testing.T) {
+	for fnName, fn := range funcToTest {
+		t.Run(fnName, func(t *testing.T) {
 			for _, tc := range testCases {
 				t.Run(tc.name, func(t *testing.T) {
 					t.Parallel()
 
 					t.Run(tc.name, func(t *testing.T) {
-						got := isPowerOfThreeFunc(tc.num)
+						got := fn(tc.num)
 						assert.Equal(t, tc.want, got, "Magic number solution failed for %d", tc.num)
 					})
 				})

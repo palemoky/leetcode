@@ -65,12 +65,12 @@ func TestFindCycleEntry(t *testing.T) {
 		"MathTwoPointersMethod": findCycleEnteryMathTwoPointers,
 	}
 
-	for funcName, findEntryFunc := range functionsToTest {
-		t.Run(funcName, func(t *testing.T) {
+	for fnName, fn := range functionsToTest {
+		t.Run(fnName, func(t *testing.T) {
 			for _, tc := range testCases {
 				t.Run(tc.name, func(t *testing.T) {
 					t.Parallel()
-					actual := findEntryFunc(tc.input)
+					actual := fn(tc.input)
 					// 检查返回的指针是否与期望的指针指向同一个内存地址
 					assert.Same(t, tc.expected, actual)
 				})

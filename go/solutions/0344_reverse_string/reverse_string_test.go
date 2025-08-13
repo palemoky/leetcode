@@ -51,14 +51,14 @@ func TestReverseString(t *testing.T) {
 		"Recursive":   reverseStringRecursive,
 	}
 
-	for funcName, reverseStringFunc := range functionsToTest {
-		t.Run(funcName, func(t *testing.T) {
+	for fnName, fn := range functionsToTest {
+		t.Run(fnName, func(t *testing.T) {
 			for _, tc := range testCases {
 				t.Run(tc.name, func(t *testing.T) {
 					t.Parallel()
 					// 注意此处是原地修改，这会导致原始数据被污染，因此需使用副本以避免数据竞争
 					input := append([]byte{}, tc.input...)
-					reverseStringFunc(input)
+					fn(input)
 					assert.Equal(t, tc.expected, input)
 				})
 			}
