@@ -69,20 +69,27 @@ func isPowerOfTwo(n int) bool {
 }
 ```
 
-### 4. 最大幂整除法
+### 4. 最大幂整除法（只适用于质数，如2、3）
 对于正整数 n，如果 n 是 base 的幂，则 base 的最大幂能被 n 整除且无余数。
 ```go
+import "math"
+
 func isPowerOfN_MaxDiv(n, base int) bool {
-    if n < 1 {
-        return false
+    maxPow := maxPowerLE(base, 2147483647) // 最大限制为2^31-1
+    return n > 0 && maxPow%n == 0
+}
+
+// base^k = limit ==> lgbase(limit) = k
+// 根据换底公式 log_a(b) = log_c(b)/log_c(a) 得 k = lg(limit)/lg(base)
+func maxPowerLE(base, limit int) int {
+    if base <= 1 {
+        return base 
     }
 
-    max := 1
-    for max*base > 0 && max*base <= n {
-        max *= base
-    }
+    k := int(math.Floor(math.Log(float64(limit)) / math.Log(float64(base))))
+    maxPow := int(math.Pow(float64(base), float64(k)))
 
-    return max%n == 0
+    return maxPow
 }
 ```
 
