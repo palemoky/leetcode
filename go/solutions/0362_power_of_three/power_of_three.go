@@ -19,14 +19,14 @@ func isPowerOfThreeIterative(n int) bool {
 }
 
 // 求3的幂可以根据数学规律转换为对数
-// lgn = lg(3^k) = klg3 ==> k = lgn/lg3
+// lg(n) = lg(3^k) = klg(3) ==> k = lg(n)/lg(3)
 // 因此，如果n是3的幂，k一定是个整数
 // Time: O(1), Space: O(1)
 func isPowerOfThreeLog(n int) bool {
 	if n <= 0 {
 		return false
 	}
-	// 计算 k = log3(n)
+	// 计算 k = log_3(n)
 	k := math.Log10(float64(n)) / math.Log10(3.0)
 
 	// 判断 k 是否为整数。注意：由于浮点数精度问题，不能直接用 k % 1 == 0
