@@ -90,6 +90,7 @@ func TestIsPowerOfThree(t *testing.T) {
 		"Iterative": isPowerOfTwoIterative,
 		"MathLog":   isPowerOfTwoLog,
 		"MathMax":   isPowerOfTwoMax,
+		"Binary":    isPowerOfTwoBinary,
 	}
 
 	for fnName, fn := range funcToTest {
