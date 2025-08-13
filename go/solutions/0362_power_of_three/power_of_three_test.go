@@ -89,7 +89,7 @@ func TestIsPowerOfThree(t *testing.T) {
 	funcToTest := map[string]func(n int) bool{
 		"Iterative": isPowerOfThreeIterative,
 		"MathLog":   isPowerOfThreeLog,
-		"Magic":     isPowerOfThreeMagic,
+		"MathMax":   isPowerOfThreeMax,
 	}
 
 	for funcName, isPowerOfThreeFunc := range funcToTest {

@@ -19,8 +19,7 @@ func isPowerOfThreeIterative(n int) bool {
 }
 
 // 求3的幂可以根据数学规律转换为对数
-// lgn = lg(3^k) = klg3
-// k = lgn/lg3
+// lgn = lg(3^k) = klg3 ==> k = lgn/lg3
 // 因此，如果n是3的幂，k一定是个整数
 // Time: O(1), Space: O(1)
 func isPowerOfThreeLog(n int) bool {
@@ -38,7 +37,7 @@ func isPowerOfThreeLog(n int) bool {
 // 由于LeetCode环境是32位，因此 1162261467 是 32位有符号整数范围内最大的3的幂 (3^19)
 // 因此，更巧妙的解法则是，转变思路，如果 n 是 3 的幂，那么一定可以被最大值整除
 // Time: O(1), Space: O(1)
-func isPowerOfThreeMagic(n int) bool {
+func isPowerOfThreeMax(n int) bool {
 	// 1162261467 是 32位有符号整数范围内最大的3的幂 (3^19)
 	// 条件：n必须是正数，并且能被这个最大的3的幂整除
 	return n > 0 && 1162261467%n == 0
