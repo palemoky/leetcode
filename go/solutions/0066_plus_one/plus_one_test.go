@@ -45,7 +45,10 @@ func TestPlusOne(t *testing.T) {
 		t.Run(fnName, func(t *testing.T) {
 			for _, tc := range testCases {
 				t.Run(tc.name, func(t *testing.T) {
-					got := fn(tc.num)
+					t.Parallel()
+					// 由于切片是引用类型，拷贝副本以解决数据竞争
+					input := append([]int{}, tc.num...)
+					got := fn(input)
 					assert.Equal(t, tc.want, got, "Input: num=%v", tc.num)
 				})
 			}

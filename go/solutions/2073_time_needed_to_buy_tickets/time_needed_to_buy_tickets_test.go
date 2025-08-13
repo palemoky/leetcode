@@ -34,9 +34,8 @@ func TestTimeRequiredToBuy(t *testing.T) {
 			for _, tc := range testCases {
 				t.Run(tc.name, func(t *testing.T) {
 					t.Parallel()
-					ticketsCopy := make([]int, len(tc.tickets))
-					copy(ticketsCopy, tc.tickets)
-					got := fn(ticketsCopy, tc.k)
+					tickets := append([]int{}, tc.tickets...)
+					got := fn(tickets, tc.k)
 					assert.Equal(t, tc.want, got, "%s: input=%v", fnName, tc.tickets, tc.k)
 				})
 			}
@@ -49,8 +48,7 @@ func BenchmarkTimeRequiredToBuy(b *testing.B) {
 	for fnName, fn := range funcsToTest {
 		b.Run(fnName, func(b *testing.B) {
 			for b.Loop() {
-				t := make([]int, len(tickets))
-				copy(t, tickets)
+				t := append([]int{}, tickets...)
 				fn(t, k)
 			}
 		})
