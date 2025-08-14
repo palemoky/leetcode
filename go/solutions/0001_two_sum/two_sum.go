@@ -1,5 +1,7 @@
 package two_sum
 
+// 注意本题返回的是数组的下标，因此不能排序后用双指针处理，这会导致索引丢失
+
 // Time: O(n^2), Space: O(1)
 func twoSumBruteForce(nums []int, target int) []int {
 	for i := range nums {
