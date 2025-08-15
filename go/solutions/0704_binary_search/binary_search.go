@@ -7,12 +7,12 @@ func searchIterative(nums []int, target int) int {
 	// 这里的二分查找的核心在于每次搜索都是以 mid 为单位跳跃
 	for left <= right {
 		mid := left + (right-left)/2
-		if nums[mid] == target {
-			return mid // 找到
-		} else if nums[mid] < target {
+		if target < nums[mid] {
+			right = mid - 1 // 左侧区间
+		} else if target > nums[mid] {
 			left = mid + 1 // 右侧区间
 		} else {
-			right = mid - 1 // 左侧区间
+			return mid // 找到
 		}
 	}
 
