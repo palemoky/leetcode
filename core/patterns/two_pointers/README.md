@@ -50,8 +50,8 @@ for left < right {
 - 滑动窗口要正确维护窗口边界和统计逻辑
 
 ## 经典题目
-- LeetCode 15. 三数之和
-- LeetCode 167. 两数之和 II - 输入有序数组
-- LeetCode 283. 移动零
-- LeetCode 876. 链表的中间结点
-- LeetCode 3. 无重复字符的最长子串
+- [LeetCode 15. 三数之和](https://leetcode.com/problems/3sum/)
+- [LeetCode 167. 两数之和 II - 输入有序数组](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
+- [LeetCode 283. 移动零](https://leetcode.com/problems/move-zeroes/)
+- [LeetCode 876. 链表的中间结点](https://leetcode.com/problems/middle-of-the-linked-list/)
+- [LeetCode 3. 无重复字符的最长子串](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
