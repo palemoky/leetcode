@@ -35,18 +35,20 @@
 - 排序算法是算法基础，建议至少熟练掌握冒泡、插入、选择、快排、归并五种实现。
 - 选择合适的排序算法需结合数据规模、稳定性需求和空间限制。
 
-<table>
-  <tr>
-    <td align="center">
-      <img src="quick_sorting.png" alt="Quick Sorting" width="220" /><br />
-      <sub>快速排序示意图</sub>
-    </td>
-    <td align="center">
-      <img src="merge_sorting.png" alt="Merge Sorting" width="220" /><br />
-      <sub>归并排序示意图</sub>
-    </td>
-  </tr>
-</table>
+<div align="center">
+  <table border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td align="center" valign="top" style="padding-right: 20px;">
+        <img src="quick_sorting.png" alt="Quick Sorting" width="300" /><br />
+        <sub style="font-size: 14px;">快速排序示意图</sub>
+      </td>
+      <td align="center" valign="top" style="padding-left: 20px;">
+        <img src="merge_sorting.png" alt="Merge Sorting" width="300" /><br />
+        <sub style="font-size: 14px;">归并排序示意图</sub>
+      </td>
+    </tr>
+  </table>
+</div>
 
 ### 稳定性与不稳定性
 
