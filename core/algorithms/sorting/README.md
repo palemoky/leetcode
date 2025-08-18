@@ -50,6 +50,14 @@
   </table>
 </div>
 
+### 复杂度
+
+在计算机科学中，我们通常用大O来描述某个特定算法时间与空间随着数据规模增加而变化的趋势。
+
+<p align="center">
+    <img src="Big_O.png" alt="Big-O Complexity Chart" width="50%" />
+</p>
+
 ### 稳定性与不稳定性
 
 <p align="center">
