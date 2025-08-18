@@ -34,22 +34,27 @@ for left < right {
 ```
 
 ### 2. 滑动窗口
+
 用于区间统计、最长子串等问题。
 
 ### 3. 快慢指针（链表）
+
 用于判断链表是否有环、找中点等。
 
 ## 优势
+
 - 时间复杂度低，常见为 O(n)
 - 空间复杂度低，通常只需常数级指针变量
 - 代码简洁，易于理解和维护
 
 ## 注意事项
+
 - 多数情况下需要有序数组，否则双指针无法高效移动
 - 去重时要注意跳过重复元素（如三数之和）
 - 滑动窗口要正确维护窗口边界和统计逻辑
 
 ## 经典题目
+
 - [LeetCode 15. 三数之和](https://leetcode.com/problems/3sum/)
 - [LeetCode 167. 两数之和 II - 输入有序数组](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
 - [LeetCode 283. 移动零](https://leetcode.com/problems/move-zeroes/)

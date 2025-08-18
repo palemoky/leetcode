@@ -53,19 +53,21 @@ func lowerBound(nums []int, target int) int {
 ```
 
 ## 变体与扩展
+
 - 查找区间边界：如第一个大于等于/小于等于目标的位置
 - 答案二分：在单调性判定问题中，二分答案空间（如 LeetCode 410、875）
 - 旋转数组查找：如 LeetCode 33、81
 - 递归实现：可用递归方式实现，但需注意递归深度和空间
 
 ## 常见错误与注意事项
+
 - 循环条件：`left <= right`（闭区间）或 `left < right`（半开区间），根据需求选择
 - 防止溢出：`mid := left + (right-left)/2` 和 `mid := (left+right)/2` 都可以求中值，但前者可以避免溢出
 - 边界处理：空数组、目标不存在、插入点在头尾
 - 不要无限循环：每次循环必须收缩区间
 
-
 ## 经典题目
+
 - [LeetCode 704. Binary Search](https://leetcode.com/problems/binary-search/)
 - [LeetCode 35. Search Insert Position](https://leetcode.com/problems/search-insert-position/)
 - [LeetCode 278. First Bad Version](https://leetcode.com/problems/first-bad-version/)
@@ -74,4 +76,5 @@ func lowerBound(nums []int, target int) int {
 - [LeetCode 875. Koko Eating Bananas](https://leetcode.com/problems/koko-eating-bananas/)
 
 ## 总结
+
 二分查找是算法面试和实际开发中的基础技巧，适用于所有有序和单调性问题。掌握不同区间写法和边界处理，能高效解决大量查找与判定类题目。

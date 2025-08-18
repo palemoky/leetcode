@@ -7,6 +7,7 @@ This directory contains custom Git hooks that help automate and enhance your dev
 1. **Copy Hooks to .git/hooks**
 
    Copy the desired hook scripts (for example, `pre-commit`, `pre-push`, etc.) from this directory to your project's `.git/hooks` directory. For example:
+
    ```sh
    cp githooks/pre-commit .git/hooks/pre-commit
    ```
@@ -14,6 +15,7 @@ This directory contains custom Git hooks that help automate and enhance your dev
 2. **Make Hooks Executable**
 
    Ensure the hook scripts have executable permissions:
+
    ```sh
    chmod +x .git/hooks/pre-commit
    ```
