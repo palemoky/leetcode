@@ -35,10 +35,23 @@
 - 排序算法是算法基础，建议至少熟练掌握冒泡、插入、选择、快排、归并五种实现。
 - 选择合适的排序算法需结合数据规模、稳定性需求和空间限制。
 
+<table>
+  <tr>
+    <td align="center">
+      <img src="quick_sorting.png" alt="Quick Sorting" width="220" /><br />
+      <sub>快速排序示意图</sub>
+    </td>
+    <td align="center">
+      <img src="merge_sorting.png" alt="Merge Sorting" width="220" /><br />
+      <sub>归并排序示意图</sub>
+    </td>
+  </tr>
+</table>
+
 ### 稳定性与不稳定性
 
 <p align="center">
-    <img src="Sorting_stability_playing_cards.png" alt="稳定排序纸牌的例子" width="35%" />
+    <img src="sorting_stability_playing_cards.png" alt="稳定排序纸牌的例子" width="35%" />
 </p>
 
 我们以纸牌排序为例，当纸牌用稳定排序按点值排序的时候，两个 5 之间必定保持它们最初的次序。在用不稳定排序来排序的时候，两个 5 可能被按相反次序来排序。
