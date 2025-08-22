@@ -1,5 +1,13 @@
 # LeetCode Solutions
 
+> Computer science is no more about computers than astronomy is about telescopes. — E. W. Dijkstra  
+> 计算机科学并不在于计算机，正如天文学并不在于望远镜。
+
+## Contents
+
+- [Directory Structure](##Directory Structure)
+- [Must-Know Classic LeetCode Problems by Category](## Must-Know Classic LeetCode Problems by Category)
+
 Welcome! This repository contains my solutions to LeetCode problems, implemented in **Go**, **Python**, and **Rust**.
 
 Each problem is organized by language and directory. Solutions include clean code, unit tests, and concise explanations where appropriate.
@@ -12,6 +20,9 @@ Each problem is organized by language and directory. Solutions include clean cod
 
 Feel free to explore, learn, and discuss.
 Contributions and suggestions are always welcome!
+
+<details>
+<summary>Must-Know Classic LeetCode Problems by Category</summary>
 
 ## Must-Know Classic LeetCode Problems by Category
 
@@ -95,6 +106,11 @@ Contributions and suggestions are always welcome!
 - [231. Power of Two](https://leetcode.com/problems/power-of-two/)
 - [69. Sqrt(x)](https://leetcode.com/problems/sqrtx/)
 - [371. Sum of Two Integers](https://leetcode.com/problems/sum-of-two-integers/)
+
+</details>
+
+<details>
+<summary>常用基础算法技巧总结</summary>
 
 ## 常用基础算法技巧总结
 
@@ -203,9 +219,7 @@ Contributions and suggestions are always welcome!
 
 应用：全排列、组合、子集、N 皇后问题、迷宫求解。
 
-
 ---
-
 
 ### 4. 滑动窗口（Sliding Window）
 
@@ -278,3 +292,16 @@ Contributions and suggestions are always welcome!
 4. 状态压缩 DP
    - N 皇后、旅行商问题。
 5. 滚动数组优化空间。
+
+</details>
+
+## 可视化算法工具
+
+- [Algorithm Visualizer](https://algorithm-visualizer.org/)
+- [VisuAlgo](https://visualgo.net/)
+
+## 算法学习资料
+
+- [Hello 算法](https://www.hello-algo.com/)
+- [Labuladong 的算法笔记](https://labuladong.online/algo/)
+- [代码随想录](https://programmercarl.com)
