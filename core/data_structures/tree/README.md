@@ -18,6 +18,7 @@
     - [B 树（B-Tree）](#b-树b-tree)
     - [B+ 树](#b-树)
   - [平衡树进化之路](#平衡树进化之路)
+- [二叉树的遍历](#二叉树的遍历)
 
 树用来模拟现实世界中的层级关系，是数据库索引、文件系统等的基础。算法面试的绝对主角
 
@@ -236,3 +237,28 @@ B+ 树通过将数据存储在叶子节点、叶子节点间通过链表相连�
 ### 平衡树进化之路
 
 ![The Evolution of Balanced Trees](the_evolution_of_balanced_trees.png)
+
+## 二叉树的遍历
+
+- 层序遍历（广度优先，BFS）：按层从上到下、从左到右依次访问每一层的节点，常用队列实现。
+- 深度优先遍历（DFS）：
+  - 前序遍历（根-左-右）：从根节点到叶子节点
+  - 中序遍历（左-根-右）：纵向一条线从左向右扫描
+  - 后序遍历（左-右-根）：从叶节点到根节点
+  
+> 在 DFS 的遍历中，前、中、后指的是根节点的位置
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center" valign="bottom" >
+        <img src="binary_tree_bfs.png" alt="Binary Tree BFS" /><br />
+        <sub style="font-size: 14px;">Binary Tree BFS</sub>
+      </td>
+      <td align="center" valign="bottom" >
+        <img src="binary_tree_dfs.png" alt="Binary Tree DFS" /><br />
+        <sub style="font-size: 14px;">Binary Tree DFS</sub>
+      </td>
+    </tr>
+  </table>
+</div>
