@@ -43,8 +43,9 @@ func TestPreorderTraversal(t *testing.T) {
 	}
 
 	funcsToTest := map[string]func(root *TreeNode) []int{
-		"Iterative": preorderIterative,
-		"Recursive": preorderRecursive,
+		"IterativeStack": preorderIterativeStack,
+		"Iterative":      preorderIterative,
+		"Recursive":      preorderRecursive,
 	}
 
 	for fnName, fn := range funcsToTest {
@@ -75,8 +76,9 @@ func TestInorderTraversal(t *testing.T) {
 	}
 
 	funcsToTest := map[string]func(root *TreeNode) []int{
-		"Iterative": inorderIterative,
-		"Recursive": inorderRecursive,
+		"Iterative":          inorderIterative,
+		"IterativeWithColor": inorderIterativeWithColor,
+		"Recursive":          inorderRecursive,
 	}
 
 	for fnName, fn := range funcsToTest {
@@ -107,8 +109,9 @@ func TestPostorderTraversal(t *testing.T) {
 	}
 
 	funcsToTest := map[string]func(root *TreeNode) []int{
-		"Iterative": postorderIterative,
-		"Recursive": postorderRecursive,
+		"Iterative":              postorderIterative,
+		"Iterative with Reverse": postorderTraversalWithReverse,
+		"Recursive":              postorderRecursive,
 	}
 
 	for fnName, fn := range funcsToTest {
