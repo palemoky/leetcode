@@ -19,6 +19,8 @@
     - [B+ 树](#b-树)
   - [平衡树进化之路](#平衡树进化之路)
 - [二叉树的遍历](#二叉树的遍历)
+  - [递归解题模板](#递归解题模板)
+  - [迭代解题模板](#迭代解题模板)
 
 树用来模拟现实世界中的层级关系，是数据库索引、文件系统等的基础。算法面试的绝对主角
 
@@ -240,13 +242,13 @@ B+ 树通过将数据存储在叶子节点、叶子节点间通过链表相连�
 
 ## 二叉树的遍历
 
-- 层序遍历（广度优先，BFS）：按层从上到下、从左到右依次访问每一层的节点，常用队列实现。
+- 层序遍历（广度优先，BFS）：按层从上到下、从左到右依次访问每一层的节点，常用**队列**实现。
 - 深度优先遍历（DFS）：
   - 前序遍历（根-左-右）：从根节点到叶子节点
-  - 中序遍历（左-根-右）：纵向一条线从左向右扫描
+  - 中序遍历（左-根-右）：纵向一条线从左向右扫描。最难，**最常考**。
   - 后序遍历（左-右-根）：从叶节点到根节点
-  
-> 在 DFS 的遍历中，前、中、后指的是根节点的位置
+
+> 在 DFS 的遍历中，前、中、后指的是根节点的位置。递归解法更容易理解和编写，因为直接调用了系统栈，而迭代解法则是在手动维护栈结构，控制节点入栈/出栈顺序。
 
 <div align="center">
   <table>
@@ -262,3 +264,85 @@ B+ 树通过将数据存储在叶子节点、叶子节点间通过链表相连�
     </tr>
   </table>
 </div>
+
+我们可以用摘葡萄来类比二叉树的遍历过程：
+
+- 层序遍历（BFS）：像一排排地摘葡萄，每次只摘同一层的所有葡萄，摘完一层再摘下一层，直到全部摘完。
+- 迭代的 DFS（如前序、中序、后序）：像顺着葡萄藤一段一段地摘，先摘左边的，遇到分叉就把右边记下来（压栈），等左边摘完再回头摘右边。每次只处理当前能摘到的一串，剩下的留到后面。
+
+### 递归解题模板
+
+```go
+func traversal(root *TreeNode) []int {
+    if root == nil {
+        return []int{}
+    }
+
+    // Preorder: 根 -> 左 -> 右
+    // nums := []int{root.Val}
+    // nums = append(nums, traversal(root.Left)...)
+    // nums = append(nums, traversal(root.Right)...)
+
+    // Inorder: 左 -> 根 -> 右
+    nums := traversal(root.Left)
+    nums = append(nums, root.Val)
+    nums = append(nums, traversal(root.Right)...)
+
+    // Postorder: 左 -> 右 -> 根
+    // nums := traversal(root.Left)
+    // nums = append(nums, traversal(root.Right)...)
+    // nums = append(nums, root.Val)
+
+    return nums
+}
+```
+
+### 迭代解题模板
+
+颜色标记法通过调整入栈顺序即可通杀前、中、后序遍历
+
+```go
+const (
+    WHITE = 0
+    BLACK = 1
+)
+
+type ColorNode struct {
+    Color int
+    Node  *TreeNode
+}
+
+func iterative(root *TreeNode) []int {
+    nums := []int{}
+    stack := []ColorNode{{WHITE, root}}
+    for len(stack) > 0 {
+        cn := stack[len(stack)-1] // cn is colorNode
+        stack = stack[:len(stack)-1]
+
+        if cn.Node == nil {
+            continue
+        }
+
+        if cn.Color == WHITE {
+            // 前序的压入顺序：右-左-根（BLACK）
+            // stack = append(stack, ColorNode{WHITE, cn.Node.Right})
+            // stack = append(stack, ColorNode{WHITE, cn.Node.Left})
+            // stack = append(stack, ColorNode{BLACK, cn.Node})
+
+            // 中序的压入顺序：右-根（BLACK）-左
+            stack = append(stack, ColorNode{WHITE, cn.Node.Right})
+            stack = append(stack, ColorNode{BLACK, cn.Node})
+            stack = append(stack, ColorNode{WHITE, cn.Node.Left})
+
+            // 后序的压入顺序：根（BLACK）-右-左
+            // stack = append(stack, ColorNode{BLACK, cn.Node})
+            // stack = append(stack, ColorNode{WHITE, cn.Node.Right})
+            // stack = append(stack, ColorNode{WHITE, cn.Node.Left})
+        } else {
+            nums = append(nums, cn.Node.Val)
+        }
+    }
+
+    return nums
+}
+```
