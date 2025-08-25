@@ -38,12 +38,12 @@
 <div align="center">
   <table border="0" cellpadding="0" cellspacing="0">
     <tr>
-      <td align="center" valign="top" style="padding-right: 20px;">
-        <img src="quick_sorting.png" alt="Quick Sorting" width="300" /><br />
+      <td align="center" valign="bottom" style="padding-right: 20px;">
+        <img src="quick_sorting.png" alt="Quick Sorting" /><br />
         <sub style="font-size: 14px;">快速排序示意图</sub>
       </td>
-      <td align="center" valign="top" style="padding-left: 20px;">
-        <img src="merge_sorting.png" alt="Merge Sorting" width="300" /><br />
+      <td align="center" valign="bottom" style="padding-left: 20px;">
+        <img src="merge_sorting.png" alt="Merge Sorting" /><br />
         <sub style="font-size: 14px;">归并排序示意图</sub>
       </td>
     </tr>
