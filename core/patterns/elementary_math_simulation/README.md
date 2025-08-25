@@ -98,7 +98,7 @@ func removeLeadingZeros(s string) string {
 以 Go 语言为例，转换规律如下：
 
 <p align="center">
-    <img src="type_convert.png" alt="convert-string-integer" width="37%" />
+    <img src="type_convert.png" alt="convert-string-integer" width="25%" />
 </p>
 
 - 字符转数字：`ch - '0'`，利用 ASCII 码差值
