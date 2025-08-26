@@ -47,11 +47,20 @@ func TestMaxDepth(t *testing.T) {
 		},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.name, func(t *testing.T) {
-			root := utils.BuildTree(tc.input)
-			got := maxDepth(root)
-			assert.Equal(t, tc.want, got, "Input: %v", tc.input)
+	funcsToTest := map[string]func(root *utils.TreeNode) int{
+		"BFS": maxDepthBFS,
+		"DFS": maxDepthDFS,
+	}
+
+	for fnName, fn := range funcsToTest {
+		t.Run(fnName, func(t *testing.T) {
+			for _, tc := range testCases {
+				t.Run(tc.name, func(t *testing.T) {
+					root := utils.BuildTree(tc.input)
+					got := fn(root)
+					assert.Equal(t, tc.want, got, "Input: %v", tc.input)
+				})
+			}
 		})
 	}
 }

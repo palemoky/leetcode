@@ -2,7 +2,9 @@ package maximum_depth_of_binary_tree
 
 import "leetcode/go/solutions/utils"
 
-func maxDepth(root *utils.TreeNode) int {
+// 解法一：层序遍历
+// Time: O(n), Space: O(n)
+func maxDepthBFS(root *utils.TreeNode) int {
 	depth := 0
 	if root == nil {
 		return depth
@@ -24,4 +26,21 @@ func maxDepth(root *utils.TreeNode) int {
 	}
 
 	return depth
+}
+
+// 解法二：递归求解
+// Time: O(n), Space: O(h) h 为树高，最坏 O(n)
+func maxDepthDFS(root *utils.TreeNode) int {
+	depth := 0
+	if root == nil {
+		return depth
+	}
+
+	left, right := maxDepthDFS(root.Left), maxDepthDFS(root.Right)
+
+	if left > right {
+		return left + 1
+	}
+
+	return right + 1
 }
