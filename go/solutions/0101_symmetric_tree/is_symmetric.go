@@ -5,7 +5,8 @@ import (
 	"math"
 )
 
-// 思路：层序遍历，收集每层的节点（包括nil节点）后判断是否为回文
+// 解法一思路：层序遍历，收集每层的节点（包括nil节点）后判断是否为回文
+// Time: O(n), Space(n)
 func isSymmetricLevelOrder(root *utils.TreeNode) bool {
 	if root == nil {
 		return true
@@ -40,7 +41,9 @@ func isSymmetricLevelOrder(root *utils.TreeNode) bool {
 	return true
 }
 
-// 思路：直接将左右子树成对放入队列比较
+// 解法二思路：直接将左右子树成对放入队列比较
+// 优点：无需存储整层所有节点的值，只存储待比较的节点对，因此效率更高
+// Time: O(n), Space(n)
 func isSymmetricTwoQueues(root *utils.TreeNode) bool {
 	if root == nil {
 		return true
