@@ -12,23 +12,23 @@ func levelOrder(root *TreeNode) [][]int {
 	// 遍历树的深度
 	for len(queue) > 0 { // 由于最后不断地弹出已遍历元素，此处必须是 len(queue)
 		levelSize := len(queue)
-		row := []int{} // 收集每层的结果
+		row := make([]int, 0, levelSize)
 		// 当前行元素的最大长度就等于树的深度，依次读取当前深度的节点
 		for i := range levelSize {
-			// 左右节点可能为空，因此非空时放入下一层
-			if queue[i].Left != nil {
-				queue = append(queue, queue[i].Left) // enqueue
+			node := queue[i]
+			row = append(row, node.Val) // 收集每层的结果
+
+			// 将非空的左右子树加入队列
+			if node.Left != nil {
+				queue = append(queue, node.Left) // enqueue
 			}
 
-			if queue[i].Right != nil {
-				queue = append(queue, queue[i].Right) //enqueue
+			if node.Right != nil {
+				queue = append(queue, node.Right) //enqueue
 			}
-
-			// 读取当前层的值
-			row = append(row, queue[i].Val)
 		}
 
-		// 裁切掉已扫描过的节点
+		// 裁切掉已处理过的节点
 		queue = queue[levelSize:] // dequeue
 		// 将当前深度的节点放入结果集中
 		nums = append(nums, row)
