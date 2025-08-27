@@ -58,7 +58,7 @@ func TestThreeSum(t *testing.T) {
 
 		// --- 2. 典型情况 ---
 		{
-			name: "LeetCode Example",
+			name: "Typical case with negatives and duplicates",
 			nums: []int{-1, 0, 1, 2, -1, -4},
 			want: [][]int{{-1, -1, 2}, {-1, 0, 1}},
 		},

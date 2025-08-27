@@ -18,8 +18,8 @@ func TestSingleNumber(t *testing.T) {
 		nums []int
 		want int
 	}{
-		{"LeetCode Example 1", []int{2, 2, 1}, 1},
-		{"LeetCode Example 2", []int{4, 1, 2, 1, 2}, 4},
+		{"Simple single", []int{2, 2, 1}, 1},
+		{"Single at head", []int{4, 1, 2, 1, 2}, 4},
 		{"Single element", []int{99}, 99},
 		{"Negative number", []int{-1, -1, -2}, -2},
 		{"Zero included", []int{0, 1, 1}, 0},

@@ -20,9 +20,9 @@ func TestTwoSum(t *testing.T) {
 		target int
 		want   []int
 	}{
-		{"LeetCode Example 1", []int{2, 7, 11, 15}, 9, []int{0, 1}},
-		{"LeetCode Example 2", []int{3, 2, 4}, 6, []int{1, 2}},
-		{"LeetCode Example 3", []int{3, 3}, 6, []int{0, 1}},
+		{"Simple pair sum", []int{2, 7, 11, 15}, 9, []int{0, 1}},
+		{"Pair with middle element", []int{3, 2, 4}, 6, []int{1, 2}},
+		{"Pair with duplicates", []int{3, 3}, 6, []int{0, 1}},
 		{"No solution", []int{1, 2, 3}, 7, []int{}},
 		{"Empty array", []int{}, 0, []int{}},
 		{"Single element", []int{1}, 1, []int{}},

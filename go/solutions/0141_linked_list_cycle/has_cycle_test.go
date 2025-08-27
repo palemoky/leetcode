@@ -20,8 +20,8 @@ func TestHasCycle(t *testing.T) {
 		cycleAt int // -1 means no cycle, otherwise the index of the cycle entry
 		want    bool
 	}{
-		{"LeetCode Example 1", []int{3, 2, 0, -4}, 1, true},
-		{"LeetCode Example 2", []int{1, 2}, 0, true},
+		{"Cycle in middle", []int{3, 2, 0, -4}, 1, true},
+		{"Cycle at head (short)", []int{1, 2}, 0, true},
 		{"No cycle", []int{1}, -1, false},
 		{"Empty", []int{}, -1, false},
 		{"No cycle long", []int{1, 2, 3, 4, 5}, -1, false},

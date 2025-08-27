@@ -15,13 +15,13 @@ func TestMultiply(t *testing.T) {
 		want string
 	}{
 		{
-			name: "Leetcode Example 1",
+			name: "Single digit multiply",
 			num1: "2",
 			num2: "3",
 			want: "6",
 		},
 		{
-			name: "Leetcode Example 2",
+			name: "Multi-digit multiply",
 			num1: "123",
 			num2: "456",
 			want: "56088",

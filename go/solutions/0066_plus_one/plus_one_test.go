@@ -15,17 +15,17 @@ func TestPlusOne(t *testing.T) {
 		want []int
 	}{
 		{
-			name: "LeetCode Example 1",
+			name: "Simple increment",
 			num:  []int{1, 2, 3},
 			want: []int{1, 2, 4},
 		},
 		{
-			name: "LeetCode Example 2",
+			name: "Increment with carry",
 			num:  []int{4, 3, 2, 1},
 			want: []int{4, 3, 2, 2},
 		},
 		{
-			name: "LeetCode Example 3",
+			name: "Single digit with carry",
 			num:  []int{9},
 			want: []int{1, 0},
 		},

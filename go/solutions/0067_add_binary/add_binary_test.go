@@ -15,13 +15,13 @@ func TestAddBinary(t *testing.T) {
 		want string
 	}{
 		{
-			name: "LeetCode Example 1",
+			name: "Basic addition",
 			a:    "11",
 			b:    "1",
 			want: "100",
 		},
 		{
-			name: "LeetCode Example 2",
+			name: "Addition with carry",
 			a:    "1010",
 			b:    "1011",
 			want: "10101",
