@@ -1,0 +1,43 @@
+package validate_binary_search_tree
+
+import (
+	"leetcode/go/solutions/utils"
+	"testing"
+
+	"github.com/stretchr/testify/assert"
+)
+
+func TestIsValidBST(t *testing.T) {
+	t.Parallel()
+	testCases := []struct {
+		name  string
+		input []any
+		want  bool
+	}{
+		{"Empty tree", []any{}, true},
+		{"Single node", []any{1}, true},
+		{"Valid BST", []any{2, 1, 3}, true},
+		{"Invalid BST", []any{5, 1, 4, nil, nil, 3, 6}, false},
+		{"Left skewed valid", []any{3, 2, nil, 1}, true},
+		{"Right skewed valid", []any{1, nil, 2, nil, nil, nil, 3}, true},
+		{"Right skewed invalid", []any{1, nil, 2, nil, nil, nil, 0}, false},
+	}
+
+	funcsToTest := map[string]func(root *utils.TreeNode) bool{
+		"DFS":         isValidBSTDFS,
+		"SortedArray": isValidBSTSortedArray,
+	}
+
+	for fnName, fn := range funcsToTest {
+		t.Run(fnName, func(t *testing.T) {
+			for _, tc := range testCases {
+				t.Run(tc.name, func(t *testing.T) {
+					t.Parallel()
+					root := utils.BuildTree(tc.input)
+					got := fn(root)
+					assert.Equal(t, tc.want, got, "Input: %v", tc.input)
+				})
+			}
+		})
+	}
+}
