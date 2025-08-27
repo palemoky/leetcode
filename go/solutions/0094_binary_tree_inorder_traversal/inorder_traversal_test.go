@@ -11,7 +11,7 @@ func TestInorderTraversal(t *testing.T) {
 	t.Parallel()
 	testCases := []struct {
 		name     string
-		vals     []any
+		input    []any
 		expected []int
 	}{
 		{"Empty tree", []any{}, []int{}},
@@ -31,7 +31,7 @@ func TestInorderTraversal(t *testing.T) {
 			for _, tc := range testCases {
 				t.Run(tc.name, func(t *testing.T) {
 					t.Parallel()
-					root := utils.BuildTree(tc.vals)
+					root := utils.BuildTree(tc.input)
 					got := fn(root)
 					assert.Equal(t, tc.expected, got)
 				})

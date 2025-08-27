@@ -54,8 +54,8 @@ func TestBuildTree(t *testing.T) {
 }
 
 // 层序遍历辅助函数，只收集非 nil 节点值
-func levelOrder(vals []any) []int {
-	root := BuildTree(vals)
+func levelOrder(input []any) []int {
+	root := BuildTree(input)
 	if root == nil {
 		return []int{}
 	}
