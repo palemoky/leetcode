@@ -29,8 +29,10 @@ func TestLowestCommonAncestor(t *testing.T) {
 		p, q  int
 		want  int
 	}{
-		{"LeetCode Example 1", []any{6, 2, 8, 0, 4, 7, 9, nil, nil, 3, 5}, 2, 8, 6},
-		{"LeetCode Example 2", []any{6, 2, 8, 0, 4, 7, 9, nil, nil, 3, 5}, 2, 4, 2},
+		{"Ancestor is root", []any{6, 2, 8, 0, 4, 7, 9, nil, nil, 3, 5}, 2, 8, 6},
+		{"Ancestor is left child", []any{6, 2, 8, 0, 4, 7, 9, nil, nil, 3, 5}, 2, 4, 2},
+		{"Ancestor is right child", []any{6, 2, 8, 0, 4, 7, 9, nil, nil, 3, 5}, 7, 9, 8},
+		{"Ancestor is root (distant leaves)", []any{6, 2, 8, 0, 4, 7, 9, nil, nil, 3, 5}, 0, 9, 6},
 		{"Root is ancestor", []any{2, 1}, 2, 1, 2},
 		{"Both nodes are same", []any{2, 1}, 1, 1, 1},
 		{"Leftmost and rightmost", []any{6, 2, 8, 0, 4, 7, 9, nil, nil, 3, 5}, 0, 9, 6},
@@ -38,6 +40,7 @@ func TestLowestCommonAncestor(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
 			root := utils.BuildTree(tc.input)
 			p := findNode(root, tc.p)
 			q := findNode(root, tc.q)
