@@ -19,6 +19,7 @@ func TestIsValidBST(t *testing.T) {
 		{"Valid BST", []any{2, 1, 3}, true},
 		{"Invalid BST", []any{5, 1, 4, nil, nil, 3, 6}, false},
 		{"Left skewed valid", []any{3, 2, nil, 1}, true},
+		{"Left skewed invalid", []any{3, 2, nil, 9}, false},
 		{"Right skewed valid", []any{1, nil, 2, nil, nil, nil, 3}, true},
 		{"Right skewed invalid", []any{1, nil, 2, nil, nil, nil, 0}, false},
 	}
