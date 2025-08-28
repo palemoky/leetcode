@@ -364,7 +364,7 @@ func iterative(root *TreeNode) []int {
 - [110. Balanced Binary Tree](https://leetcode.com/problems/balanced-binary-tree/) — 判断是否平衡（左右子树的高度差不超过 1。后序遍历）
 - [98. Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/) — 验证二叉搜索树（中序遍历后数组比较，或者递归约束滑动窗口）
 - [236. Lowest Common Ancestor of a Binary Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/) — 二叉树最近公共祖先（后序递归查找）
-- - [235. Lowest Common Ancestor of a BST](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/) — BST 最近公共祖先（结果一定是处于 p 和 q 之间的值）
+- [235. Lowest Common Ancestor of a BST](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/) — BST 最近公共祖先（结果一定是处于 p 和 q 之间的值）
 - [112. Path Sum](https://leetcode.com/problems/path-sum/) — 路径总和
 - [113. Path Sum II](https://leetcode.com/problems/path-sum-ii/) — 所有路径总和
 - [124. Binary Tree Maximum Path Sum](https://leetcode.com/problems/binary-tree-maximum-path-sum/) — 最大路径和
