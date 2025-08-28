@@ -35,7 +35,7 @@ Contributions and suggestions are always welcome!
 ### Algorithm Basics You Must Master:
 
 1. Linked List: traversal, reversal, merging, cycle detection
-2. Binary Tree: level order, preorder/inorder/postorder traversal (both recursive and iterative), inversion, max/min depth, lowest common ancestor, merge two binary trees
+2. Binary Tree: level order(max/min depth, symmetric tree), preorder/inorder/postorder traversal (both recursive and iterative), inversion, lowest common ancestor, merge two binary trees
 3. Sorting: quick sort, merge sort, insertion sort, selection sort, bubble sort, heap sort
 4. Binary Search: on sorted arrays, binary trees
 5. Bit Manipulation Techniques:
