@@ -244,11 +244,13 @@ B+ 树通过将数据存储在叶子节点、叶子节点间通过链表相连�
 
 ## 二叉树的遍历
 
-- 层序遍历（广度优先，BFS）：按层从上到下、从左到右依次访问每一层的节点，常用**队列**实现。
+**以下 4 种遍历是基本功，掌握它们，绝大多数二叉树问题都能迎刃而解。**
+
+- 层序遍历（广度优先，BFS）：按层从上到下、从左到右依次访问每一层的节点，常用**队列**实现。应用于树的深度、宽度、层、最短路径等。
 - 深度优先遍历（DFS）：
-  - 前序遍历（根-左-右）：从根节点到叶子节点
-  - 中序遍历（左-根-右）：纵向一条线从左向右扫描。最难，**最常考**。
-  - 后序遍历（左-右-根）：从叶节点到根节点
+  - 前序遍历（根-左-右）：**自顶向下**从根节点到叶子节点传递信息
+  - 中序遍历（左-根-右）：纵向一条线从左向右扫描。最难，**最常考**。**专用于 BST**
+  - 后序遍历（左-右-根）：**自底向上**从叶节点到根节点返回信息
 
 > 在 DFS 的遍历中，前、中、后指的是根节点的位置。递归解法更容易理解和编写，因为直接调用了系统栈，而迭代解法则是在手动维护栈结构，控制节点入栈/出栈顺序。
 
@@ -355,14 +357,14 @@ func iterative(root *TreeNode) []int {
 - [94. Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/) — 中序遍历（递归、迭代、颜色标记法）
 - [144. Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/) — 前序遍历（递归、迭代、颜色标记法）
 - [145. Binary Tree Postorder Traversal](https://leetcode.com/problems/binary-tree-postorder-traversal/) — 后序遍历（递归、迭代、颜色标记法）
-- [226. Invert Binary Tree](https://leetcode.com/problems/invert-binary-tree/) — 翻转二叉树
+- [226. Invert Binary Tree](https://leetcode.com/problems/invert-binary-tree/) — 翻转二叉树（前序/后序递归翻转）
 - [104. Maximum Depth of Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/) — 求最大深度（层序遍历）
 - [111. Minimum Depth of Binary Tree](https://leetcode.com/problems/minimum-depth-of-binary-tree/) — 最小深度（层序遍历）
 - [101. Symmetric Tree](https://leetcode.com/problems/symmetric-tree/) — 判断是否对称（层序遍历后判断是否为回文，或者节点两两加入队列后比较）
-- [110. Balanced Binary Tree](https://leetcode.com/problems/balanced-binary-tree/) — 判断是否平衡（左右子树的高度差不超过1。后序遍历）
-- [98. Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/) — 验证二叉搜索树
-- [236. Lowest Common Ancestor of a Binary Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/) — 最近公共祖先（任意二叉树）
-- [235. Lowest Common Ancestor of a BST](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/) — 最近公共祖先（BST）
+- [110. Balanced Binary Tree](https://leetcode.com/problems/balanced-binary-tree/) — 判断是否平衡（左右子树的高度差不超过 1。后序遍历）
+- [98. Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/) — 验证二叉搜索树（中序遍历后数组比较，或者递归约束滑动窗口）
+- [236. Lowest Common Ancestor of a Binary Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/) — 二叉树最近公共祖先（后序递归查找）
+- - [235. Lowest Common Ancestor of a BST](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/) — BST 最近公共祖先（结果一定是处于 p 和 q 之间的值）
 - [112. Path Sum](https://leetcode.com/problems/path-sum/) — 路径总和
 - [113. Path Sum II](https://leetcode.com/problems/path-sum-ii/) — 所有路径总和
 - [124. Binary Tree Maximum Path Sum](https://leetcode.com/problems/binary-tree-maximum-path-sum/) — 最大路径和
