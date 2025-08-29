@@ -6,6 +6,7 @@
   - [二叉树](#二叉树)
     - [完美二叉树（Perfect Binary Tree）](#完美二叉树perfect-binary-tree)
     - [完全二叉树（Complete Binary Tree）](#完全二叉树complete-binary-tree)
+      - [堆（Heap）](#堆heap)
     - [满二叉树（Full Binary Tree）](#满二叉树full-binary-tree)
     - [平衡搜索树](#平衡搜索树)
       - [二叉搜索树（Binary Search Tree）](#二叉搜索树binary-search-tree)
@@ -42,18 +43,6 @@
 
 ### 二叉树
 
-#### 完美二叉树（Perfect Binary Tree）
-
-所有层的节点都被完全填满。在完美二叉树中，若树的高度为 $h$，则节点总数为 $2^{(h+1)}-1$，呈现标准的指数级关系，反映了自然界中常见的细胞分裂现象。
-
-#### 完全二叉树（Complete Binary Tree）
-
-仅允许最底层的节点不完全填满，且最底层的节点必须从左至右依次连续填充。二叉堆是完全二叉树的重要应用场景。
-
-#### 满二叉树（Full Binary Tree）
-
-非叶节点都有 0 个或两个子节点。一个有趣的规律是：叶节点的数量=内部节点数量+1
-
 <div align="center">
   <table>
     <tr>
@@ -72,6 +61,70 @@
     </tr>
   </table>
 </div>
+
+#### 完美二叉树（Perfect Binary Tree）
+
+所有层的节点都被完全填满。在完美二叉树中，若树的高度为 $h$，则节点总数为 $2^{(h+1)}-1$，呈现标准的指数级关系，反映了自然界中常见的细胞分裂现象。
+
+#### 完全二叉树（Complete Binary Tree）
+
+仅允许最底层的节点不完全填满，且最底层的节点必须从左至右依次连续填充。二叉堆是完全二叉树的重要应用场景。
+
+由于完全二叉树的性质，使其在数组中可以被连续存储（数组索引可按 1-based 或 0-based 约定）。
+
+- 对于 1-based 索引 的 i 号节点：
+
+  - 左孩子：2\*i
+  - 右孩子：2\*i+1
+  - 父亲：⌊i/2⌋，（向下取整）
+
+- 对于 0-based 索引 的 i 号节点：
+  - 左孩子：2\*i+1
+  - 右孩子：2\*i+2
+  - 父亲：⌊(i-1)/2⌋
+
+##### 堆（Heap）
+
+堆是一种满足堆性质的完全二叉树，常用来实现优先队列。
+
+- 小顶堆（min-heap）：任意父节点的值小于等于其子节点的值。
+  - 1-based 索引：$ a[i] <= a[2*i] && a[i] <= a[2*i+1] $
+  - 0-based 索引：$ a[i] <= a[2*i+1] && a[i] <= a[2*i+2] $
+- 大顶堆（max-heap）：任意父节点的值大于等于其子节点的值。
+  - 1-based 索引：$ a[i] >= a[2*i] && a[i] >= a[2*i+1] $
+  - 0-based 索引：$ a[i] >= a[2*i+1] && a[i] >= a[2*i+2] $
+
+<p align="center">
+    <img src="min_heap_and_max_heap.png" alt="Min Heap and Max Heap" width="65%" />
+</p>
+
+常见操作的时间复杂度：
+
+- push / pop（上浮或下沉）: O(log n)
+- peek / top: O(1)
+- size / isEmpty: O(1)
+
+应用场景：
+
+- 优先队列（任务调度、事件驱动、作业排队等）
+- Dijkstra、A\* 等需要按最小/最大代价取节点的算法
+- Top-k 问题（维护大小为 k 的小顶堆，时间复杂度 O(n log k)）
+- 堆排序（Heap Sort）：把数组建堆（O(n)）后不断 pop 来得到有序序列，总体 O(n log n)，可原地实现
+
+实现细节与小贴士：
+
+- 常用数组表示完全二叉树，父/子索引依赖于数组索引基（0-based / 1-based）
+- 建堆可以用自底向上的 heapify，时间复杂度 O(n)
+- 对于 Top-k，若 k 很小，维护一个大小为 k 的小顶堆是高效方案（总体 O(n log k)）
+
+LeetCode 经典题目
+
+- [215. Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/) — 数组中第 K 个最大元素（Top-k / 堆）
+- [347. Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/) — 前 K 个高频元素（哈希 + 堆）
+
+#### 满二叉树（Full Binary Tree）
+
+非叶节点都有 0 个或两个子节点。一个有趣的规律是：叶节点的数量=内部节点数量+1
 
 #### 平衡搜索树
 
