@@ -365,10 +365,10 @@ func iterative(root *TreeNode) []int {
 - [98. Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/) — 验证二叉搜索树（中序遍历后数组比较，或者递归约束滑动窗口）
 - [236. Lowest Common Ancestor of a Binary Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/) — 二叉树最近公共祖先（后序递归查找）
 - [235. Lowest Common Ancestor of a BST](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/) — BST 最近公共祖先（结果一定是处于 p 和 q 之间的值，迭代遍历）
-- [112. Path Sum](https://leetcode.com/problems/path-sum/) — 路径总和
-- [113. Path Sum II](https://leetcode.com/problems/path-sum-ii/) — 所有路径总和
-- [124. Binary Tree Maximum Path Sum](https://leetcode.com/problems/binary-tree-maximum-path-sum/) — 最大路径和
-- [543. Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/) — 二叉树的直径
+- [112. Path Sum](https://leetcode.com/problems/path-sum/) — 路径总和（前序遍历）
+- [543. Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/) — 二叉树的直径（后序遍历）
+- [113. Path Sum II](https://leetcode.com/problems/path-sum-ii/) — 所有路径总和（前序遍历+回溯）
+- [124. Binary Tree Maximum Path Sum](https://leetcode.com/problems/binary-tree-maximum-path-sum/) — 最大路径和（后序遍历+DP）
 - [105. Construct Binary Tree from Preorder and Inorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/) — 根据前序和中序构造二叉树
 - [106. Construct Binary Tree from Inorder and Postorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/) — 根据中序和后序构造二叉树
 - [297. Serialize and Deserialize Binary Tree](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/) — 序列化与反序列化
