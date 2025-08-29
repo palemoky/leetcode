@@ -92,11 +92,11 @@
 堆是一种满足堆性质的完全二叉树，常用来实现优先队列。
 
 - 小顶堆（min-heap）：任意父节点的值小于等于其子节点的值。
-  - 1-based 索引：a[i] <= a[2*i] && a[i] <= a[2*i+1]
-  - 0-based 索引：a[i] <= a[2*i+1] && a[i] <= a[2*i+2]
+  - 1-based 索引：$ a[i] <= a[2\*i] && a[i] <= a[2\*i+1] $
+  - 0-based 索引：$ a[i] <= a[2\*i+1] && a[i] <= a[2\*i+2] $
 - 大顶堆（max-heap）：任意父节点的值大于等于其子节点的值。
-  - 1-based 索引：a[i] >= a[2*i] && a[i] >= a[2*i+1]
-  - 0-based 索引：a[i] >= a[2*i+1] && a[i] >= a[2*i+2]
+  - 1-based 索引：$ a[i] >= a[2\*i] && a[i] >= a[2\*i+1] $
+  - 0-based 索引：$ a[i] >= a[2\*i+1] && a[i] >= a[2\*i+2] $
 
 <p align="center">
     <img src="min_heap_and_max_heap.png" alt="Min Heap and Max Heap" width="65%" />
