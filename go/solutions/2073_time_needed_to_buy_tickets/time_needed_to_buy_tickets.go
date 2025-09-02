@@ -67,10 +67,3 @@ func timeRequiredToBuyMath(tickets []int, k int) (steps int) {
 
 	return
 }
-
-func min(a, b int) int {
-	if a < b {
-		return a
-	}
-	return b
-}
