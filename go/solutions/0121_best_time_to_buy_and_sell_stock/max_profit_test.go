@@ -13,8 +13,8 @@ func TestMaxProfitImplementations(t *testing.T) {
 		prices []int
 		want   int
 	}{
-		{"example1", []int{7, 1, 5, 3, 6, 4}, 5},
-		{"example2", []int{7, 6, 4, 3, 1}, 0},
+		{"buy_low_sell_high", []int{7, 1, 5, 3, 6, 4}, 5},
+		{"continuous_decreasing", []int{7, 6, 4, 3, 1}, 0},
 		{"single", []int{1}, 0},
 		{"two", []int{2, 1}, 0},
 		{"increase", []int{1, 2}, 1},
