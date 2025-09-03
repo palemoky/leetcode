@@ -19,7 +19,7 @@ func fibRecursive(n int) int {
 	}
 }
 
-// 递归记忆优化
+// 解法一优化：递归记忆优化
 // Time: O(n), Space: O(n)
 var memo = map[int]int{}
 
@@ -40,25 +40,54 @@ func fibRecursiveMemo(n int) int {
 	}
 }
 
-// 解法二：迭代法 (Iterative)
+// 解法二：递归求解
+// Time: O(n), Space: O(n)
+func fibDP(n int) int {
+	if n <= 1 {
+		return n
+	}
+
+	dp := make([]int, n+1) // 注意 n 是从 0 开始，因此要 n+1
+	dp[0], dp[1] = 0, 1
+	for i := 2; i <= n; i++ {
+		dp[i] = dp[i-1] + dp[i-2]
+	}
+
+	return dp[n]
+}
+
+// 解法二优化：通过 3 个变量滚动来实现将空间复杂度降为 O(1)
+// Time: O(n), Space: O(1)
+func fibDPOptimized(n int) int {
+	if n <= 1 {
+		return n
+	}
+
+	dp := make([]int, 2) // 注意 n 是从 0 开始，因此要 n+1
+	dp[0], dp[1] = 0, 1
+	sum := 0
+	for i := 2; i <= n; i++ {
+		sum = dp[0] + dp[1]
+		dp[0], dp[1] = dp[1], sum
+	}
+
+	return dp[1]
+}
+
+// 解法三：迭代法 (Iterative)
 // 最高效、最推荐的解法
 // Time: O(n), Space: O(1)
 func fibIterative(n int) int {
-	switch {
-	case n >= 2:
-		x, y := 0, 1
-		for i := 2; i <= n; i++ { // 注意此处的条件是 <=
-			// x, y 分别代表 f(i-2) 和 f(i-1)
-			// 计算 f(i) 并更新  和 y
-			x, y = y, x+y
-		}
-
-		return y
-
-	case n > 0:
+	if n < 2 {
 		return n
-
-	default:
-		return 0
 	}
+
+	x, y := 0, 1
+	for i := 2; i <= n; i++ { // 注意此处的条件是 <=
+		// x, y 分别代表 f(i-2) 和 f(i-1)
+		// 计算 f(i) 并更新 x 和 y
+		x, y = y, x+y
+	}
+
+	return y
 }
