@@ -1,5 +1,7 @@
 package climbing_stairs
 
+// 本题的本质就是509题的斐波那契数
+
 // 解法一：朴素递归
 // Time: O(2^n), Space: O(1)
 func climbStairsRecursive(n int) int {
@@ -13,7 +15,7 @@ func climbStairsRecursive(n int) int {
 	}
 }
 
-// 解法二：记忆优化递归
+// 解法一优化：记忆优化递归
 // Time: O(n), Space: O(n)
 var memo = map[int]int{}
 
@@ -33,22 +35,33 @@ func climbStairsRecursiveMemo(n int) int {
 	}
 }
 
-// 解法三：迭代求解（推荐）
+// 解法二：DP
+// Time: O(n), Space: O(n)
+func climbStairsDP(n int) int {
+	if n <= 2 {
+		return n
+	}
+
+	dp := make([]int, n+1) // 当输入为1时，n+1可以避免dp[2]的越界
+	dp[1], dp[2] = 1, 2
+	for i := 3; i <= n; i++ {
+		dp[i] = dp[i-1] + dp[i-2]
+	}
+
+	return dp[n]
+}
+
+// 解法三：迭代求解（推荐），可将解法二的空间复杂度优化为O(1)
 // Time: O(n), Space: O(1)
 func climbStairsIterative(n int) int {
-	switch {
-	case n > 2:
-		x, y := 1, 2
-		for i := 3; i <= n; i++ {
-			x, y = y, x+y
-		}
-
-		return y
-
-	case n > 0:
+	if n <= 2 {
 		return n
-
-	default:
-		return 0
 	}
+
+	x, y := 1, 2
+	for i := 3; i <= n; i++ {
+		x, y = y, x+y
+	}
+
+	return y
 }
