@@ -1,14 +1,16 @@
 package fibonacci_number
 
-// n 0 1 1 2 3 5 8 13
-// i 0 1 2 3 4 5 6 7
+// 注意：斐波那契数有从 0 和从 1 开始两个版本，其判断条件也分别是 n>=2 和 n>=3
+// Version 1: 0 1 1 2 3 5 8 13   n >= 2
+// Version 2: 1 1 2 3 5 8 13 21  n >= 3
+// 本题采用的是 Version 1
 
 // 解法一：朴素递归法 (Naive Recursive)
 // 思路直观，但大量重复计算导致效率极低
 // Time: O(2^n), Space: O(1)
 func fibRecursive(n int) int {
 	switch {
-	case n > 1:
+	case n >= 2:
 		return fibRecursive(n-1) + fibRecursive(n-2)
 	case n >= 0:
 		return n
@@ -23,7 +25,7 @@ var memo = map[int]int{}
 
 func fibRecursiveMemo(n int) int {
 	switch {
-	case n > 1:
+	case n >= 2:
 		if val, ok := memo[n]; ok {
 			return val
 		}
@@ -43,7 +45,7 @@ func fibRecursiveMemo(n int) int {
 // Time: O(n), Space: O(1)
 func fibIterative(n int) int {
 	switch {
-	case n > 1:
+	case n >= 2:
 		x, y := 0, 1
 		for i := 2; i <= n; i++ { // 注意此处的条件是 <=
 			// x, y 分别代表 f(i-2) 和 f(i-1)
