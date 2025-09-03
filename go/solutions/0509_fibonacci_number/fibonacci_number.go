@@ -56,25 +56,7 @@ func fibDP(n int) int {
 	return dp[n]
 }
 
-// 解法二优化：通过 3 个变量滚动来实现将空间复杂度降为 O(1)
-// Time: O(n), Space: O(1)
-func fibDPOptimized(n int) int {
-	if n <= 1 {
-		return n
-	}
-
-	dp := make([]int, 2) // 注意 n 是从 0 开始，因此要 n+1
-	dp[0], dp[1] = 0, 1
-	sum := 0
-	for i := 2; i <= n; i++ {
-		sum = dp[0] + dp[1]
-		dp[0], dp[1] = dp[1], sum
-	}
-
-	return dp[1]
-}
-
-// 解法三：迭代法 (Iterative)
+// 解法三：迭代法 (Iterative)，可将解法二的空间复杂度优化为O(1)
 // 最高效、最推荐的解法
 // Time: O(n), Space: O(1)
 func fibIterative(n int) int {

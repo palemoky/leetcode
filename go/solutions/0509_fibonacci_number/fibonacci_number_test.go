@@ -51,11 +51,10 @@ func TestFibonacci(t *testing.T) {
 	}
 
 	funcsToTest := map[string]func(int) int{
-		"Recursive":   fibRecursive, // 朴素递归对于 n=20 会很慢，可以选择性地不测试它
-		"Memoized":    fibRecursiveMemo,
-		"DP":          fibDP,
-		"DPOptimized": fibDPOptimized,
-		"Iterative":   fibIterative,
+		"Recursive": fibRecursive, // 朴素递归对于 n=20 会很慢，可以选择性地不测试它
+		"Memoized":  fibRecursiveMemo,
+		"DP":        fibDP,
+		"Iterative": fibIterative,
 	}
 
 	for fnName, fn := range funcsToTest {
