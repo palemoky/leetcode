@@ -17,5 +17,6 @@ func reverseList(head *utils.ListNode) *utils.ListNode {
 		current = next       // 4. 移动 current
 	}
 
+	// current 始终比 prev 快一步，所以当 current 在 nil 节点时，prev 正好处在最后一个有效节点
 	return prev
 }
