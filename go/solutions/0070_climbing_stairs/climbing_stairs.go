@@ -51,7 +51,7 @@ func climbStairsDP(n int) int {
 	return dp[n]
 }
 
-// 解法三：迭代求解（推荐），可将解法二的空间复杂度优化为O(1)
+// 解法三（推荐）：迭代求解，可将解法二的空间复杂度优化为O(1)
 // Time: O(n), Space: O(1)
 func climbStairsIterative(n int) int {
 	if n <= 2 {

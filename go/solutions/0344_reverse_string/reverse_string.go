@@ -8,7 +8,7 @@ func reverseStringIterative(s []byte) {
 	}
 }
 
-// 解法二：双指针（推荐）
+// 解法二（推荐）：双指针
 // Time: O(n), Space: O(1)
 func reverseStringTwoPoints(s []byte) {
 	left, right := 0, len(s)-1

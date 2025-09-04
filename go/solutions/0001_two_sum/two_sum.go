@@ -16,7 +16,7 @@ func twoSumBruteForce(nums []int, target int) []int {
 	return []int{}
 }
 
-// 解法二：借助哈希表降低时间复杂度，推荐
+// 解法二（推荐）：借助哈希表降低时间复杂度
 // Time: O(N), Space: O(N)
 func twoSumHashMap(nums []int, target int) []int {
 	m := make(map[int]int, len(nums))
