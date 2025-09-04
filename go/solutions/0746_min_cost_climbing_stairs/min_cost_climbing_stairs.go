@@ -9,6 +9,7 @@ func minCostClimbingStairsDP(cost []int) int {
 	dp := make([]int, n+1)
 	dp[0], dp[1] = 0, 0
 	for i := 2; i <= n; i++ {
+		// dp[i-1]代表累计花费，cost[i-1]代表当前门票
 		dp[i] = min(dp[i-1]+cost[i-1], dp[i-2]+cost[i-2])
 	}
 
