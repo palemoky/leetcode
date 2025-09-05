@@ -2,7 +2,8 @@ package remove_nth_node_from_end_of_list
 
 import "leetcode/go/solutions/utils"
 
-// 删除链表的倒数第N个节点
+// 解法一：使用快慢指针，先让快指针走n步，然后与慢指针一同走到末尾
+// 注意：本题要特别注意删除头结点，因此要使用 dummy 来解决
 func removeNthFromEndTwoPointers(head *utils.ListNode, n int) *utils.ListNode {
 	// 1. 可能删除任意位置的节点，因此需将虚拟节点指向头结点
 	dummy := &utils.ListNode{Next: head}
