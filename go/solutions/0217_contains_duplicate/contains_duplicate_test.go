@@ -7,7 +7,8 @@ import (
 )
 
 var funcsToTest = map[string]func([]int) bool{
-	"HashMap": containsDuplicateHashMap,
+	"HashMap":   containsDuplicateHashMap,
+	"Optimized": containsDuplicateHashMapOptimized,
 }
 
 func TestContainsDuplicate(t *testing.T) {
