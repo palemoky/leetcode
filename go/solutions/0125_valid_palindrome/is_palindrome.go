@@ -61,7 +61,7 @@ func toLower(char byte) byte {
 func isPalindromeTwoPointersOptimized(s string) bool {
 	left, right := 0, len(s)-1
 	for left < right {
-		// 跳过非字母字符
+		// 跳过非字母数字字符
 		if !isAlphanumeric(s[left]) {
 			left++
 			continue
@@ -72,11 +72,8 @@ func isPalindromeTwoPointersOptimized(s string) bool {
 			continue
 		}
 
-		// 所有大写转小写
-		leftChar, rightChar := toLower(s[left]), toLower(s[right])
-
-		// 对比左右两侧的值
-		if leftChar != rightChar {
+		// 转小写后对比左右两侧的值
+		if toLower(s[left]) != toLower(s[right]) {
 			return false
 		}
 
