@@ -27,7 +27,7 @@ func dailyTemperaturesStack(temperatures []int) []int {
 	for i := range tLen {
 		// 如果当前元素 > 栈顶元素，则不断弹出栈中的元素，直至当前元素 < 栈顶元素
 		for len(stack) > 0 && temperatures[i] > temperatures[stack[len(stack)-1]] {
-			top := stack[len(stack)-1]   // 取栈顶值
+			top := stack[len(stack)-1]   // 取栈顶值，即 temperatures 数组中 i 之前的索引
 			ans[top] = i - top           // 将差值更新到对应的位置
 			stack = stack[:len(stack)-1] // pop
 		}
