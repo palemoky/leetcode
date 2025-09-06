@@ -1,36 +1,40 @@
 package valid_parentheses
 
+// 解法一：使用栈+哈希表
 // Time: O(n), Space: O(n)
 func isValidIfElse(s string) bool {
-	stack := []rune{}
-	pairs := map[rune]rune{
+	pairs := map[byte]byte{
 		')': '(',
 		']': '[',
 		'}': '{',
 	}
 
-	for _, char := range s {
-		if char == '(' || char == '[' || char == '{' {
-			stack = append(stack, char)
+	stack := []byte{}
+	for i := 0; i < len(s); i++ { // 注意 range 返回的是 rune，这个返回的是 byte
+		if s[i] == '(' || s[i] == '[' || s[i] == '{' {
+			stack = append(stack, s[i])
 		} else {
-			if len(stack) == 0 || stack[len(stack)-1] != pairs[char] {
+			n := len(stack)
+			if n == 0 || stack[n-1] != pairs[s[i]] {
 				return false
 			}
-			stack = stack[:len(stack)-1]
+			stack = stack[:n-1]
 		}
 	}
+
 	return len(stack) == 0
 }
 
+// 解法一的switch case写法
 // Time: O(n), Space: O(n)
 func isValidSwitchCase(s string) bool {
-	stack := []rune{}
 	pairs := map[rune]rune{
 		')': '(',
 		']': '[',
 		'}': '{',
 	}
 
+	stack := []rune{}
 	for _, char := range s {
 		switch char {
 		case '(', '[', '{':
