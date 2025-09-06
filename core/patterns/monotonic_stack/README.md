@@ -2,6 +2,21 @@
 
 单调栈是一种特殊的栈结构，栈内元素始终保持单调递增或递减，常用于解决“下一个更大/更小元素”、“区间最值”、“直方图最大矩形”等问题。
 
+<div align="center">
+  <table>
+    <tr>
+      <td align="center" valign="bottom" >
+        <img src="monotonous-stack-before.svg" alt="Before pushing 14" /><br />
+        <sub style="font-size: 14px;">Before pushing 14</sub>
+      </td>
+      <td align="center" valign="bottom" >
+        <img src="monotonous-stack-after.svg" alt="After pushing 14" /><br />
+        <sub style="font-size: 14px;">After pushing 14</sub>
+      </td>
+    </tr>
+  </table>
+</div>
+
 ## 适用场景
 
 - 需要在 O(n) 时间内找到每个元素左/右侧第一个比它大（小）的元素
