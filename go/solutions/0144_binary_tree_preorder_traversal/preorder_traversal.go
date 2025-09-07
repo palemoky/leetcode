@@ -2,7 +2,10 @@ package binary_tree_preorder_traversal
 
 import "leetcode/go/solutions/utils"
 
-// Time: O(n), Space: O(n)
+// 解法一：递归
+// 优点：代码简洁
+// 缺点：重复计算，爆栈
+// Time: O(n), Space: O(h)
 func preorderRecursive(root *utils.TreeNode) []int {
 	if root == nil {
 		return []int{}
@@ -15,7 +18,8 @@ func preorderRecursive(root *utils.TreeNode) []int {
 	return nums
 }
 
-// 面试刷题推荐写法，易于理解
+// 解法二（推荐）：借助栈 LIFO 的性质实现前序遍历
+// Time: O(n), Space: O(n)
 func preorderIterativeStack(root *utils.TreeNode) []int {
 	if root == nil {
 		return []int{}
@@ -40,7 +44,7 @@ func preorderIterativeStack(root *utils.TreeNode) []int {
 	return nums
 }
 
-// 代码简洁，与中序遍历迭代写法类似，但理解门槛略高
+// 解法三：代码简洁，与中序遍历迭代写法类似，但理解门槛略高
 // Time: O(n), Space: O(n)
 func preorderIterative(root *utils.TreeNode) []int {
 	nums := []int{}
@@ -59,6 +63,7 @@ func preorderIterative(root *utils.TreeNode) []int {
 	return nums
 }
 
+// 解法四：颜色标记法，可通杀前、中、后序遍历
 func preorderIterativeWithColor(root *utils.TreeNode) []int {
 	nums := []int{}
 	stack := []utils.ColorNode{{Color: utils.WHITE, Node: root}}
