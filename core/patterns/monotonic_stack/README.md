@@ -2,6 +2,8 @@
 
 单调栈是一种特殊的栈结构，栈内元素始终保持单调递增或递减，常用于解决“下一个更大/更小元素”、“区间最值”、“直方图最大矩形”等问题。
 
+其本质是通过局部有序性，求得相邻的更大/更小数。
+
 <div align="center">
   <table>
     <tr>
@@ -58,3 +60,18 @@ for i := 0; i < len(nums); i++ {
 
 - 单调队列（Monotonic Queue）：用于滑动窗口最值
 - 双指针、前缀和等可与单调栈结合
+
+# LeetCode 经典题目
+
+- [739. 每日温度 (Daily Temperatures)](https://leetcode.com/problems/daily-temperatures/)
+- [84. 柱状图中最大的矩形 (Largest Rectangle in Histogram)](https://leetcode.com/problems/largest-rectangle-in-histogram/)
+- [42. 接雨水 (Trapping Rain Water)](https://leetcode.com/problems/trapping-rain-water/)
+- [496. 下一个更大元素 I (Next Greater Element I)](https://leetcode.com/problems/next-greater-element-i/)
+- [503. 下一个更大元素 II (Next Greater Element II)](https://leetcode.com/problems/next-greater-element-ii/)
+- [85. 最大矩形 (Maximal Rectangle)](https://leetcode.com/problems/maximal-rectangle/)
+- [907. 子数组的最小值之和 (Sum of Subarray Minimums)](https://leetcode.com/problems/sum-of-subarray-minimums/)
+- [901. 股票价格跨度 (Online Stock Span)](https://leetcode.com/problems/online-stock-span/)
+- [1019. 链表中的下一个更大节点 (Next Greater Node In Linked List)](https://leetcode.com/problems/next-greater-node-in-linked-list/)
+- [1944. 队列中可以看到的人数 (Number of Visible People in a Queue)](https://leetcode.com/problems/number-of-visible-people-in-a-queue/)
+- [2289. 使数组按非递减顺序排列 (Steps to Make Array Non-decreasing)](https://leetcode.com/problems/steps-to-make-array-non-decreasing/)
+- [20. 有效的括号 (Valid Parentheses)](https://leetcode.com/problems/valid-parentheses/)
