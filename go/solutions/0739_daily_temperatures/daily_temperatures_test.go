@@ -24,8 +24,9 @@ func TestDailyTemperatures(t *testing.T) {
 	}
 
 	funcsToTest := map[string]func(temperatures []int) []int{
-		"BruteForce": dailyTemperaturesBruteForce,
-		"Stack":      dailyTemperaturesStack,
+		"BruteForce":       dailyTemperaturesBruteForce,
+		"StackLeftToRight": dailyTemperaturesStackLeftToRight,
+		"StackRightToLeft": dailyTemperaturesStackRightToLeft,
 	}
 
 	for fnName, fn := range funcsToTest {
