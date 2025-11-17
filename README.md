@@ -1,6 +1,6 @@
 # LeetCode Solutions
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/palemoky/dns-optimizer)](https://goreportcard.com/report/github.com/palemoky/dns-optimizer)
+[![Test](https://github.com/palemoky/leetcode/actions/workflows/leetbot.yml/badge.svg)](https://github.com/palemoky/leetcode/actions)
 
 > Computer science is no more about computers than astronomy is about telescopes. — E. W. Dijkstra  
 > 计算机科学并不在于计算机，正如天文学并不在于望远镜。
