@@ -124,7 +124,7 @@ repos:
       # Go: Unit tests (pre-push)
       - id: go-test
         name: go test (Go Tests)
-        entry: bash -c 'cd go && go test -p 4 ./...'
+        entry: bash -c 'cd go && go test ./...'
         language: system
         types: [go]
         files: ^go/
