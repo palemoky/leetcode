@@ -100,10 +100,7 @@ func TestNumArray(t *testing.T) {
 		t.Run(tc.name, func(t *testing.T) {
 			t.Parallel()
 
-			// 构建 NumArray
 			numArray := Constructor(tc.nums)
-
-			// 执行所有查询操作
 			for i, op := range tc.operations {
 				got := numArray.SumRange(op.left, op.right)
 				assert.Equal(t, op.want, got,
