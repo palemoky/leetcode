@@ -1,0 +1,157 @@
+repos:
+  # =======================================================
+  # 基础卫生检查 (Standard Hooks)
+  # =======================================================
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v6.0.0
+    hooks:
+      - id: check-merge-conflict
+      - id: check-yaml
+      - id: check-toml
+      - id: end-of-file-fixer
+      - id: trailing-whitespace
+      - id: check-added-large-files
+        args: [--maxkb=1000]
+
+  # =======================================================
+  # Go - Formatting
+  # =======================================================
+  - repo: local
+    hooks:
+      - id: gofumpt
+        name: gofumpt (Go Format)
+        entry: gofumpt -w
+        language: system
+        types: [go]
+        files: ^go/
+
+      - id: goimports
+        name: goimports (Go Imports)
+        entry: goimports -w -local github.com/palemoky/leetcode
+        language: system
+        types: [go]
+        files: ^go/
+
+  # =======================================================
+  # Go - Linting
+  # =======================================================
+  - repo: https://github.com/golangci/golangci-lint
+    rev: v2.7.2
+    hooks:
+      - id: golangci-lint
+        name: golangci-lint (Go Lint)
+        args:
+          - run
+          - --fix
+          - --config=go/.golangci.yml
+        pass_filenames: false
+        files: ^go/
+
+  # =======================================================
+  # Go - Module Management
+  # =======================================================
+  - repo: local
+    hooks:
+      - id: go-mod-tidy
+        name: go mod tidy
+        entry: bash -c 'cd go && go mod tidy'
+        language: system
+        types: [go]
+        files: ^go/
+        pass_filenames: false
+
+  # =======================================================
+  # Python - Linting & Formatting
+  # =======================================================
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.14.6
+    hooks:
+      - id: ruff
+        name: ruff check (Python)
+        args: [--fix]
+        files: ^python/
+      - id: ruff-format
+        name: ruff format (Python)
+        files: ^python/
+
+  # =======================================================
+  # Rust - Linting & Formatting
+  # =======================================================
+  - repo: https://github.com/doublify/pre-commit-rust
+    rev: v1.0
+    hooks:
+      - id: fmt
+        name: cargo fmt (Rust)
+        args: [--manifest-path=rust/Cargo.toml, --]
+      - id: clippy
+        name: cargo clippy (Rust)
+        args: [--manifest-path=rust/Cargo.toml, --, -D, warnings]
+
+  # =======================================================
+  # Commit Message - Conventional Commits
+  # =======================================================
+  - repo: https://github.com/commitizen-tools/commitizen
+    rev: v4.10.0
+    hooks:
+      - id: commitizen
+        stages: [commit-msg]
+
+  # =======================================================
+  # Local Hooks - Language-specific tools
+  # =======================================================
+  - repo: local
+    hooks:
+      # Python: Type checking (pre-push)
+      - id: mypy
+        name: mypy (Python Type Check)
+        entry: bash -c 'cd python && uv run mypy .'
+        language: system
+        types: [python]
+        files: ^python/
+        stages: [pre-push]
+        pass_filenames: false
+
+      # Python: Unit tests (pre-push)
+      - id: pytest
+        name: pytest (Python Tests)
+        entry: bash -c 'cd python && uv run pytest'
+        language: system
+        types: [python]
+        files: ^python/
+        stages: [pre-push]
+        pass_filenames: false
+
+      # Go: Unit tests (pre-push)
+      - id: go-test
+        name: go test (Go Tests)
+        entry: bash -c 'cd go && go test -p 4 ./...'
+        language: system
+        types: [go]
+        files: ^go/
+        stages: [pre-push]
+        pass_filenames: false
+
+      # Rust: Unit tests (pre-push)
+      - id: cargo-test
+        name: cargo test (Rust Tests)
+        entry: bash -c 'cd rust && cargo test'
+        language: system
+        files: ^rust/
+        stages: [pre-push]
+        pass_filenames: false
+
+      # Python: Environment sync (post-checkout, post-merge)
+      - id: uv-sync
+        name: uv sync (Python Dependencies)
+        entry: bash -c 'cd python && uv sync --extra dev'
+        language: system
+        stages: [post-checkout, post-merge]
+        always_run: true
+        pass_filenames: false
+
+default_install_hook_types:
+  - pre-commit
+  - pre-push
+  - commit-msg
+  - post-checkout
+  - post-merge

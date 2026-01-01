@@ -1,0 +1,35 @@
+# golangci-lint configuration
+# https://golangci-lint.run/usage/configuration/
+
+run:
+  timeout: 5m
+  tests: true
+
+linters:
+  enable:
+    - govet # 官方静态分析
+    - errcheck # 错误检查
+    - staticcheck # 综合静态分析 (包含 gosimple, unused)
+    - ineffassign # 无效赋值检测
+    - misspell # 拼写检查
+    - gocyclo # 圈复杂度检查
+    - gocritic # 代码质量建议
+    - gofmt # 格式检查
+    - goimports # import 排序检查
+
+linters-settings:
+  gocritic:
+    disabled-checks:
+      - unlambda # 不强制将 lambda 替换为函数引用
+  gocyclo:
+    min-complexity: 15 # LeetCode 某些算法题可能复杂度较高
+  goimports:
+    local-prefixes: github.com/palemoky/leetcode
+
+issues:
+  exclude-rules:
+    # 测试文件可以忽略某些检查
+    - path: _test\.go
+      linters:
+        - errcheck
+        - gocyclo

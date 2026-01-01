@@ -15,7 +15,6 @@ on:
       - "rust/**"
       - ".github/workflows/leetbot.yml"
 
-# 并发控制，自动取消对同一 PR 的旧 CI 运行
 concurrency:
   group: ${{ github.workflow }}-${{ github.head_ref || github.run_id }}
   cancel-in-progress: true
@@ -32,7 +31,6 @@ jobs:
       - uses: dorny/paths-filter@v3
         id: filter
         with:
-          # 使用更精确的 glob 模式来定义过滤器，只有代码变更才会触发
           filters: |
             go:
               - 'go/**/*.go'
@@ -62,7 +60,7 @@ jobs:
         id: go-tools-cache
         with:
           path: ~/go/bin
-          key: go-tools-${{ runner.os }}-v20250802
+          key: go-tools-${{ runner.os }}-${{ hashFiles('.github/workflows/leetbot.yml') }}
           restore-keys: |
             go-tools-${{ runner.os }}-
 
@@ -72,7 +70,9 @@ jobs:
           go install golang.org/x/tools/cmd/goimports@latest
           go install honnef.co/go/tools/cmd/staticcheck@latest
           go install gotest.tools/gotestsum@latest
-          echo "$(go env GOPATH)/bin" >> $GITHUB_PATH
+
+      - name: Add Go tools to PATH
+        run: echo "$(go env GOPATH)/bin" >> $GITHUB_PATH
 
       - name: Lint and Format Check
         run: |
@@ -85,26 +85,18 @@ jobs:
 
       - name: Run tests with coverage
         run: |
-          # go test -coverprofile=cover.out ./...
-          gotestsum --format short --no-summary=skipped -- -coverprofile=cover.out ./...
+          gotestsum --format short --no-summary=skipped -- -coverprofile=cover.out -p 4 ./...
           echo "Checking Go test coverage..."
           go tool cover -func=cover.out
 
           coverage=$(go tool cover -func=cover.out | grep '^total:' | awk '{gsub(/%/, "", $3); print $3}')
           echo "Total coverage: ${coverage}%"
 
-          # 优先使用 bc 进行精确浮点数比较
-          if command -v bc >/dev/null 2>&1; then
-            if [ "$(echo "$coverage < 97.0" | bc -l)" = "1" ]; then
-              echo "Coverage ${coverage}% is below threshold 97.0%"
-              exit 1
-            fi
-          else
-            coverage_int=$(echo "$coverage" | awk '{printf "%.0f", $1}')
-            if [ "$coverage_int" -lt 97 ]; then
-              echo "Coverage ${coverage}% is below threshold 97.0%"
-              exit 1
-            fi
+          # 使用 awk 进行浮点数比较
+          threshold=97.0
+          if awk -v cov="$coverage" -v thr="$threshold" 'BEGIN {exit !(cov < thr)}'; then
+            echo "Coverage ${coverage}% is below threshold ${threshold}%"
+            exit 1
           fi
 
           echo "Coverage ${coverage}% meets the threshold ✓"
@@ -119,23 +111,27 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
         with:
-          python-version: "3.13"
-          cache: "pip"
-          cache-dependency-path: "python/requirements.txt"
+          enable-cache: true
+
+      - name: Set up Python
+        run: uv python install
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: uv sync --extra dev
 
       - name: Lint and Format Check
         run: |
-          black --check .
-          flake8 .
+          uv run ruff check .
+          uv run ruff format --check .
+
+      - name: Type Check
+        run: uv run mypy .
 
       - name: Run tests
-        run: pytest
+        run: uv run pytest
 
   rust:
     needs: filter
@@ -147,16 +143,19 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Set up Rust with cache
+      - name: Set up Rust
         uses: dtolnay/rust-toolchain@stable
         with:
           components: clippy, rustfmt
-          cache: true
+
+      - name: Cache Rust dependencies
+        uses: Swatinem/rust-cache@v2
+        with:
+          workspaces: rust
 
       - name: Lint and Format Check
         run: |
           cargo fmt -- --check
-          # -D warnings 将所有警告视为错误，是非常好的实践
           cargo clippy -- -D warnings
 
       - name: Run tests
