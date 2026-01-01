@@ -75,19 +75,6 @@ repos:
         files: ^python/
 
   # =======================================================
-  # Rust - Linting & Formatting
-  # =======================================================
-  - repo: https://github.com/doublify/pre-commit-rust
-    rev: v1.0
-    hooks:
-      - id: fmt
-        name: cargo fmt (Rust)
-        args: [--manifest-path=rust/Cargo.toml, --]
-      - id: clippy
-        name: cargo clippy (Rust)
-        args: [--manifest-path=rust/Cargo.toml, --, -D, warnings]
-
-  # =======================================================
   # Commit Message - Conventional Commits
   # =======================================================
   - repo: https://github.com/commitizen-tools/commitizen
@@ -128,15 +115,6 @@ repos:
         language: system
         types: [go]
         files: ^go/
-        stages: [pre-push]
-        pass_filenames: false
-
-      # Rust: Unit tests (pre-push)
-      - id: cargo-test
-        name: cargo test (Rust Tests)
-        entry: bash -c 'cd rust && cargo test'
-        language: system
-        files: ^rust/
         stages: [pre-push]
         pass_filenames: false
 

@@ -6,13 +6,11 @@ on:
     paths:
       - "go/**"
       - "python/**"
-      - "rust/**"
       - ".github/workflows/leetbot.yml"
   pull_request:
     paths:
       - "go/**"
       - "python/**"
-      - "rust/**"
       - ".github/workflows/leetbot.yml"
 
 concurrency:
@@ -25,7 +23,6 @@ jobs:
     outputs:
       go: ${{ steps.filter.outputs.go }}
       python: ${{ steps.filter.outputs.python }}
-      rust: ${{ steps.filter.outputs.rust }}
     steps:
       - uses: actions/checkout@v4
       - uses: dorny/paths-filter@v3
@@ -36,8 +33,6 @@ jobs:
               - 'go/**/*.go'
             python:
               - 'python/**/*.py'
-            rust:
-              - 'rust/**/*.rs'
 
   go:
     needs: filter
@@ -132,31 +127,3 @@ jobs:
 
       - name: Run tests
         run: uv run pytest
-
-  rust:
-    needs: filter
-    if: needs.filter.outputs.rust == 'true'
-    runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: rust
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Set up Rust
-        uses: dtolnay/rust-toolchain@stable
-        with:
-          components: clippy, rustfmt
-
-      - name: Cache Rust dependencies
-        uses: Swatinem/rust-cache@v2
-        with:
-          workspaces: rust
-
-      - name: Lint and Format Check
-        run: |
-          cargo fmt -- --check
-          cargo clippy -- -D warnings
-
-      - name: Run tests
-        run: cargo test --all-targets

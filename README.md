@@ -18,7 +18,7 @@
   - [Algorithm Learning Resources](#algorithm-learning-resources)
   - [Todo List](#todo-list)
 
-Welcome! This repository contains my solutions to LeetCode problems, implemented in **Go**, **Python**, and **Rust**.
+Welcome! This repository contains my solutions to LeetCode problems, implemented in **Go** and **Python**.
 
 Each problem is organized by language and directory. Solutions include clean code, unit tests, and concise explanations where appropriate.
 
@@ -26,7 +26,6 @@ Each problem is organized by language and directory. Solutions include clean cod
 
 - 📂 `go/` — Go solutions
 - 📂 `python/` — Python solutions
-- 📂 `rust/` — Rust solutions
 
 Feel free to explore, learn, and discuss.
 Contributions and suggestions are always welcome!
@@ -157,8 +156,8 @@ Contributions and suggestions are always welcome!
 - [代码随想录](https://programmercarl.com)
 
 ## Todo List
+
 - [ ] 中英双语文档
 - [ ] 每个题目分析平均、最好、最坏时间复杂度
 - [ ] 每个题目分析不同解法的优缺点
 - [ ] 使用 Python 求解
-- [ ] 使用 Rust 求解
