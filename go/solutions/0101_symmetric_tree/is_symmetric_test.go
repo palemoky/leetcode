@@ -1,8 +1,9 @@
 package symmetric_tree
 
 import (
-	"leetcode/go/solutions/utils"
 	"testing"
+
+	"leetcode/go/solutions/utils"
 
 	"github.com/stretchr/testify/assert"
 )

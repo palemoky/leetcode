@@ -1,8 +1,9 @@
 package path_sum_ii
 
 import (
-	"leetcode/go/solutions/utils"
 	"slices"
+
+	"leetcode/go/solutions/utils"
 )
 
 func pathSum(root *utils.TreeNode, targetSum int) [][]int {

@@ -41,14 +41,14 @@ linters:
     - misspell # 拼写检查
     - unconvert # 检查不必要的类型转换
     - usestdlibvars # 推荐使用标准库常量
-    - unparam # 检查未使用的函数参数
+    # - unparam # 检查未使用的函数参数 (在 LeetCode 测试中经常误报)
     - nakedret # 检查裸返回
     - dogsled # 检查过多的空白标识符赋值
     - whitespace # 检查不必要的空行
 
     # 测试
     - thelper # 检测测试辅助函数是否调用 t.Helper()
-    - tparallel # 检测 t.Parallel() 的不当使用
+    # - tparallel # 检测 t.Parallel() 的不当使用 (Go 1.22+ 已修复循环变量捕获问题)
 
   settings:
     gocyclo:
@@ -63,6 +63,15 @@ linters:
 
     nestif:
       min-complexity: 5 # 嵌套复杂度阈值
+
+    gocritic:
+      disabled-checks:
+        - ifElseChain # 不强制将 if-else 链改写为 switch
+
+    gosec:
+      excludes:
+        - G404 # 使用弱随机数生成器
+        - G602 # 切片索引越界（经常误报）
 
     misspell:
       locale: US

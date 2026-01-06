@@ -1,10 +1,11 @@
 package path_sum_ii
 
 import (
-	"leetcode/go/solutions/utils"
 	"slices"
 	"sort"
 	"testing"
+
+	"leetcode/go/solutions/utils"
 
 	"github.com/stretchr/testify/assert"
 )

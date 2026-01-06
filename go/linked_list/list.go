@@ -28,12 +28,14 @@ func (l *SinglyList) GetHead() Node {
 
 // Methods to make DoublyNode and DoublyList satisfy the interfaces
 func (n *DoublyNode) GetValue() int { return n.Value }
+
 func (n *DoublyNode) GetNext() Node {
 	if n.Next == nil {
 		return nil
 	}
 	return n.Next
 }
+
 func (l *DoublyList) GetHead() Node {
 	if l.Head == nil {
 		return nil

@@ -22,7 +22,7 @@ func levelOrder(root *utils.TreeNode) [][]int {
 			}
 
 			if queue[i].Right != nil {
-				queue = append(queue, queue[i].Right) //enqueue
+				queue = append(queue, queue[i].Right) // enqueue
 			}
 
 			// 读取当前层的值

@@ -1,8 +1,9 @@
 package binary_tree_postorder_traversal
 
 import (
-	"leetcode/go/solutions/utils"
 	"testing"
+
+	"leetcode/go/solutions/utils"
 
 	"github.com/stretchr/testify/assert"
 )

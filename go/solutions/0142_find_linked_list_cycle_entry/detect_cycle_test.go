@@ -1,8 +1,9 @@
 package find_linked_list_cycle_entry
 
 import (
-	"leetcode/go/solutions/utils"
 	"testing"
+
+	"leetcode/go/solutions/utils"
 
 	"github.com/stretchr/testify/assert"
 )

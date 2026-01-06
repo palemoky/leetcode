@@ -1,8 +1,9 @@
 package merge_two_sorted_lists
 
 import (
-	"leetcode/go/solutions/utils"
 	"testing"
+
+	"leetcode/go/solutions/utils"
 
 	"github.com/stretchr/testify/assert"
 )

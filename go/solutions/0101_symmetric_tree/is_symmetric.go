@@ -1,8 +1,9 @@
 package symmetric_tree
 
 import (
-	"leetcode/go/solutions/utils"
 	"math"
+
+	"leetcode/go/solutions/utils"
 )
 
 // 解法一思路：层序遍历，收集每层的节点（包括nil节点）后判断是否为回文

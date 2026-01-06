@@ -2,7 +2,7 @@ package kth_largest_element_in_an_array
 
 import (
 	"container/heap"
-	"math/rand"
+	"math/rand/v2"
 	"sort"
 )
 
@@ -70,7 +70,7 @@ func findKthLargestQuickSelect(nums []int, k int) int {
 // partition 函数（经典的三路快排 partition）
 func partition(nums []int, left, right int) int {
 	// 随机选择 pivot 以避免最坏情况
-	randIndex := left + rand.Intn(right-left+1)
+	randIndex := left + rand.IntN(right-left+1)
 	nums[randIndex], nums[right] = nums[right], nums[randIndex]
 	pivot := nums[right]
 

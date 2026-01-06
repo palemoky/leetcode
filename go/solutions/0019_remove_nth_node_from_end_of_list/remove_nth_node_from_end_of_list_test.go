@@ -1,8 +1,9 @@
 package remove_nth_node_from_end_of_list
 
 import (
-	"leetcode/go/solutions/utils"
 	"testing"
+
+	"leetcode/go/solutions/utils"
 
 	"github.com/stretchr/testify/assert"
 )

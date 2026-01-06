@@ -1,4 +1,8 @@
 repos:
+  # Pre-commit hooks configuration
+  # Install: pre-commit install && pre-commit install --hook-type pre-push
+  # Run manually: pre-commit run --all-files
+
   # =======================================================
   # 基础卫生检查 (Standard Hooks)
   # =======================================================
@@ -35,17 +39,15 @@ repos:
   # =======================================================
   # Go - Linting
   # =======================================================
-  - repo: https://github.com/golangci/golangci-lint
-    rev: v2.7.2
+  - repo: local
     hooks:
       - id: golangci-lint
         name: golangci-lint (Go Lint)
-        args:
-          - run
-          - --fix
-          - --config=go/.golangci.yml
-        pass_filenames: false
+        entry: bash -c 'cd go && golangci-lint run --fix'
+        language: system
+        types: [go]
         files: ^go/
+        pass_filenames: false
 
   # =======================================================
   # Go - Module Management

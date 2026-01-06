@@ -24,6 +24,6 @@ func Constructor(matrix [][]int) NumMatrix {
 	return NumMatrix{preSum}
 }
 
-func (this *NumMatrix) SumRegion(row1 int, col1 int, row2 int, col2 int) int {
-	return this.preSum[row2+1][col2+1] - this.preSum[row1][col2+1] - this.preSum[row2+1][col1] + this.preSum[row1][col1]
+func (nm *NumMatrix) SumRegion(row1 int, col1 int, row2 int, col2 int) int {
+	return nm.preSum[row2+1][col2+1] - nm.preSum[row1][col2+1] - nm.preSum[row2+1][col1] + nm.preSum[row1][col1]
 }

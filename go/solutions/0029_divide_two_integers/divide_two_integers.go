@@ -45,6 +45,5 @@ func divide(dividend int, divisor int) int {
 	}
 
 	// 4. 应用符号并返回
-	result := int(sign * int(quotient))
-	return result
+	return sign * int(quotient)
 }

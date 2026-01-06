@@ -16,6 +16,6 @@ func Constructor(nums []int) NumArray {
 }
 
 // Time: O(1), Space: O(1)
-func (this *NumArray) SumRange(left int, right int) int {
-	return this.preSum[right+1] - this.preSum[left]
+func (na *NumArray) SumRange(left int, right int) int {
+	return na.preSum[right+1] - na.preSum[left]
 }

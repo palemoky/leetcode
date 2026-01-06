@@ -276,6 +276,7 @@ func (h intHeap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
 func (h *intHeap) Push(x any) {
 	*h = append(*h, x.(int))
 }
+
 func (h *intHeap) Pop() any {
 	old := *h
 	n := len(old)

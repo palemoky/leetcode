@@ -1,8 +1,9 @@
 package validate_binary_search_tree
 
 import (
-	"leetcode/go/solutions/utils"
 	"math"
+
+	"leetcode/go/solutions/utils"
 )
 
 // 解法一思路：中序遍历读取二叉树的值，然后在数组中判断是否有序
