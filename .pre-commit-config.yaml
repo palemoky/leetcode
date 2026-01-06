@@ -123,7 +123,7 @@ repos:
       # Python: Environment sync (post-checkout, post-merge)
       - id: uv-sync
         name: uv sync (Python Dependencies)
-        entry: bash -c 'cd python && uv sync --extra dev'
+        entry: bash -c 'cd python && uv sync --group dev'
         language: system
         stages: [post-checkout, post-merge]
         always_run: true
