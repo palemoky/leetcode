@@ -18,3 +18,6 @@ __pycache__/
 
 # Drawio backup file
 *.bkp
+
+/python/.venv
+/python/.ruff_cache
