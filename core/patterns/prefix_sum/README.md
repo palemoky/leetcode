@@ -4,18 +4,6 @@
 
 ---
 
-## 核心思想
-
-| index                 |  0  |  1  |  2  |  3  |  4  | Formula                                                                                                                           |
-| --------------------- | :-: | :-: | :-: | :-: | :-: | --------------------------------------------------------------------------------------------------------------------------------- |
-| `nums`                |  3  |  5  |  2  |  7  |     |                                                                                                                                   |
-| **`preSum[0] = 0`**   |  0  |  3  |  8  | 10  | 17  | **`sum[left, right] = preSum[right+1] - preSum[left]`**                                                                           |
-| `preSum[0] = nums[0]` |  3  |  8  | 10  | 17  |     | `sum[left, right] = preSum[right] - preSum[left-1]   # left>0`<br/>`sum[0, right] = preSum[right]                       # left=0` |
-
-从上表可以看出，**`preSum[0] = 0` 就像链表中的 dummy head**，使操作统一，避免容易出错的的边界判断。
-
----
-
 ## 典型应用场景
 
 - 频繁查询数组区间和（如 LeetCode 303、304）
@@ -28,6 +16,14 @@
 ## 实现模板
 
 ### 1. 一维前缀和
+
+| index                 |  0  |  1  |  2  |  3  |  4  | Formula                                                                                                                           |
+| --------------------- | :-: | :-: | :-: | :-: | :-: | --------------------------------------------------------------------------------------------------------------------------------- |
+| `nums`                |  3  |  5  |  2  |  7  |     |                                                                                                                                   |
+| **`preSum[0] = 0`**   |  0  |  3  |  8  | 10  | 17  | **`sum[left, right] = preSum[right+1] - preSum[left]`**                                                                           |
+| `preSum[0] = nums[0]` |  3  |  8  | 10  | 17  |     | `sum[left, right] = preSum[right] - preSum[left-1]   # left>0`<br/>`sum[0, right] = preSum[right]                       # left=0` |
+
+从上表可以看出，**`preSum[0] = 0` 就像链表中的 dummy head**，使操作统一，避免容易出错的的边界判断。
 
 ```go
 // 构建前缀和数组
@@ -47,32 +43,140 @@ func rangeSum(prefixSum []int, left, right int) int {
 }
 ```
 
-**时间复杂度：**
-
-- 构建：O(n)
-- 查询：O(1)
-
-**空间复杂度：** O(n)
+| 操作 | 时间复杂度 | 空间复杂度 |
+| :--: | :--------: | :--------: |
+| 构建 |    O(n)    |    O(n)    |
+| 查询 |    O(1)    |    O(1)    |
 
 ### 2. 二维前缀和
+
+先来看一个 2×2 的矩阵，
+
+$$
+\begin{array}{c}
+A=\begin{bmatrix}
+1_{\substack{(0,0)}} & 2_{\substack{(0,1)}} \\
+3_{\substack{(1,0)}} & 4_{\substack{(1,1)}}
+\end{bmatrix} \\
+\text{Matrix}
+\end{array}
+\quad
+\begin{array}{c}
+S=\begin{bmatrix}
+0_{\substack{(0,0)}} & 0_{\substack{(0,1)}} & 0_{\substack{(0,2)}} \\
+0_{\substack{(1,0)}} & 1_{\substack{(1,1)}} & 3_{\substack{(1,2)}} \\
+0_{\substack{(2,0)}} & 4_{\substack{(2,1)}} & 10_{\substack{(2,2)}}
+\end{bmatrix} \\
+\text{Matrix Prefix Sum}
+\end{array}
+$$
+
+再来看一个 3×3 的矩阵，
+
+$$
+\begin{array}{c}
+A=\begin{bmatrix}
+1_{\substack{(0,0)}} & 2_{\substack{(0,1)}} & 3_{\substack{(0,2)}} \\
+4_{\substack{(1,0)}} & 5_{\substack{(1,1)}} & 6_{\substack{(1,2)}} \\
+7_{\substack{(2,0)}} & 8_{\substack{(2,1)}} & 9_{\substack{(2,2)}}
+\end{bmatrix} \\
+\text{Matrix}
+\end{array}
+\quad
+\begin{array}{c}
+S=\begin{bmatrix}
+0_{\substack{(0,0)}} & 0_{\substack{(0,1)}} & 0_{\substack{(0,2)}} & 0_{\substack{(0,3)}} \\
+0_{\substack{(1,0)}} & 1_{\substack{(1,1)}} & 3_{\substack{(1,2)}} & 6_{\substack{(1,3)}} \\
+0_{\substack{(2,0)}} & 5_{\substack{(2,1)}} & 12_{\substack{(2,2)}} & 21_{\substack{(2,3)}} \\
+0_{\substack{(3,0)}} & 12_{\substack{(3,1)}} & 27_{\substack{(3,2)}} & 45_{\substack{(3,3)}}
+\end{bmatrix} \\
+\text{Matrix Prefix Sum}
+\end{array}
+$$
+
+构建二维前缀和：上 + 左 - 左上 + 自己，即
+
+$$
+S[i][j]=S[i−1][j]+S[i][j−1]−S[i−1][j−1]+A[i-1][j-1] \quad (i>=1, j>=1)
+$$
+
+查询矩形和：右下 - 上方 - 左方 + 左上
+
+$$
+\operatorname{sum}(r_1, c_1, r_2, c_2) = S[r_2+1][c_2+1] - S[r_1][c_2+1] - S[r_2+1][c_1] + S[r_1][c_1]
+$$
+
+由于矩阵 S 比 A 多一行一列，因此 $S[i+1][j+1] = A[i][j]$。
+
+再来看一个 5×5 的矩阵（LeetCode 304 示例）：
+
+$$
+\begin{array}{c}
+A=\begin{bmatrix}
+3_{\substack{(0,0)}} & 0_{\substack{(0,1)}} & 1_{\substack{(0,2)}} & 4_{\substack{(0,3)}} & 2_{\substack{(0,4)}} \\
+5_{\substack{(1,0)}} & 6_{\substack{(1,1)}} & 3_{\substack{(1,2)}} & 2_{\substack{(1,3)}} & 1_{\substack{(1,4)}} \\
+1_{\substack{(2,0)}} & 2_{\substack{(2,1)}} & 0_{\substack{(2,2)}} & 1_{\substack{(2,3)}} & 5_{\substack{(2,4)}} \\
+4_{\substack{(3,0)}} & 1_{\substack{(3,1)}} & 0_{\substack{(3,2)}} & 1_{\substack{(3,3)}} & 7_{\substack{(3,4)}} \\
+1_{\substack{(4,0)}} & 0_{\substack{(4,1)}} & 3_{\substack{(4,2)}} & 0_{\substack{(4,3)}} & 5_{\substack{(4,4)}}
+\end{bmatrix} \\
+\text{Matrix}
+\end{array}
+\quad
+\begin{array}{c}
+S=\begin{bmatrix}
+0_{\substack{(0,0)}} & 0_{\substack{(0,1)}} & 0_{\substack{(0,2)}} & 0_{\substack{(0,3)}} & 0_{\substack{(0,4)}} & 0_{\substack{(0,5)}} \\
+0_{\substack{(1,0)}} & 3_{\substack{(1,1)}} & 3_{\substack{(1,2)}} & 4_{\substack{(1,3)}} & 8_{\substack{(1,4)}} & 10_{\substack{(1,5)}} \\
+0_{\substack{(2,0)}} & 8_{\substack{(2,1)}} & 14_{\substack{(2,2)}} & 18_{\substack{(2,3)}} & 24_{\substack{(2,4)}} & 27_{\substack{(2,5)}} \\
+0_{\substack{(3,0)}} & 9_{\substack{(3,1)}} & 17_{\substack{(3,2)}} & 21_{\substack{(3,3)}} & 28_{\substack{(3,4)}} & 36_{\substack{(3,5)}} \\
+0_{\substack{(4,0)}} & 13_{\substack{(4,1)}} & 22_{\substack{(4,2)}} & 26_{\substack{(4,3)}} & 34_{\substack{(4,4)}} & 49_{\substack{(4,5)}} \\
+0_{\substack{(5,0)}} & 14_{\substack{(5,1)}} & 23_{\substack{(5,2)}} & 30_{\substack{(5,3)}} & 38_{\substack{(5,4)}} & 58_{\substack{(5,5)}}
+\end{bmatrix} \\
+\text{Matrix Prefix Sum}
+\end{array}
+$$
+
+**查询过程可视化：**
+
+<table>
+  <tr>
+    <td align="center"><img src="1.png" alt="右下角区域"></td>
+    <td align="center"><img src="2.png" alt="减去上方区域"></td>
+  </tr>
+  <tr>
+    <td align="center"><img src="3.png" alt="减去左方区域"></td>
+    <td align="center"><img src="4.png" alt="加回左上角"></td>
+  </tr>
+</table>
+
+> Image From [Prefix Sum of Matrix - GeeksforGeeks](https://www.geeksforgeeks.org/dsa/prefix-sum-2d-array/)
+
+**示例：** 查询区域 $(1, 1)$ 到 $(3, 3)$ 的和：
+
+$$
+\begin{aligned}
+\operatorname{sum}(1, 1, 3, 3) &= S[4][4] - S[1][4] - S[4][1] + S[1][1] \\
+&= 34 - 8 - 13 + 3 \\
+&= 16
+\end{aligned}
+$$
 
 用于二维矩阵的区域和查询。
 
 ```go
 // 构建二维前缀和
 func buildPrefixSum2D(matrix [][]int) [][]int {
-    if len(matrix) == 0 || len(matrix[0]) == 0 {
+    row, column := len(matrix), len(matrix[0])
+    if row == 0 || column == 0 {
         return nil
     }
 
-    m, n := len(matrix), len(matrix[0])
-    prefixSum := make([][]int, m+1)
+    prefixSum := make([][]int, row+1)
     for i := range prefixSum {
-        prefixSum[i] = make([]int, n+1)
+        prefixSum[i] = make([]int, column+1)
     }
 
-    for i := 1; i <= m; i++ {
-        for j := 1; j <= n; j++ {
+    for i := 1; i <= row; i++ {
+        for j := 1; j <= column; j++ {
             prefixSum[i][j] = prefixSum[i-1][j] +
                              prefixSum[i][j-1] -
                              prefixSum[i-1][j-1] +
@@ -92,12 +196,10 @@ func regionSum(prefixSum [][]int, row1, col1, row2, col2 int) int {
 }
 ```
 
-**时间复杂度：**
-
-- 构建：O(m × n)
-- 查询：O(1)
-
-**空间复杂度：** O(m × n)
+| 操作 | 时间复杂度 | 空间复杂度 |
+| :--: | :--------: | :--------: |
+| 构建 |  O(m × n)  |  O(m × n)  |
+| 查询 |    O(1)    |    O(1)    |
 
 ---
 
