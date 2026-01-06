@@ -1,8 +1,5 @@
-from typing import List
-
-
 class Solution:
-    def twoSumBruteForce(self, nums: List[int], target: int) -> List[int]:
+    def twoSumBruteForce(self, nums: list[int], target: int) -> list[int]:
         n = len(nums)
         for i in range(n):
             for j in range(i + 1, n):
@@ -11,10 +8,10 @@ class Solution:
 
         return []
 
-    def twoSumHashMap(self, nums: List[int], target: int) -> List[int]:
-        hashtable = dict()
+    def twoSumHashMap(self, nums: list[int], target: int) -> list[int]:
+        hashtable = {}
         for i, num in enumerate(nums):
             if target - num in hashtable:
                 return [hashtable[target - num], i]
-            hashtable[nums[i]] = i
+            hashtable[num] = i
         return []

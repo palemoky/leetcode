@@ -8,12 +8,11 @@ class Solution:
             "]": "[",
             "}": "{",
         }
-        stack = list()
+        stack = []
         for ch in s:
             if ch in pairs:
-                if not stack or stack[-1] != pairs[ch]:
+                if not stack or stack.pop() != pairs[ch]:
                     return False
-                stack.pop()
             else:
                 stack.append(ch)
 
