@@ -121,7 +121,9 @@ A=\begin{bmatrix}
 \end{bmatrix} \\
 \text{Matrix}
 \end{array}
-\quad
+$$
+
+$$
 \begin{array}{c}
 S=\begin{bmatrix}
 0_{\substack{(0,0)}} & 0_{\substack{(0,1)}} & 0_{\substack{(0,2)}} & 0_{\substack{(0,3)}} & 0_{\substack{(0,4)}} & 0_{\substack{(0,5)}} \\
