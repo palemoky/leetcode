@@ -103,10 +103,10 @@ $$
 查询矩形和：右下 - 上方 - 左方 + 左上
 
 $$
-\operatorname{sum}(r_1, c_1, r_2, c_2) = S[r_2+1][c_2+1] - S[r_1][c_2+1] - S[r_2+1][c_1] + S[r_1][c_1]
+\text{sum}(r_1, c_1, r_2, c_2) = S[r_2+1][c_2+1] - S[r_1][c_2+1] - S[r_2+1][c_1] + S[r_1][c_1]
 $$
 
-由于矩阵 S 比 A 多一行一列，因此 $S[i+1][j+1] = A[i][j]$。
+由于矩阵 $S$ 比 $A$ 多一行一列，因此 $S[i+1][j+1] = A[i][j]$。
 
 再来看一个 5×5 的矩阵（LeetCode 304 示例）：
 
@@ -139,12 +139,12 @@ $$
 
 <table>
   <tr>
-    <td align="center"><img src="1.png" alt="右下角区域"></td>
-    <td align="center"><img src="2.png" alt="减去上方区域"></td>
+    <td align="center"><img src="bottom_right.png" alt="右下角区域"></td>
+    <td align="center"><img src="subtract_top.png" alt="减去上方区域"></td>
   </tr>
   <tr>
-    <td align="center"><img src="3.png" alt="减去左方区域"></td>
-    <td align="center"><img src="4.png" alt="加回左上角"></td>
+    <td align="center"><img src="subtract_left.png" alt="减去左方区域"></td>
+    <td align="center"><img src="add_top_left.png" alt="加回左上角"></td>
   </tr>
 </table>
 
@@ -154,7 +154,7 @@ $$
 
 $$
 \begin{aligned}
-\operatorname{sum}(1, 1, 3, 3) &= S[4][4] - S[1][4] - S[4][1] + S[1][1] \\
+\text{sum}(1, 1, 3, 3) &= S[4][4] - S[1][4] - S[4][1] + S[1][1] \\
 &= 34 - 8 - 13 + 3 \\
 &= 16
 \end{aligned}
