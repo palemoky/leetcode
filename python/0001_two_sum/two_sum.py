@@ -9,7 +9,7 @@ class Solution:
         return []
 
     def twoSumHashMap(self, nums: list[int], target: int) -> list[int]:
-        hashtable = {}
+        hashtable: dict[int, int] = {}
         for i, num in enumerate(nums):
             if target - num in hashtable:
                 return [hashtable[target - num], i]
