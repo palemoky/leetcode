@@ -51,7 +51,7 @@ jobs:
           cache-dependency-path: go/go.sum
 
       - name: Cache Go Tools
-        uses: actions/cache@v4
+        uses: actions/cache@v5
         id: go-tools-cache
         with:
           path: ~/go/bin
