@@ -14,7 +14,7 @@ diff[0] = nums[0]
 ```
 
 <p align="center">
-    <img src="difference_array.png" alt="Difference Array Overview" width="50%" />
+    <img src="difference_array.png" alt="Difference Array Overview" width="60%" />
 </p>
 
 **关键性质：**
@@ -27,7 +27,7 @@ diff[0] = nums[0]
   ```
 
 <p align="center">
-    <img src="restore_from_diff.png" alt="Restore from Difference Array" width="50%" />
+    <img src="restore_from_diff.png" alt="Restore from Difference Array" width="60%" />
 </p>
 
 - 对区间 `[left, right]` 加上 `val`，只需修改两个位置：
@@ -35,7 +35,7 @@ diff[0] = nums[0]
   - `diff[right+1] -= val`
 
 <p align="center">
-    <img src="increment.png" alt="Increment Operation" width="50%" />
+    <img src="increment.png" alt="Increment Operation" width="40%" />
 </p>
 
 ---

@@ -17,7 +17,7 @@ func carPooling(trips [][]int, capacity int) bool {
 	}
 
 	// 构建差分数组，记录每个站点的乘客数量变化
-	diff := make([]int, maxLocation+1)
+	diff := make([]int, maxLocation+1) // +1 是因为站点从 0 开始
 
 	// 对每个行程，在上车点增加乘客，在下车点减少乘客
 	for _, trip := range trips {
