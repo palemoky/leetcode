@@ -11,6 +11,9 @@ linters:
   # 禁用所有默认 linters，只启用明确指定的
   default: none
 
+  disable:
+    - prealloc # 在递归函数中经常误报，无法预知切片大小
+
   enable:
     # 基础检查
     - govet # 官方静态分析工具
@@ -30,7 +33,6 @@ linters:
     - nilerr # 检查返回 nil 但错误不为 nil 的情况
 
     # 性能
-    - prealloc # 检查可以预分配的 slice
     - bodyclose # 检查 HTTP response body 是否关闭
     - sqlclosecheck # 检查 sql.Rows/Stmt 是否关闭
 
