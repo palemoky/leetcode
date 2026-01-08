@@ -36,6 +36,7 @@ diff[0] = nums[0]
 
 <p align="center">
     <img src="increment.png" alt="Increment Operation" width="40%" />
+    <p align="center"><em>对 nums[1, 3] 区间加 3</em></p>
 </p>
 
 ---
@@ -226,7 +227,7 @@ func (d *Difference2D) Result() [][]int {
 
 ## 注意事项
 
-- **边界检查**：修改 `diff[right+1]` 时，确保 `right+1 < n`
+- **边界检查**：修改 `diff[right+1]` 时，确保 `right+1 < n`（可以通过为 `diff` 数组多分配一个位置来避免边界检查）
 - **初始化**：差分数组的第一个元素等于原数组第一个元素
 - **还原数组**：通过前缀和还原，注意不要修改原差分数组
 - **负数操作**：减法操作就是加负数，`Increment(left, right, -val)`
@@ -261,9 +262,9 @@ func (d *Difference2D) Result() [][]int {
 
 **互为逆运算：**
 
-```
-原数组 --差分--> 差分数组 --前缀和--> 原数组
-```
+$$
+\text{原数组} \xrightleftharpoons[\text{前缀和}]{\text{差分}} \text{差分数组}
+$$
 
 ---
 
