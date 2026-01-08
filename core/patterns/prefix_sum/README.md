@@ -19,7 +19,7 @@
 
 ![Prefix Sum Comparison](comparison.png)
 
-从上表可以看出，**`prefixSum[0] = 0` 就像链表中的 dummy head**，使操作统一，避免容易出错的的边界判断。
+从上图可以看出，**`prefixSum[0] = 0` 就像链表中的 dummy head**，使操作统一，避免容易出错的的边界判断。
 
 ```go
 // 构建前缀和数组
