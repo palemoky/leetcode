@@ -15,6 +15,7 @@ main.go
 
 # Python cache
 __pycache__/
+.ruff_cache
 
 # Drawio backup file
 *.bkp
