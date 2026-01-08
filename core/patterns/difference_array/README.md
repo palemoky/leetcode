@@ -13,12 +13,30 @@ diff[i] = nums[i] - nums[i-1]  (i > 0)
 diff[0] = nums[0]
 ```
 
+<p align="center">
+    <img src="difference_array.png" alt="Difference Array Overview" width="50%" />
+</p>
+
 **关键性质：**
 
-- 原数组是差分数组的**前缀和**
+- 通过差分数组可以还原出原数组（原数组是差分数组的前缀和），即
+
+  ```
+  nums[i] = diff[i] + nums[i-1] (i>0)
+  nums[0] = diff[0]
+  ```
+
+<p align="center">
+    <img src="restore_from_diff.png" alt="Restore from Difference Array" width="50%" />
+</p>
+
 - 对区间 `[left, right]` 加上 `val`，只需修改两个位置：
   - `diff[left] += val`
   - `diff[right+1] -= val`
+
+<p align="center">
+    <img src="increment.png" alt="Increment Operation" width="50%" />
+</p>
 
 ---
 
