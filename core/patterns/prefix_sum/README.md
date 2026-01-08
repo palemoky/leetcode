@@ -17,13 +17,9 @@
 
 ### 1. 一维前缀和
 
-| index                 |  0  |  1  |  2  |  3  |  4  | Formula                                                                                                                           |
-| --------------------- | :-: | :-: | :-: | :-: | :-: | --------------------------------------------------------------------------------------------------------------------------------- |
-| `nums`                |  3  |  5  |  2  |  7  |     |                                                                                                                                   |
-| **`preSum[0] = 0`**   |  0  |  3  |  8  | 10  | 17  | **`sum[left, right] = preSum[right+1] - preSum[left]`**                                                                           |
-| `preSum[0] = nums[0]` |  3  |  8  | 10  | 17  |     | `sum[left, right] = preSum[right] - preSum[left-1]   # left>0`<br/>`sum[0, right] = preSum[right]                       # left=0` |
+![Prefix Sum Comparison](comparison.png)
 
-从上表可以看出，**`preSum[0] = 0` 就像链表中的 dummy head**，使操作统一，避免容易出错的的边界判断。
+从上表可以看出，**`prefixSum[0] = 0` 就像链表中的 dummy head**，使操作统一，避免容易出错的的边界判断。
 
 ```go
 // 构建前缀和数组
@@ -39,7 +35,7 @@ func buildPrefixSum(nums []int) []int {
 
 // 查询区间 [left, right] 的和
 func rangeSum(prefixSum []int, left, right int) int {
-    return prefixSum[right+1] - prefixSum[left]
+    return prefixSum[right+1] - prefixSum[left] // 闭区间需要+1
 }
 ```
 
