@@ -1,24 +1,53 @@
-# IDE/editor config files
-.idea/*
-.vscode/*
-!.vscode/launch.json
+# macOS
 .DS_Store
+.AppleDouble
+.LSOverride
 
-# Environment file
-.env
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
 
-# Go test coverage output
-cover.out
-
-# Temporary main file for debugging (do not commit)
+# Build outputs
+client
+server
 main.go
 
-# Python cache
-__pycache__/
-.ruff_cache
+# Go
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go.work.sum
 
-# Drawio backup file
+# Python
+.venv/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.ruff_cache/
+*.egg-info/
+dist/
+build/
+
+# Coverage
+*.coverprofile
+cover.out
+coverage.xml
+htmlcov/
+
+# Drawio
 *.bkp
 
-/python/.venv
-/python/.ruff_cache
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
