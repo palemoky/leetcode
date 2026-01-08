@@ -45,8 +45,8 @@ func reformatNumberBasic(number string) string {
 
 // 优化点：
 // 1. 直接筛选出数字，过滤更健壮
-// 2. 以剩余长度4为处理分界线，逻辑更清晰，代码更健壮
-// 3. 循环中直接以3为步长，效率更高
+// 2. 以剩余长度 4 为处理分界线，逻辑更清晰，代码更健壮
+// 3. 循环中直接以 3 为步长，效率更高
 // 4. 高效的 append 相比 basic 版更优雅
 func reformatNumberOptimized(number string) string {
 	digits := []byte{}
