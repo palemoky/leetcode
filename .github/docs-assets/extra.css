@@ -1,3 +1,30 @@
+/* 宽度切换按钮样式 */
+.md-width-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  margin-left: 0.5rem;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  color: var(--md-default-fg-color--light);
+  transition: color 0.25s, opacity 0.25s;
+}
+
+.md-width-toggle:hover {
+  color: var(--md-accent-fg-color);
+  opacity: 1;
+}
+
+.md-width-toggle svg {
+  width: 1.5rem;
+  height: 1.5rem;
+  fill: currentColor;
+}
+
 /* 内容宽度切换按钮 */
 .md-content__inner {
   max-width: 100%;

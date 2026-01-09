@@ -57,9 +57,7 @@ plugins:
         - en
 
 copyright: >
-  Copyright &copy; 2026 palemoky |
-  <a href="https://github.com/palemoky/leetcode">GitHub</a> |
-  本站内容采用 <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh">CC BY-SA 4.0</a> 协议
+  Copyright &copy; 2026 Palemoky
 
 markdown_extensions:
   # Python Markdown
