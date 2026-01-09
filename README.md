@@ -1,33 +1,9 @@
 # LeetCode Solutions
 
 [![Test](https://github.com/palemoky/leetcode/actions/workflows/leetbot.yml/badge.svg)](https://github.com/palemoky/leetcode/actions)
+[![Docs](https://github.com/palemoky/leetcode/actions/workflows/docs.yml/badge.svg)](https://github.com/palemoky/leetcode/actions)
 
 > Computer science is no more about computers than astronomy is about telescopes. — E. W. Dijkstra
-
-## Contents
-
-- [LeetCode Solutions](#leetcode-solutions)
-  - [Contents](#contents)
-  - [Directory Structure](#directory-structure)
-  - [Essential Algorithm Fundamentals](#essential-algorithm-fundamentals)
-    - [Algorithm Basics You Must Master:](#algorithm-basics-you-must-master)
-    - [Core Algorithm Ideas:](#core-algorithm-ideas)
-  - [Must-Know Classic LeetCode Problems by Category](#must-know-classic-leetcode-problems-by-category)
-  - [Visualization Algorithm Tools](#visualization-algorithm-tools)
-  - [Algorithm Learning Resources](#algorithm-learning-resources)
-  - [Todo List](#todo-list)
-
-Welcome! This repository contains my solutions to LeetCode problems, implemented in **Go** and **Python**.
-
-Each problem is organized by language and directory. Solutions include clean code, unit tests, and concise explanations where appropriate.
-
-## Directory Structure
-
-- 📂 `go/` — Go solutions
-- 📂 `python/` — Python solutions
-
-Feel free to explore, learn, and discuss.
-Contributions and suggestions are always welcome!
 
 ---
 
