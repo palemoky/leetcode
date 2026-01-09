@@ -36,8 +36,9 @@ jobs:
 
       - name: Copy assets from .github/docs-assets
         run: |
-          mkdir -p docs/javascripts
+          mkdir -p docs/javascripts docs/assets
           cp .github/docs-assets/giscus.js docs/javascripts/giscus.js
+          cp .github/docs-assets/logo.png docs/assets/logo.png
 
       - name: Build documentation
         run: uvx --with mkdocs-material mkdocs build --strict
