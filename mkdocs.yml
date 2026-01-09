@@ -128,12 +128,14 @@ extra:
 nav:
   - 首页: index.md
   - 算法:
+      - algorithms/README.md
       - algorithms/backtracking/README.md
       - algorithms/dp/README.md
       - algorithms/greedy/README.md
       - algorithms/recursion/README.md
       - algorithms/sorting/README.md
   - 数据结构:
+      - data_structures/README.md
       - data_structures/graph/README.md
       - data_structures/hash_table/README.md
       - data_structures/linked_list/README.md
@@ -143,9 +145,11 @@ nav:
       - data_structures/trie/README.md
       - data_structures/union_find/README.md
   - 数学:
+      - math/README.md
       - math/GCD&LCM/README.md
       - math/matrix/README.md
   - 模式:
+      - patterns/README.md
       - patterns/binary_search/README.md
       - patterns/difference_array/README.md
       - patterns/elementary_math_simulation/README.md
