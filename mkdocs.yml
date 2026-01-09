@@ -93,6 +93,22 @@ extra:
       link: https://github.com/palemoky/leetcode
   generator: false # 隐藏 "Made with Material for MkDocs"
 
+  # Giscus 评论系统配置
+  comments:
+    enabled: true
+    repo: palemoky/leetcode
+    repo_id: R_kgDOJ7ukCg
+    category: General
+    category_id: DIC_kwDOJ7ukCs4C0vdC
+    mapping: pathname
+    strict: "0"
+    reactions_enabled: "1"
+    emit_metadata: "0"
+    input_position: top
+    theme: preferred_color_scheme
+    lang: zh-CN
+    loading: lazy
+
 # 导航结构
 nav:
   - 首页: index.md
