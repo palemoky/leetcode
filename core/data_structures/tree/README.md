@@ -1,31 +1,6 @@
-## 目录
+# 二叉树
 
-- [目录](#目录)
-- [树的基本性质](#树的基本性质)
-- [二叉树类型](#二叉树类型)
-  - [二叉树](#二叉树)
-    - [完美二叉树（Perfect Binary Tree）](#完美二叉树perfect-binary-tree)
-    - [完全二叉树（Complete Binary Tree）](#完全二叉树complete-binary-tree)
-      - [堆（Heap）](#堆heap)
-    - [满二叉树（Full Binary Tree）](#满二叉树full-binary-tree)
-    - [平衡搜索树](#平衡搜索树)
-      - [二叉搜索树（Binary Search Tree）](#二叉搜索树binary-search-tree)
-      - [平衡二叉搜索树（AVL Tree）](#平衡二叉搜索树avl-tree)
-      - [红黑树（Red-Black Tree）](#红黑树red-black-tree)
-  - [跳表](#跳表)
-    - [简介与实现原理](#简介与实现原理)
-    - [跳表 VS 平衡二叉树（红黑树）](#跳表-vs-平衡二叉树红黑树)
-    - [跳表 VS 堆](#跳表-vs-堆)
-  - [多叉树](#多叉树)
-    - [B 树（B-Tree）](#b-树b-tree)
-    - [B+ 树](#b-树)
-  - [平衡树进化之路](#平衡树进化之路)
-- [二叉树的遍历](#二叉树的遍历)
-  - [递归解题模板](#递归解题模板)
-  - [迭代解题模板](#迭代解题模板)
-- [LeetCode 经典题目](#leetcode-经典题目)
-
-树用来模拟现实世界中的层级关系，是数据库索引、文件系统等的基础。算法面试的绝对主角
+树用来模拟现实世界中的层级关系，是数据库索引、文件系统等的基础，算法面试的绝对主角。
 
 必练操作：
 
@@ -444,7 +419,7 @@ func iterative(root *TreeNode) []int {
 }
 ```
 
-## LeetCode 经典题目
+## 经典题目
 
 - [102. Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/) — 层序遍历（队列实现）
 - [94. Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/) — 中序遍历（递归、迭代、颜色标记法）

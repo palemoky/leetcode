@@ -1,3 +1,4 @@
+# 矩阵
 
 $$
 (i, j) \xrightarrow{\text{转置}} (j, i) \xrightarrow{\text{行翻转}} (j, n-1-i)
