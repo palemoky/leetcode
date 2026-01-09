@@ -26,7 +26,8 @@ func TestIsPalindromeImplementations(t *testing.T) {
 	}
 
 	funcs := map[string]func(string) bool{
-		"TwoPointers": isPalindromeTwoPointers,
+		"TwoPointers": isPalindrome,
+		"InPlace":     isPalindromeInPlace,
 	}
 
 	for fnName, fn := range funcs {
