@@ -60,6 +60,8 @@ plugins:
       type: datetime
       timezone: Asia/Shanghai
       locale: zh
+      fallback_to_build_date: true
+      enable_git_follow: false
 
 copyright: >
   Copyright &copy; 2026 palemoky |
