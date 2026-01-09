@@ -51,3 +51,7 @@ htmlcov/
 # Temporary files
 *.tmp
 *.temp
+
+# MkDocs
+docs/
+site/

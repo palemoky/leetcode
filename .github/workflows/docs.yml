@@ -1,0 +1,66 @@
+name: Deploy Docs
+
+on:
+  push:
+    branches: [main, master]
+    paths:
+      - "core/**"
+      - "mkdocs.yml"
+      - ".github/workflows/docs.yml"
+  workflow_dispatch: # 允许手动触发
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v7
+
+      - name: Setup Python
+        run: uv python install
+
+      - name: Install dependencies
+        run: |
+          uv pip install --system mkdocs-material
+
+      - name: Setup docs directory
+        run: |
+          rm -rf docs
+          cp -r core docs
+          mv docs/README.md docs/index.md
+
+      - name: Create extra CSS directory
+        run: |
+          mkdir -p docs/stylesheets
+          touch docs/stylesheets/extra.css
+
+      - name: Build documentation
+        run: mkdocs build --strict
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

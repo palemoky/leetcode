@@ -1,0 +1,126 @@
+site_name: 算法笔记
+site_description: 算法与数据结构学习笔记，涵盖核心算法模式、数据结构实现与经典题解
+site_author: palemoky
+repo_url: https://alog.palemoky.com/
+repo_name: palemoky/leetcode
+
+theme:
+  name: material
+  language: zh
+  palette:
+    # Light mode
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Dark
+    # Dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: indigo
+      accent: indigo
+      toggle:
+        icon: material/brightness-7
+        name: Light
+  features:
+    - navigation.instant # 即时加载
+    - navigation.tracking # 锚点跟踪
+    - navigation.tabs # 顶部导航标签
+    - navigation.sections # 导航分组
+    - navigation.top # 返回顶部按钮
+    - navigation.footer # 页脚导航
+    - search.suggest # 搜索建议
+    - search.highlight # 搜索高亮
+    - search.share # 搜索分享
+    - content.code.copy # 代码复制按钮
+    - content.code.annotate # 代码注释
+
+plugins:
+  - search:
+      lang:
+        - zh
+        - en
+
+markdown_extensions:
+  # Python Markdown
+  - abbr
+  - admonition
+  - attr_list
+  - def_list
+  - footnotes
+  - md_in_html
+  - tables
+  - toc:
+      permalink: true
+      toc_depth: 3
+
+  # Python Markdown Extensions
+  - pymdownx.arithmatex:
+      generic: true
+  - pymdownx.betterem:
+      smart_enable: all
+  - pymdownx.caret
+  - pymdownx.details
+  - pymdownx.emoji
+  - pymdownx.highlight:
+      anchor_linenums: true
+      line_spans: __span
+      pygments_lang_class: true
+  - pymdownx.inlinehilite
+  - pymdownx.keys
+  - pymdownx.mark
+  - pymdownx.smartsymbols
+  - pymdownx.superfences
+  - pymdownx.tabbed:
+      alternate_style: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.tilde
+
+extra_javascript:
+  # MathJax for mathematical formulas
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
+
+extra_css:
+  - stylesheets/extra.css
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/palemoky/leetcode
+  generator: false # 隐藏 "Made with Material for MkDocs"
+
+# 导航结构
+nav:
+  - 首页: index.md
+  - 算法:
+      - algorithms/backtracking/README.md
+      - algorithms/dp/README.md
+      - algorithms/greedy/README.md
+      - algorithms/recursion/README.md
+      - algorithms/sorting/README.md
+  - 数据结构:
+      - data_structures/graph/README.md
+      - data_structures/hash_table/README.md
+      - data_structures/linked_list/README.md
+      - data_structures/queue/README.md
+      - data_structures/stack/README.md
+      - data_structures/tree/README.md
+      - data_structures/trie/README.md
+      - data_structures/union_find/README.md
+  - 数学:
+      - math/GCD&LCM/README.md
+      - math/matrix/README.md
+  - 模式:
+      - patterns/binary_search/README.md
+      - patterns/difference_array/README.md
+      - patterns/elementary_math_simulation/README.md
+      - patterns/monotonic_stack/README.md
+      - patterns/n_sum/README.md
+      - patterns/power_of_n/README.md
+      - patterns/prefix_sum/README.md
+      - patterns/sliding_window/README.md
+      - patterns/two_pointers/README.md
