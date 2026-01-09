@@ -1,0 +1,43 @@
+/* 内容宽度切换按钮 */
+.md-content__inner {
+  max-width: 100%;
+}
+
+/* 添加宽屏切换按钮样式 */
+.md-header__option {
+  display: flex;
+  align-items: center;
+}
+
+/* 自定义内容宽度 */
+.md-grid {
+  max-width: 80rem;
+}
+
+/* 宽屏模式 */
+body[data-md-wide] .md-grid {
+  max-width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+body[data-md-wide] .md-sidebar--primary {
+  display: none;
+}
+
+body[data-md-wide] .md-sidebar--secondary {
+  display: none;
+}
+
+/* 版权信息样式 */
+.md-footer-copyright {
+  font-size: 0.75rem;
+}
+
+.md-footer-copyright a {
+  color: var(--md-footer-fg-color--light);
+}
+
+.md-footer-copyright a:hover {
+  color: var(--md-accent-fg-color);
+}
