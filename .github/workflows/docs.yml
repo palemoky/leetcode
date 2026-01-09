@@ -2,12 +2,12 @@ name: Deploy Docs
 
 on:
   push:
-    branches: [main, master]
+    branches: main
     paths:
       - "core/**"
       - "mkdocs.yml"
       - ".github/workflows/docs.yml"
-  workflow_dispatch: # 允许手动触发
+  workflow_dispatch:
 
 permissions:
   contents: read
