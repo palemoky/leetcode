@@ -36,10 +36,8 @@ jobs:
 
       - name: Copy assets from .github/docs-assets
         run: |
-          mkdir -p docs/stylesheets docs/javascripts
-          cp .github/docs-assets/extra.css docs/stylesheets/extra.css
+          mkdir -p docs/javascripts
           cp .github/docs-assets/giscus.js docs/javascripts/giscus.js
-          cp .github/docs-assets/width-toggle.js docs/javascripts/width-toggle.js
 
       - name: Build documentation
         run: uvx --with mkdocs-material mkdocs build --strict
