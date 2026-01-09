@@ -101,21 +101,21 @@
 - **描述**: 将链表 `A->B->C` 变为 `C->B->A`。
 - **常见解法**: 迭代法 (使用 prev, current, next 三指针)；递归法。
 - **关键技巧**: 指针操作顺序。
-- **题目**: [反转链表](../../../solutions/0206_reverse_linked_list/reverse_linked_list.go)
+- **题目**: [反转链表](https://github.com/palemoky/leetcode/blob/main/go/solutions/0206_reverse_linked_list/reverse_linked_list.go)
 
 ##### **查找中间节点 (Find Middle Node)**
 
 - **描述**: 找到链表的中间节点，若有两个中间节点，则返回第二个。
 - **常见解法**: 数组长度的一半或快慢指针法 (慢指针走一步，快指针走两步)。
 - **关键技巧**: 快慢指针。
-- **题目**: [查找链表的中间节点](../../../solutions/0876_middle_of_the_linked_list/middle_of_the_linked_list.go)
+- **题目**: [查找链表的中间节点](https://github.com/palemoky/leetcode/blob/main/go/solutions/0876_middle_of_the_linked_list/middle_of_the_linked_list.go)
 
 ##### **删除倒数第 N 个节点 (Remove Nth Node From End)**
 
 - **描述**: 删除从链表末尾数的第 N 个节点。
 - **常见解法**: 快慢指针法 (快指针先走 N 步，然后快慢指针同步前进，直到快指针到达末尾)。
 - **关键技巧**: 快慢指针、虚拟头节点 (因为可能删除头节点)。
-- **题目**: [删除链表倒数第 N 个节点](../../../solutions/0019_remove_nth_node_from_end_of_list/remove_nth_node_from_end_of_list.go)
+- **题目**: [删除链表倒数第 N 个节点](https://github.com/palemoky/leetcode/blob/main/go/solutions/0019_remove_nth_node_from_end_of_list/remove_nth_node_from_end_of_list.go)
 
 ##### **删除链表中的重复元素 (Remove Duplicates)**
 
@@ -154,7 +154,7 @@
 - **描述**: 将两个已排序的链表合并成一个仍然有序的新链表。
 - **常见解法**: 迭代法；递归法。
 - **关键技巧**: 虚拟头节点 (用于构建新链表)、双指针比较。
-- **题目**: [合并两个有序链表](../../../solutions/0021_merge_two_sorted_lists/merge_two_sorted_lists.go)
+- **题目**: [合并两个有序链表](https://github.com/palemoky/leetcode/blob/main/go/solutions/0021_merge_two_sorted_lists/merge_two_sorted_lists.go)
 
 ##### **判断两个链表是否相交 (Intersection of Two Lists)**
 
@@ -177,14 +177,14 @@
 - **描述**: 检测链表中是否存在一个环。
 - **常见解法**: 快慢指针法 (若有环，快慢指针必相遇)。
 - **关键技巧**: 快慢指针。
-- **题目**: [判断链表是否有环](../../../solutions/0141_linked_list_cycle/has_cycle.go)
+- **题目**: [判断链表是否有环](https://github.com/palemoky/leetcode/blob/main/go/solutions/0141_linked_list_cycle/has_cycle.go)
 
 ##### **找到环的入口节点 (Linked List Cycle II)**
 
 - **描述**: 如果链表有环，找出环的起始节点。
 - **常见解法**: 在快慢指针相遇后，将一个指针放回头节点，然后两个指针都以步速 1 前进，再次相遇点即为入口。
 - **关键技巧**: 快慢指针的数学性质。
-- **题目**: [找到环形链表的入口](../../../solutions/0142_find_linked_list_cycle_entry/detect_cycle.go)
+- **题目**: [找到环形链表的入口](https://github.com/palemoky/leetcode/blob/main/go/solutions/0142_find_linked_list_cycle_entry/detect_cycle.go)
 
 ---
 
