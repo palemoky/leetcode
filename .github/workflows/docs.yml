@@ -40,7 +40,7 @@ jobs:
           touch docs/stylesheets/extra.css
 
       - name: Build documentation
-        run: uvx mkdocs build --strict
+        run: uvx --with mkdocs-material mkdocs build --strict
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
