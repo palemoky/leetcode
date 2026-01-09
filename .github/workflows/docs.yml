@@ -42,7 +42,7 @@ jobs:
           cp .github/docs-assets/width-toggle.js docs/javascripts/width-toggle.js
 
       - name: Build documentation
-        run: uvx --with mkdocs-material --with mkdocs-git-revision-date-localized-plugin mkdocs build --strict
+        run: uvx --with mkdocs-material mkdocs build --strict
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

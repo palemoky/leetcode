@@ -55,13 +55,6 @@ plugins:
       lang:
         - zh
         - en
-  - git-revision-date-localized:
-      enable_creation_date: true
-      type: datetime
-      timezone: Asia/Shanghai
-      locale: zh
-      fallback_to_build_date: true
-      enable_git_follow: false
 
 copyright: >
   Copyright &copy; 2026 palemoky |
