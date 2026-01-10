@@ -52,14 +52,14 @@
 
 - 对于 1-based 索引 的 i 号节点：
 
-  - 左孩子：2\*i
-  - 右孩子：2\*i+1
-  - 父亲：⌊i/2⌋，（向下取整）
+  - 左孩子：`2*i`
+  - 右孩子：`2*i+1`
+  - 父亲：`⌊i/2⌋`（向下取整）
 
 - 对于 0-based 索引 的 i 号节点：
-  - 左孩子：2\*i+1
-  - 右孩子：2\*i+2
-  - 父亲：⌊(i-1)/2⌋
+  - 左孩子：`2*i+1`
+  - 右孩子：`2*i+2`
+  - 父亲：`⌊(i-1)/2⌋`
 
 ---
 
@@ -68,11 +68,11 @@
 堆是一种满足堆性质的完全二叉树，常用来实现优先队列。
 
 - 小顶堆（min-heap）：任意父节点的值小于等于其子节点的值。
-  - 1-based 索引：a[i] <= a[2\*i] && a[i] <= a[2\*i+1]
-  - 0-based 索引：a[i] <= a[2\*i+1] && a[i] <= a[2\*i+2]
+  - 1-based 索引：`a[i] <= a[2*i] && a[i] <= a[2*i+1]`
+  - 0-based 索引：`a[i] <= a[2*i+1] && a[i] <= a[2*i+2]`
 - 大顶堆（max-heap）：任意父节点的值大于等于其子节点的值。
-  - 1-based 索引：a[i] >= a[2\*i] && a[i] >= a[2\*i+1]
-  - 0-based 索引：a[i] >= a[2\*i+1] && a[i] >= a[2\*i+2]
+  - 1-based 索引：`a[i] >= a[2*i] && a[i] >= a[2*i+1]`
+  - 0-based 索引：`a[i] >= a[2*i+1] && a[i] >= a[2*i+2]`
 
 <p align="center">
     <img src="min_heap_and_max_heap.png" alt="Min Heap and Max Heap" width="65%" />
@@ -86,7 +86,7 @@
 
 <p align="center">
   <a href="https://www.bilibili.com/video/BV1HYtseiEQ8">
-      <img src="https://i2.hdslb.com/bfs/archive/54280901f49c62066b7d8b2b7e95535f920ece27.jpg" alt="Min Heap and Max Heap" width="40%" />
+      <img src="heap_sort_video_thumbnail.png" alt="Heap Sort" width="40%" />
   </a>
 </p>
 
