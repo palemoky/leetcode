@@ -2,6 +2,8 @@
 
 [![Test](https://github.com/palemoky/leetcode/actions/workflows/leetbot.yml/badge.svg)](https://github.com/palemoky/leetcode/actions)
 [![Docs](https://github.com/palemoky/leetcode/actions/workflows/docs.yml/badge.svg)](https://github.com/palemoky/leetcode/actions)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: CC BY 4.0](https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg)](https://creativecommons.org/licenses/by/4.0/)
 
 > Computer science is no more about computers than astronomy is about telescopes. — E. W. Dijkstra
 
@@ -129,3 +131,14 @@
 - [Hello 算法](https://www.hello-algo.com/)
 - [Labuladong 的算法笔记](https://labuladong.online/algo/)
 - [代码随想录](https://programmercarl.com)
+
+---
+
+## 📄 License
+
+This project is dual-licensed:
+
+- **Code** (Go, Python, etc.): [MIT License](LICENSE)
+- **Documentation & Images**: [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)
+
+Feel free to use, modify, and share this project. Attribution is appreciated! ❤️
