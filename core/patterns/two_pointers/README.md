@@ -1,31 +1,70 @@
 # 双指针
 
-双指针（Two Pointers）是一种常用的数组、链表处理技巧，适用于**有序结构或区间类问题**。通过维护两个指针，能高效解决查找、去重、区间统计等问题。
+双指针（Two Pointers）是一种常用的数组、链表处理技巧，通过维护两个指针的不同移动策略，能高效解决查找、去重、区间统计等问题。
 
 ---
 
-## 典型应用场景
+## 核心思想
 
-- 有序数组中的两数之和、三数之和（如 LeetCode 15、167）
-- 区间类问题（如最长子串、滑动窗口）
-- 链表快慢指针（如判断环、找中点）
-- 去重、合并有序数组
+双指针的本质是**用空间换时间的逆向思维**：通过巧妙地移动指针，避免暴力枚举，将时间复杂度从 O(n²) 降低到 O(n)。
 
 ---
 
-## 常见模式
+## 五种经典模式
 
-### 1. 左右指针收缩
+### 1. 快慢指针（Same Direction - Slow/Fast）
 
-适用于有序数组，查找满足条件的区间或元素对。
+**特点**：两个指针同向移动，速度不同
+
+**应用场景**：
+
+- 数组去重、移除元素
+- 链表找中点
+- 链表判环（Floyd 判圈算法）
+
+**代码模板**：
+
+```go
+slow := 0
+for fast := 0; fast < len(nums); fast++ {
+    if 满足条件 {
+        nums[slow] = nums[fast]
+        slow++
+    }
+}
+// slow 即为新数组长度
+```
+
+**经典题目**：
+
+- [LeetCode 27. 移除元素](../../go/solutions/0027_remove_element/)
+- [LeetCode 283. 移动零](https://leetcode.com/problems/move-zeroes/)
+- [LeetCode 26. 删除有序数组中的重复项](https://leetcode.com/problems/remove-duplicates-from-sorted-array/)
+- [LeetCode 876. 链表的中间结点](https://leetcode.com/problems/middle-of-the-linked-list/)
+- [LeetCode 141. 环形链表](https://leetcode.com/problems/linked-list-cycle/)
+
+---
+
+### 2. 对撞指针（Opposite Direction）
+
+**特点**：两个指针从两端向中间移动
+
+**应用场景**：
+
+- 有序数组的两数之和
+- 回文判断
+- 容器盛水问题
+- 数组反转
+
+**代码模板**：
 
 ```go
 left, right := 0, len(nums)-1
-for left < right {
-    sum := nums[left] + nums[right]
-    if sum == target {
-        // 找到答案
-    } else if sum < target {
+for left < right {  // 或 left <= right，见下方说明
+    if 满足条件 {
+        // 处理结果
+        break
+    } else if 需要增大 {
         left++
     } else {
         right--
@@ -33,34 +72,161 @@ for left < right {
 }
 ```
 
-### 2. 滑动窗口
+**⚠️ 循环条件选择：`left < right` vs `left <= right`**
 
-用于区间统计、最长子串等问题。
+| 循环条件        | 使用场景                                       | 原因                                        | 示例                         |
+| --------------- | ---------------------------------------------- | ------------------------------------------- | ---------------------------- |
+| `left < right`  | 成对处理元素（回文判断、两数之和、数组反转）   | 当 `left == right` 时指向同一元素，无需处理 | 回文判断中间字符不影响结果   |
+| `left <= right` | 需要处理所有元素（二分查找、某些移除元素场景） | 当 `left == right` 时还有一个元素未检查     | 二分查找必须检查最后一个元素 |
 
-### 3. 快慢指针（链表）
+**判断技巧**：当 `left == right` 时，我还需要处理这个元素吗？`left <= right`:`left < right`（用三元运算符看）
 
-用于判断链表是否有环、找中点等。
+**经典题目**：
+
+- [LeetCode 167. 两数之和 II - 输入有序数组](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
+- [LeetCode 125. 验证回文串](../../go/solutions/0125_valid_palindrome/)
+- [LeetCode 11. 盛最多水的容器](https://leetcode.com/problems/container-with-most-water/)
+- [LeetCode 15. 三数之和](https://leetcode.com/problems/3sum/)
+
+---
+
+### 3. 滑动窗口（Sliding Window）
+
+**特点**：维护一个动态区间 `[left, right]`，窗口大小可变
+
+**应用场景**：
+
+- 最长/最短子串问题
+- 子数组和问题
+- 字符串匹配
+
+**代码模板**：
+
+```go
+left := 0
+for right := 0; right < len(s); right++ {
+    // 扩大窗口：加入 right 元素
+    窗口状态更新
+
+    // 收缩窗口：移除 left 元素
+    for 窗口不满足条件 {
+        窗口状态更新
+        left++
+    }
+
+    // 更新结果
+}
+```
+
+**经典题目**：
+
+- [LeetCode 3. 无重复字符的最长子串](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
+- [LeetCode 76. 最小覆盖子串](https://leetcode.com/problems/minimum-window-substring/)
+- [LeetCode 209. 长度最小的子数组](https://leetcode.com/problems/minimum-size-subarray-sum/)
+- [LeetCode 438. 找到字符串中所有字母异位词](https://leetcode.com/problems/find-all-anagrams-in-a-string/)
+
+---
+
+### 4. 分离双指针（Separate Pointers）
+
+**特点**：两个指针分别在不同数组/链表上移动
+
+**应用场景**：
+
+- 合并两个有序数组/链表
+- 比较两个序列
+- 链表相交判断
+
+**代码模板**：
+
+```go
+i, j := 0, 0
+for i < len(nums1) && j < len(nums2) {
+    if nums1[i] < nums2[j] {
+        // 处理 nums1[i]
+        i++
+    } else {
+        // 处理 nums2[j]
+        j++
+    }
+}
+// 处理剩余元素
+```
+
+**经典题目**：
+
+- [LeetCode 88. 合并两个有序数组](../../go/solutions/088_merge_sorted_array/)
+- [LeetCode 21. 合并两个有序链表](https://leetcode.com/problems/merge-two-sorted-lists/)
+- [LeetCode 986. 区间列表的交集](https://leetcode.com/problems/interval-list-intersections/)
+
+---
+
+### 5. 固定间距指针（Fixed Distance）
+
+**特点**：两个指针保持固定距离 k
+
+**应用场景**：
+
+- 删除链表倒数第 N 个节点
+- 寻找距离为 K 的元素对
+
+**代码模板**：
+
+```go
+fast, slow := head, head
+// fast 先走 k 步
+for i := 0; i < k; i++ {
+    fast = fast.Next
+}
+// 然后一起走
+for fast != nil {
+    fast = fast.Next
+    slow = slow.Next
+}
+// slow 现在指向目标位置
+```
+
+**经典题目**：
+
+- [LeetCode 19. 删除链表的倒数第 N 个结点](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
+
+---
 
 ## 优势
 
-- 时间复杂度低，常见为 O(n)
-- 空间复杂度低，通常只需常数级指针变量
-- 代码简洁，易于理解和维护
+- **时间复杂度低**：通常为 O(n)，避免嵌套循环
+- **空间复杂度低**：只需常数级指针变量
+- **代码简洁**：逻辑清晰，易于理解和维护
+
+---
 
 ## 注意事项
 
-- 多数情况下需要有序数组，否则双指针无法高效移动
-- 去重时要注意跳过重复元素（如三数之和）
-- 滑动窗口要正确维护窗口边界和统计逻辑
+1. **有序性要求**：对撞指针通常需要有序数组
+2. **边界条件**：注意数组越界、空数组等情况
+3. **去重处理**：在三数之和等题目中需要跳过重复元素
+4. **窗口维护**：滑动窗口要正确维护窗口状态和边界
 
-### 4. 操作多个指针
+---
 
-当需要同时操作多个数组或追踪多个位置时，可能需要维护 3 个或更多指针。关键是确保每个指针的移动逻辑清晰，避免遗漏或重复处理元素。典型例子：LeetCode 88（需要同时维护两个读指针和一个写指针）。
+## 如何选择合适的模式？
 
-## 经典题目
+| 问题特征               | 推荐模式     |
+| ---------------------- | ------------ |
+| 数组去重、移除元素     | 快慢指针     |
+| 有序数组查找、回文判断 | 对撞指针     |
+| 子串/子数组问题        | 滑动窗口     |
+| 合并两个序列           | 分离双指针   |
+| 链表倒数第 k 个        | 固定间距指针 |
 
-- [LeetCode 15. 三数之和](https://leetcode.com/problems/3sum/)
-- [LeetCode 167. 两数之和 II - 输入有序数组](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
-- [LeetCode 283. 移动零](https://leetcode.com/problems/move-zeroes/)
-- [LeetCode 876. 链表的中间结点](https://leetcode.com/problems/middle-of-the-linked-list/)
-- [LeetCode 3. 无重复字符的最长子串](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
+---
+
+## 进阶技巧
+
+### 多指针组合
+
+某些复杂问题需要组合使用多种模式：
+
+- **三数之和**：外层循环 + 内层对撞指针
+- **接雨水**：双指针 + 动态规划思想
+- **合并 K 个有序链表**：分离双指针 + 优先队列
