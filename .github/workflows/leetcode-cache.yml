@@ -1,0 +1,38 @@
+name: Update LeetCode Cache
+
+on:
+  schedule:
+    # Run at 11:11 UTC on the 11th of every month
+    - cron: "11 11 11 * *"
+  workflow_dispatch:
+
+jobs:
+  update-cache:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v6
+
+      - name: Set up Python
+        uses: actions/setup-python@v6
+        with:
+          python-version-file: python/.python-version
+
+      - name: Install dependencies
+        run: pip install requests
+
+      - name: Update LeetCode cache
+        run: python3 .github/scripts/update_leetcode_cache.py
+
+      - name: Commit and push changes
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add .github/leetcode_cache.json
+          if git diff --staged --quiet; then
+            echo "No changes to commit"
+          else
+            git commit -m "chore: update LeetCode cache [skip ci]"
+            git push
+          fi
