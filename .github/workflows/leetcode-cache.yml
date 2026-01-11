@@ -27,14 +27,12 @@ jobs:
       - name: Update LeetCode cache
         run: python3 .github/scripts/update_leetcode_cache.py
 
-      - name: Commit and push changes
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add .github/leetcode_cache.json
-          if git diff --staged --quiet; then
-            echo "No changes to commit"
-          else
-            git commit -m "chore: update LeetCode cache [skip ci]"
-            git push
-          fi
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v8
+        with:
+          commit-message: "chore: update LeetCode cache"
+          title: "chore: update LeetCode cache"
+          body: "Auto-generated PR to update LeetCode problem cache."
+          branch: chore/update-leetcode-cache
+          delete-branch: true
+          add-paths: .github/leetcode_cache.json
