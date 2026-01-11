@@ -94,7 +94,6 @@ def create_solution_file(dir_path: Path, package_name: str, title: str) -> None:
 
     content = f"""package {package_name}
 
-// {title}
 // 解法一：
 // Time: O(), Space: O()
 func solution() {{
@@ -124,8 +123,8 @@ func TestSolution(t *testing.T) {{
 	t.Parallel()
 	testCases := []struct {{
 		name     string
-		input    interface{{}}
-		expected interface{{}}
+		input    any
+		expected any
 	}}{{
 		{{
 			name:     "example 1",
@@ -138,17 +137,17 @@ func TestSolution(t *testing.T) {{
 		"": solution,
 	}}
 
-	for fnName, fn := range funcsToTest {
-		t.Run(fnName, func(t *testing.T) {
-			for _, tc := range testCases {
-				t.Run(tc.name, func(t *testing.T) {
+	for fnName, fn := range funcsToTest {{
+		t.Run(fnName, func(t *testing.T) {{
+			for _, tc := range testCases {{
+				t.Run(tc.name, func(t *testing.T) {{
 					t.Parallel()
 					result := fn(tc.input)
 					assert.Equal(t, tc.expected, result)
-				})
-			}
-		})
-	}
+				}})
+			}}
+		}})
+	}}
 }}
 """
 
