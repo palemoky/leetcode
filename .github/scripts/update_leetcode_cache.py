@@ -78,9 +78,11 @@ def fetch_all_problems() -> dict:
 
 def main():
     """Main function."""
-    # Get cache file path
-    project_root = Path(__file__).parent.parent
-    cache_file = project_root / ".github" / "leetcode_cache.json"
+    # Script is at .github/scripts/update_leetcode_cache.py
+    # project_root = .github/scripts -> .github -> project_root
+    script_dir = Path(__file__).parent  # .github/scripts
+    github_dir = script_dir.parent       # .github
+    cache_file = github_dir / "leetcode_cache.json"
 
     # Fetch all problems
     problems = fetch_all_problems()
