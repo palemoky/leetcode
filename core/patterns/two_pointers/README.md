@@ -35,11 +35,50 @@ for fast := 0; fast < len(nums); fast++ {
 // slow 即为新数组长度
 ```
 
+#### 最多 k 个重复问题
+
+该问题适用于**有序数组**，允许每个元素最多出现 k 次。核心思路是维护一个大小为 k 的滑动窗口 `[slow-k, slow)`，通过比较 `nums[slow-k]` 和 `nums[fast]` 来决定是否保留当前元素。
+
+**为什么比较窗口左边界？**
+
+由于数组有序，相同元素必然相邻：
+
+- **相同**（`nums[slow-k] == nums[fast]`）：窗口内已有 k 个相同元素，跳过 `fast`
+- **不同**（`nums[slow-k] != nums[fast]`）：窗口内最多只有 k-1 个与 `fast` 相同的元素，可以安全添加
+
+以 k=2 为例：
+
+<p align="center">
+    <img src="remove_k_duplicates_from_sorted_array.png" alt="Remove k duplicates from sorted array" width="60%">
+</p>
+
+**代码模板**：
+
+```go
+// 最多 k 个重复
+func removeDuplicates(nums []int, k int) int {
+    if len(nums) <= k {
+        return len(nums)
+    }
+
+    slow := k
+    for fast := k; fast < len(nums); fast++ {
+        if nums[slow-k] != nums[fast] {
+            nums[slow] = nums[fast]
+            slow++
+        }
+    }
+
+    return slow
+}
+```
+
 **经典题目**：
 
 - [LeetCode 27. 移除元素](../../go/solutions/0027_remove_element/)
 - [LeetCode 283. 移动零](https://leetcode.com/problems/move-zeroes/)
 - [LeetCode 26. 删除有序数组中的重复项](https://leetcode.com/problems/remove-duplicates-from-sorted-array/)
+- [LeetCode 80. 删除有序数组中的重复项 II](https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/)
 - [LeetCode 876. 链表的中间结点](https://leetcode.com/problems/middle-of-the-linked-list/)
 - [LeetCode 141. 环形链表](https://leetcode.com/problems/linked-list-cycle/)
 
