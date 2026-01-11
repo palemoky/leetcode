@@ -9,14 +9,14 @@ func removeDuplicates(nums []int) int {
 		return 0
 	}
 
-	slow := 0 // slow 指向当前不重复序列的最后一个元素
+	slow := 1 // slow 指向当前不重复序列的最后一个元素
 	for fast := 1; fast < len(nums); fast++ {
-		if nums[slow] != nums[fast] { // 找到不同的元素
-			slow++                  // slow 向前移动一位
+		if nums[slow-1] != nums[fast] { // 找到不同的元素
 			nums[slow] = nums[fast] // 将新元素写入 slow 位置
+			slow++                  // slow 向前移动一位
 		}
 		// 如果相同，只移动 fast（跳过重复元素）
 	}
 
-	return slow + 1 // 返回长度（索引+1）
+	return slow // 返回长度（索引+1）
 }
