@@ -77,6 +77,7 @@ func removeDuplicates(nums []int, k int) int {
 
 - [LeetCode 27. 移除元素](../../go/solutions/0027_remove_element/)
 - [LeetCode 283. 移动零](https://leetcode.com/problems/move-zeroes/)
+- [LeetCode 2460. 对数组执行操作](../../go/solutions/2460_apply_operations_to_an_array/apply_operations_to_an_array.go)
 - [LeetCode 26. 删除有序数组中的重复项](https://leetcode.com/problems/remove-duplicates-from-sorted-array/)
 - [LeetCode 80. 删除有序数组中的重复项 II](https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/)
 - [LeetCode 876. 链表的中间结点](https://leetcode.com/problems/middle-of-the-linked-list/)
