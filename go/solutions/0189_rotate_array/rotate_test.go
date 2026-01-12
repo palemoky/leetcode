@@ -15,15 +15,21 @@ func TestRotateImplementations(t *testing.T) {
 		want []int
 	}{
 		{"basic", []int{1, 2, 3, 4, 5, 6, 7}, 3, []int{5, 6, 7, 1, 2, 3, 4}},
-		{"k_eq_len", []int{1, 2, 3}, 3, []int{1, 2, 3}},
-		{"k_gt_len", []int{1, 2, 3}, 4, []int{3, 1, 2}},
-		{"single", []int{1}, 0, []int{1}},
-		// {"empty", []int{}, 0, []int{}}, // 对 0 取余等价于除 0
+		{"k equals length", []int{1, 2, 3}, 3, []int{1, 2, 3}},
+		{"k greater than length", []int{1, 2, 3}, 4, []int{3, 1, 2}},
+		{"k is zero", []int{1, 2, 3, 4}, 0, []int{1, 2, 3, 4}},
+		{"k is one", []int{1, 2, 3, 4}, 1, []int{4, 1, 2, 3}},
+		{"single element", []int{1}, 0, []int{1}},
+		{"single element with k", []int{5}, 1, []int{5}},
+		{"two elements", []int{1, 2}, 1, []int{2, 1}},
+		{"negative numbers", []int{-1, -100, 3, 99}, 2, []int{3, 99, -1, -100}},
+		{"large k", []int{1, 2, 3}, 10, []int{3, 1, 2}}, // 10 % 3 = 1
 	}
 
 	funcs := map[string]func([]int, int){
-		"BruteForce": rotateBruteForce,
-		"Slice":      rotateSlice,
+		"Shift":   rotateShift,
+		"Slice":   rotateSlice,
+		"Reverse": rotateReverse,
 	}
 
 	for fnName, fn := range funcs {
