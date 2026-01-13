@@ -52,6 +52,11 @@ func threeSumTwoPointers(nums []int) [][]int {
 	ans := [][]int{}
 	// 先固定第一个数
 	for i := 0; i < len(nums)-2; i++ {
+		// 提前剪枝：如果第一个数已经大于0，后面都是正数，不可能和为0
+		if nums[i] > 0 {
+			break
+		}
+
 		if i > 0 && nums[i] == nums[i-1] {
 			continue // 跳过重复的第一个数
 		}
