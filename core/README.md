@@ -20,6 +20,17 @@
    4. 终止条件是什么？
 5. 题目想不出来的时候，手动模拟小数据推导，画出执行过程，比如递归树、DP 表格等
 
+技巧
+
+- 指针往复时，可以定义一个值为 -1 的变量，在开始和结束的地方反转反向，比如 [6. Z 字形变换](https://leetcode.cn/problems/zigzag-conversion/)
+
+  ```go
+  direction := -1
+  if i == 0 || i == len(s)-1 {
+      direction = -direction
+  }
+  ```
+
 ## 链表
 
 ## 二叉树
