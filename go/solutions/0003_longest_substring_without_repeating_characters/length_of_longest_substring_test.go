@@ -7,6 +7,7 @@ import (
 )
 
 func TestLengthOfLongestSubstring(t *testing.T) {
+	t.Parallel()
 	testCases := []struct {
 		name  string
 		input string
@@ -49,6 +50,7 @@ func TestLengthOfLongestSubstring(t *testing.T) {
 
 	for _, tc := range testCases {
 		t.Run(tc.name, func(t *testing.T) {
+			t.Parallel()
 			got := lengthOfLongestSubstringSlidingWindow(tc.input)
 			// 使用 %q 可以让字符串在打印时带上引号，更清晰
 			assert.Equal(t, tc.want, got, "lengthOfLongestSubstring(%q) failed", tc.input)
