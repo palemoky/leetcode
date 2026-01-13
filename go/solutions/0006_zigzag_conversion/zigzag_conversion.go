@@ -5,6 +5,7 @@ import "strings"
 // Solution 1:
 // 本题的题目描述并不准确，更准确的名称应该是“反 N 字形变换”
 // 解题步骤可以参考图解 zigzag.png（来自 https://leetcode.cn/problems/zigzag-conversion/solutions/21610/zzi-xing-bian-huan-by-jyd/）
+// 核心思想：用一个方向变量在头尾反转方向，来实现指针的往复运动
 // Time: O(n), Space: O(n)
 func convert(s string, numRows int) string {
 	if numRows < 2 {
