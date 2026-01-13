@@ -29,7 +29,7 @@ func reverseWords(s string) string {
 	// 2. 逆序遍历单词数组构建结果，单词间用空格分隔
 	ans := ""
 	for i := len(words) - 1; i >= 0; i-- {
-		ans += words[i] + " " // 此处为了通用性，可以使用 strings.Join 优化
+		ans += words[i] + " "
 	}
 
 	return ans[:len(ans)-1]
