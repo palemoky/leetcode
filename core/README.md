@@ -31,6 +31,82 @@
   }
   ```
 
+模板
+
+堆（Heap）/优先队列
+
+```go
+type IntHeap []int
+func (h IntHeap) Len() int           { return len(h) }
+func (h IntHeap) Less(i, j int) bool { return h[i] < h[j] } // 小顶堆
+func (h IntHeap) Swap(i, j int)      { h[i], h[j] = h[j], h[i] }
+func (h *IntHeap) Push(x any)        { *h = append(*h, x.(int)) }
+func (h *IntHeap) Pop() any {
+    old := *h
+    n := len(old)
+    x := old[n-1]
+    *h = old[0 : n-1]
+    return x
+}
+```
+
+二分查找
+
+```go
+func binarySearch(nums []int, target int) int {
+    left, right := 0, len(nums)-1
+    for left <= right { // 注意是 <=
+        mid := left + (right-left)/2 // 防溢出
+        if nums[mid] == target {
+            return mid
+        } else if nums[mid] < target {
+            left = mid + 1
+        } else {
+            right = mid - 1
+        }
+    }
+    return -1
+}
+```
+
+快速排序 (Quick Sort) / 快速选择 (Quick Select)
+
+滑动窗口
+
+```go
+for right < len(s) {
+    // 1. 右窗口扩大，加入 s[right]
+    window[s[right]]++
+    right++
+
+    // 2. 满足收缩条件（例如窗口过大或不满足要求）
+    for needShrink {
+        // 3. 左窗口收缩，移除 s[left]
+        window[s[left]]--
+        left++
+    }
+}
+```
+
+思维框架模板
+
+BFS (层序遍历)：看到“最短路径”、“层序”，立刻在大脑里把 queue 和 visited map 初始化好。
+
+DFS (回溯)：看到“全排列”、“所有组合”，立刻写出：
+
+```go
+func backtrack(path, choices) {
+    if 结束条件 { add(path); return }
+    for choice := range choices {
+        make(choice)
+        backtrack(path, choices)
+        undo(choice) // 撤销
+    }
+}
+```
+
+单调栈：看到“下一个更大元素”，立刻想到用栈存索引
+
 ## 链表
 
 ## 二叉树
