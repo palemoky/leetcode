@@ -126,8 +126,10 @@ LeetCode 经典题目
 每个节点的数值比左子树上的节点大，比右子树上的节点小。排序二叉树相比于其他数据结构的优势在于查找、插入的时间复杂度较低，为 $O(logn)$。二叉搜索树相比于有序数组的二分搜索，在保证搜索效率不变的情况下，插入和删除不需要移动大量的元素，从而提升整体效率。
 
 !!! Tip "避免 int 溢出"
-避免 `left+right` 导致 int 溢出，通常使用 `left+(right-left)/2` 的方式计算 mid。
-由于主流编程语言 **整数除法向下取整**，因此偶数长度的数组，mid 会 **居中偏左**，奇数长度的数组则在正中间。
+
+    为了避免 `left+right` 导致 int 溢出，通常使用 `left+(right-left)/2` 的方式计算 mid。
+
+    由于主流编程语言 **整数除法向下取整**，因此偶数长度的数组，mid 会 **居中偏左**，奇数长度的数组则在正中间。
 
 BST 有两种不同的写法，处理细节也不同：
 
@@ -140,16 +142,12 @@ BST 有两种不同的写法，处理细节也不同：
 
     ```go
     left, right := 0, len(nums)-1
-    // 闭区间必须用 <=，以确保所有元素都被搜索
-    for left <= right {
-        // 避免 int 溢出
-        mid := left + (right-left)/2
+    for left <= right {  // ← 闭区间必须用 <=，以确保所有元素都被搜索
+        mid := left + (right-left)/2 // ← 避免 int 溢出
         if nums[mid] < target {
-            // 排除 mid 并查找右侧区间
-            left = mid + 1
+            left = mid + 1   // 排除 mid 并查找右侧区间
         } else if nums[mid] > target {
-            // 排除 mid 并查找左侧区间
-            right = mid - 1
+            right = mid - 1  // 排除 mid 并查找左侧区间
         } else {
             return mid
         }
@@ -159,15 +157,13 @@ BST 有两种不同的写法，处理细节也不同：
 === "左闭右开 [left, right)"
 
     ```go
-    // right 初始化为 len(nums)
-    left, right := 0, len(nums)
-    for left < right {  // 用 <
+    left, right := 0, len(nums)  // ← right 初始化为 len(nums)
+    for left < right {  // ← 用 <
         mid := left + (right-left)/2
         if nums[mid] < target {
             left = mid + 1
         } else if nums[mid] > target {
-            // 不减1，因为 right 本身不包含
-            right = mid
+            right = mid  // ← 不减1，因为 right 本身不包含
         } else {
             return mid
         }
