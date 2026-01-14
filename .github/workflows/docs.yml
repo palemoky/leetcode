@@ -41,7 +41,7 @@ jobs:
           cp .github/docs-assets/logo.png docs/assets/logo.png
 
       - name: Build documentation
-        run: uvx --with mkdocs-material mkdocs build --strict
+        run: uvx --with mkdocs-material --with pymdown-extensions mkdocs build --strict
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4

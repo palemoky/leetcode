@@ -142,7 +142,7 @@ BST 有两种不同的写法，处理细节也不同：
 <tr>
 <td width="50%" valign="top" markdown="1">
 
-**闭区间 `[left, right]` 写法：**
+闭区间 [left, right] 写法：
 
 ```go
 left, right := 0, len(nums)-1
@@ -165,7 +165,7 @@ for left <= right {
 </td>
 <td width="50%" valign="top" markdown="1">
 
-**左闭右开 `[left, right)` 写法：**
+左闭右开 [left, right) 写法：
 
 ```go
 // right 初始化为 len(nums)
@@ -193,7 +193,7 @@ for left < right {  // 用 <
 <tr>
 <td width="50%" valign="top" markdown="1">
 
-**查找左侧边界（最左侧的 target）：**
+查找左侧边界（最左侧的 target）：
 
 ```go
 left, right := 0, len(nums)-1
@@ -217,7 +217,7 @@ return left
 </td>
 <td width="50%" valign="top" markdown="1">
 
-**查找右侧边界（最右侧的 target）：**
+查找右侧边界（最右侧的 target）：
 
 ```go
 left, right := 0, len(nums)-1
