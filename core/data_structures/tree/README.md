@@ -148,6 +148,10 @@ BST 有两种不同的写法，处理细节也不同：
 |  闭区间 `[left, right]`  | `len(nums)-1` | `left <= right` | `right = mid - 1` |
 | 左闭右开 `[left, right)` |  `len(nums)`  | `left < right`  |   `right = mid`   |
 
+<table>
+<tr>
+<td width="50%" valign="top">
+
 **闭区间 `[left, right]` 写法：**
 
 ```go
@@ -163,6 +167,9 @@ for left <= right {  // ← 闭区间必须用 <=，以确保所有元素都被�
     }
 }
 ```
+
+</td>
+<td width="50%" valign="top">
 
 **左闭右开 `[left, right)` 写法：**
 
@@ -180,6 +187,71 @@ for left < right {  // ← 用 <
 }
 ```
 
+</td>
+</tr>
+</table>
+
+以上是基础的二分查找，当找到目标值后立即返回。但在实际应用中，**数组可能包含重复元素**，此时我们需要找到目标值的**左边界**（第一次出现的位置）或**右边界**（最后一次出现的位置）。这两种变体只需在找到目标后，继续向左或向右收缩搜索区间即可实现：
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+**查找左侧边界（最左侧的 target）：**
+
+```go
+left, right := 0, len(nums)-1
+for left <= right {
+    mid := left + (right-left)/2
+    if nums[mid] < target {
+        left = mid + 1
+    } else if nums[mid] > target {
+        right = mid - 1
+    } else {
+        right = mid - 1  // ← 关键：找到后继续向左收缩
+    }
+}
+// 检查越界和是否找到
+if left >= len(nums) || nums[left] != target {
+    return -1
+}
+return left
+```
+
+</td>
+<td width="50%" valign="top">
+
+**查找右侧边界（最右侧的 target）：**
+
+```go
+left, right := 0, len(nums)-1
+for left <= right {
+    mid := left + (right-left)/2
+    if nums[mid] < target {
+        left = mid + 1
+    } else if nums[mid] > target {
+        right = mid - 1
+    } else {
+        left = mid + 1  // ← 关键：找到后继续向右收缩
+    }
+}
+// 检查越界和是否找到
+if right < 0 || nums[right] != target {
+    return -1
+}
+return right
+```
+
+</td>
+</tr>
+</table>
+
+**左右边界的应用场景：**
+
+- 在有序数组中查找元素的第一次和最后一次出现位置
+- 统计某个元素在有序数组中出现的次数：`count = rightBound - leftBound + 1`
+- LeetCode 经典题目：[34. Find First and Last Position of Element in Sorted Array](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
+
 ---
 
 ##### 平衡二叉搜索树（AVL Tree）
@@ -194,7 +266,7 @@ for left < right {  // ← 用 <
 - 在 AVL 树中，任一节点左右子树高差只会有-1、0、1 三个值
 - 四种旋转情况的选择条件：
 
-<div style="margin-left: 4em;" markdown="1">
+<div style="margin-left: 2em;" markdown="1">
 
 | 失衡节点的平衡因子 | 子节点的平衡因子 | 应采用的旋转方法 |
 | :----------------- | :--------------- | :--------------- |
