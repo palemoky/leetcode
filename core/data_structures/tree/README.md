@@ -140,18 +140,22 @@ BST 有两种不同的写法，处理细节也不同：
 
 <table>
 <tr>
-<td width="50%" valign="top">
+<td width="50%" valign="top" markdown="1">
 
 **闭区间 `[left, right]` 写法：**
 
 ```go
 left, right := 0, len(nums)-1
-for left <= right {  // ← 闭区间必须用 <=，以确保所有元素都被搜索
-    mid := left + (right-left)/2 // ← 避免 int 溢出
+// 闭区间必须用 <=，以确保所有元素都被搜索
+for left <= right {
+    // 避免 int 溢出
+    mid := left + (right-left)/2
     if nums[mid] < target {
-        left = mid + 1   // 排除 mid 并查找右侧区间
+        // 排除 mid 并查找右侧区间
+        left = mid + 1
     } else if nums[mid] > target {
-        right = mid - 1  // 排除 mid 并查找左侧区间
+        // 排除 mid 并查找左侧区间
+        right = mid - 1
     } else {
         return mid
     }
@@ -159,18 +163,20 @@ for left <= right {  // ← 闭区间必须用 <=，以确保所有元素都被�
 ```
 
 </td>
-<td width="50%" valign="top">
+<td width="50%" valign="top" markdown="1">
 
 **左闭右开 `[left, right)` 写法：**
 
 ```go
-left, right := 0, len(nums)  // ← right 初始化为 len(nums)
-for left < right {  // ← 用 <
+// right 初始化为 len(nums)
+left, right := 0, len(nums)
+for left < right {  // 用 <
     mid := left + (right-left)/2
     if nums[mid] < target {
         left = mid + 1
     } else if nums[mid] > target {
-        right = mid  // ← 不减1，因为 right 本身不包含
+        // 不减1，因为 right 本身不包含
+        right = mid
     } else {
         return mid
     }
@@ -181,11 +187,11 @@ for left < right {  // ← 用 <
 </tr>
 </table>
 
-以上是基础的二分查找，当找到目标值后立即返回。但在实际应用中，**数组可能包含重复元素**，此时我们需要找到目标值的**左边界**（第一次出现的位置）或**右边界**（最后一次出现的位置）。这两种变体只需在找到目标后，继续向左或向右收缩搜索区间即可实现：
+以上是基础的二分查找，当找到目标值后立即返回。但在实际应用中，**数组可能包含重复元素**，此时我们需要找到目标值的 **左边界**（第一次出现的位置）或 **右边界**（最后一次出现的位置）。这两种变体只需在找到目标后，继续向左或向右收缩搜索区间即可实现：
 
 <table>
 <tr>
-<td width="50%" valign="top">
+<td width="50%" valign="top" markdown="1">
 
 **查找左侧边界（最左侧的 target）：**
 
@@ -209,7 +215,7 @@ return left
 ```
 
 </td>
-<td width="50%" valign="top">
+<td width="50%" valign="top" markdown="1">
 
 **查找右侧边界（最右侧的 target）：**
 
