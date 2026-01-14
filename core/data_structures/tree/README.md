@@ -131,6 +131,26 @@ LeetCode 经典题目
 >
 > 由于主流编程语言 **整数除法向下取整**，因此偶数长度的数组，mid 会 **居中偏左**，奇数长度的数组则在正中间。
 
+!!! tip "二分查找"
+
+```go
+package main
+
+func main() {
+
+}
+```
+
+???+ note "二分查找"
+
+```go
+package main
+
+func main() {
+
+}
+```
+
 BST 有两种不同的写法，处理细节也不同：
 
 |           写法           | 初始化 right  |    循环条件     |    更新 right     |
