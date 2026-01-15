@@ -14,10 +14,10 @@ func buildTree(vals []any) *TreeNode {
 
 	nodes := make([]*TreeNode, len(vals))
 	for i, v := range vals {
-		if v == nil {
-			nodes[i] = nil
-		} else {
-			nodes[i] = &TreeNode{Val: v.(int)}
+		if v != nil {
+			if val, ok := v.(int); ok {
+				nodes[i] = &TreeNode{Val: val}
+			}
 		}
 	}
 
@@ -27,11 +27,11 @@ func buildTree(vals []any) *TreeNode {
 		}
 
 		leftIdx := 2*i + 1
-		rightIdx := 2*i + 2
 		if leftIdx < len(vals) {
 			nodes[i].Left = nodes[leftIdx]
 		}
 
+		rightIdx := 2*i + 2
 		if rightIdx < len(vals) {
 			nodes[i].Right = nodes[rightIdx]
 		}

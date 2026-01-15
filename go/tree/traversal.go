@@ -212,7 +212,7 @@ func postorderIterative(root *TreeNode) []int {
 	return nums
 }
 
-// 颜色标记法，只需调整入栈顺序即可可通杀前、中、后序的遍历
+// 颜色标记法，只需调整入栈顺序即可通杀前、中、后序的遍历
 const (
 	WHITE = 0
 	BLACK = 1
