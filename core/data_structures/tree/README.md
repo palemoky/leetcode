@@ -48,7 +48,7 @@
 
 由于完全二叉树的性质，使其在数组中可以被连续存储（数组索引可按 1-based 或 0-based 约定）。
 
-![Complete Binary Tree Array Index](complete_binary_tree_array_index.png){ align=right width=50% }
+![Complete Binary Tree Array Index](complete_binary_tree_array_index.png){ align=right width=30% }
 
 | 节点关系   | 1-based 索引                             | 0-based 索引                               |
 | ---------- | ---------------------------------------- | ------------------------------------------ |
@@ -76,7 +76,7 @@
 
 常见操作的时间复杂度：
 
-[![Heap Sort](heap_sort_video_thumbnail.png){ align=right width=40% }](https://www.bilibili.com/video/BV1HYtseiEQ8)
+[![Heap Sort](heap_sort_video_thumbnail.png){ align=right width=20% }](https://www.bilibili.com/video/BV1HYtseiEQ8)
 
 - push / pop（上浮或下沉）: $O(log n)$。建堆时，需要不断比较插入元素与插入位置元素的大小，插入后还要对子节点沉浮以保证堆的有序性。
 - peek / top: $O(1)$
