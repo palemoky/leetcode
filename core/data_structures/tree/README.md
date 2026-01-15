@@ -48,7 +48,7 @@
 
 由于完全二叉树的性质，使其在数组中可以被连续存储（数组索引可按 1-based 或 0-based 约定）。
 
-![Complete Binary Tree Array Index](complete_binary_tree_array_index.png){ align=right width=40% }
+![Complete Binary Tree Array Index](complete_binary_tree_array_index.png){ align=right width=35% }
 
 | 节点关系   | 1-based 索引                             | 0-based 索引                               |
 | ---------- | ---------------------------------------- | ------------------------------------------ |
