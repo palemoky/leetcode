@@ -59,9 +59,7 @@
   - 右孩子：$2*i+2$
   - 父亲：$\left\lfloor \frac{i-1}{2} \right\rfloor$
 
-<p align="center">
-    <img src="complete_binary_tree_array_index.png" alt="Complete Binary Tree Array Index" width="50%" />
-</p>
+![Complete Binary Tree Array Index](complete_binary_tree_array_index.png){ align=right width=50% }
 
 ---
 
