@@ -23,7 +23,7 @@
   </thead>
   <tbody>
     <tr>
-      <td markdown="1">**冒泡排序**<br />（bubble sort）</td>
+      <td><strong>冒泡排序</strong><br />（bubble sort）</td>
       <td>数组</td>
       <td>✓</td>
       <td>✓</td>
@@ -35,23 +35,23 @@
       <td markdown="1">[冒泡排序](https://www.bilibili.com/video/BV181421876R)</td>
     </tr>
     <tr>
-      <td rowspan="2" markdown="1">**选择排序**<br />（selection sort）</td>
+      <td rowspan="2" valign="middle"><strong>选择排序</strong><br />（selection sort）</td>
       <td>数组</td>
       <td>×</td>
-      <td rowspan="2">✓</td>
-      <td rowspan="2" markdown="1">$O(n^2)$</td>
-      <td rowspan="2" markdown="1">$O(1)$</td>
-      <td rowspan="2">每轮选择剩余元素中的最小值，放到前面</td>
-      <td rowspan="2">(有序区, 无序区)。<br />在无序区里找一个最小的元素跟在有序区的后面。对数组：比较得多，换得少。</td>
-      <td rowspan="2">数据量小</td>
-      <td rowspan="2" markdown="1">[选择排序](https://www.bilibili.com/video/BV1kjsuenE8v)</td>
+      <td rowspan="2" valign="middle">✓</td>
+      <td rowspan="2" valign="middle" markdown="1">$O(n^2)$</td>
+      <td rowspan="2" valign="middle" markdown="1">$O(1)$</td>
+      <td rowspan="2" valign="middle">每轮选择剩余元素中的最小值，放到前面</td>
+      <td rowspan="2" valign="middle">(有序区, 无序区)。<br />在无序区里找一个最小的元素跟在有序区的后面。对数组：比较得多，换得少。</td>
+      <td rowspan="2" valign="middle">数据量小</td>
+      <td rowspan="2" valign="middle" markdown="1">[选择排序](https://www.bilibili.com/video/BV1kjsuenE8v)</td>
     </tr>
     <tr>
       <td>链表</td>
       <td>✓</td>
     </tr>
     <tr>
-      <td markdown="1">**插入排序**<br />（insertion sort）</td>
+      <td><strong>插入排序</strong><br />（insertion sort）</td>
       <td>数组、链表</td>
       <td>✓</td>
       <td>✓</td>
@@ -63,7 +63,7 @@
       <td></td>
     </tr>
     <tr>
-      <td markdown="1">**堆排序**<br />（heap sort）</td>
+      <td><strong>堆排序</strong><br />（heap sort）</td>
       <td>数组</td>
       <td>×</td>
       <td>✓</td>
@@ -75,16 +75,16 @@
       <td markdown="1">[堆排序](https://www.bilibili.com/video/BV1HYtseiEQ8)</td>
     </tr>
     <tr>
-      <td rowspan="2" markdown="1">**归并排序**<br />（merge sort）</td>
+      <td rowspan="2" valign="middle"><strong>归并排序</strong><br />（merge sort）</td>
       <td>数组</td>
-      <td rowspan="2">✓</td>
-      <td rowspan="2">✓</td>
+      <td rowspan="2" valign="middle">✓</td>
+      <td rowspan="2" valign="middle">✓</td>
       <td markdown="1">$O(n \log n)$</td>
       <td markdown="1">$O(n) + O(\log n)$</td>
-      <td rowspan="2">递归分组，合并有序子数组</td>
-      <td rowspan="2">把数据分为两段，从两段中逐个选最小的元素移入新数据段的末尾。可从上到下或从下到上进行。</td>
-      <td rowspan="2">大数据、链表排序、稳定性要求高</td>
-      <td rowspan="2" markdown="1">[归并排序](https://www.bilibili.com/video/BV1em1oYTEFf)</td>
+      <td rowspan="2" valign="middle">递归分组，合并有序子数组</td>
+      <td rowspan="2" valign="middle">把数据分为两段，从两段中逐个选最小的元素移入新数据段的末尾。可从上到下或从下到上进行。</td>
+      <td rowspan="2" valign="middle">大数据、链表排序、稳定性要求高</td>
+      <td rowspan="2" valign="middle" markdown="1">[归并排序](https://www.bilibili.com/video/BV1em1oYTEFf)</td>
     </tr>
     <tr>
       <td>链表</td>
@@ -92,23 +92,23 @@
       <td markdown="1">$O(1)$</td>
     </tr>
     <tr>
-      <td rowspan="2" markdown="1">**快速排序**<br />（quick sort）</td>
+      <td rowspan="2" valign="middle"><strong>快速排序</strong><br />（quick sort）</td>
       <td>数组</td>
       <td>×</td>
-      <td rowspan="2">✓</td>
-      <td rowspan="2" markdown="1">$O(n \log n)$ / $O(n^2)$</td>
-      <td rowspan="2" markdown="1">$O(\log n)$</td>
-      <td rowspan="2">选定基准，分区递归排序左右两部分</td>
-      <td rowspan="2">(小数, 基准元素, 大数)。<br />在区间中随机挑选一个元素作基准，将小于基准的元素放在基准之前，大于基准的元素放在基准之后，再分别对小数区与大数区进行排序。</td>
-      <td rowspan="2">通用、高效排序</td>
-      <td rowspan="2" markdown="1">[快速排序](https://www.bilibili.com/video/BV1y4421Z7hK)</td>
+      <td rowspan="2" valign="middle">✓</td>
+      <td rowspan="2" valign="middle" markdown="1">$O(n \log n)$ / $O(n^2)$</td>
+      <td rowspan="2" valign="middle" markdown="1">$O(\log n)$</td>
+      <td rowspan="2" valign="middle">选定基准，分区递归排序左右两部分</td>
+      <td rowspan="2" valign="middle">(小数, 基准元素, 大数)。<br />在区间中随机挑选一个元素作基准，将小于基准的元素放在基准之前，大于基准的元素放在基准之后，再分别对小数区与大数区进行排序。</td>
+      <td rowspan="2" valign="middle">通用、高效排序</td>
+      <td rowspan="2" valign="middle" markdown="1">[快速排序](https://www.bilibili.com/video/BV1y4421Z7hK)</td>
     </tr>
     <tr>
       <td>链表</td>
       <td>✓</td>
     </tr>
     <tr>
-      <td markdown="1">**希尔排序**<br />（shell sort）</td>
+      <td><strong>希尔排序</strong><br />（shell sort）</td>
       <td>数组</td>
       <td>×</td>
       <td>✓</td>
@@ -120,26 +120,26 @@
       <td></td>
     </tr>
     <tr>
-      <td markdown="1">**计数排序**<br />（counting sort）</td>
-      <td rowspan="3">数组、链表</td>
-      <td rowspan="3">✓</td>
-      <td rowspan="3">×</td>
+      <td><strong>计数排序</strong><br />（counting sort）</td>
+      <td rowspan="3" valign="middle">数组、链表</td>
+      <td rowspan="3" valign="middle">✓</td>
+      <td rowspan="3" valign="middle">×</td>
       <td markdown="1">$O(n + m)$</td>
       <td markdown="1">$O(n + m)$</td>
-      <td rowspan="3">利用元素值域特性进行分组计数或分桶</td>
+      <td rowspan="3" valign="middle">利用元素值域特性进行分组计数或分桶</td>
       <td>统计小于等于该元素的值的元素的个数 i，于是该元素就放在目标数组的索引 i 位 (i≥0)。</td>
-      <td rowspan="3">数据范围有限、整数排序</td>
+      <td rowspan="3" valign="middle">数据范围有限、整数排序</td>
       <td></td>
     </tr>
     <tr>
-      <td markdown="1">**桶排序**<br />（bucket sort）</td>
+      <td><strong>桶排序</strong><br />（bucket sort）</td>
       <td markdown="1">$O(n)$ / $O(n^2)$</td>
       <td markdown="1">$O(m)$</td>
       <td>将值为 i 的元素放入 i 号桶，最后依次把桶里的元素倒出来。</td>
       <td></td>
     </tr>
     <tr>
-      <td markdown="1">**基数排序**<br />（radix sort）</td>
+      <td><strong>基数排序</strong><br />（radix sort）</td>
       <td markdown="1">$O(k \times n)$ / $O(n^2)$</td>
       <td markdown="1">$O(n)$</td>
       <td>一种多关键字的排序算法，可用桶排序实现。</td>
@@ -193,11 +193,9 @@
     <tr>
       <td align="center" valign="bottom">
         <img src="sorting_stable.png" alt="稳定排序" width="70%" /><br />
-        <sub style="font-size: 14px;">稳定排序</sub>
       </td>
       <td align="center" valign="bottom">
         <img src="sorting_unstable.png" alt="不稳定排序" width="70%" /><br />
-        <sub style="font-size: 14px;">不稳定排序</sub>
       </td>
     </tr>
   </table>
