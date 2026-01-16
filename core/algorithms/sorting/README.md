@@ -8,16 +8,16 @@
 
 <table style="table-layout: fixed; width: 100%;">
   <colgroup>
-    <col style="width: 8%;">
-    <col style="width: 6%;">
-    <col style="width: 5%;">
-    <col style="width: 5%;">
-    <col style="width: 10%;">
-    <col style="width: 8%;">
-    <col style="width: 12%;">
-    <col style="width: 20%;">
-    <col style="width: 10%;">
-    <col style="width: 6%;">
+    <col style="width: 10% !important;">
+    <col style="width: 8% !important;">
+    <col style="width: 6% !important;">
+    <col style="width: 6% !important;">
+    <col style="width: 12% !important;">
+    <col style="width: 10% !important;">
+    <col style="width: 15% !important;">
+    <col style="width: 18% !important;">
+    <col style="width: 10% !important;">
+    <col style="width: 5% !important;">
   </colgroup>
   <thead>
     <tr>
