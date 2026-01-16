@@ -37,7 +37,7 @@
 🌟 最终结果：6
         </pre>
         <br/>
-        <sub style="font-size: 14px;">\($3!$\) 递归调用栈示意图</sub>
+        <sub style="font-size: 14px;">3! 递归调用栈示意图</sub>
       </td>
     </tr>
   </table>
