@@ -18,5 +18,3 @@
 - [最大公约数与最小公倍数 (GCD & LCM)](GCD&LCM/README.md)
 - [位运算技巧](../patterns/bit_manipulation/README.md)
 - [矩阵运算](matrix/README.md)
-- [约瑟夫环问题](josephus/README.md)
-- [博弈论](game_theory/README.md)
