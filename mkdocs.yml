@@ -169,7 +169,7 @@ nav:
       - 单调栈: patterns/monotonic_stack/README.md
       - N数之和: patterns/n_sum/README.md
       - N次方问题: patterns/power_of_n/README.md
-      - 位运算: patterns/bitwise_operation/README.md
+      - 位运算: patterns/bit_manipulation/README.md
       - 数学模拟: patterns/elementary_math_simulation/README.md
   - 数学:
       - 数学概览: math/README.md
