@@ -7,18 +7,30 @@
 ## 十大常用基础排序算法
 
 <table style="table-layout: fixed; width: 100%;">
+  <colgroup>
+    <col style="width: 8%;">
+    <col style="width: 6%;">
+    <col style="width: 5%;">
+    <col style="width: 5%;">
+    <col style="width: 10%;">
+    <col style="width: 8%;">
+    <col style="width: 12%;">
+    <col style="width: 20%;">
+    <col style="width: 10%;">
+    <col style="width: 6%;">
+  </colgroup>
   <thead>
     <tr>
-      <th style="width: 8%;">名称</th>
-      <th style="width: 6%;">数据对象</th>
-      <th style="width: 5%;">稳定性</th>
-      <th style="width: 5%;">比较类</th>
-      <th style="width: 10%;">时间复杂度（平均/最坏）</th>
-      <th style="width: 8%;">空间复杂度</th>
-      <th style="width: 12%;">原理</th>
-      <th style="width: 20%;">描述</th>
-      <th style="width: 10%;">适用场景</th>
-      <th style="width: 6%;">动画</th>
+      <th>名称</th>
+      <th>数据对象</th>
+      <th>稳定性</th>
+      <th>比较类</th>
+      <th>时间复杂度（平均/最坏）</th>
+      <th>空间复杂度</th>
+      <th>原理</th>
+      <th>描述</th>
+      <th>适用场景</th>
+      <th>动画</th>
     </tr>
   </thead>
   <tbody>
