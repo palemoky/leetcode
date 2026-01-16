@@ -1,6 +1,7 @@
 site_name: 算法笔记
 site_description: 算法与数据结构学习笔记，涵盖核心算法模式、数据结构实现与经典题解
 site_author: palemoky
+site_url: https://algo.palemoky.com
 repo_url: https://github.com/palemoky/leetcode
 repo_name: palemoky/leetcode
 edit_uri: edit/main/core/
