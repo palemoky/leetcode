@@ -130,34 +130,34 @@ extra:
 nav:
   - 首页: index.md
   - 算法:
-      - algorithms/README.md
-      - algorithms/backtracking/README.md
-      - algorithms/dp/README.md
-      - algorithms/greedy/README.md
-      - algorithms/recursion/README.md
-      - algorithms/sorting/README.md
+      - 算法概览: algorithms/README.md
+      - 递归: algorithms/recursion/README.md
+      - 动态规划: algorithms/dp/README.md
+      - 贪心算法: algorithms/greedy/README.md
+      - 回溯算法: algorithms/backtracking/README.md
+      - 排序算法: algorithms/sorting/README.md
   - 数据结构:
-      - data_structures/README.md
-      - data_structures/graph/README.md
-      - data_structures/hash_table/README.md
-      - data_structures/linked_list/README.md
-      - data_structures/queue/README.md
-      - data_structures/stack/README.md
-      - data_structures/tree/README.md
-      - data_structures/trie/README.md
-      - data_structures/union_find/README.md
+      - 数据结构概览: data_structures/README.md
+      - 哈希表: data_structures/hash_table/README.md
+      - 栈: data_structures/stack/README.md
+      - 队列: data_structures/queue/README.md
+      - 链表: data_structures/linked_list/README.md
+      - 树: data_structures/tree/README.md
+      - 字典树: data_structures/trie/README.md
+      - 图: data_structures/graph/README.md
+      - 并查集: data_structures/union_find/README.md
+  - 算法模式:
+      - 模式概览: patterns/README.md
+      - 双指针: patterns/two_pointers/README.md
+      - 滑动窗口: patterns/sliding_window/README.md
+      - 二分查找: patterns/binary_search/README.md
+      - 前缀和: patterns/prefix_sum/README.md
+      - 差分数组: patterns/difference_array/README.md
+      - 单调栈: patterns/monotonic_stack/README.md
+      - N数之和: patterns/n_sum/README.md
+      - N次方问题: patterns/power_of_n/README.md
+      - 数学模拟: patterns/elementary_math_simulation/README.md
   - 数学:
-      - math/README.md
-      - math/GCD&LCM/README.md
-      - math/matrix/README.md
-  - 模式:
-      - patterns/README.md
-      - patterns/binary_search/README.md
-      - patterns/difference_array/README.md
-      - patterns/elementary_math_simulation/README.md
-      - patterns/monotonic_stack/README.md
-      - patterns/n_sum/README.md
-      - patterns/power_of_n/README.md
-      - patterns/prefix_sum/README.md
-      - patterns/sliding_window/README.md
-      - patterns/two_pointers/README.md
+      - 数学概览: math/README.md
+      - 最大公约数与最小公倍数: math/GCD&LCM/README.md
+      - 矩阵运算: math/matrix/README.md
