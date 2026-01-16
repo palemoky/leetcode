@@ -4,9 +4,9 @@
 
 1. 我们从地面开始下地下室，每到达一层都有 3 种选择：
 
-   - 把东西打包好带上 → 前序遍历（已知当前层，未知后续层）
-   - 先把东西打包好，等到返回地面时再带走 → 中序遍历（仅限 BST）
-   - 在触底返回时打包带走 → 后序遍历（已知所有走过的路）
+   1. 把东西打包好带上 → 前序遍历（已知当前层，未知后续层）
+   2. 先把东西打包好，等到返回地面时再带走 → 中序遍历（仅限 BST）
+   3. 在触底返回时打包带走 → 后序遍历（已知所有走过的路）
 
 2. 触底时开始返回
 3. 返回地面时，我们取回所有所需物品，递归结束。
@@ -54,5 +54,5 @@
 
 ## 经典题目
 
-[70. 爬楼梯](https://github.com/palemoky/leetcode/blob/main/go/solutions/0070_climbing_stairs/climbing_stairs.go)
-[509. 斐波那契数](https://github.com/palemoky/leetcode/blob/main/go/solutions/0509_fibonacci_number/fibonacci_number.go)
+- [70. 爬楼梯](https://github.com/palemoky/leetcode/blob/main/go/solutions/0070_climbing_stairs/climbing_stairs.go)
+- [509. 斐波那契数](https://github.com/palemoky/leetcode/blob/main/go/solutions/0509_fibonacci_number/fibonacci_number.go)
