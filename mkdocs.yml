@@ -3,6 +3,7 @@ site_description: 算法与数据结构学习笔记，涵盖核心算法模式�
 site_author: palemoky
 repo_url: https://github.com/palemoky/leetcode
 repo_name: palemoky/leetcode
+edit_uri: edit/main/core/
 
 theme:
   name: material
