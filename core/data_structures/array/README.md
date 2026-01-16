@@ -1,6 +1,6 @@
 # 数组
 
-数组（Array）是最基础、最常用的数据结构，它在**连续的内存空间**中存储相同类型的元素，通过**索引**实现 \(O(1)\) 时间复杂度的随机访问。
+数组（Array）是最基础、最常用的数据结构，它在 **连续的内存空间** 中存储相同类型的元素，通过 **索引** 实现 \(O(1)\) 时间复杂度的随机访问。
 
 ![Complete Binary Tree Array Index](../tree/complete_binary_tree_array_index.png){ align=right width=35% }
 
