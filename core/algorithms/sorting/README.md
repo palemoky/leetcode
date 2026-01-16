@@ -6,19 +6,7 @@
 
 ## 十大常用基础排序算法
 
-<table style="table-layout: fixed; width: 100%;">
-  <colgroup>
-    <col style="width: 10% !important;">
-    <col style="width: 8% !important;">
-    <col style="width: 6% !important;">
-    <col style="width: 6% !important;">
-    <col style="width: 12% !important;">
-    <col style="width: 10% !important;">
-    <col style="width: 15% !important;">
-    <col style="width: 18% !important;">
-    <col style="width: 10% !important;">
-    <col style="width: 5% !important;">
-  </colgroup>
+<table>
   <thead>
     <tr>
       <th>名称</th>

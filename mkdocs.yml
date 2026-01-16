@@ -138,6 +138,7 @@ nav:
       - 排序算法: algorithms/sorting/README.md
   - 数据结构:
       - 数据结构概览: data_structures/README.md
+      - 数组: data_structures/array/README.md
       - 哈希表: data_structures/hash_table/README.md
       - 栈: data_structures/stack/README.md
       - 队列: data_structures/queue/README.md
