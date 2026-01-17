@@ -14,7 +14,7 @@ diff[0] = nums[0]
 ```
 
 <p align="center">
-    <img src="difference_array.png" alt="Difference Array Overview" width="60%" />
+    <img src="difference_array.webp" alt="Difference Array Overview" width="60%" />
 </p>
 
 **关键性质：**
@@ -27,7 +27,7 @@ diff[0] = nums[0]
   ```
 
 <p align="center">
-    <img src="restore_from_diff.png" alt="Restore from Difference Array" width="60%" />
+    <img src="restore_from_diff.webp" alt="Restore from Difference Array" width="60%" />
 </p>
 
 - 对区间 `[left, right]` 加上 `val`，只需修改两个位置：
@@ -35,7 +35,7 @@ diff[0] = nums[0]
   - `diff[right+1] -= val`
 
 <p align="center">
-    <img src="increment.png" alt="Increment Operation" width="40%" />
+    <img src="increment.webp" alt="Increment Operation" width="40%" />
     <p align="center"><em>对 nums[1, 3] 区间加 3</em></p>
 </p>
 注意：因为对数组区间修改时，操作的是 `diff[right+1]`，因此通常 `len(diff) = len(nums) + 1`，以避免数组越界。
