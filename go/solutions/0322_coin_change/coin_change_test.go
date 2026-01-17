@@ -15,54 +15,53 @@ func TestCoinChange(t *testing.T) {
 		amount int
 		want   int
 	}{
-		{
-			name:   "Example 1",
-			coins:  []int{1, 2, 5},
-			amount: 11,
-			want:   3, // 5 + 5 + 1
-		},
-		{
-			name:   "Example 2",
-			coins:  []int{2},
-			amount: 3,
-			want:   -1, // 无法凑成
-		},
-		{
-			name:   "Example 3",
-			coins:  []int{1},
-			amount: 0,
-			want:   0,
-		},
-		{
-			name:   "Greedy fails",
-			coins:  []int{1, 3, 4},
-			amount: 6,
-			want:   2, // 3 + 3 (贪心会得到 4 + 1 + 1 = 3)
-		},
-		{
-			name:   "Single coin exact",
-			coins:  []int{5},
-			amount: 5,
-			want:   1,
-		},
-		{
-			name:   "Multiple coins same result",
-			coins:  []int{1, 2, 5},
-			amount: 5,
-			want:   1, // 直接用 5
-		},
-		{
-			name:   "Large amount",
-			coins:  []int{1, 2, 5},
-			amount: 100,
-			want:   20, // 20 个 5
-		},
+		{"Example 1", []int{1, 2, 5}, 11, 3},      // 5 + 5 + 1
+		{"Example 2", []int{2}, 3, -1},            // 无法凑成
+		{"Example 3", []int{1}, 0, 0},             // 金额为0
+		{"Greedy fails", []int{1, 3, 4}, 6, 2},    // 3 + 3 (贪心会得到 4 + 1 + 1 = 3)
+		{"Single coin exact", []int{5}, 5, 1},     // 恰好一枚
+		{"Multiple coins", []int{1, 2, 5}, 5, 1},  // 直接用 5
+		{"Large amount", []int{1, 2, 5}, 100, 20}, // 20 个 5
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.name, func(t *testing.T) {
-			got := coinChange(tc.coins, tc.amount)
-			assert.Equal(t, tc.want, got, "coins=%v, amount=%d", tc.coins, tc.amount)
+	// 暴力递归：仅测试小规模用例，避免超时
+	smallTestCases := []struct {
+		name   string
+		coins  []int
+		amount int
+		want   int
+	}{
+		{"Example 1", []int{1, 2, 5}, 11, 3},
+		{"Example 2", []int{2}, 3, -1},
+		{"Example 3", []int{1}, 0, 0},
+		{"Greedy fails", []int{1, 3, 4}, 6, 2},
+		{"Single coin exact", []int{5}, 5, 1},
+		{"Multiple coins", []int{1, 2, 5}, 5, 1},
+	}
+
+	funcsToTest := map[string]struct {
+		fn        func([]int, int) int
+		testCases []struct {
+			name   string
+			coins  []int
+			amount int
+			want   int
+		}
+	}{
+		"BruteForce": {coinChangeBruteForce, smallTestCases}, // 仅测试小规模
+		"Memoized":   {coinChangeMemo, testCases},
+		"DP":         {coinChange, testCases},
+	}
+
+	for fnName, config := range funcsToTest {
+		t.Run(fnName, func(t *testing.T) {
+			for _, tc := range config.testCases {
+				t.Run(tc.name, func(t *testing.T) {
+					t.Parallel()
+					got := config.fn(tc.coins, tc.amount)
+					assert.Equal(t, tc.want, got, "coins=%v, amount=%d", tc.coins, tc.amount)
+				})
+			}
 		})
 	}
 }

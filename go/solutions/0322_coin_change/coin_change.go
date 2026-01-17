@@ -35,7 +35,82 @@ func coinChangeErr(coins []int, amount int) int {
 	return nums
 }
 
-// coinChange 使用动态规划（正确解法）
+// 解法一：使用暴力递归（自顶向下）
+// 思路：对于每个金额，尝试使用每一种硬币，递归求解剩余金额
+// 问题：存在大量重复计算，时间复杂度指数级
+// Time: O(len(coins)^amount), Space: O(amount) 递归栈深度
+func coinChangeBruteForce(coins []int, amount int) int {
+	// 基础情况
+	if amount == 0 {
+		return 0
+	}
+	if amount < 0 {
+		return -1
+	}
+
+	minCoins := amount + 1 // 初始化为不可能的大值
+
+	// 尝试使用每一种硬币
+	for _, coin := range coins {
+		subResult := coinChangeBruteForce(coins, amount-coin)
+		// 如果子问题有解，更新最小值
+		if subResult >= 0 {
+			minCoins = min(minCoins, subResult+1)
+		}
+	}
+
+	// 如果没有找到解决方案
+	if minCoins > amount {
+		return -1
+	}
+
+	return minCoins
+}
+
+// 解法一优化：使用记忆化递归（自顶向下优化）
+// 思路：在暴力递归的基础上，使用 memo 缓存已计算的结果
+// Time: O(amount × len(coins)), Space: O(amount)
+func coinChangeMemo(coins []int, amount int) int {
+	memo := make(map[int]int)
+	return coinChangeMemoHelper(coins, amount, memo)
+}
+
+func coinChangeMemoHelper(coins []int, amount int, memo map[int]int) int {
+	// 基础情况
+	if amount == 0 {
+		return 0
+	}
+	if amount < 0 {
+		return -1
+	}
+
+	// 检查缓存
+	if val, ok := memo[amount]; ok {
+		return val
+	}
+
+	minCoins := amount + 1 // 初始化为不可能的大值
+
+	// 尝试使用每一种硬币
+	for _, coin := range coins {
+		subResult := coinChangeMemoHelper(coins, amount-coin, memo)
+		// 如果子问题有解，更新最小值
+		if subResult >= 0 {
+			minCoins = min(minCoins, subResult+1)
+		}
+	}
+
+	// 缓存结果
+	if minCoins > amount {
+		memo[amount] = -1
+	} else {
+		memo[amount] = minCoins
+	}
+
+	return memo[amount]
+}
+
+// 解法二：使用动态规划（自底向上）
 // dp[i] 表示凑成金额 i 所需的最少硬币数
 // 状态转移方程：dp[i] = min(dp[i], dp[i-coin]+1)
 // 含义：要凑成金额 i，可以先凑成 i-coin，再加一枚面值为 coin 的硬币
