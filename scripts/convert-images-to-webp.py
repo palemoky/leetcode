@@ -20,8 +20,22 @@ def check_cwebp():
     except (subprocess.CalledProcessError, FileNotFoundError):
         return False
 
+def check_alpha_channel(image_path):
+    """Check if image has alpha channel (transparency)"""
+    try:
+        from PIL import Image
+        with Image.open(image_path) as img:
+            # Check if image has alpha channel
+            return img.mode in ('RGBA', 'LA', 'PA') or \
+                   (img.mode == 'P' and 'transparency' in img.info)
+    except ImportError:
+        # Fallback: assume PNG files might have transparency
+        return image_path.suffix.lower() == '.png'
+    except Exception:
+        return False
+
 def convert_to_webp(image_path):
-    """Convert image to WebP format"""
+    """Convert image to WebP format with smart compression"""
     webp_path = image_path.with_suffix('.webp')
 
     # Skip if WebP already exists and is newer
@@ -38,16 +52,30 @@ def convert_to_webp(image_path):
                 str(image_path),
                 '-o', str(webp_path)
             ], check=True, capture_output=True)
+            print(f"  ✓ Converted (GIF): {image_path.name} -> {webp_path.name}")
         else:
-            # Use cwebp for PNG/JPG
-            subprocess.run([
-                'cwebp',
-                '-q', '85',  # Quality 85
-                str(image_path),
-                '-o', str(webp_path)
-            ], check=True, capture_output=True)
+            # Check for transparency
+            has_alpha = check_alpha_channel(image_path)
 
-        print(f"  ✓ Converted: {image_path.name} -> {webp_path.name}")
+            if has_alpha:
+                # Transparent images: use lossless compression
+                subprocess.run([
+                    'cwebp',
+                    '-lossless',  # Lossless preserves transparency perfectly
+                    str(image_path),
+                    '-o', str(webp_path)
+                ], check=True, capture_output=True)
+                print(f"  ✓ Converted (lossless): {image_path.name} -> {webp_path.name}")
+            else:
+                # Opaque images: use lossy compression
+                subprocess.run([
+                    'cwebp',
+                    '-q', '85',  # Quality 85
+                    str(image_path),
+                    '-o', str(webp_path)
+                ], check=True, capture_output=True)
+                print(f"  ✓ Converted (lossy): {image_path.name} -> {webp_path.name}")
+
         return webp_path
     except subprocess.CalledProcessError as e:
         print(f"  ✗ Failed to convert {image_path.name}: {e}", file=sys.stderr)
