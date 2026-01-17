@@ -13,45 +13,16 @@ func TestFibonacci(t *testing.T) {
 		input    int
 		expected int
 	}{
-		{
-			name:     "Base case: n = 0",
-			input:    0,
-			expected: 0,
-		},
-		{
-			name:     "Base case: n = 1",
-			input:    1,
-			expected: 1,
-		},
-		{
-			name:     "Small number: n = 2",
-			input:    2,
-			expected: 1,
-		},
-		{
-			name:     "Standard case: n = 5",
-			input:    5,
-			expected: 5,
-		},
-		{
-			name:     "Larger number: n = 10",
-			input:    10,
-			expected: 55,
-		},
-		{
-			name:     "Even larger number: n = 20",
-			input:    20,
-			expected: 6765,
-		},
-		// {
-		// 	name:     "Edge case: negative input",
-		// 	input:    -10,
-		// 	expected: 0, // 假设我们定义负数输入的斐波那契数为0
-		// },
+		{"Base case: n = 0", 0, 0},
+		{"Base case: n = 1", 1, 1},
+		{"Small number: n = 2", 2, 1},
+		{"Standard case: n = 5", 5, 5},
+		{"Larger number: n = 10", 10, 55},
+		{"Even larger number: n = 20", 20, 6765},
 	}
 
 	funcsToTest := map[string]func(int) int{
-		"Recursive": fibRecursive, // 朴素递归对于 n=20 会很慢，可以选择性地不测试它
+		"Recursive": fibRecursive,
 		"Memoized":  fibRecursiveMemo,
 		"DP":        fibDP,
 		"Iterative": fibIterative,
@@ -61,7 +32,7 @@ func TestFibonacci(t *testing.T) {
 		t.Run(fnName, func(t *testing.T) {
 			for _, tc := range testCases {
 				t.Run(tc.name, func(t *testing.T) {
-					// 由于采用了全局变量记忆优化，导致无法使用并发测试
+					t.Parallel()
 					result := fn(tc.input)
 					assert.Equal(t, tc.expected, result)
 				})

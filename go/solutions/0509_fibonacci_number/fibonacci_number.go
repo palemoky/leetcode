@@ -9,35 +9,34 @@ package fibonacci_number
 // 思路直观，但大量重复计算导致效率极低
 // Time: O(2^n), Space: O(1)
 func fibRecursive(n int) int {
-	switch {
-	case n >= 2:
-		return fibRecursive(n-1) + fibRecursive(n-2)
-	case n >= 0:
+	if n < 2 {
 		return n
-	default: // n < 0
-		return 0
 	}
+
+	return fibRecursive(n-1) + fibRecursive(n-2)
 }
 
 // 解法一优化：递归记忆优化
 // Time: O(n), Space: O(n)
-var memo = map[int]int{}
-
 func fibRecursiveMemo(n int) int {
-	switch {
-	case n >= 2:
-		if val, ok := memo[n]; ok {
-			return val
-		}
+	memo := make(map[int]int)
+	return fibMemoHelper(n, memo)
+}
 
-		memo[n] = fibRecursiveMemo(n-2) + fibRecursiveMemo(n-1)
-
-		return memo[n]
-	case n >= 0:
+func fibMemoHelper(n int, memo map[int]int) int {
+	// 基础情况
+	if n < 2 {
 		return n
-	default: // n < 0
-		return 0
 	}
+
+	// 检查缓存
+	if val, ok := memo[n]; ok {
+		return val
+	}
+
+	// 先计算 n-1 再计算 n-2，更符合缓存局部性原理
+	memo[n] = fibMemoHelper(n-1, memo) + fibMemoHelper(n-2, memo)
+	return memo[n]
 }
 
 // 解法二：递归求解
