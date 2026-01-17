@@ -35,6 +35,5 @@ new:
 
 # Optimize images: Convert PNG/JPG to WebP
 optimize-images:
-	@echo "🖼️  Converting images to WebP..."
-	@python3 scripts/convert-images-to-webp.py
-	@echo "✅ Done! Don't forget to commit the changes."
+	@echo "🖼️  Converting all images in core/ to WebP..."
+	@python3 scripts/convert-images-to-webp.py --all
