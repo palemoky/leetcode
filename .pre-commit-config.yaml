@@ -135,7 +135,7 @@ repos:
         entry: python3 scripts/convert-images-to-webp.py
         language: system
         files: ^core/.*\.(png|jpg|jpeg|gif)$
-        pass_filenames: false
+        pass_filenames: true
 
 default_install_hook_types:
   - pre-commit

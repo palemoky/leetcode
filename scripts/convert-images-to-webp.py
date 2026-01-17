@@ -116,30 +116,38 @@ def update_markdown_references(md_file, old_image, new_image):
         return True
     return False
 
-def get_images_to_convert(all_images=False):
+def get_images_to_convert(files=None, all_images=False):
     """Get list of images to convert"""
-    if all_images:
+    if files:
+        # Convert specified files
+        return [Path(f) for f in files if Path(f).suffix.lower() in ('.png', '.jpg', '.jpeg', '.gif')]
+    elif all_images:
         # Convert all PNG/JPG/GIF images in core/
         core_dir = Path('core')
         return list(core_dir.rglob('*.png')) + list(core_dir.rglob('*.jpg')) + list(core_dir.rglob('*.jpeg')) + list(core_dir.rglob('*.gif'))
     else:
         # Convert only staged files (pre-commit hook mode)
-        result = subprocess.run(
-            ['git', 'diff', '--cached', '--name-only', '--diff-filter=ACM'],
-            capture_output=True,
-            text=True,
-            check=True
-        )
-        staged_files = result.stdout.strip().split('\n')
-        return [
-            Path(f) for f in staged_files
-            if f.startswith('core/') and f.lower().endswith(('.png', '.jpg', '.jpeg', '.gif'))
-        ]
+        # Fallback if no files are passed
+        try:
+            result = subprocess.run(
+                ['git', 'diff', '--cached', '--name-only', '--diff-filter=ACM'],
+                capture_output=True,
+                text=True,
+                check=True
+            )
+            staged_files = result.stdout.strip().split('\n')
+            return [
+                Path(f) for f in staged_files
+                if f and f.startswith('core/') and f.lower().endswith(('.png', '.jpg', '.jpeg', '.gif'))
+            ]
+        except subprocess.CalledProcessError:
+            return []
 
 def main():
     """Main function"""
     parser = argparse.ArgumentParser(description='Convert images to WebP')
     parser.add_argument('--all', action='store_true', help='Convert all images in core/ (not just staged)')
+    parser.add_argument('files', nargs='*', help='Specific files to convert')
     args = parser.parse_args()
 
     if not check_cwebp():
@@ -151,14 +159,19 @@ def main():
         sys.exit(0)
 
     # Get images to convert
-    core_images = get_images_to_convert(all_images=args.all)
+    core_images = get_images_to_convert(files=args.files, all_images=args.all)
     core_images = [img for img in core_images if img.exists()]
 
     if not core_images:
-        print("No images to convert.")
+        # Only exit/print if we explicitly expected to do something but found nothing
+        # or if we are in a mode where we expected output.
+        # But pre-commit might pass us a non-image file by mistake if regex failed (unlikely)
+        # or if we found no staged images.
+        if args.all or args.files:
+             print("No images to convert.")
         sys.exit(0)
 
-    mode = "all images" if args.all else "staged images"
+    mode = "all images" if args.all else ("specified images" if args.files else "staged images")
     print(f"\n🖼️  Found {len(core_images)} {mode} in core/ directory")
 
     converted_images = []
