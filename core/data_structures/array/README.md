@@ -2,7 +2,7 @@
 
 数组（Array）是最基础、最常用的数据结构，它在 **连续的内存空间** 中存储相同类型的元素，通过 **索引** 实现 \(O(1)\) 时间复杂度的随机访问。
 
-![Complete Binary Tree Array Index](../tree/complete_binary_tree_array_index.png){ align=right width=35% }
+![Complete Binary Tree Array Index](../tree/complete_binary_tree_array_index.webp){ align=right width=35% }
 
 数组是典型的线性结构，最贴近真实的内存和磁盘连续地址（逻辑上），因此是所有数据结构的基础。其他高级数据结构由于受限于线性的内存结构，往往需要通过数组来实现底层存储。例如：栈和队列可以用数组实现，哈希表的桶用数组存储，堆是基于数组的完全二叉树，图的邻接矩阵也是二维数组。可以说，**掌握数组就是掌握了数据结构的基石**。
 
