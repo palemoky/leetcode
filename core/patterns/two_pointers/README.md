@@ -49,7 +49,7 @@ for fast := 0; fast < len(nums); fast++ {
 以 k=2 为例：
 
 <p align="center">
-    <img src="remove_k_duplicates_from_sorted_array.webp" alt="Remove k duplicates from sorted array" width="60%">
+    <img src="remove_k_duplicates_from_sorted_array.png" alt="Remove k duplicates from sorted array" width="60%">
 </p>
 
 **代码模板**：

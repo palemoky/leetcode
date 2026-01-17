@@ -165,11 +165,11 @@
   <table border="0" cellpadding="0" cellspacing="0">
     <tr>
       <td align="center" valign="bottom">
-        <img src="quick_sorting.webp" alt="Quick Sorting" /><br />
+        <img src="quick_sorting.png" alt="Quick Sorting" /><br />
         <sub style="font-size: 14px;">快速排序示意图</sub>
       </td>
       <td align="center" valign="bottom">
-        <img src="merge_sorting.webp" alt="Merge Sorting" /><br />
+        <img src="merge_sorting.png" alt="Merge Sorting" /><br />
         <sub style="font-size: 14px;">归并排序示意图</sub>
       </td>
     </tr>
@@ -189,7 +189,7 @@
 在计算机科学中，我们通常用大 $O$ 来描述某个特定算法时间与空间随着数据规模增加而变化的趋势。
 
 <p align="center">
-    <img src="Big_O.webp" alt="Big-O Complexity Chart" width="50%" />
+    <img src="Big_O.png" alt="Big-O Complexity Chart" width="50%" />
 </p>
 
 ### 稳定性与不稳定性
@@ -200,10 +200,10 @@
   <table border="0" cellpadding="0" cellspacing="0">
     <tr>
       <td align="center" valign="bottom">
-        <img src="sorting_stable.webp" alt="稳定排序" width="70%" /><br />
+        <img src="sorting_stable.png" alt="稳定排序" width="70%" /><br />
       </td>
       <td align="center" valign="bottom">
-        <img src="sorting_unstable.webp" alt="不稳定排序" width="70%" /><br />
+        <img src="sorting_unstable.png" alt="不稳定排序" width="70%" /><br />
       </td>
     </tr>
   </table>

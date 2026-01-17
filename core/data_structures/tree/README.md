@@ -21,15 +21,15 @@
   <table>
     <tr>
       <td align="center" valign="bottom" style="padding-left: 20px;">
-        <img src="perfect_binary_tree.webp" alt="Perfect Binary Tree" width="200" /><br />
+        <img src="perfect_binary_tree.png" alt="Perfect Binary Tree" width="200" /><br />
         <sub style="font-size: 14px;">Perfect Binary Tree</sub>
       </td>
       <td align="center" valign="bottom" style="padding-right: 20px;">
-        <img src="complete_binary_tree.webp" alt="Complete Binary Tree" width="200" /><br />
+        <img src="complete_binary_tree.png" alt="Complete Binary Tree" width="200" /><br />
         <sub style="font-size: 14px;">Complete Binary Tree</sub>
       </td>
       <td align="center" valign="bottom" style="padding-left: 20px;">
-        <img src="full_binary_tree.webp" alt="Full Binary Tree" width="200" /><br />
+        <img src="full_binary_tree.png" alt="Full Binary Tree" width="200" /><br />
         <sub style="font-size: 14px;">Full Binary Tree</sub>
       </td>
     </tr>
@@ -48,7 +48,7 @@
 
 由于完全二叉树的性质，使其在数组中可以被连续存储（数组索引可按 1-based 或 0-based 约定）。
 
-![Complete Binary Tree Array Index](complete_binary_tree_array_index.webp){ align=right width=35% }
+![Complete Binary Tree Array Index](complete_binary_tree_array_index.png){ align=right width=35% }
 
 | 节点关系   | 1-based 索引                             | 0-based 索引                               |
 | ---------- | ---------------------------------------- | ------------------------------------------ |
@@ -71,12 +71,12 @@
 | 大顶堆 | `a[i] >= a[2*i] && a[i] >= a[2*i+1]` | `a[i] >= a[2*i+1] && a[i] >= a[2*i+2]` |
 
 <p align="center">
-    <img src="min_heap_and_max_heap.webp" alt="Min Heap and Max Heap" width="65%" />
+    <img src="min_heap_and_max_heap.png" alt="Min Heap and Max Heap" width="65%" />
 </p>
 
 常见操作的时间复杂度：
 
-[![Heap Sort](heap_sort_video_thumbnail.webp){ align=right width=20% }](https://www.bilibili.com/video/BV1HYtseiEQ8)
+[![Heap Sort](heap_sort_video_thumbnail.png){ align=right width=20% }](https://www.bilibili.com/video/BV1HYtseiEQ8)
 
 - push / pop（上浮或下沉）: $O(log n)$。建堆时，需要不断比较插入元素与插入位置元素的大小，插入后还要对子节点沉浮以保证堆的有序性。
 - peek / top: $O(1)$
@@ -227,7 +227,7 @@ BST 有两种不同的写法，处理细节也不同：
 ## 平衡二叉搜索树
 
 <p align="center">
-    <img src="binary_tree_special_cases.webp" alt="Binary Tree Special Cases" width="60%" />
+    <img src="binary_tree_special_cases.png" alt="Binary Tree Special Cases" width="60%" />
 </p>
 
 ---
@@ -256,18 +256,18 @@ BST 有两种不同的写法，处理细节也不同：
 </div>
 
 <p align="center">
-    <img src="avl_tree_rotation_cases.webp" alt="AVL Tree Rotation" width="60%" />
+    <img src="avl_tree_rotation_cases.png" alt="AVL Tree Rotation" width="60%" />
 </p>
 
 <div align="center">
   <table>
     <tr>
       <td align="center" valign="bottom" style="padding-right: 20px;">
-        <img src="balanced_binary_tree.webp" alt="Balanced Binary Tree" width="300" /><br />
+        <img src="balanced_binary_tree.png" alt="Balanced Binary Tree" width="300" /><br />
         <sub style="font-size: 14px;">Balanced Binary Tree</sub>
       </td>
       <td align="center" valign="bottom" style="padding-right: 20px;">
-        <img src="imbalanced_binary_tree.webp" alt="Imbalanced Binary Tree" width="300" /><br />
+        <img src="imbalanced_binary_tree.png" alt="Imbalanced Binary Tree" width="300" /><br />
         <sub style="font-size: 14px;">Imbalanced Binary Tree</sub>
       </td>
     </tr>
@@ -297,7 +297,7 @@ AVL 树的应用场景：
 5. 从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点（保证平衡的关键）
 
 <p align="center">
-    <img src="red_black_tree_example.webp" alt="Red Black Tree Example" width="50%" />
+    <img src="red_black_tree_example.png" alt="Red Black Tree Example" width="50%" />
 </p>
 
 推论：
@@ -319,11 +319,11 @@ AVL 树的应用场景：
   <table>
     <tr>
       <td align="center"  style="padding-right: 20px;">
-        <img src="skip_list.webp" alt="Skip List"  /><br />
+        <img src="skip_list.png" alt="Skip List"  /><br />
         <br /><sub style="font-size: 14px;">Skip List</sub><br />
       </td>
       <td align="center" style="padding-right: 20px;">
-        <img src="skip_list_add_element.webp" alt="Insert element to skip list"  /><br />
+        <img src="skip_list_add_element.gif" alt="Insert element to skip list"  /><br />
         <sub style="font-size: 14px;">Insert element to skip list</sub>
       </td>
     </tr>
@@ -384,7 +384,7 @@ B 树是一个一般化的二叉搜索树，每个节点可以拥有两个以上
 
 一个Ｂ树通过约束所有叶子节点在相同深度来保持平衡。深度在元素添加至树的过程中缓慢增长，而整体深度极少地增长，并导致所有叶子节点与根节点距离加 1。
 
-![B Tree](B_Tree.webp)
+![B Tree](B_Tree.png)
 
 B 树的生长方式：**向上生长**。B 树的所有叶子节点必须在同一层，因此 B 树永远不会在一个叶子节点下挂载新的节点来增加数据，这会破坏平衡。
 B 树插入数据时，会发生分裂和提升，真正的修改发生在父节点，它接受了被提升上来的键，并更新了其子节点指针。
@@ -401,13 +401,13 @@ B+ 树通过将数据存储在叶子节点、叶子节点间通过链表相连�
 
 基于 B+树的以上优点，是数据库索引（MySQL 的 InnoDB）、文件系统的常用结构。
 
-![B+ Tree](B+_Tree.webp)
+![B+ Tree](B+_Tree.png)
 
 ---
 
 ### 平衡树进化之路
 
-![The Evolution of Balanced Trees](the_evolution_of_balanced_trees.webp)
+![The Evolution of Balanced Trees](the_evolution_of_balanced_trees.png)
 
 ## 二叉树的遍历
 
@@ -430,11 +430,11 @@ B+ 树通过将数据存储在叶子节点、叶子节点间通过链表相连�
   <table>
     <tr>
       <td align="center" valign="bottom" >
-        <img src="binary_tree_bfs.webp" alt="Binary Tree BFS" /><br />
+        <img src="binary_tree_bfs.png" alt="Binary Tree BFS" /><br />
         <sub style="font-size: 14px;">Binary Tree BFS</sub>
       </td>
       <td align="center" valign="bottom" >
-        <img src="binary_tree_dfs.webp" alt="Binary Tree DFS" /><br />
+        <img src="binary_tree_dfs.png" alt="Binary Tree DFS" /><br />
         <sub style="font-size: 14px;">Binary Tree DFS</sub>
       </td>
     </tr>

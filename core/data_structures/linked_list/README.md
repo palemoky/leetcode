@@ -5,7 +5,7 @@
 本指南旨在全面覆盖链表的核心知识，从基础操作原则到经典算法题型，帮助你构建一个完整、健壮的链表知识体系。
 
 <p align="center">
-    <img src="linked_list.webp" alt="Linked List Overview" width="60%" />
+    <img src="linked_list.png" alt="Linked List Overview" width="60%" />
 </p>
 
 ---
