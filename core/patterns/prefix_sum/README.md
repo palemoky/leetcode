@@ -17,7 +17,7 @@
 
 ### 1. 一维前缀和
 
-![Prefix Sum Comparison](comparison.png)
+![Prefix Sum Comparison](comparison.webp)
 
 从上图可以看出，**`prefixSum[0] = 0` 就像链表中的 dummy head**，使操作统一，避免容易出错的的边界判断。
 
@@ -137,12 +137,12 @@ $$
 
 <table>
   <tr>
-    <td align="center"><img src="bottom_right.png" alt="右下角区域"></td>
-    <td align="center"><img src="subtract_top.png" alt="减去上方区域"></td>
+    <td align="center"><img src="bottom_right.webp" alt="右下角区域"></td>
+    <td align="center"><img src="subtract_top.webp" alt="减去上方区域"></td>
   </tr>
   <tr>
-    <td align="center"><img src="subtract_left.png" alt="减去左方区域"></td>
-    <td align="center"><img src="add_top_left.png" alt="加回左上角"></td>
+    <td align="center"><img src="subtract_left.webp" alt="减去左方区域"></td>
+    <td align="center"><img src="add_top_left.webp" alt="加回左上角"></td>
   </tr>
 </table>
 

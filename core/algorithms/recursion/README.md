@@ -15,7 +15,7 @@
   <table border="0" cellpadding="0" cellspacing="0">
     <tr>
       <td align="center" style="padding: 10px;">
-        <img src="recursion_basement_analogy.png" alt="递归的地下室类比" width="60%" />
+        <img src="recursion_basement_analogy.webp" alt="递归的地下室类比" width="60%" />
         <br/>
         <sub style="font-size: 14px;">递归的地下室类比</sub>
       </td>
