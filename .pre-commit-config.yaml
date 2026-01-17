@@ -129,6 +129,14 @@ repos:
         always_run: true
         pass_filenames: false
 
+      # Images: Convert to WebP and update Markdown references
+      - id: convert-images-to-webp
+        name: Convert images to WebP
+        entry: python3 scripts/convert-images-to-webp.py
+        language: system
+        files: ^core/.*\.(png|jpg|jpeg)$
+        pass_filenames: false
+
 default_install_hook_types:
   - pre-commit
   - pre-push
