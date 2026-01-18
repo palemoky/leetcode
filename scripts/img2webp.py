@@ -208,7 +208,7 @@ def main():
         # Remove original images
         print("\n🗑️  Removing original images...")
         for old_image, _ in converted_images:
-            subprocess.run(['git', 'rm', str(old_image)], check=True)
+            subprocess.run(['git', 'rm', '--cached', str(old_image)], check=True)
             print(f"  ✓ Removed: {old_image.name}")
     else:
         # Manual mode: just delete the files
