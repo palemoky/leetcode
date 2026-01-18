@@ -91,20 +91,28 @@ def update_markdown_references(md_file, old_image, new_image):
     old_name = old_image.name
     new_name = new_image.name
 
+    # Try to get relative path from md_file to image
+    try:
+        md_dir = md_file.parent
+        old_rel_path = old_image.relative_to(md_dir)
+        new_rel_path = new_image.relative_to(md_dir)
+    except ValueError:
+        # Images not in same directory tree, use filename only
+        old_rel_path = old_name
+        new_rel_path = new_name
+
     # Multiple patterns to catch different image reference formats
     patterns = [
-        # Markdown: ![alt](image.png)
+        # Relative path: ![alt](subdir/image.png)
+        (rf'!\[([^\]]*)\]\({re.escape(str(old_rel_path))}\)', rf'![\1]({str(new_rel_path)})'),
+        # Filename only: ![alt](image.png)
         (rf'!\[([^\]]*)\]\({re.escape(old_name)}\)', rf'![\1]({new_name})'),
-        # Markdown: ![alt](./image.png)
+        # With ./: ![alt](./image.png)
         (rf'!\[([^\]]*)\]\(\.\/{re.escape(old_name)}\)', rf'![\1](./{new_name})'),
         # HTML: <img src="image.png"
         (rf'<img\s+src="{re.escape(old_name)}"', f'<img src="{new_name}"'),
         # HTML: <img src="./image.png"
         (rf'<img\s+src="\.\/{re.escape(old_name)}"', f'<img src="./{new_name}"'),
-        # HTML with any attributes before src: <img ... src="image.png"
-        (rf'(<img[^>]*\s)src="{re.escape(old_name)}"', rf'\1src="{new_name}"'),
-        # HTML with any attributes before src: <img ... src="./image.png"
-        (rf'(<img[^>]*\s)src="\.\/{re.escape(old_name)}"', rf'\1src="./{new_name}"'),
     ]
 
     updated = content
@@ -179,9 +187,6 @@ def main():
         webp_path = convert_to_webp(image_path)
         if webp_path:
             converted_images.append((image_path, webp_path))
-            if not args.all:
-                # Stage the WebP file (pre-commit mode)
-                subprocess.run(['git', 'add', str(webp_path)], check=True)
 
     if not converted_images:
         print("\n✅ All images already converted to WebP")
@@ -201,14 +206,32 @@ def main():
                     print(f"  ✓ Updated: {md_file.relative_to(core_dir)}")
 
     if not args.all:
-        # Stage updated Markdown files (pre-commit mode)
+        # Stage all changes atomically (pre-commit mode)
+        print("\n📦 Staging changes...")
+
+        # Stage WebP files
+        for _, webp_path in converted_images:
+            subprocess.run(['git', 'add', str(webp_path)], check=True)
+
+        # Stage updated Markdown files
         for md_file in updated_files:
             subprocess.run(['git', 'add', str(md_file)], check=True)
 
-        # Remove original images
+        # Remove original images from staging and working directory
         print("\n🗑️  Removing original images...")
         for old_image, _ in converted_images:
-            subprocess.run(['git', 'rm', '--cached', str(old_image)], check=True)
+            # Remove from Git staging area
+            try:
+                subprocess.run(['git', 'rm', '--cached', str(old_image)],
+                             check=True, capture_output=True)
+            except subprocess.CalledProcessError:
+                # File might not be in staging, that's okay
+                pass
+
+            # Delete from working directory
+            if old_image.exists():
+                old_image.unlink()
+
             print(f"  ✓ Removed: {old_image.name}")
     else:
         # Manual mode: just delete the files
