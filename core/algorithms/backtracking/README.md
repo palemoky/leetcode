@@ -100,7 +100,7 @@ func traverse(root *TreeNode) {
 - **排列 (Permutation)**: [LeetCode 46. 全排列](https://leetcode.com/problems/permutations/)
 - **子集 (Subset)**: [LeetCode 78. 子集](https://leetcode.com/problems/subsets/)
 
-这三类问题的本质都是**遍历多叉树**：
+这三类问题的本质都是 **遍历多叉树**：
 
 1. **构建决策树**：每个节点代表一个选择，从根节点到叶子节点的路径就是一个解
 2. **遍历求解**：用回溯框架遍历这棵多叉树，收集所有路径
