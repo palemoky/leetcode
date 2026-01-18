@@ -110,7 +110,9 @@ func traverse(root *TreeNode) {
 
 **示例：`[1,2,3]` 的全排列决策树**
 
-![全排列决策树](permutation_decision_tree.webp)
+<p align="center">
+    <img src="permutation_decision_tree.webp" alt="全排列决策树" width="60%" />
+</p>
 
 ## 其他经典问题
 
