@@ -133,7 +133,7 @@ repos:
       # Images: Convert to WebP and update Markdown references
       - id: convert-images-to-webp
         name: Convert images to WebP
-        entry: python3 scripts/convert-images-to-webp.py
+        entry: python3 scripts/img2webp.py
         language: system
         files: ^core/.*\.(png|jpg|jpeg|gif)$
         pass_filenames: true
