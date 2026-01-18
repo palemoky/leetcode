@@ -220,6 +220,43 @@ func solution() {{
     print(f"  ✓ Created {file_path.name}")
 
 
+def create_python_solution_file(dir_path: Path, title: str) -> None:
+    """Create the main solution Python file."""
+    file_path = dir_path / "solution.py"
+
+    content = f"""# Solution 1:
+# Time: O(), Space: O()
+def solution():
+    # TODO: Implement solution
+    pass
+"""
+
+    with open(file_path, "w", encoding="utf-8") as f:
+        f.write(content)
+
+    print(f"  ✓ Created {file_path.name}")
+
+
+def create_python_test_file(dir_path: Path) -> None:
+    """Create the test Python file."""
+    file_path = dir_path / "test_solution.py"
+
+    content = """import pytest
+from solution import solution
+
+
+class TestSolution:
+    def test_example_1(self):
+        # TODO: Add test cases
+        assert solution() is not None
+"""
+
+    with open(file_path, "w", encoding="utf-8") as f:
+        f.write(content)
+
+    print(f"  ✓ Created {file_path.name}")
+
+
 def create_test_file(dir_path: Path, package_name: str) -> None:
     """Create the test Go file."""
     file_path = dir_path / f"{package_name}_test.go"
@@ -270,7 +307,7 @@ func TestSolution(t *testing.T) {{
     print(f"  ✓ Created {file_path.name}")
 
 
-def create_solution_structure(problem_number: str) -> None:
+def create_solution_structure(problem_number: str, language: str = "go") -> None:
     """Main function to create the complete solution structure."""
     print(f"Fetching problem {problem_number} from LeetCode API...")
 
@@ -292,7 +329,13 @@ def create_solution_structure(problem_number: str) -> None:
 
     # Get the project root and solutions directory
     project_root = Path(__file__).parent.parent
-    solutions_dir = project_root / "go" / "solutions"
+
+    # Determine language directory
+    if language == "py":
+        solutions_dir = project_root / "python" / "solutions"
+    else:  # default to go
+        solutions_dir = project_root / "go" / "solutions"
+
     target_dir = solutions_dir / dir_name
 
     # Check if directory already exists
@@ -313,33 +356,45 @@ def create_solution_structure(problem_number: str) -> None:
     target_dir.mkdir(parents=True, exist_ok=True)
     print(f"  ✓ Created directory")
 
-    # Create solution and test files
-    create_solution_file(target_dir, title_slug, title)
-    create_test_file(target_dir, title_slug)
+    # Create solution and test files based on language
+    if language == "py":
+        create_python_solution_file(target_dir, title)
+        create_python_test_file(target_dir)
+    else:  # go
+        create_solution_file(target_dir, title_slug, title)
+        create_test_file(target_dir, title_slug)
 
     print(f"\n✅ Successfully created solution structure for problem {problem_number}")
     print(f"📁 Location: {target_dir.relative_to(project_root)}")
     print(f"\nNext steps:")
-    print(f"  1. Open {title_slug}.go and implement the solution")
-    print(f"  2. Update {title_slug}_test.go with test cases")
-    print(f"  3. Run: cd {target_dir.relative_to(project_root)} && go test -v")
+
+    if language == "py":
+        print(f"  1. Open solution.py and implement the solution")
+        print(f"  2. Update test_solution.py with test cases")
+        print(f"  3. Run: cd {target_dir.relative_to(project_root)} && uv run pytest -v")
+    else:  # go
+        print(f"  1. Open {title_slug}.go and implement the solution")
+        print(f"  2. Update {title_slug}_test.go with test cases")
+        print(f"  3. Run: cd {target_dir.relative_to(project_root)} && go test -v")
 
 
 def main():
     """Entry point."""
-    if len(sys.argv) != 2:
-        print("Usage: python3 create_solution.py <problem_number>")
-        print("Example: python3 create_solution.py 1")
-        sys.exit(1)
+    import argparse
 
-    problem_number = sys.argv[1]
+    parser = argparse.ArgumentParser(description="Create LeetCode solution structure")
+    parser.add_argument("--language", choices=["go", "py"], required=True,
+                        help="Programming language (go or py)")
+    parser.add_argument("problem_number", help="LeetCode problem number")
+
+    args = parser.parse_args()
 
     # Validate problem number
-    if not problem_number.isdigit():
+    if not args.problem_number.isdigit():
         print("Error: Problem number must be a positive integer")
         sys.exit(1)
 
-    create_solution_structure(problem_number)
+    create_solution_structure(args.problem_number, args.language)
 
 
 if __name__ == "__main__":

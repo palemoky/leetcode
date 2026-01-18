@@ -1,37 +1,45 @@
-.PHONY: new optimize-images help
+.PHONY: new optimize-images help go py
 
 # Default target
 help:
 	@echo "LeetCode Solution Generator & Documentation Tools"
 	@echo ""
 	@echo "Usage:"
-	@echo "  make new PROBLEM=<problem_number>"
-	@echo "  make optimize-images"
-	@echo ""
-	@echo "Commands:"
-	@echo "  new              - Create new LeetCode solution structure"
-	@echo "  optimize-images  - Convert PNG/JPG images to WebP in core/"
+	@echo "  make new go              - Create new Go solution"
+	@echo "  make new py              - Create new Python solution"
+	@echo "  make optimize-images     - Convert PNG/JPG images to WebP in core/"
 	@echo ""
 	@echo "Example:"
-	@echo "  make new PROBLEM=1"
-	@echo "  make new PROBLEM=42"
-	@echo "  make optimize-images"
+	@echo "  make new go"
+	@echo "  > Please input LeetCode problem number: 1"
+	@echo ""
+	@echo "  make new py"
+	@echo "  > Please input LeetCode problem number: 42"
 	@echo ""
 	@echo "New solution will:"
 	@echo "  1. Fetch problem metadata from LeetCode API"
-	@echo "  2. Create directory: go/solutions/<number>_<title_slug>"
-	@echo "  3. Generate solution file: <title_slug>.go"
-	@echo "  4. Generate test file: <title_slug>_test.go"
+	@echo "  2. Create directory: <language>/solutions/<number>_<title_slug>"
+	@echo "  3. Generate solution and test files"
 
 # Create new LeetCode solution structure
 new:
-	@if [ -z "$(PROBLEM)" ]; then \
-		read -p "Please input LeetCode problem number: " problem_num; \
-		python3 scripts/create_solution.py $$problem_num; \
-	else \
-		echo "Creating solution structure for problem $(PROBLEM)..."; \
-		python3 scripts/create_solution.py $(PROBLEM); \
-	fi
+	@LANG=$(filter-out new,$(MAKECMDGOALS)); \
+	if [ -z "$$LANG" ]; then \
+		echo "Error: Please specify language (go or py)"; \
+		echo "Usage: make new go  OR  make new py"; \
+		exit 1; \
+	fi; \
+	if [ "$$LANG" != "go" ] && [ "$$LANG" != "py" ]; then \
+		echo "Error: Language must be 'go' or 'py'"; \
+		echo "Usage: make new go  OR  make new py"; \
+		exit 1; \
+	fi; \
+	read -p "Please input LeetCode problem number: " problem_num; \
+	python3 scripts/create_solution.py --language $$LANG $$problem_num
+
+# Prevent make from treating 'go' and 'py' as targets
+go py:
+	@:
 
 # Optimize images: Convert PNG/JPG to WebP
 optimize-images:
