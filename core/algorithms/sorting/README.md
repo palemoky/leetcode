@@ -6,7 +6,7 @@
 
 ## 十大常用基础排序算法
 
-<table class="sticky-table">
+<table>
   <thead>
     <tr>
       <th>名称</th>
