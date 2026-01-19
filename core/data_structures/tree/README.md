@@ -459,11 +459,11 @@ B+ 树通过将数据存储在叶子节点、叶子节点间通过链表相连�
   <table>
     <tr>
       <td align="center">
-        <img src="bfs_traversal.webp" alt="BFS 遍历" width="50%" /><br />
+        <img src="bfs_traversal.webp" alt="BFS 遍历" /><br />
         <sub>BFS: 横向扩散，逐层遍历</sub>
       </td>
       <td align="center">
-        <img src="dfs_traversal.webp" alt="DFS 遍历" width="50%" /><br />
+        <img src="dfs_traversal.webp" alt="DFS 遍历" /><br />
         <sub>DFS: 纵向深入，一条路走到底</sub>
       </td>
     </tr>
@@ -472,7 +472,7 @@ B+ 树通过将数据存储在叶子节点、叶子节点间通过链表相连�
 
 BFS 与 DFS 最主要的区别：
 
-- **最短路径**: 在**无权图**中，BFS 找到的路径一定是最短的(边数最少)
+- **最短路径**: 在 **无权图** 中，BFS 找到的路径一定是最短的(边数最少)
 - **空间复杂度**: BFS 的空间复杂度为 $O(w)$(w 为最大宽度)，DFS 为 $O(h)$(h 为树高)。对于 **完全二叉树**，BFS 的空间开销远大于 DFS
 
 ### 递归解题模板
