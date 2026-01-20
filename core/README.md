@@ -128,7 +128,6 @@ $$
   & \textbf{树}
   & \xtofrom[\text{无环且连通}]{\text{网状思维}}
   & \textbf{图} \\
-
   \begin{matrix} \scriptsize\text{一对一} \\ \scriptsize\text{线性结构} \end{matrix} &&
   \begin{matrix} \scriptsize\text{一对二} \\ \scriptsize\text{层次结构} \end{matrix} &&
   \begin{matrix} \scriptsize\text{一对多} \\ \scriptsize\text{层次结构} \end{matrix} &&
