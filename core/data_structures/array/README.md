@@ -86,155 +86,155 @@ arr3 := make([]int, 0, 10)  // 长度 0，容量 10
 
 ## 常见操作
 
-### 1. 遍历
+=== "遍历数组"
 
-```go
-arr := []int{1, 2, 3, 4, 5}
-
-// 方法 1：使用索引
-for i := 0; i < len(arr); i++ {
-    fmt.Println(arr[i])
-}
-
-// 方法 2：使用 range
-for index, value := range arr {
-    fmt.Printf("arr[%d] = %d\n", index, value)
-}
-
-// 方法 3：只要值
-for _, value := range arr {
-    fmt.Println(value)
-}
-```
-
-### 2. 插入元素
-
-```go
-// 在末尾插入
-arr = append(arr, 6)
-
-// 在开头插入
-arr = append([]int{0}, arr...)
-
-// 在中间插入（在索引 2 处插入 99）
-index := 2
-arr = append(arr[:index], append([]int{99}, arr[index:]...)...)
-```
-
-### 3. 删除元素
-
-```go
-// 删除末尾元素
-arr = arr[:len(arr)-1]
-
-// 删除开头元素
-arr = arr[1:]
-
-// 删除中间元素（删除索引 2）
-index := 2
-arr = append(arr[:index], arr[index+1:]...)
-```
-
-### 4. 切片操作
-
-```go
-arr := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
-
-// 获取子数组 [start:end)，左闭右开
-sub1 := arr[2:5]     // [2, 3, 4]
-sub2 := arr[:3]      // [0, 1, 2]
-sub3 := arr[7:]      // [7, 8, 9]
-sub4 := arr[:]       // 完整复制
-
-// 切片共享底层数组！
-sub1[0] = 99
-fmt.Println(arr)     // [0, 1, 99, 3, 4, 5, 6, 7, 8, 9]
-```
-
-!!! Warning "切片陷阱"
-
-    切片操作返回的是**原数组的视图**，修改切片会影响原数组！如需独立副本，使用 `copy()`：
     ```go
-    original := []int{1, 2, 3, 4, 5}
-    copied := make([]int, len(original))
-    copy(copied, original)
+    arr := []int{1, 2, 3, 4, 5}
+
+    // 方法 1：使用索引
+    for i := 0; i < len(arr); i++ {
+        fmt.Println(arr[i])
+    }
+
+    // 方法 2：使用 range
+    for index, value := range arr {
+        fmt.Printf("arr[%d] = %d\n", index, value)
+    }
+
+    // 方法 3：只要值
+    for _, value := range arr {
+        fmt.Println(value)
+    }
     ```
 
-### 5. 反转数组
+=== "插入元素"
 
-```go
-func reverse(arr []int) {
-    left, right := 0, len(arr)-1
-    for left < right {
-        arr[left], arr[right] = arr[right], arr[left]
-        left++
-        right--
+    ```go
+    // 在末尾插入
+    arr = append(arr, 6)
+
+    // 在开头插入
+    arr = append([]int{0}, arr...)
+
+    // 在中间插入（在索引 2 处插入 99）
+    index := 2
+    arr = append(arr[:index], append([]int{99}, arr[index:]...)...)
+    ```
+
+=== "删除元素"
+
+    ```go
+    // 删除末尾元素
+    arr = arr[:len(arr)-1]
+
+    // 删除开头元素
+    arr = arr[1:]
+
+    // 删除中间元素（删除索引 2）
+    index := 2
+    arr = append(arr[:index], arr[index+1:]...)
+    ```
+
+=== "切片操作"
+
+    ```go
+    arr := []int{0, 1, 2, 3, 4, 5, 6, 7, 8, 9}
+
+    // 获取子数组 [start:end)，左闭右开
+    sub1 := arr[2:5]     // [2, 3, 4]
+    sub2 := arr[:3]      // [0, 1, 2]
+    sub3 := arr[7:]      // [7, 8, 9]
+    sub4 := arr[:]       // 完整复制
+
+    // 切片共享底层数组！
+    sub1[0] = 99
+    fmt.Println(arr)     // [0, 1, 99, 3, 4, 5, 6, 7, 8, 9]
+    ```
+
+    !!! Warning "切片陷阱"
+
+        切片操作返回的是**原数组的视图**，修改切片会影响原数组！如需独立副本，使用 `copy()`：
+        ```go
+        original := []int{1, 2, 3, 4, 5}
+        copied := make([]int, len(original))
+        copy(copied, original)
+        ```
+
+=== "反转数组"
+
+    ```go
+    func reverse(arr []int) {
+        left, right := 0, len(arr)-1
+        for left < right {
+            arr[left], arr[right] = arr[right], arr[left]
+            left++
+            right--
+        }
     }
-}
-```
+    ```
 
-### 6. 数组排序
+=== "数组排序"
 
-```go
-import "sort"
+    ```go
+    import "sort"
 
-arr := []int{5, 2, 8, 1, 9}
+    arr := []int{5, 2, 8, 1, 9}
 
-// 升序排序
-sort.Ints(arr)  // [1, 2, 5, 8, 9]
+    // 升序排序
+    sort.Ints(arr)  // [1, 2, 5, 8, 9]
 
-// 降序排序
-sort.Sort(sort.Reverse(sort.IntSlice(arr)))
+    // 降序排序
+    sort.Sort(sort.Reverse(sort.IntSlice(arr)))
 
-// 自定义排序
-sort.Slice(arr, func(i, j int) bool {
-    return arr[i] > arr[j]  // 降序
-})
-```
+    // 自定义排序
+    sort.Slice(arr, func(i, j int) bool {
+        return arr[i] > arr[j]  // 降序
+    })
+    ```
 
 ## 经典算法模式
 
 ### 1. 双指针
 
-**快慢指针**：
+=== "快慢指针"
 
-```go
-// 移除数组中的重复元素（原地修改）
-func removeDuplicates(nums []int) int {
-    if len(nums) == 0 {
-        return 0
-    }
-
-    slow := 0
-    for fast := 1; fast < len(nums); fast++ {
-        if nums[fast] != nums[slow] {
-            slow++
-            nums[slow] = nums[fast]
+    ```go
+    // 移除数组中的重复元素（原地修改）
+    func removeDuplicates(nums []int) int {
+        if len(nums) == 0 {
+            return 0
         }
-    }
-    return slow + 1
-}
-```
 
-**对撞指针**：
-
-```go
-// 两数之和 II（有序数组）
-func twoSum(numbers []int, target int) []int {
-    left, right := 0, len(numbers)-1
-    for left < right {
-        sum := numbers[left] + numbers[right]
-        if sum == target {
-            return []int{left + 1, right + 1}
-        } else if sum < target {
-            left++
-        } else {
-            right--
+        slow := 0
+        for fast := 1; fast < len(nums); fast++ {
+            if nums[fast] != nums[slow] {
+                slow++
+                nums[slow] = nums[fast]
+            }
         }
+        return slow + 1
     }
-    return nil
-}
-```
+    ```
+
+=== "对撞指针"
+
+    ```go
+    // 两数之和 II（有序数组）
+    func twoSum(numbers []int, target int) []int {
+        left, right := 0, len(numbers)-1
+        for left < right {
+            sum := numbers[left] + numbers[right]
+            if sum == target {
+                return []int{left + 1, right + 1}
+            } else if sum < target {
+                left++
+            } else {
+                right--
+            }
+        }
+        return nil
+    }
+    ```
 
 **经典题目**：
 
