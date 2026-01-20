@@ -257,14 +257,18 @@ func (d *Difference2D) Result() [][]int {
 | -------------- | ----------------------------- | ------------------------------- |
 | **核心操作**   | 区间查询                      | 区间修改                        |
 | **预处理**     | `prefixSum[i] = sum(0...i-1)` | `diff[i] = nums[i] - nums[i-1]` |
-| **时间复杂度** | 查询 $O(1)$                     | 修改 $O(1)$                       |
+| **时间复杂度** | 查询 $O(1)$                   | 修改 $O(1)$                     |
 | **关系**       | 差分数组的前缀和 = 原数组     | 原数组的差分 = 差分数组         |
 | **典型场景**   | 频繁查询区间和                | 频繁修改区间值                  |
 
 **互为逆运算：**
 
 $$
-\text{原数组} \xrightleftharpoons[\text{前缀和}]{\text{差分}} \text{差分数组}
+\begin{array}{ccc}
+& \scriptsize\text{差分} & \\
+\textbf{原数组} & \rightleftarrows & \textbf{差分数组} \\
+& \scriptsize\text{前缀和} &
+\end{array}
 $$
 
 ---

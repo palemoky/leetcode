@@ -111,6 +111,24 @@ func backtrack(path, choices) {
 
 单调栈：看到“下一个更大元素”，立刻想到用栈存索引
 
+## 数据结构演进
+
+数据结构的演进体现了从简单到复杂、从线性到网状的思维转变:
+
+- **链表 → 二叉树**: 从线性思维到递归思维，每个节点从最多 1 个子节点扩展到 2 个
+- **二叉树 → 树**: 从递归到分治，节点可以有任意多个子节点
+- **树 → 图**: 从层次结构到网状结构，打破了"无环"的限制，节点间可以有任意连接
+
+$$
+\begin{array}{ccccccc}
+& \scriptsize\text{线性思维→递归思维} & & \scriptsize\text{分治思维} & & \scriptsize\text{网状思维} & \\
+\textbf{链表} & \rightleftarrows & \textbf{二叉树} & \rightleftarrows & \textbf{树} & \rightleftarrows & \textbf{图} \\
+& \scriptsize\text{每个节点最多1个子节点} & & \scriptsize\text{每个节点最多2个子节点} & & \scriptsize\text{无环且连通} & \\[0.5em]
+\scriptsize\text{一对一} & & \scriptsize\text{一对二} & & \scriptsize\text{一对多} & & \scriptsize\text{多对多} \\
+\scriptsize\text{线性结构} & & \scriptsize\text{层次结构} & & \scriptsize\text{层次结构} & & \scriptsize\text{网状结构}
+\end{array}
+$$
+
 # 算法选择指南
 
 ## 核心算法对比
