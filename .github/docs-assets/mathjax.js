@@ -1,24 +1,31 @@
 window.MathJax = {
-  tex: {
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    displayMath: [['$$', '$$'], ['\\[', '\\]']],
-    processEscapes: true,
-    processEnvironments: true,
-    packages: {'[+]': ['mhchem', 'extpfeil']}
-  },
   loader: {
     load: ['[tex]/mhchem', '[tex]/extpfeil']
   },
+  tex: {
+    packages: {'[+]': ['mhchem', 'extpfeil']},
+    inlineMath: [['$', '$'], ['\\(', '\\)']],
+    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    processEscapes: true,
+    processEnvironments: true
+  },
   startup: {
-    pageReady: () => {
-      return MathJax.startup.defaultPageReady();
-    }
+    typeset: false
   }
 };
 
 document$.subscribe(() => {
   if (window.MathJax && window.MathJax.typesetPromise) {
-    MathJax.texReset();
-    MathJax.typesetPromise();
+    if (MathJax.typesetClear) {
+      MathJax.typesetClear();
+    }
+
+    if (MathJax.texReset) {
+      MathJax.texReset();
+    }
+
+    MathJax.typesetPromise().catch(function (err) {
+      console.log('MathJax rendering error:', err);
+    });
   }
-})
+});
