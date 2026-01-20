@@ -124,7 +124,7 @@ for left < right {  // 或 left <= right，见下方说明
 **经典题目**：
 
 - [LeetCode 167. 两数之和 II - 输入有序数组](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
-- [LeetCode 125. 验证回文串](../../go/solutions/0125_valid_palindrome/)
+- [LeetCode 125. 验证回文串](https://leetcode.com/problems/valid-palindrome/)
 - [LeetCode 11. 盛最多水的容器](https://leetcode.com/problems/container-with-most-water/)
 - [LeetCode 15. 三数之和](https://leetcode.com/problems/3sum/)
 
@@ -195,7 +195,7 @@ for i < len(nums1) && j < len(nums2) {
 
 **经典题目**：
 
-- [LeetCode 88. 合并两个有序数组](../../go/solutions/088_merge_sorted_array/)
+- [LeetCode 88. 合并两个有序数组](https://leetcode.com/problems/merge-sorted-array/)
 - [LeetCode 21. 合并两个有序链表](https://leetcode.com/problems/merge-two-sorted-lists/)
 - [LeetCode 986. 区间列表的交集](https://leetcode.com/problems/interval-list-intersections/)
 
