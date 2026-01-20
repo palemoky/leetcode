@@ -134,6 +134,13 @@
 
 ---
 
+Todo
+
+- [ ] 把 core 中的代码改用 Python 实现，聚焦与算法而非实现语言
+- [ ] 英文支持
+
+---
+
 ## 📄 License
 
 This project is dual-licensed:
