@@ -9,15 +9,16 @@ window.MathJax = {
   loader: {
     load: ['[tex]/mhchem', '[tex]/extpfeil']
   },
-  options: {
-    ignoreHtmlClass: ".*|",
-    processHtmlClass: "arithmatex"
+  startup: {
+    pageReady: () => {
+      return MathJax.startup.defaultPageReady();
+    }
   }
 };
 
 document$.subscribe(() => {
-  MathJax.startup.output.clearCache()
-  MathJax.typesetClear()
-  MathJax.texReset()
-  MathJax.typesetPromise()
+  if (window.MathJax && window.MathJax.typesetPromise) {
+    MathJax.texReset();
+    MathJax.typesetPromise();
+  }
 })
