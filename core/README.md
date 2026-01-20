@@ -122,11 +122,11 @@ func backtrack(path, choices) {
 $$
 \begin{array}{c c c c c c c}
   \textbf{链表}
-  & \xrightleftharpoons[\text{每个节点最多1个子节点}]{\text{线性}\to\text{递归思维}}
+  & \xtofrom[\text{每个节点最多1个子节点}]{\text{线性}\to\text{递归思维}}
   & \textbf{二叉树}
-  & \xrightleftharpoons[\text{每个节点最多2个子节点}]{\text{分治思维}}
+  & \xtofrom[\text{每个节点最多2个子节点}]{\text{分治思维}}
   & \textbf{树}
-  & \xrightleftharpoons[\text{无环且连通}]{\text{网状思维}}
+  & \xtofrom[\text{无环且连通}]{\text{网状思维}}
   & \textbf{图} \\
 
   \begin{matrix} \scriptsize\text{一对一} \\ \scriptsize\text{线性结构} \end{matrix} &&

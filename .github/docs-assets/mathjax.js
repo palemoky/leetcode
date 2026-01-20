@@ -9,23 +9,21 @@ window.MathJax = {
     processEscapes: true,
     processEnvironments: true
   },
+  options: {
+    ignoreHtmlClass: ".*|",
+    processHtmlClass: "arithmatex"
+  },
   startup: {
     typeset: false
   }
 };
 
 document$.subscribe(() => {
-  if (window.MathJax && window.MathJax.typesetPromise) {
-    if (MathJax.typesetClear) {
-      MathJax.typesetClear();
-    }
-
-    if (MathJax.texReset) {
-      MathJax.texReset();
-    }
-
-    MathJax.typesetPromise().catch(function (err) {
-      console.log('MathJax rendering error:', err);
+  if (window.MathJax && MathJax.startup) {
+    MathJax.startup.promise.then(() => {
+      MathJax.typesetPromise().catch((err) => {
+        console.log('MathJax rendering error:', err);
+      });
     });
   }
 });

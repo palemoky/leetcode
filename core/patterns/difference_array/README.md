@@ -264,7 +264,7 @@ func (d *Difference2D) Result() [][]int {
 **互为逆运算：**
 
 $$
-\text{原数组} \xrightleftharpoons[\text{ 前缀和 }]{\text{ 差分 }} \text{差分数组}
+\text{原数组} \xtofrom[\text{前缀和}]{\text{差分}} \text{差分数组}
 $$
 
 ---
