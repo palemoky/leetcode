@@ -7,13 +7,12 @@
 ## 核心思想
 
 ![Difference Array Overview](difference_array.webp){ align=right }
-
 对于数组 `nums`，构建差分数组 `diff`，其中：
 
-```
-diff[i] = nums[i] - nums[i-1]  (i > 0)
-diff[0] = nums[0]
-```
+    ```
+    diff[i] = nums[i] - nums[i-1]  (i > 0)
+    diff[0] = nums[0]
+    ```
 
 <p align="center">
     <img src="difference_array.webp" alt="Difference Array Overview" width="60%" />
