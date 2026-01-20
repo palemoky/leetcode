@@ -6,7 +6,6 @@
 
 ## 核心思想
 
-![Difference Array Overview](difference_array.webp){ align=right }
 对于数组 `nums`，构建差分数组 `diff`，其中：
 
 ```
