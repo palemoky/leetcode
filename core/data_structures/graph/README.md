@@ -22,62 +22,62 @@
 graph: list[list[int]]  # graph[i] 存储节点 i 的所有邻居节点
 ```
 
-### 深度优先搜索(DFS)
+### DFS vs BFS
 
-DFS 使用递归或栈来实现,适合解决路径、连通性、环检测等问题。
+=== "深度优先搜索 (DFS)"
 
-```python
-def dfs(graph: list[list[int]], start: int, visited: set[int]) -> None:
-    # 标记当前节点已访问
-    visited.add(start)
+    DFS 使用递归或栈来实现,适合解决路径、连通性、环检测等问题。
 
-    # 前序位置:进入节点时的操作
-    # ...
+    ```python
+    def dfs(graph: list[list[int]], start: int, visited: set[int]) -> None:
+        # 标记当前节点已访问
+        visited.add(start)
 
-    # 遍历所有邻居节点
-    for neighbor in graph[start]:
-        if neighbor not in visited:
-            dfs(graph, neighbor, visited)
-
-    # 后序位置:离开节点时的操作
-    # ...
-
-def traverse_graph(graph: list[list[int]]) -> None:
-    visited = set()
-
-    # 遍历所有节点,确保访问到所有连通分量
-    for i in range(len(graph)):
-        if i not in visited:
-            dfs(graph, i, visited)
-```
-
-### 广度优先搜索(BFS)
-
-BFS 使用队列来实现,适合解决最短路径、层级遍历等问题。
-
-```python
-from collections import deque
-
-def bfs(graph: list[list[int]], start: int) -> None:
-    visited = set()
-    queue = deque([start])
-    visited.add(start)
-
-    while queue:
-        # 取出队首节点
-        node = queue.popleft()
-
-        # 访问当前节点
+        # 前序位置:进入节点时的操作
         # ...
 
-        # 将所有未访问的邻居加入队列
-        for neighbor in graph[node]:
+        # 遍历所有邻居节点
+        for neighbor in graph[start]:
             if neighbor not in visited:
-                visited.add(neighbor)
-                queue.append(neighbor)
-```
+                dfs(graph, neighbor, visited)
 
-### DFS vs BFS
+        # 后序位置:离开节点时的操作
+        # ...
+
+    def traverse_graph(graph: list[list[int]]) -> None:
+        visited = set()
+
+        # 遍历所有节点,确保访问到所有连通分量
+        for i in range(len(graph)):
+            if i not in visited:
+                dfs(graph, i, visited)
+    ```
+
+=== "广度优先搜索 (BFS)"
+
+    BFS 使用队列来实现,适合解决最短路径、层级遍历等问题。
+
+    ```python
+    from collections import deque
+
+    def bfs(graph: list[list[int]], start: int) -> None:
+        visited = set()
+        queue = deque([start])
+        visited.add(start)
+
+        while queue:
+            # 取出队首节点
+            node = queue.popleft()
+
+            # 访问当前节点
+            # ...
+
+            # 将所有未访问的邻居加入队列
+            for neighbor in graph[node]:
+                if neighbor not in visited:
+                    visited.add(neighbor)
+                    queue.append(neighbor)
+    ```
 
 | 特性           | DFS                        | BFS                   |
 | -------------- | -------------------------- | --------------------- |
@@ -88,19 +88,12 @@ def bfs(graph: list[list[int]], start: int) -> None:
 
 ### 常见应用场景
 
-**DFS 应用:**
-
-- 检测图中是否有环
-- 拓扑排序
-- 寻找所有路径
-- 连通分量计数
-
-**BFS 应用:**
-
-- 无权图的最短路径
-- 层级遍历
-- 最小步数问题
-- 二分图检测
+| **DFS 应用**     | **BFS 应用**     |
+| ---------------- | ---------------- |
+| 检测图中是否有环 | 无权图的最短路径 |
+| 拓扑排序         | 层级遍历         |
+| 寻找所有路径     | 最小步数问题     |
+| 连通分量计数     | 二分图检测       |
 
 ### 关键注意事项
 
@@ -126,52 +119,56 @@ def bfs(graph: list[list[int]], start: int) -> None:
 
 ### 代码对比
 
-**图的 DFS (遍历):**
+=== "图的 DFS (遍历)"
 
-```python
-def graph_dfs(graph: list[list[int]], start: int, visited: set[int]) -> None:
-    # 做选择(for 循环外)
-    visited.add(start)
+    **目的**: 遍历每个节点一次
 
-    # 前序位置:访问节点
-    print(start)
+    ```python
+    def graph_dfs(graph: list[list[int]], start: int, visited: set[int]) -> None:
+        # 做选择(for 循环外)
+        visited.add(start)
 
-    # 遍历所有邻居
-    for neighbor in graph[start]:
-        if neighbor not in visited:
-            graph_dfs(graph, neighbor, visited)
+        # 前序位置:访问节点
+        print(start)
 
-    # ✖️ 不撤销选择
-```
+        # 遍历所有邻居
+        for neighbor in graph[start]:
+            if neighbor not in visited:
+                graph_dfs(graph, neighbor, visited)
 
-**回溯 (找所有路径):**
+        # ✖️ 不撤销选择
+    ```
 
-```python
-def backtrack_dfs(
-    graph: list[list[int]],
-    start: int,
-    target: int,
-    visited: set[int],
-    path: list[int],
-    result: list[list[int]]
-) -> None:
-    # 做选择(for 循环外)
-    path.append(start)
-    visited.add(start)
+=== "回溯 (找所有路径)"
 
-    # 到达目标,记录路径
-    if start == target:
-        result.append(path.copy())
+    **目的**: 找所有可能的路径/组合
 
-    # 遍历所有邻居
-    for neighbor in graph[start]:
-        if neighbor not in visited:
-            backtrack_dfs(graph, neighbor, target, visited, path, result)
+    ```python
+    def backtrack_dfs(
+        graph: list[list[int]],
+        start: int,
+        target: int,
+        visited: set[int],
+        path: list[int],
+        result: list[list[int]]
+    ) -> None:
+        # 做选择(for 循环外)
+        path.append(start)
+        visited.add(start)
 
-    # ✅ 撤销选择(for 循环外) - 这是回溯的精髓!
-    visited.remove(start)
-    path.pop()
-```
+        # 到达目标,记录路径
+        if start == target:
+            result.append(path.copy())
+
+        # 遍历所有邻居
+        for neighbor in graph[start]:
+            if neighbor not in visited:
+                backtrack_dfs(graph, neighbor, target, visited, path, result)
+
+        # ✅ 撤销选择(for 循环外) - 这是回溯的精髓!
+        visited.remove(start)
+        path.pop()
+    ```
 
 ### 具体例子
 
@@ -185,34 +182,36 @@ def backtrack_dfs(
     4
 ```
 
-**图的 DFS (遍历):**
+=== "图的 DFS (遍历)"
 
-- 访问顺序: `1 → 2 → 4 → 3`
-- 每个节点只访问一次
-- `visited[4] = true` 后,从 3 到 4 的边不会再走
+    **执行过程:**
 
-**回溯 (找从 1 到 4 的所有路径):**
+    - 访问顺序: `1 → 2 → 4 → 3`
+    - 每个节点只访问一次
+    - `visited[4] = true` 后,从 3 到 4 的边不会再走
 
-- 路径 1: `1 → 2 → 4`
-- 路径 2: `1 → 3 → 4`
-- 节点 4 在两条路径中都被访问
-- 第一条路径结束后,`visited[4]` 被撤销,允许第二条路径再次访问
+    **使用场景:**
 
-### 使用场景
+    - 遍历所有节点
+    - 检测环
+    - 拓扑排序
+    - 连通分量计数
 
-**图的 DFS:**
+=== "回溯 (找从 1 到 4 的所有路径)"
 
-- 遍历所有节点
-- 检测环
-- 拓扑排序
-- 连通分量计数
+    **执行过程:**
 
-**回溯:**
+    - 路径 1: `1 → 2 → 4`
+    - 路径 2: `1 → 3 → 4`
+    - 节点 4 在两条路径中都被访问
+    - 第一条路径结束后,`visited[4]` 被撤销,允许第二条路径再次访问
 
-- 找所有路径
-- 找所有组合/排列
-- N 皇后问题
-- 数独求解
+    **使用场景:**
+
+    - 找所有路径
+    - 找所有组合/排列
+    - N 皇后问题
+    - 数独求解
 
 ### 记忆要点
 
@@ -264,64 +263,64 @@ def is_bipartite(graph: list[list[int]]) -> bool:
 
 ## 环检测
 
-### 无向图环检测
+=== "无向图环检测"
 
-使用 DFS,记录父节点。如果访问到已访问的节点且不是父节点,则存在环。
+    **核心思想**: 使用 DFS，记录父节点。如果访问到已访问的节点且不是父节点，则存在环。
 
-```python
-def has_cycle(graph: list[list[int]]) -> bool:
-    n = len(graph)
-    visited = set()
+    ```python
+    def has_cycle(graph: list[list[int]]) -> bool:
+        n = len(graph)
+        visited = set()
 
-    def dfs_cycle(node: int, parent: int) -> bool:
-        visited.add(node)
+        def dfs_cycle(node: int, parent: int) -> bool:
+            visited.add(node)
 
-        for neighbor in graph[node]:
-            if neighbor not in visited:
-                if dfs_cycle(neighbor, node):
+            for neighbor in graph[node]:
+                if neighbor not in visited:
+                    if dfs_cycle(neighbor, node):
+                        return True
+                elif neighbor != parent:
+                    # 访问到已访问的节点且不是父节点,存在环
                     return True
-            elif neighbor != parent:
-                # 访问到已访问的节点且不是父节点,存在环
-                return True
-        return False
+            return False
 
-    for i in range(n):
-        if i not in visited:
-            if dfs_cycle(i, -1):
-                return True
-    return False
-```
-
-### 有向图环检测
-
-使用 DFS + **路径标记**。需要三种状态:未访问、访问中(在当前路径上)、已完成。
-
-```python
-def has_cycle_directed(graph: list[list[int]]) -> bool:
-    n = len(graph)
-    # 0: 未访问, 1: 访问中(在路径上), 2: 已完成
-    state = [0] * n
-
-    def dfs_cycle_directed(node: int) -> bool:
-        state[node] = 1  # 标记为访问中
-
-        for neighbor in graph[node]:
-            if state[neighbor] == 1:
-                # 遇到访问中的节点,存在环
-                return True
-            if state[neighbor] == 0:
-                if dfs_cycle_directed(neighbor):
+        for i in range(n):
+            if i not in visited:
+                if dfs_cycle(i, -1):
                     return True
-
-        state[node] = 2  # 标记为已完成
         return False
+    ```
 
-    for i in range(n):
-        if state[i] == 0:
-            if dfs_cycle_directed(i):
-                return True
-    return False
-```
+=== "有向图环检测"
+
+    **核心思想**: 使用 DFS + **路径标记**。需要三种状态:未访问、访问中(在当前路径上)、已完成。
+
+    ```python
+    def has_cycle_directed(graph: list[list[int]]) -> bool:
+        n = len(graph)
+        # 0: 未访问, 1: 访问中(在路径上), 2: 已完成
+        state = [0] * n
+
+        def dfs_cycle_directed(node: int) -> bool:
+            state[node] = 1  # 标记为访问中
+
+            for neighbor in graph[node]:
+                if state[neighbor] == 1:
+                    # 遇到访问中的节点,存在环
+                    return True
+                if state[neighbor] == 0:
+                    if dfs_cycle_directed(neighbor):
+                        return True
+
+            state[node] = 2  # 标记为已完成
+            return False
+
+        for i in range(n):
+            if state[i] == 0:
+                if dfs_cycle_directed(i):
+                    return True
+        return False
+    ```
 
 ---
 
@@ -402,11 +401,11 @@ def has_cycle_directed(graph: list[list[int]]) -> bool:
   <table>
     <tr>
       <td align="center">
-        <img src="topological_sort_dfs.webp" alt="DFS 拓扑排序"  /><br />
+        <img src="topological_sort_dfs.webp" alt="DFS 拓扑排序" width=80% /><br />
         <sub>DFS + 后序遍历反转</sub>
       </td>
       <td align="center">
-        <img src="topological_sort_kahn.webp" alt="Kahn 算法拓扑排序" /><br />
+        <img src="topological_sort_kahn.webp" alt="Kahn 算法拓扑排序" width=80% /><br />
         <sub>Kahn 算法 (BFS + 入度)</sub>
       </td>
     </tr>
@@ -426,7 +425,7 @@ def has_cycle_directed(graph: list[list[int]]) -> bool:
 
 ## 无权图
 
-无权图的边没有权重,只表示节点之间的连接关系。这是最基础的图结构,适合表示二元关系。
+无权图的边没有权重，只表示节点之间的连接关系。这是最基础的图结构，适合表示二元关系。
 
 ### 无权图的表示
 
@@ -440,7 +439,7 @@ matrix: list[list[bool]]  # matrix[i][j] = True 表示 i 和 j 之间有边
 
 ### BFS 求最短路径
 
-在**无权图**中,BFS 可以找到从起点到任意节点的**最短路径**(边数最少)。
+在 **无权图** 中，BFS 可以找到从起点到任意节点的 **最短路径**（边数最少）。
 
 ```python
 from collections import deque
@@ -467,7 +466,7 @@ def shortest_path(graph: list[list[int]], start: int, target: int) -> int:
 
 ### 双向 BFS 优化
 
-当起点和终点都已知时,可以使用**双向 BFS** 来优化搜索效率。
+当起点和终点都已知时，可以使用 **双向 BFS** 来优化搜索效率。
 
 ```python
 def bidirectional_bfs(graph: list[list[int]], start: int, target: int) -> int:
