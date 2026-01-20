@@ -39,7 +39,7 @@ jobs:
           cp -r .github/docs-assets/* docs/
 
       - name: Build documentation
-        run: uvx --with mkdocs-material --with pymdown-extensions --with mkdocs-glightbox mkdocs build --strict
+        run: uvx --from mkdocs --with mkdocs-material --with pymdown-extensions --with mkdocs-glightbox mkdocs build --strict
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
