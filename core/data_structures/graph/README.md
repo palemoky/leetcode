@@ -17,81 +17,64 @@
 
 ### 图的表示(邻接表)
 
-```go
-// 邻接表表示图
-type Graph struct {
-    // graph[i] 存储节点 i 的所有邻居节点
-    graph [][]int
-}
+```python
+# 邻接表表示图
+graph: list[list[int]]  # graph[i] 存储节点 i 的所有邻居节点
 ```
 
 ### 深度优先搜索(DFS)
 
 DFS 使用递归或栈来实现,适合解决路径、连通性、环检测等问题。
 
-```go
-// DFS 遍历框架
-func dfs(graph [][]int, start int, visited []bool) {
-    // 标记当前节点已访问
-    visited[start] = true
+```python
+def dfs(graph: list[list[int]], start: int, visited: set[int]) -> None:
+    # 标记当前节点已访问
+    visited.add(start)
 
-    // 前序位置:进入节点时的操作
-    // ...
+    # 前序位置:进入节点时的操作
+    # ...
 
-    // 遍历所有邻居节点
-    for _, neighbor := range graph[start] {
-        if !visited[neighbor] {
+    # 遍历所有邻居节点
+    for neighbor in graph[start]:
+        if neighbor not in visited:
             dfs(graph, neighbor, visited)
-        }
-    }
 
-    // 后序位置:离开节点时的操作
-    // ...
-}
+    # 后序位置:离开节点时的操作
+    # ...
 
-// 遍历整个图(处理非连通图)
-func traverseGraph(graph [][]int) {
-    n := len(graph)
-    visited := make([]bool, n)
+def traverse_graph(graph: list[list[int]]) -> None:
+    visited = set()
 
-    // 遍历所有节点,确保访问到所有连通分量
-    for i := 0; i < n; i++ {
-        if !visited[i] {
+    # 遍历所有节点,确保访问到所有连通分量
+    for i in range(len(graph)):
+        if i not in visited:
             dfs(graph, i, visited)
-        }
-    }
-}
 ```
 
 ### 广度优先搜索(BFS)
 
 BFS 使用队列来实现,适合解决最短路径、层级遍历等问题。
 
-```go
-// BFS 遍历框架
-func bfs(graph [][]int, start int) {
-    n := len(graph)
-    visited := make([]bool, n)
-    queue := []int{start}
-    visited[start] = true
+```python
+from collections import deque
 
-    for len(queue) > 0 {
-        // 取出队首节点
-        node := queue[0]
-        queue = queue[1:]
+def bfs(graph: list[list[int]], start: int) -> None:
+    visited = set()
+    queue = deque([start])
+    visited.add(start)
 
-        // 访问当前节点
-        // ...
+    while queue:
+        # 取出队首节点
+        node = queue.popleft()
 
-        // 将所有未访问的邻居加入队列
-        for _, neighbor := range graph[node] {
-            if !visited[neighbor] {
-                visited[neighbor] = true
-                queue = append(queue, neighbor)
-            }
-        }
-    }
-}
+        # 访问当前节点
+        # ...
+
+        # 将所有未访问的邻居加入队列
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append(neighbor)
 ```
 
 ### DFS vs BFS
@@ -145,51 +128,49 @@ func bfs(graph [][]int, start int) {
 
 **图的 DFS (遍历):**
 
-```go
-func graphDFS(graph [][]int, start int, visited []bool) {
-    // 做选择(在 for 循环外)
-    visited[start] = true
+```python
+def graph_dfs(graph: list[list[int]], start: int, visited: set[int]) -> None:
+    # 做选择(for 循环外)
+    visited.add(start)
 
-    // 前序位置:访问节点
-    fmt.Println(start)
+    # 前序位置:访问节点
+    print(start)
 
-    // 遍历所有邻居
-    for _, neighbor := range graph[start] {
-        if !visited[neighbor] {
-            graphDFS(graph, neighbor, visited)
-        }
-    }
+    # 遍历所有邻居
+    for neighbor in graph[start]:
+        if neighbor not in visited:
+            graph_dfs(graph, neighbor, visited)
 
-    // ❌ 不撤销选择
-}
+    # ✖️ 不撤销选择
 ```
 
 **回溯 (找所有路径):**
 
-```go
-func backtrackDFS(graph [][]int, start, target int, visited []bool, path []int, result *[][]int) {
-    // 做选择(在 for 循环外)
-    path = append(path, start)
-    visited[start] = true
+```python
+def backtrack_dfs(
+    graph: list[list[int]],
+    start: int,
+    target: int,
+    visited: set[int],
+    path: list[int],
+    result: list[list[int]]
+) -> None:
+    # 做选择(for 循环外)
+    path.append(start)
+    visited.add(start)
 
-    // 到达目标,记录路径
-    if start == target {
-        tmp := make([]int, len(path))
-        copy(tmp, path)
-        *result = append(*result, tmp)
-    }
+    # 到达目标,记录路径
+    if start == target:
+        result.append(path.copy())
 
-    // 遍历所有邻居
-    for _, neighbor := range graph[start] {
-        if !visited[neighbor] {
-            backtrackDFS(graph, neighbor, target, visited, path, result)
-        }
-    }
+    # 遍历所有邻居
+    for neighbor in graph[start]:
+        if neighbor not in visited:
+            backtrack_dfs(graph, neighbor, target, visited, path, result)
 
-    // ✅ 撤销选择(在 for 循环外) - 这是回溯的精髓!
-    visited[start] = false
-    path = path[:len(path)-1]
-}
+    # ✅ 撤销选择(for 循环外) - 这是回溯的精髓!
+    visited.remove(start)
+    path.pop()
 ```
 
 ### 具体例子
@@ -247,39 +228,30 @@ func backtrackDFS(graph [][]int, start, target int, visited []bool, path []int, 
 
 使用 **染色法**(DFS/BFS):尝试用两种颜色给图着色,如果能成功着色且相邻节点颜色不同,则是二分图。
 
-```go
-func isBipartite(graph [][]int) bool {
-    n := len(graph)
-    color := make([]int, n) // 0: 未染色, 1: 颜色1, -1: 颜色2
+```python
+def is_bipartite(graph: list[list[int]]) -> bool:
+    n = len(graph)
+    color = [0] * n  # 0: 未染色, 1: 颜色1, -1: 颜色2
 
-    // 处理非连通图
-    for i := 0; i < n; i++ {
-        if color[i] == 0 {
-            if !dfs(graph, i, 1, color) {
-                return false
-            }
-        }
-    }
-    return true
-}
+    def dfs(node: int, c: int) -> bool:
+        color[node] = c
 
-func dfs(graph [][]int, node, c int, color []int) bool {
-    color[node] = c
+        for neighbor in graph[node]:
+            if color[neighbor] == c:
+                # 相邻节点颜色相同,不是二分图
+                return False
+            if color[neighbor] == 0:
+                # 染成相反的颜色
+                if not dfs(neighbor, -c):
+                    return False
+        return True
 
-    for _, neighbor := range graph[node] {
-        if color[neighbor] == c {
-            // 相邻节点颜色相同,不是二分图
-            return false
-        }
-        if color[neighbor] == 0 {
-            // 染成相反的颜色
-            if !dfs(graph, neighbor, -c, color) {
-                return false
-            }
-        }
-    }
-    return true
-}
+    # 处理非连通图
+    for i in range(n):
+        if color[i] == 0:
+            if not dfs(i, 1):
+                return False
+    return True
 ```
 
 **应用场景:**
@@ -296,76 +268,59 @@ func dfs(graph [][]int, node, c int, color []int) bool {
 
 使用 DFS,记录父节点。如果访问到已访问的节点且不是父节点,则存在环。
 
-```go
-func hasCycle(graph [][]int) bool {
-    n := len(graph)
-    visited := make([]bool, n)
+```python
+def has_cycle(graph: list[list[int]]) -> bool:
+    n = len(graph)
+    visited = set()
 
-    for i := 0; i < n; i++ {
-        if !visited[i] {
-            if dfsCycle(graph, i, -1, visited) {
-                return true
-            }
-        }
-    }
-    return false
-}
+    def dfs_cycle(node: int, parent: int) -> bool:
+        visited.add(node)
 
-func dfsCycle(graph [][]int, node, parent int, visited []bool) bool {
-    visited[node] = true
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                if dfs_cycle(neighbor, node):
+                    return True
+            elif neighbor != parent:
+                # 访问到已访问的节点且不是父节点,存在环
+                return True
+        return False
 
-    for _, neighbor := range graph[node] {
-        if !visited[neighbor] {
-            if dfsCycle(graph, neighbor, node, visited) {
-                return true
-            }
-        } else if neighbor != parent {
-            // 访问到已访问的节点且不是父节点,存在环
-            return true
-        }
-    }
-    return false
-}
+    for i in range(n):
+        if i not in visited:
+            if dfs_cycle(i, -1):
+                return True
+    return False
 ```
 
 ### 有向图环检测
 
 使用 DFS + **路径标记**。需要三种状态:未访问、访问中(在当前路径上)、已完成。
 
-```go
-func hasCycleDirected(graph [][]int) bool {
-    n := len(graph)
-    // 0: 未访问, 1: 访问中(在路径上), 2: 已完成
-    state := make([]int, n)
+```python
+def has_cycle_directed(graph: list[list[int]]) -> bool:
+    n = len(graph)
+    # 0: 未访问, 1: 访问中(在路径上), 2: 已完成
+    state = [0] * n
 
-    for i := 0; i < n; i++ {
-        if state[i] == 0 {
-            if dfsCycleDirected(graph, i, state) {
-                return true
-            }
-        }
-    }
-    return false
-}
+    def dfs_cycle_directed(node: int) -> bool:
+        state[node] = 1  # 标记为访问中
 
-func dfsCycleDirected(graph [][]int, node int, state []int) bool {
-    state[node] = 1 // 标记为访问中
+        for neighbor in graph[node]:
+            if state[neighbor] == 1:
+                # 遇到访问中的节点,存在环
+                return True
+            if state[neighbor] == 0:
+                if dfs_cycle_directed(neighbor):
+                    return True
 
-    for _, neighbor := range graph[node] {
-        if state[neighbor] == 1 {
-            // 遇到访问中的节点,存在环
-            return true
-        }
-        if state[neighbor] == 0 {
-            if dfsCycleDirected(graph, neighbor, state) {
-                return true
-            }
-        }
-    }
+        state[node] = 2  # 标记为已完成
+        return False
 
-    state[node] = 2 // 标记为已完成
-    return false
-}
+    for i in range(n):
+        if state[i] == 0:
+            if dfs_cycle_directed(i):
+                return True
+    return False
 ```
 
 ---
@@ -378,85 +333,61 @@ func dfsCycleDirected(graph [][]int, node int, state []int) bool {
 
 **核心思想**: DFS 后序遍历的结果反转就是拓扑排序。
 
-```go
-func topologicalSort(graph [][]int) []int {
-    n := len(graph)
-    visited := make([]bool, n)
-    result := []int{}
+```python
+def topological_sort(graph: list[list[int]]) -> list[int]:
+    visited = set()
+    result = []
 
-    var dfs func(int)
-    dfs = func(node int) {
-        visited[node] = true
+    def dfs(node: int) -> None:
+        visited.add(node)
 
-        for _, neighbor := range graph[node] {
-            if !visited[neighbor] {
+        for neighbor in graph[node]:
+            if neighbor not in visited:
                 dfs(neighbor)
-            }
-        }
 
-        // 后序位置:所有子节点都已访问完
-        result = append(result, node)
-    }
+        # 后序位置:所有子节点都已访问完
+        result.append(node)
 
-    for i := 0; i < n; i++ {
-        if !visited[i] {
+    for i in range(len(graph)):
+        if i not in visited:
             dfs(i)
-        }
-    }
 
-    // 反转结果
-    for i, j := 0, len(result)-1; i < j; i, j = i+1, j-1 {
-        result[i], result[j] = result[j], result[i]
-    }
-
-    return result
-}
+    return result[::-1]  # 反转结果
 ```
 
 ### 方法 2: Kahn 算法(BFS + 入度)
 
-```go
-func topologicalSortKahn(graph [][]int) []int {
-    n := len(graph)
-    inDegree := make([]int, n)
+```python
+from collections import deque
 
-    // 计算入度
-    for i := 0; i < n; i++ {
-        for _, neighbor := range graph[i] {
-            inDegree[neighbor]++
-        }
-    }
+def topological_sort_kahn(graph: list[list[int]]) -> list[int]:
+    n = len(graph)
+    in_degree = [0] * n
 
-    // 将入度为 0 的节点加入队列
-    queue := []int{}
-    for i := 0; i < n; i++ {
-        if inDegree[i] == 0 {
-            queue = append(queue, i)
-        }
-    }
+    # 计算入度
+    for i in range(n):
+        for neighbor in graph[i]:
+            in_degree[neighbor] += 1
 
-    result := []int{}
-    for len(queue) > 0 {
-        node := queue[0]
-        queue = queue[1:]
-        result = append(result, node)
+    # 将入度为 0 的节点加入队列
+    queue = deque([i for i in range(n) if in_degree[i] == 0])
 
-        // 删除该节点的所有出边
-        for _, neighbor := range graph[node] {
-            inDegree[neighbor]--
-            if inDegree[neighbor] == 0 {
-                queue = append(queue, neighbor)
-            }
-        }
-    }
+    result = []
+    while queue:
+        node = queue.popleft()
+        result.append(node)
 
-    // 如果结果长度不等于节点数,说明存在环
-    if len(result) != n {
-        return []int{} // 存在环,无法拓扑排序
-    }
+        # 删除该节点的所有出边
+        for neighbor in graph[node]:
+            in_degree[neighbor] -= 1
+            if in_degree[neighbor] == 0:
+                queue.append(neighbor)
+
+    # 如果结果长度不等于节点数,说明存在环
+    if len(result) != n:
+        return []  # 存在环,无法拓扑排序
 
     return result
-}
 ```
 
 **应用场景:**
@@ -474,104 +405,77 @@ func topologicalSortKahn(graph [][]int) []int {
 
 ### 无权图的表示
 
-```go
-// 邻接表表示无权图
-type UnweightedGraph struct {
-    graph [][]int  // graph[i] 存储节点 i 的所有邻居
-}
+```python
+# 邻接表表示无权图
+graph: list[list[int]]  # graph[i] 存储节点 i 的所有邻居
 
-// 邻接矩阵表示无权图
-type UnweightedGraphMatrix struct {
-    matrix [][]bool  // matrix[i][j] = true 表示 i 和 j 之间有边
-}
+# 邻接矩阵表示无权图
+matrix: list[list[bool]]  # matrix[i][j] = True 表示 i 和 j 之间有边
 ```
 
 ### BFS 求最短路径
 
 在**无权图**中,BFS 可以找到从起点到任意节点的**最短路径**(边数最少)。
 
-```go
-func shortestPath(graph [][]int, start, target int) int {
-    n := len(graph)
-    visited := make([]bool, n)
-    queue := []int{start}
-    visited[start] = true
-    step := 0
+```python
+from collections import deque
 
-    for len(queue) > 0 {
-        size := len(queue)
+def shortest_path(graph: list[list[int]], start: int, target: int) -> int:
+    visited = set()
+    queue = deque([(start, 0)])  # (node, step)
+    visited.add(start)
 
-        // 遍历当前层的所有节点
-        for i := 0; i < size; i++ {
-            node := queue[0]
-            queue = queue[1:]
+    while queue:
+        node, step = queue.popleft()
 
-            if node == target {
-                return step
-            }
+        if node == target:
+            return step
 
-            // 将邻居加入队列
-            for _, neighbor := range graph[node] {
-                if !visited[neighbor] {
-                    visited[neighbor] = true
-                    queue = append(queue, neighbor)
-                }
-            }
-        }
+        # 将邻居加入队列
+        for neighbor in graph[node]:
+            if neighbor not in visited:
+                visited.add(neighbor)
+                queue.append((neighbor, step + 1))
 
-        step++
-    }
-
-    return -1  // 无法到达
-}
+    return -1  # 无法到达
 ```
 
 ### 双向 BFS 优化
 
 当起点和终点都已知时,可以使用**双向 BFS** 来优化搜索效率。
 
-```go
-func bidirectionalBFS(graph [][]int, start, target int) int {
-    if start == target {
+```python
+def bidirectional_bfs(graph: list[list[int]], start: int, target: int) -> int:
+    if start == target:
         return 0
-    }
 
-    // 从起点和终点同时开始搜索
-    visitedStart := map[int]bool{start: true}
-    visitedTarget := map[int]bool{target: true}
-    queueStart := []int{start}
-    queueTarget := []int{target}
-    step := 0
+    # 从起点和终点同时开始搜索
+    visited_start = {start}
+    visited_target = {target}
+    queue_start = deque([start])
+    queue_target = deque([target])
+    step = 0
 
-    for len(queueStart) > 0 && len(queueTarget) > 0 {
-        step++
+    while queue_start and queue_target:
+        step += 1
 
-        // 优化:总是扩展较小的队列
-        if len(queueStart) > len(queueTarget) {
-            queueStart, queueTarget = queueTarget, queueStart
-            visitedStart, visitedTarget = visitedTarget, visitedStart
-        }
+        # 优化:总是扩展较小的队列
+        if len(queue_start) > len(queue_target):
+            queue_start, queue_target = queue_target, queue_start
+            visited_start, visited_target = visited_target, visited_start
 
-        size := len(queueStart)
-        for i := 0; i < size; i++ {
-            node := queueStart[0]
-            queueStart = queueStart[1:]
+        for _ in range(len(queue_start)):
+            node = queue_start.popleft()
 
-            for _, neighbor := range graph[node] {
-                if visitedTarget[neighbor] {
-                    // 两个方向相遇
+            for neighbor in graph[node]:
+                if neighbor in visited_target:
+                    # 两个方向相遇
                     return step
-                }
-                if !visitedStart[neighbor] {
-                    visitedStart[neighbor] = true
-                    queueStart = append(queueStart, neighbor)
-                }
-            }
-        }
-    }
+                if neighbor not in visited_start:
+                    visited_start.add(neighbor)
+                    queue_start.append(neighbor)
 
     return -1
-}
 ```
 
 **双向 BFS 的优势:**
@@ -607,119 +511,79 @@ func bidirectionalBFS(graph [][]int, start, target int) int {
 
 ### 加权图的表示
 
-```go
-// 方法 1: 邻接表 + 边结构
-type Edge struct {
-    to     int
-    weight int
-}
+```python
+from typing import NamedTuple
 
-type WeightedGraph struct {
-    graph [][]Edge
-}
+class Edge(NamedTuple):
+    to: int
+    weight: int
 
-// 方法 2: 邻接表 + 二维数组
-// graph[i] = [[neighbor1, weight1], [neighbor2, weight2], ...]
-type WeightedGraph2 struct {
-    graph [][][2]int
-}
+# 方法 1: 邻接表 + Edge 类
+graph: list[list[Edge]]
+
+# 方法 2: 邻接表 + 元组
+# graph[i] = [(neighbor1, weight1), (neighbor2, weight2), ...]
+graph: list[list[tuple[int, int]]]
 ```
 
 ### Dijkstra 算法(单源最短路径)
 
 适用于 **非负权重** 的图,使用优先队列(最小堆)。
 
-```go
-import "container/heap"
+```python
+import heapq
+from typing import NamedTuple
 
-type Item struct {
-    node int
-    dist int
-}
+class Edge(NamedTuple):
+    to: int
+    weight: int
 
-type PriorityQueue []Item
-
-func (pq PriorityQueue) Len() int           { return len(pq) }
-func (pq PriorityQueue) Less(i, j int) bool { return pq[i].dist < pq[j].dist }
-func (pq PriorityQueue) Swap(i, j int)      { pq[i], pq[j] = pq[j], pq[i] }
-func (pq *PriorityQueue) Push(x interface{}) {
-    *pq = append(*pq, x.(Item))
-}
-func (pq *PriorityQueue) Pop() interface{} {
-    old := *pq
-    n := len(old)
-    item := old[n-1]
-    *pq = old[0 : n-1]
-    return item
-}
-
-func dijkstra(graph [][]Edge, start int) []int {
-    n := len(graph)
-    dist := make([]int, n)
-    for i := range dist {
-        dist[i] = 1<<31 - 1 // 初始化为无穷大
-    }
+def dijkstra(graph: list[list[Edge]], start: int) -> list[int]:
+    n = len(graph)
+    dist = [float('inf')] * n
     dist[start] = 0
 
-    pq := &PriorityQueue{}
-    heap.Init(pq)
-    heap.Push(pq, Item{start, 0})
+    # 优先队列: (distance, node)
+    pq = [(0, start)]
 
-    for pq.Len() > 0 {
-        item := heap.Pop(pq).(Item)
-        node, d := item.node, item.dist
+    while pq:
+        d, node = heapq.heappop(pq)
 
-        if d > dist[node] {
+        if d > dist[node]:
             continue
-        }
 
-        for _, edge := range graph[node] {
-            newDist := dist[node] + edge.weight
-            if newDist < dist[edge.to] {
-                dist[edge.to] = newDist
-                heap.Push(pq, Item{edge.to, newDist})
-            }
-        }
-    }
+        for edge in graph[node]:
+            new_dist = dist[node] + edge.weight
+            if new_dist < dist[edge.to]:
+                dist[edge.to] = new_dist
+                heapq.heappush(pq, (new_dist, edge.to))
 
     return dist
-}
 ```
 
 ### Bellman-Ford 算法
 
 适用于 **有负权重** 的图,可以检测负权环。
 
-```go
-func bellmanFord(edges [][3]int, n, start int) []int {
-    // edges[i] = [from, to, weight]
-    dist := make([]int, n)
-    for i := range dist {
-        dist[i] = 1<<31 - 1
-    }
+```python
+def bellman_ford(edges: list[tuple[int, int, int]], n: int, start: int) -> list[int]:
+    # edges[i] = (from, to, weight)
+    dist = [float('inf')] * n
     dist[start] = 0
 
-    // 松弛 n-1 次
-    for i := 0; i < n-1; i++ {
-        for _, edge := range edges {
-            from, to, weight := edge[0], edge[1], edge[2]
-            if dist[from] != 1<<31-1 && dist[from]+weight < dist[to] {
-                dist[to] = dist[from] + weight
-            }
-        }
-    }
+    # 松弛 n-1 次
+    for _ in range(n - 1):
+        for from_node, to_node, weight in edges:
+            if dist[from_node] != float('inf') and dist[from_node] + weight < dist[to_node]:
+                dist[to_node] = dist[from_node] + weight
 
-    // 检测负权环
-    for _, edge := range edges {
-        from, to, weight := edge[0], edge[1], edge[2]
-        if dist[from] != 1<<31-1 && dist[from]+weight < dist[to] {
-            // 存在负权环
-            return []int{}
-        }
-    }
+    # 检测负权环
+    for from_node, to_node, weight in edges:
+        if dist[from_node] != float('inf') and dist[from_node] + weight < dist[to_node]:
+            # 存在负权环
+            return []
 
     return dist
-}
 ```
 
 ### 最短路径算法对比
