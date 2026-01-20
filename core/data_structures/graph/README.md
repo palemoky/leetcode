@@ -327,74 +327,99 @@ def has_cycle_directed(graph: list[list[int]]) -> bool:
 
 ## 拓扑排序
 
-拓扑排序是对 **有向无环图(DAG)** 的所有顶点进行线性排序,使得对于任何有向边 `u → v`,`u` 在排序中都出现在 `v` 之前。
+拓扑排序是对 **有向无环图(DAG，Directed Acyclic Graph)** 的所有顶点进行线性排序,使得对于任何有向边 `u → v`,`u` 在排序中都出现在 `v` 之前。**简而言之，拓扑排序就是将依赖关系排成一条线。**
 
-### 方法 1: DFS + 后序遍历反转
+<div align="center">
+    <img src="topological_sort_example.webp" alt="拓扑排序示意图" />
+</div>
 
-**核心思想**: DFS 后序遍历的结果反转就是拓扑排序。
+拓扑排序有两种经典实现：**Kahn 算法**(BFS + 入度)和 **DFS 算法**(后序遍历反转)。两者时间复杂度相同 $O(V+E)$，本质等价，不分优劣。
 
-```python
-def topological_sort(graph: list[list[int]]) -> list[int]:
-    visited = set()
-    result = []
+=== "DFS + 后序遍历反转"
 
-    def dfs(node: int) -> None:
-        visited.add(node)
+    **核心思想**: DFS 后序遍历的结果反转就是拓扑排序。
 
-        for neighbor in graph[node]:
-            if neighbor not in visited:
-                dfs(neighbor)
+    ```python
+    def topological_sort(graph: list[list[int]]) -> list[int]:
+        visited = set()
+        result = []
 
-        # 后序位置:所有子节点都已访问完
-        result.append(node)
+        def dfs(node: int) -> None:
+            visited.add(node)
 
-    for i in range(len(graph)):
-        if i not in visited:
-            dfs(i)
+            for neighbor in graph[node]:
+                if neighbor not in visited:
+                    dfs(neighbor)
 
-    return result[::-1]  # 反转结果
-```
+            # 后序位置:所有子节点都已访问完
+            result.append(node)
 
-### 方法 2: Kahn 算法(BFS + 入度)
+        for i in range(len(graph)):
+            if i not in visited:
+                dfs(i)
 
-```python
-from collections import deque
+        return result[::-1]  # 反转结果
+    ```
 
-def topological_sort_kahn(graph: list[list[int]]) -> list[int]:
-    n = len(graph)
-    in_degree = [0] * n
+=== "Kahn 算法 (BFS + 入度)"
 
-    # 计算入度
-    for i in range(n):
-        for neighbor in graph[i]:
-            in_degree[neighbor] += 1
+    **核心思想**: 不断移除入度为 0 的节点,并更新其邻居的入度。
 
-    # 将入度为 0 的节点加入队列
-    queue = deque([i for i in range(n) if in_degree[i] == 0])
+    ```python
+    from collections import deque
 
-    result = []
-    while queue:
-        node = queue.popleft()
-        result.append(node)
+    def topological_sort_kahn(graph: list[list[int]]) -> list[int]:
+        n = len(graph)
+        in_degree = [0] * n
 
-        # 删除该节点的所有出边
-        for neighbor in graph[node]:
-            in_degree[neighbor] -= 1
-            if in_degree[neighbor] == 0:
-                queue.append(neighbor)
+        # 计算入度
+        for i in range(n):
+            for neighbor in graph[i]:
+                in_degree[neighbor] += 1
 
-    # 如果结果长度不等于节点数,说明存在环
-    if len(result) != n:
-        return []  # 存在环,无法拓扑排序
+        # 将入度为 0 的节点加入队列
+        queue = deque([i for i in range(n) if in_degree[i] == 0])
 
-    return result
-```
+        result = []
+        while queue:
+            node = queue.popleft()
+            result.append(node)
+
+            # 删除该节点的所有出边
+            for neighbor in graph[node]:
+                in_degree[neighbor] -= 1
+                if in_degree[neighbor] == 0:
+                    queue.append(neighbor)
+
+        # 如果结果长度不等于节点数,说明存在环
+        if len(result) != n:
+            return []  # 存在环,无法拓扑排序
+
+        return result
+    ```
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <img src="topological_sort_dfs.webp" alt="DFS 拓扑排序"  /><br />
+        <sub>DFS + 后序遍历反转</sub>
+      </td>
+      <td align="center">
+        <img src="topological_sort_kahn.webp" alt="Kahn 算法拓扑排序" /><br />
+        <sub>Kahn 算法 (BFS + 入度)</sub>
+      </td>
+    </tr>
+  </table>
+</div>
+
+> 图片来源: [Jingsam](https://jingsam.github.io/)
 
 **应用场景:**
 
-- 课程安排(有先修课程要求)
-- 任务调度
-- 编译依赖
+- 课程安排（有先修课程要求）
+- 任务调度（GitHub Actions 的任务依赖，比如环境初始化在构建前，部署在构建后）
+- 编译依赖（Go 语言的循环依赖检测）
 - LeetCode: [207. Course Schedule](https://leetcode.com/problems/course-schedule/), [210. Course Schedule II](https://leetcode.com/problems/course-schedule-ii/)
 
 ---
