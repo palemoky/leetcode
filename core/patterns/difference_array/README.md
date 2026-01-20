@@ -264,11 +264,7 @@ func (d *Difference2D) Result() [][]int {
 **互为逆运算：**
 
 $$
-\begin{array}{ccc}
-& \scriptsize\text{差分} & \\
-\textbf{原数组} & \rightleftarrows & \textbf{差分数组} \\
-& \scriptsize\text{前缀和} &
-\end{array}
+\text{原数组} \xrightleftharpoons[\text{ 前缀和 }]{\text{ 差分 }} \text{差分数组}
 $$
 
 ---
