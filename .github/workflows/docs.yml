@@ -36,10 +36,7 @@ jobs:
 
       - name: Copy assets from .github/docs-assets
         run: |
-          mkdir -p docs/{javascripts,assets,stylesheets}
-          cp .github/docs-assets/*.js docs/javascripts/
-          cp .github/docs-assets/*.css docs/stylesheets/
-          cp .github/docs-assets/*.png docs/assets/
+          cp -r .github/docs-assets/* docs/
 
       - name: Build documentation
         run: uvx --with mkdocs-material --with pymdown-extensions --with mkdocs-glightbox mkdocs build --strict

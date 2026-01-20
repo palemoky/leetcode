@@ -9,8 +9,8 @@ edit_uri: edit/main/core/
 theme:
   name: material
   language: zh
-  favicon: assets/logo.png
-  logo: assets/logo.png
+  favicon: images/logo.png
+  logo: images/logo.png
   palette:
     # Light mode
     - media: "(prefers-color-scheme: light)"
