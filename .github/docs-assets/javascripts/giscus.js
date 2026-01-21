@@ -1,8 +1,11 @@
-// Giscus
+/**
+ * Giscus Comments Integration
+ * Lazy-loads Giscus comments when the placeholder enters the viewport
+ */
 (function () {
   let giscusLoaded = false;
 
-  // 创建占位符
+  // Create placeholder element
   function createPlaceholder() {
     var article = document.querySelector("article");
     if (!article) return;
@@ -22,7 +25,7 @@
     return placeholder;
   }
 
-  // 加载 Giscus
+  // Load Giscus script
   function loadGiscus() {
     if (giscusLoaded) return;
     giscusLoaded = true;
@@ -32,11 +35,11 @@
       placeholder = createPlaceholder();
     }
 
-    // 移除占位符内容
+    // Clear placeholder content
     placeholder.innerHTML = "";
     placeholder.className = "giscus";
 
-    // 加载 Giscus 脚本
+    // Create and configure Giscus script element
     var script = document.createElement("script");
     script.src = "https://giscus.app/client.js";
     script.setAttribute("data-repo", "palemoky/leetcode");
@@ -57,7 +60,7 @@
     placeholder.appendChild(script);
   }
 
-  // 监听滚动事件，当评论区即将进入视口时加载
+  // Setup lazy loading with IntersectionObserver
   function setupLazyLoad() {
     var placeholder = createPlaceholder();
     if (!placeholder) return;
@@ -72,24 +75,24 @@
         });
       },
       {
-        rootMargin: "200px", // 提前 200px 开始加载
+        rootMargin: "200px", // Start loading 200px before entering viewport
       }
     );
 
     observer.observe(placeholder);
   }
 
-  // MkDocs Material 的页面切换事件
+  // Handle MkDocs Material page navigation
   document$.subscribe(function () {
     giscusLoaded = false;
 
-    // 移除旧的评论区
+    // Remove existing comments container
     var existingGiscus = document.querySelector(".giscus, .giscus-placeholder");
     if (existingGiscus) {
       existingGiscus.remove();
     }
 
-    // 设置延迟加载
+    // Setup lazy loading for new page
     setupLazyLoad();
   });
 })();

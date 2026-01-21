@@ -9,11 +9,11 @@
     <tr>
       <td align="center" style="vertical-align: bottom;">
         <img src="monotonous-stack-before.svg" alt="Before pushing 14" /><br />
-        <sub style="font-size: 14px;">Before pushing 14</sub>
+        <sub class="img-caption">Before pushing 14</sub>
       </td>
       <td align="center" style="vertical-align: bottom;">
         <img src="monotonous-stack-after.svg" alt="After pushing 14" /><br />
-        <sub style="font-size: 14px;">After pushing 14</sub>
+        <sub class="img-caption">After pushing 14</sub>
       </td>
     </tr>
   </table>

@@ -1,3 +1,7 @@
+/**
+ * MathJax Configuration
+ * Enables LaTeX math rendering with chemistry and extended arrow support
+ */
 window.MathJax = {
   loader: {
     load: ['[tex]/mhchem', '[tex]/extpfeil']

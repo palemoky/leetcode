@@ -3,9 +3,9 @@
 对于大多数人来说，递归非常难以理解，因为人脑的限制，当我们思考递归过程时，非常容易“爆栈”。不过，我们可以通过下地下室取东西来类比递归：
 
 1. 我们从地面开始下地下室，每到达一层都有 3 种选择：
-    - 把东西打包好带上 → 前序遍历（已知当前层，未知后续层）
-    - 先把东西打包好，等到返回地面时再带走 → 中序遍历（仅限 BST）
-    - 在触底返回时打包带走 → 后序遍历（已知所有走过的路）
+   - 把东西打包好带上 → 前序遍历（已知当前层，未知后续层）
+   - 先把东西打包好，等到返回地面时再带走 → 中序遍历（仅限 BST）
+   - 在触底返回时打包带走 → 后序遍历（已知所有走过的路）
 2. 触底时开始返回
 3. 返回地面时，我们取回所有所需物品，递归结束。
 
@@ -17,7 +17,7 @@
       <td align="center" style="padding: 10px;">
         <img src="recursion_basement_analogy.webp" alt="递归的地下室类比" width="60%" />
         <br/>
-        <sub style="font-size: 14px;">递归的地下室类比</sub>
+        <sub class="img-caption">递归的地下室类比</sub>
       </td>
       <td align="center" style="padding: 10px;">
         <pre style="text-align: left; background: var(--md-code-bg-color); padding: 15px; border-radius: 5px; font-family: monospace; border: 1px solid var(--md-default-fg-color--lightest);">
@@ -33,7 +33,7 @@
 ┌─ 🔙 返回 3 × 2 = 6
 🌟 最终结果：6
         </pre>
-        <sub style="font-size: 14px;">3! 递归调用栈示意图</sub>
+        <sub class="img-caption">3! 递归调用栈示意图</sub>
       </td>
     </tr>
   </table>

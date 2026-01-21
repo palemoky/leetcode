@@ -166,11 +166,11 @@
     <tr>
       <td align="center" style="vertical-align: bottom;">
         <img src="quick_sorting.webp" alt="Quick Sorting" /><br />
-        <sub style="font-size: 14px;">快速排序示意图</sub>
+        <sub class="img-caption">快速排序示意图</sub>
       </td>
       <td align="center" style="vertical-align: bottom;">
         <img src="merge_sorting.webp" alt="Merge Sorting" /><br />
-        <sub style="font-size: 14px;">归并排序示意图</sub>
+        <sub class="img-caption">归并排序示意图</sub>
       </td>
     </tr>
   </table>
@@ -188,9 +188,9 @@
 
 在计算机科学中，我们通常用大 $O$ 来描述某个特定算法时间与空间随着数据规模增加而变化的趋势。
 
-<p align="center">
+<figure>
     <img src="Big_O.webp" alt="Big-O Complexity Chart" width="50%" />
-</p>
+</figure>
 
 ### 稳定性与不稳定性
 

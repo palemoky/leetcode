@@ -19,15 +19,15 @@
     <tr>
       <td align="center" style="vertical-align: bottom;" style="padding-left: 20px;">
         <img src="perfect_binary_tree.webp" alt="Perfect Binary Tree" width="200" /><br />
-        <sub style="font-size: 14px;">Perfect Binary Tree</sub>
+        <sub class="img-caption">Perfect Binary Tree</sub>
       </td>
       <td align="center" style="vertical-align: bottom;" style="padding-right: 20px;">
         <img src="complete_binary_tree.webp" alt="Complete Binary Tree" width="200" /><br />
-        <sub style="font-size: 14px;">Complete Binary Tree</sub>
+        <sub class="img-caption">Complete Binary Tree</sub>
       </td>
       <td align="center" style="vertical-align: bottom;" style="padding-left: 20px;">
         <img src="full_binary_tree.webp" alt="Full Binary Tree" width="200" /><br />
-        <sub style="font-size: 14px;">Full Binary Tree</sub>
+        <sub class="img-caption">Full Binary Tree</sub>
       </td>
     </tr>
   </table>
@@ -67,9 +67,9 @@
 | 小顶堆 | `a[i] <= a[2*i] && a[i] <= a[2*i+1]` | `a[i] <= a[2*i+1] && a[i] <= a[2*i+2]` |
 | 大顶堆 | `a[i] >= a[2*i] && a[i] >= a[2*i+1]` | `a[i] >= a[2*i+1] && a[i] >= a[2*i+2]` |
 
-<p align="center">
+<figure>
     <img src="min_heap_and_max_heap.webp" alt="Min Heap and Max Heap" width="65%" />
-</p>
+</figure>
 
 常见操作的时间复杂度：
 
@@ -223,9 +223,9 @@ BST 有两种不同的写法，处理细节也不同：
 
 ## 平衡二叉搜索树
 
-<p align="center">
+<figure>
     <img src="binary_tree_special_cases.webp" alt="Binary Tree Special Cases" width="60%" />
-</p>
+</figure>
 
 ---
 
@@ -252,20 +252,20 @@ BST 有两种不同的写法，处理细节也不同：
 
 </div>
 
-<p align="center">
+<figure>
     <img src="avl_tree_rotation_cases.webp" alt="AVL Tree Rotation" width="60%" />
-</p>
+</figure>
 
 <div align="center">
   <table>
     <tr>
       <td align="center" style="vertical-align: bottom;" style="padding-right: 20px;">
         <img src="balanced_binary_tree.webp" alt="Balanced Binary Tree" width="300" /><br />
-        <sub style="font-size: 14px;">Balanced Binary Tree</sub>
+        <sub class="img-caption">Balanced Binary Tree</sub>
       </td>
       <td align="center" style="vertical-align: bottom;" style="padding-right: 20px;">
         <img src="imbalanced_binary_tree.webp" alt="Imbalanced Binary Tree" width="300" /><br />
-        <sub style="font-size: 14px;">Imbalanced Binary Tree</sub>
+        <sub class="img-caption">Imbalanced Binary Tree</sub>
       </td>
     </tr>
   </table>
@@ -293,9 +293,9 @@ AVL 树的应用场景：
 4. 每个红色节点必须有两个黑色的子节点。（或者说不存在两个相邻的红色节点）（或者说红色节点的父节点和子节点均是黑色的）
 5. 从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点（保证平衡的关键）
 
-<p align="center">
+<figure>
     <img src="red_black_tree_example.webp" alt="Red Black Tree Example" width="50%" />
-</p>
+</figure>
 
 推论：
 
@@ -317,11 +317,11 @@ AVL 树的应用场景：
     <tr>
       <td align="center"  style="padding-right: 20px;">
         <img src="skip_list.webp" alt="Skip List"  /><br />
-        <br /><sub style="font-size: 14px;">Skip List</sub><br />
+        <br /><sub class="img-caption">Skip List</sub><br />
       </td>
       <td align="center" style="padding-right: 20px;">
         <img src="skip_list_add_element.webp" alt="Insert element to skip list"  /><br />
-        <sub style="font-size: 14px;">Insert element to skip list</sub>
+        <sub class="img-caption">Insert element to skip list</sub>
       </td>
     </tr>
   </table>
@@ -430,11 +430,11 @@ B+ 树通过将数据存储在叶子节点、叶子节点间通过链表相连�
     <tr>
       <td align="center" style="vertical-align: bottom;" >
         <img src="binary_tree_bfs.webp" alt="Binary Tree BFS" /><br />
-        <sub style="font-size: 14px;">Binary Tree BFS</sub>
+        <sub class="img-caption">Binary Tree BFS</sub>
       </td>
       <td align="center" style="vertical-align: bottom;" >
         <img src="binary_tree_dfs.webp" alt="Binary Tree DFS" /><br />
-        <sub style="font-size: 14px;">Binary Tree DFS</sub>
+        <sub class="img-caption">Binary Tree DFS</sub>
       </td>
     </tr>
   </table>
