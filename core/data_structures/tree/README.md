@@ -315,11 +315,11 @@ AVL 树的应用场景：
 <div align="center">
   <table>
     <tr>
-      <td align="center"  style="padding-right: 20px;">
+      <td align="center"  style="vertical-align: bottom;">
         <img src="skip_list.webp" alt="Skip List"  /><br />
         <br /><sub class="img-caption">Skip List</sub><br />
       </td>
-      <td align="center" style="padding-right: 20px;">
+      <td align="center" style="vertical-align: bottom;">
         <img src="skip_list_add_element.webp" alt="Insert element to skip list"  /><br />
         <sub class="img-caption">Insert element to skip list</sub>
       </td>
