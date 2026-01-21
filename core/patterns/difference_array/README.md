@@ -6,7 +6,7 @@
 
 ## 核心思想
 
-![Difference Array Overview](difference_array.webp){ align=right width=60% }
+![Difference Array Overview](difference_array.webp){ align=right width=40% }
 对于数组 `nums`，构建差分数组 `diff`，其中：
 
 ```
@@ -14,14 +14,11 @@ diff[i] = nums[i] - nums[i-1]  (i > 0)
 diff[0] = nums[0]
 ```
 
-<figure>
-    <img src="difference_array.webp" alt="Difference Array Overview" width="60%" />
-</figure>
-
 **关键性质：**
 
 ### 还原原数组
 
+![Restore from Difference Array](restore_from_diff.webp){ align=right width=40% }
 通过差分数组可以还原出原数组(原数组是差分数组的前缀和):
 
 $$
@@ -31,24 +28,17 @@ $$
 \end{cases}
 $$
 
-<figure>
-    <img src="restore_from_diff.webp" alt="Restore from Difference Array" width="60%" />
-</figure>
-
 ### 区间修改
 
-对区间 `[left, right]` 加上 `val`,只需修改两个位置:
+![Increment Operation](increment.webp){ align=right width=40% }
+对区间 `[left, right]` 加上 `val`（如图所示，对 `nums[1, 3]` 区间加 3），只需修改两个位置：
 
 - `diff[left] += val`
 - `diff[right+1] -= val`
 
-<figure>
-    <img src="increment.webp" alt="Increment Operation" width="40%" />
-    <figcaption>对 nums[1, 3] 区间加 3</figcaption>
-</figure>
-
 !!! warning "数组长度注意"
-因为对数组区间修改时，操作的是 `diff[right+1]`，因此通常 `len(diff) = len(nums) + 1`，以避免数组越界。
+
+    因为对数组区间修改时，操作的是 `diff[right+1]`，因此通常 `len(diff) = len(nums) + 1`，以避免数组越界。
 
 ---
 
@@ -63,142 +53,142 @@ $$
 
 ## 实现模板
 
-### 1. 一维差分数组
+=== "一维差分数组"
 
-```go
-type Difference struct {
-    diff []int
-}
-
-// 构建差分数组
-func NewDifference(nums []int) *Difference {
-    n := len(nums)
-    diff := make([]int, n)
-
-    diff[0] = nums[0]
-    for i := 1; i < n; i++ {
-        diff[i] = nums[i] - nums[i-1]
-    }
-
-    return &Difference{diff: diff}
-}
-
-// 对区间 [left, right] 增加 val
-func (d *Difference) Increment(left, right, val int) {
-    d.diff[left] += val
-    if right+1 < len(d.diff) {
-        d.diff[right+1] -= val
-    }
-}
-
-// 还原为原数组（通过前缀和）
-func (d *Difference) Result() []int {
-    n := len(d.diff)
-    result := make([]int, n)
-
-    result[0] = d.diff[0]
-    for i := 1; i < n; i++ {
-        result[i] = result[i-1] + d.diff[i]
-    }
-
-    return result
-}
-```
-
-**时间复杂度：**
-
-- 构建：$O(n)$
-- 区间修改：$O(1)$
-- 还原数组：$O(n)$
-
-**空间复杂度：** $O(n)$
-
-### 2. 使用示例
-
-```go
-// 初始数组
-nums := []int{1, 3, 5, 7, 9}
-diff := NewDifference(nums)
-
-// 对区间 [1, 3] 加 2
-diff.Increment(1, 3, 2)
-
-// 对区间 [2, 4] 减 1
-diff.Increment(2, 4, -1)
-
-// 获取最终结果
-result := diff.Result()
-// result = [1, 5, 6, 8, 8]
-```
-
-### 3. 二维差分数组
-
-用于二维矩阵的区域修改。
-
-```go
-type Difference2D struct {
-    diff [][]int
-    m, n int
-}
-
-// 构建二维差分数组
-func NewDifference2D(matrix [][]int) *Difference2D {
-    if len(matrix) == 0 || len(matrix[0]) == 0 {
-        return nil
-    }
-
-    m, n := len(matrix), len(matrix[0])
-    diff := make([][]int, m+1)
-    for i := range diff {
-        diff[i] = make([]int, n+1)
+    ```go
+    type Difference struct {
+        diff []int
     }
 
     // 构建差分数组
-    for i := 0; i < m; i++ {
-        for j := 0; j < n; j++ {
-            diff[i][j] += matrix[i][j]
-            diff[i+1][j] -= matrix[i][j]
-            diff[i][j+1] -= matrix[i][j]
-            diff[i+1][j+1] += matrix[i][j]
+    func NewDifference(nums []int) *Difference {
+        n := len(nums)
+        diff := make([]int, n)
+
+        diff[0] = nums[0]
+        for i := 1; i < n; i++ {
+            diff[i] = nums[i] - nums[i-1]
+        }
+
+        return &Difference{diff: diff}
+    }
+
+    // 对区间 [left, right] 增加 val
+    func (d *Difference) Increment(left, right, val int) {
+        d.diff[left] += val
+        if right+1 < len(d.diff) {
+            d.diff[right+1] -= val
         }
     }
 
-    return &Difference2D{diff: diff, m: m, n: n}
-}
+    // 还原为原数组（通过前缀和）
+    func (d *Difference) Result() []int {
+        n := len(d.diff)
+        result := make([]int, n)
 
-// 对矩形区域 (row1, col1) 到 (row2, col2) 增加 val
-func (d *Difference2D) Increment(row1, col1, row2, col2, val int) {
-    d.diff[row1][col1] += val
-    d.diff[row2+1][col1] -= val
-    d.diff[row1][col2+1] -= val
-    d.diff[row2+1][col2+1] += val
-}
-
-// 还原为原矩阵（通过二维前缀和）
-func (d *Difference2D) Result() [][]int {
-    result := make([][]int, d.m)
-    for i := range result {
-        result[i] = make([]int, d.n)
-    }
-
-    for i := 0; i < d.m; i++ {
-        for j := 0; j < d.n; j++ {
-            if i > 0 {
-                d.diff[i][j] += d.diff[i-1][j]
-            }
-            if j > 0 {
-                d.diff[i][j] += d.diff[i][j-1]
-            }
-            if i > 0 && j > 0 {
-                d.diff[i][j] -= d.diff[i-1][j-1]
-            }
-            result[i][j] = d.diff[i][j]
+        result[0] = d.diff[0]
+        for i := 1; i < n; i++ {
+            result[i] = result[i-1] + d.diff[i]
         }
+
+        return result
+    }
+    ```
+
+    **时间复杂度：**
+
+    - 构建：$O(n)$
+    - 区间修改：$O(1)$
+    - 还原数组：$O(n)$
+
+    **空间复杂度：** $O(n)$
+
+    使用示例
+
+    ```go
+    // 初始数组
+    nums := []int{1, 3, 5, 7, 9}
+    diff := NewDifference(nums)
+
+    // 对区间 [1, 3] 加 2
+    diff.Increment(1, 3, 2)
+
+    // 对区间 [2, 4] 减 1
+    diff.Increment(2, 4, -1)
+
+    // 获取最终结果
+    result := diff.Result()
+    // result = [1, 5, 6, 8, 8]
+    ```
+
+=== "二维差分数组"
+
+    用于二维矩阵的区域修改。
+
+    ```go
+    type Difference2D struct {
+        diff [][]int
+        m, n int
     }
 
-    return result
-}
-```
+    // 构建二维差分数组
+    func NewDifference2D(matrix [][]int) *Difference2D {
+        if len(matrix) == 0 || len(matrix[0]) == 0 {
+            return nil
+        }
+
+        m, n := len(matrix), len(matrix[0])
+        diff := make([][]int, m+1)
+        for i := range diff {
+            diff[i] = make([]int, n+1)
+        }
+
+        // 构建差分数组
+        for i := 0; i < m; i++ {
+            for j := 0; j < n; j++ {
+                diff[i][j] += matrix[i][j]
+                diff[i+1][j] -= matrix[i][j]
+                diff[i][j+1] -= matrix[i][j]
+                diff[i+1][j+1] += matrix[i][j]
+            }
+        }
+
+        return &Difference2D{diff: diff, m: m, n: n}
+    }
+
+    // 对矩形区域 (row1, col1) 到 (row2, col2) 增加 val
+    func (d *Difference2D) Increment(row1, col1, row2, col2, val int) {
+        d.diff[row1][col1] += val
+        d.diff[row2+1][col1] -= val
+        d.diff[row1][col2+1] -= val
+        d.diff[row2+1][col2+1] += val
+    }
+
+    // 还原为原矩阵（通过二维前缀和）
+    func (d *Difference2D) Result() [][]int {
+        result := make([][]int, d.m)
+        for i := range result {
+            result[i] = make([]int, d.n)
+        }
+
+        for i := 0; i < d.m; i++ {
+            for j := 0; j < d.n; j++ {
+                if i > 0 {
+                    d.diff[i][j] += d.diff[i-1][j]
+                }
+                if j > 0 {
+                    d.diff[i][j] += d.diff[i][j-1]
+                }
+                if i > 0 && j > 0 {
+                    d.diff[i][j] -= d.diff[i-1][j-1]
+                }
+                result[i][j] = d.diff[i][j]
+            }
+        }
+
+        return result
+    }
+    ```
 
 ---
 
