@@ -6,7 +6,7 @@
 
 ## 核心思想
 
-![Difference Array Overview](difference_array.webp){ align=right width=40% }
+![Difference Array Overview](difference_array.webp){ align=right width=50% }
 对于数组 `nums`，构建差分数组 `diff`，其中：
 
 ```
@@ -18,7 +18,7 @@ diff[0] = nums[0]
 
 ### 还原原数组
 
-![Restore from Difference Array](restore_from_diff.webp){ align=right width=40% }
+![Restore from Difference Array](restore_from_diff.webp){ align=right width=50% }
 通过差分数组可以还原出原数组(原数组是差分数组的前缀和):
 
 $$
@@ -30,7 +30,7 @@ $$
 
 ### 区间修改
 
-![Increment Operation](increment.webp){ align=right width=40% }
+![Increment Operation](increment.webp){ align=right width=30% }
 对区间 `[left, right]` 加上 `val`（如图所示，对 `nums[1, 3]` 区间加 3），只需修改两个位置：
 
 - `diff[left] += val`
