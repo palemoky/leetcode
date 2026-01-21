@@ -11,9 +11,12 @@ window.MathJax = {
   }
 };
 
-// 初始渲染和页面导航时重新渲染
 document$.subscribe(function() {
-  if (typeof MathJax !== 'undefined') {
-    MathJax.typesetPromise();
+  if (typeof MathJax !== 'undefined' && MathJax.startup && MathJax.typesetPromise) {
+    MathJax.typesetClear();
+    MathJax.texReset();
+    MathJax.typesetPromise().catch(function(err) {
+      console.log('MathJax typeset error:', err);
+    });
   }
 });
