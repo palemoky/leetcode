@@ -16,6 +16,16 @@ window.MathJax = {
   options: {
     ignoreHtmlClass: ".*|",
     processHtmlClass: "arithmatex"
+  },
+  startup: {
+    ready: () => {
+      MathJax.startup.defaultReady();
+      MathJax.startup.promise.then(() => {
+        console.log('MathJax initial typesetting complete');
+      }).catch((err) => {
+        console.error('MathJax initialization error:', err);
+      });
+    }
   }
 };
 
