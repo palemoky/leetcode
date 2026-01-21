@@ -162,7 +162,7 @@ nav:
       - 并查集: data_structures/union_find/README.md
   - 算法:
       - 算法概览: algorithms/README.md
-      - 递归: algorithms/recursion/README.md
+      - 递归算法: algorithms/recursion/README.md
       - 动态规划: algorithms/dp/README.md
       - 回溯算法: algorithms/backtracking/README.md
       - 排序算法: algorithms/sorting/README.md

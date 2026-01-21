@@ -134,37 +134,47 @@
     - [504. 七进制数](https://leetcode.com/problems/base-7/)
     - [405. 数字转换为十六进制数](https://leetcode.com/problems/convert-a-number-to-hexadecimal/)
 
-在实现减法或除法时，比较大小是必不可少的前置步骤。核心逻辑：
+=== "辅助函数"
 
-1. 先比较长度，长者为大。
-2. 若长度相等，则从高位到低位逐位比较，先遇到大数位者为大。
+    **大数比较**
 
-```go
-// 大数比较
-func compare(a, b string) int {
-    if len(a) != len(b) {
-        if len(a) > len(b) { return 1 }
-        return -1
-    }
-    if a > b { return 1 }
-    if a < b { return -1 }
-    return 0
-}
-```
+    在实现减法或除法时，比较大小是必不可少的前置步骤。
 
-```go
-// 在减法和除法中需要特别注意移除结果中的前导零
-func removeLeadingZeros(s string) string {
-    i := 0
-    for i < len(s) && s[i] == '0' {
-        i++
+    核心逻辑:
+    1. 先比较长度，长者为大
+    2. 若长度相等，则从高位到低位逐位比较，先遇到大数位者为大
+
+    ```go
+    // 大数比较
+    func compare(a, b string) int {
+        if len(a) != len(b) {
+            if len(a) > len(b) { return 1 }
+            return -1
+        }
+        if a > b { return 1 }
+        if a < b { return -1 }
+        return 0
     }
-    if i == len(s) {
-        return "0"
+    ```
+
+    **移除前导零**
+
+    在减法和除法中需要特别注意移除结果中的前导零。
+
+    ```go
+    func removeLeadingZeros(s string) string {
+        i := 0
+        for i < len(s) && s[i] == '0' {
+            i++
+        }
+        if i == len(s) {
+            return "0"
+        }
+        return s[i:]
     }
-    return s[i:]
-}
-```
+    ```
+
+---
 
 ## 字符与数字的互相转换
 
@@ -177,11 +187,7 @@ $$
 - **字符 → 数字**: `char - '0'` (减去字符 `'0'` 的 ASCII 值)
 - **数字 → 字符**: `digit + '0'` (加上字符 `'0'` 的 ASCII 值)
 
-## 高精度小数
-
-LeetCode [166.分数到小数](https://leetcode.cn/problems/fraction-to-recurring-decimal/) [Fraction to Recurring Decimal](https://leetcode.com/problems/fraction-to-recurring-decimal/)
-
-## 性能优优化
+## 性能优化
 
 1. **预分配结果长度**：`make([]byte, 0, len(a)+len(b)+1)` 避免频繁扩容
 2. **复用切片**：在循环中复用 `result = result[:0]` 重置长度但保留容量
