@@ -41,8 +41,8 @@ func rangeSum(prefixSum []int, left, right int) int {
 
 | 操作 | 时间复杂度 | 空间复杂度 |
 | :--: | :--------: | :--------: |
-| 构建 |    $O(n)$    |    $O(n)$    |
-| 查询 |    $O(1)$    |    $O(1)$    |
+| 构建 |   $O(n)$   |   $O(n)$   |
+| 查询 |   $O(1)$   |   $O(1)$   |
 
 ### 2. 二维前缀和
 
@@ -196,8 +196,8 @@ func regionSum(prefixSum [][]int, row1, col1, row2, col2 int) int {
 
 | 操作 | 时间复杂度 | 空间复杂度 |
 | :--: | :--------: | :--------: |
-| 构建 |  $O(m × n)$  |  $O(m × n)$  |
-| 查询 |    $O(1)$    |    $O(1)$    |
+| 构建 | $O(m × n)$ | $O(m × n)$ |
+| 查询 |   $O(1)$   |   $O(1)$   |
 
 ---
 
@@ -255,12 +255,12 @@ func subarraySum(nums []int, k int) int {
 
 ## 经典题目
 
-### 基础题
+=== "基础题"
 
 - [LeetCode 303. 区域和检索 - 数组不可变](https://leetcode.com/problems/range-sum-query-immutable/)
 - [LeetCode 304. 二维区域和检索 - 矩阵不可变](https://leetcode.com/problems/range-sum-query-2d-immutable/)
 
-### 进阶题
+=== "进阶题"
 
 - [LeetCode 560. 和为 K 的子数组](https://leetcode.com/problems/subarray-sum-equals-k/)
 - [LeetCode 974. 和可被 K 整除的子数组](https://leetcode.com/problems/subarray-sums-divisible-by-k/)
