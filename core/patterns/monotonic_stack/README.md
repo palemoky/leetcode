@@ -7,11 +7,11 @@
 <div align="center">
   <table>
     <tr>
-      <td align="center" valign="bottom" >
+      <td align="center" style="vertical-align: bottom;">
         <img src="monotonous-stack-before.svg" alt="Before pushing 14" /><br />
         <sub style="font-size: 14px;">Before pushing 14</sub>
       </td>
-      <td align="center" valign="bottom" >
+      <td align="center" style="vertical-align: bottom;">
         <img src="monotonous-stack-after.svg" alt="After pushing 14" /><br />
         <sub style="font-size: 14px;">After pushing 14</sub>
       </td>

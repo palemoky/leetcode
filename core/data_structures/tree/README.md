@@ -17,15 +17,15 @@
 <div align="center">
   <table>
     <tr>
-      <td align="center" valign="bottom" style="padding-left: 20px;">
+      <td align="center" style="vertical-align: bottom;" style="padding-left: 20px;">
         <img src="perfect_binary_tree.webp" alt="Perfect Binary Tree" width="200" /><br />
         <sub style="font-size: 14px;">Perfect Binary Tree</sub>
       </td>
-      <td align="center" valign="bottom" style="padding-right: 20px;">
+      <td align="center" style="vertical-align: bottom;" style="padding-right: 20px;">
         <img src="complete_binary_tree.webp" alt="Complete Binary Tree" width="200" /><br />
         <sub style="font-size: 14px;">Complete Binary Tree</sub>
       </td>
-      <td align="center" valign="bottom" style="padding-left: 20px;">
+      <td align="center" style="vertical-align: bottom;" style="padding-left: 20px;">
         <img src="full_binary_tree.webp" alt="Full Binary Tree" width="200" /><br />
         <sub style="font-size: 14px;">Full Binary Tree</sub>
       </td>
@@ -259,11 +259,11 @@ BST 有两种不同的写法，处理细节也不同：
 <div align="center">
   <table>
     <tr>
-      <td align="center" valign="bottom" style="padding-right: 20px;">
+      <td align="center" style="vertical-align: bottom;" style="padding-right: 20px;">
         <img src="balanced_binary_tree.webp" alt="Balanced Binary Tree" width="300" /><br />
         <sub style="font-size: 14px;">Balanced Binary Tree</sub>
       </td>
-      <td align="center" valign="bottom" style="padding-right: 20px;">
+      <td align="center" style="vertical-align: bottom;" style="padding-right: 20px;">
         <img src="imbalanced_binary_tree.webp" alt="Imbalanced Binary Tree" width="300" /><br />
         <sub style="font-size: 14px;">Imbalanced Binary Tree</sub>
       </td>
@@ -428,11 +428,11 @@ B+ 树通过将数据存储在叶子节点、叶子节点间通过链表相连�
 <div align="center">
   <table>
     <tr>
-      <td align="center" valign="bottom" >
+      <td align="center" style="vertical-align: bottom;" >
         <img src="binary_tree_bfs.webp" alt="Binary Tree BFS" /><br />
         <sub style="font-size: 14px;">Binary Tree BFS</sub>
       </td>
-      <td align="center" valign="bottom" >
+      <td align="center" style="vertical-align: bottom;" >
         <img src="binary_tree_dfs.webp" alt="Binary Tree DFS" /><br />
         <sub style="font-size: 14px;">Binary Tree DFS</sub>
       </td>

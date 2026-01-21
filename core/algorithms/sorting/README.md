@@ -164,11 +164,11 @@
 <div align="center">
   <table border="0" cellpadding="0" cellspacing="0">
     <tr>
-      <td align="center" valign="bottom">
+      <td align="center" style="vertical-align: bottom;">
         <img src="quick_sorting.webp" alt="Quick Sorting" /><br />
         <sub style="font-size: 14px;">快速排序示意图</sub>
       </td>
-      <td align="center" valign="bottom">
+      <td align="center" style="vertical-align: bottom;">
         <img src="merge_sorting.webp" alt="Merge Sorting" /><br />
         <sub style="font-size: 14px;">归并排序示意图</sub>
       </td>
@@ -199,10 +199,10 @@
 <div align="center">
   <table border="0" cellpadding="0" cellspacing="0">
     <tr>
-      <td align="center" valign="bottom">
+      <td align="center" style="vertical-align: bottom;">
         <img src="sorting_stable.webp" alt="稳定排序" width="70%" /><br />
       </td>
-      <td align="center" valign="bottom">
+      <td align="center" style="vertical-align: bottom;">
         <img src="sorting_unstable.webp" alt="不稳定排序" width="70%" /><br />
       </td>
     </tr>
