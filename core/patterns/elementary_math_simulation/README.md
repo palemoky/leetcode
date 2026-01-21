@@ -32,34 +32,107 @@
 
 ## 不同运算规则对比
 
-我们以 base 表示进制，如二进制为 2，十进制为 10。根据竖式可得，不同运算方式数学规律如下：
+我们以 base 表示进制，如二进制为 2，十进制为 10。根据竖式可得，不同运算方式数学规律如下:
 
-| 运算           | 当前位                               | 进位<br />（舍弃小数部分）         | 借位                                  | 去掉当前位            | 核心公式                             | 算法特点                                                                                                                                                                                                                                                                                                                                   | 相关题目                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| -------------- | ------------------------------------ | ---------------------------------- | ------------------------------------- | --------------------- | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 加法           | current = `sum % base`               | carry = `sum/ base`                |                                       |                       | sum = `x+y+carry`                    | 最基础、最常见的类型。<br />循环条件 `i >= 0 \|\| j >= 0 \|\| carry > 0` 应包含 `carry > 0`，以处理最高位的进位。对于字符串结果，通常需要最后反转。如果是链表，则使用 dummy 虚拟头节点和一个 current 指针来构建结果链表                                                                                                                    | LeetCode #415. [字符串相加](https://leetcode.cn/problems/add-strings) [Add Strings](https://leetcode.com/problems/add-strings) (十进制加法) <br />LeetCode #67. [二进制求和](https://leetcode.cn/problems/add-binary/) [Add Binary](https://leetcode.com/problems/add-binary/) (二进制加法, BASE=2) <br />LeetCode #2. [两数相加](https://leetcode.cn/problems/add-two-numbers) [Add Two Numbers](https://leetcode.com/problems/add-two-numbers) (链表形式，无需反转) <br />LeetCode #66. [加一](https://leetcode.cn/problems/plus-one/) [Plus One](https://leetcode.com/problems/plus-one/) (简化版加法，加一个常数 1) <br />LeetCode #989. [数组形式的整数加法](https://leetcode.cn/problems/add-to-array-form-of-integer/) [Add to Array-Form of Integer](https://leetcode.com/problems/add-to-array-form-of-integer/) (简化版字符串相加) |
-| 减法           | current = `difference % base`        |                                    | borrow = `x - y - borrow < 0 ? 1 : 0` |                       | difference = `x - y - borrow + base` | 1. 减法是加法的逆运算，核心在于处理 **借位**。<br />2. 比较 a 和 b 的大小以确定符号，然后用大数减小数。需要先判断结果的正负，处理前导零。                                                                                                                                                                                                  | LeetCode 上没有直接的减法题，但这是大厂面试的常见变体，必须掌握                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| 乘法           | current = `(product + carry) % base` | carry = `(product + carry) / base` |                                       |                       | product = `num1[i] * num2[j]`        | 模拟的是一个数乘以另一个数的每一位，然后将所有中间结果相加的过程。<br />核心逻辑:<br />1. 初始化一个足够长的结果数组 res，长度为 `len(a) + len(b)`。<br />2. 用双层循环模拟乘法。`num1[i] * num2[j]` 的结果会影响 `res[i+j]` (高位) 和 `res[i+j+1]` (低位)。 <br />3. 遍历 res 数组，统一处理进位（将 `res[k] / 10` 加到 `res[k-1]` 上）。 | LeetCode #43. [字符串相乘](https://leetcode.cn/problems/multiply-strings/) [Multiply Strings](https://leetcode.com/problems/multiply-strings/)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| 除法           |                                      |                                    |                                       |                       |                                      | 最复杂的一种，模拟长除法。涉及大量的边界处理和循环逻辑，是模拟思想的终极考验。<br />从被除数的高位开始，截取一段比除数长的数字，然后试探这一段数字包含多少个除数（0-9 次）。将商写入结果，余数留给下一位继续构成新的被除数段。                                                                                                             | LeetCode #29. [两数相除](https://leetcode.cn/problems/divide-two-integers/) [Divide Two Integers](https://leetcode.com/problems/divide-two-integers/)<br />LeetCode #166. [分数到小数](https://leetcode.cn/problems/fraction-to-recurring-decimal/) [Fraction to Recurring Decimal](https://leetcode.com/problems/fraction-to-recurring-decimal/)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| 整数拆到数组   | current = `num % base`               |                                    |                                       | newNum = `num / base` |                                      |                                                                                                                                                                                                                                                                                                                                            |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| 数组组合为数字 |                                      |                                    |                                       |                       | result = `result * base + num`       | 逆序计算每位权重并累加当前位的值                                                                                                                                                                                                                                                                                                           |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| 进制转换       |                                      |                                    |                                       |                       |                                      | 对大数反复执行“除以目标基数”和“取余数”的操作，直到商为 0，然后对结果逆序排列即可。                                                                                                                                                                                                                                                         | LeetCode #504. [七进制数](https://leetcode.cn/problems/base-7/) [Base 7](https://leetcode.com/problems/base-7/)<br />LeetCode #405. [数字转换为十六进制数](https://leetcode.cn/problems/convert-a-number-to-hexadecimal/) [Convert a Number to Hexadecimal](https://leetcode.com/problems/convert-a-number-to-hexadecimal/)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+=== "加法"
 
-```go
-// 将数字拆分到数组中
-digits := []int{}
-for n > 0 {
-  digits = append(digits, n%base)
-  n /= base
-}
-```
+    **核心公式**: `sum = x + y + carry`
 
-```go
-// 将数组组合成数字
-result := 0
-for i := len(digits) - 1; i >= 0; i-- {
-    result = result*base + digits[i]
-}
-```
+    | 项目 | 公式/说明 |
+    |------|----------|
+    | **当前位** | `current = sum % base` |
+    | **进位** | `carry = sum / base` |
+    | **算法特点** | 1. 最基础、最常见的类型<br>2. 循环条件应包含 `carry > 0`，以处理最高位的进位: `i >= 0 || j >= 0 || carry > 0`<br>3. 对于字符串结果，通常需要最后反转<br>4. 如果是链表，则使用 dummy 虚拟头节点和一个 current 指针来构建结果链表 |
+
+    **相关题目**:
+
+    - [415. 字符串相加](https://leetcode.com/problems/add-strings/) (十进制加法)
+    - [67. 二进制求和](https://leetcode.com/problems/add-binary/) (二进制加法, BASE=2)
+    - [2. 两数相加](https://leetcode.com/problems/add-two-numbers/) (链表形式,无需反转)
+    - [66. 加一](https://leetcode.com/problems/plus-one/) (简化版加法,加一个常数 1)
+    - [989. 数组形式的整数加法](https://leetcode.com/problems/add-to-array-form-of-integer/) (简化版字符串相加)
+
+=== "减法"
+
+    **核心公式**: `difference = x - y - borrow + base`
+
+    | 项目 | 公式/说明 |
+    |------|----------|
+    | **当前位** | `current = difference % base` |
+    | **借位** | `borrow = x - y - borrow < 0 ? 1 : 0` |
+    | **算法特点** | 1. 减法是加法的逆运算，核心在于处理 **借位**<br>2. 比较 a 和 b 的大小以确定符号，然后用大数减小数<br>3. 需要先判断结果的正负，处理前导零 |
+
+    **相关题目**:
+
+    - LeetCode 上没有直接的减法题，但这是大厂面试的常见变体，必须掌握
+
+=== "乘法"
+
+    **核心公式**: `product = num1[i] * num2[j]`
+
+    | 项目 | 公式/说明 |
+    |------|----------|
+    | **当前位** | `current = (product + carry) % base` |
+    | **进位** | `carry = (product + carry) / base` |
+    | **算法特点** | 模拟的是一个数乘以另一个数的每一位,然后将所有中间结果相加的过程<br><br>**核心逻辑**:<br>1. 初始化一个足够长的结果数组 res,长度为 `len(a) + len(b)`<br>2. 用双层循环模拟乘法。`num1[i] * num2[j]` 的结果会影响 `res[i+j]` (高位) 和 `res[i+j+1]` (低位)<br>3. 遍历 res 数组，统一处理进位(将 `res[k] / 10` 加到 `res[k-1]` 上) |
+
+    **相关题目**:
+
+    - [43. 字符串相乘](https://leetcode.com/problems/multiply-strings/)
+
+=== "除法"
+
+    **算法特点**:
+
+    最复杂的一种，模拟长除法。涉及大量的边界处理和循环逻辑，是模拟思想的终极考验。
+
+    从被除数的高位开始，截取一段比除数长的数字，然后试探这一段数字包含多少个除数(0-9 次)。将商写入结果，余数留给下一位继续构成新的被除数段。
+
+    **相关题目**:
+
+    - [29. 两数相除](https://leetcode.com/problems/divide-two-integers/)
+    - [166. 分数到小数](https://leetcode.com/problems/fraction-to-recurring-decimal/)
+
+=== "整数拆到数组"
+
+    | 项目 | 公式/说明 |
+    |------|----------|
+    | **当前位** | `current = num % base` |
+    | **去掉当前位** | `newNum = num / base` |
+
+    ```go
+    // 将数字拆分到数组中
+    digits := []int{}
+    for n > 0 {
+      digits = append(digits, n%base)
+      n /= base
+    }
+    ```
+
+=== "数组组合为数字"
+
+    **核心公式**: `result = result * base + num`
+
+    **算法特点**: 逆序计算每位权重并累加当前位的值
+
+    ```go
+    // 将数组组合成数字
+    result := 0
+    for i := len(digits) - 1; i >= 0; i-- {
+        result = result*base + digits[i]
+    }
+    ```
+
+=== "进制转换"
+
+    **算法特点**:
+
+    对大数反复执行"除以目标基数"和"取余数"的操作，直到商为 0，然后对结果逆序排列即可。
+
+    **相关题目**:
+
+    - [504. 七进制数](https://leetcode.com/problems/base-7/)
+    - [405. 数字转换为十六进制数](https://leetcode.com/problems/convert-a-number-to-hexadecimal/)
 
 在实现减法或除法时，比较大小是必不可少的前置步骤。核心逻辑：
 
@@ -95,18 +168,18 @@ func removeLeadingZeros(s string) string {
 
 ## 字符与数字的互相转换
 
-以 Go 语言为例，转换规律如下：
+字符与数字的转换基于 ASCII 码差值:
 
-<p align="center">
-    <img src="type_convert.webp" alt="convert-string-integer" width="25%" />
-</p>
+$$
+\text{字符} \xtofrom[\text{digit} + \text{'0'}]{\text{char} - \text{'0'}} \text{数字}
+$$
 
-- 字符转数字：`ch - '0'`，利用 ASCII 码差值
-- 数字转字符：`digit + '0'`，加上字符 '0' 的 ASCII 值
+- **字符 → 数字**: `char - '0'` (减去字符 `'0'` 的 ASCII 值)
+- **数字 → 字符**: `digit + '0'` (加上字符 `'0'` 的 ASCII 值)
 
 ## 高精度小数
 
-LeetCode #166. [分数到小数](https://leetcode.cn/problems/fraction-to-recurring-decimal/) [Fraction to Recurring Decimal](https://leetcode.com/problems/fraction-to-recurring-decimal/)
+LeetCode [166.分数到小数](https://leetcode.cn/problems/fraction-to-recurring-decimal/) [Fraction to Recurring Decimal](https://leetcode.com/problems/fraction-to-recurring-decimal/)
 
 ## 性能优优化
 

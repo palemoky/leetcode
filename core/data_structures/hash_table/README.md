@@ -234,10 +234,10 @@ fmt.Println(len(m))
     }
     ```
 
-**经典题目**：
+    **经典题目**：
 
-- [1. Two Sum](https://leetcode.com/problems/two-sum/)
-- [167. Two Sum II](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
+    - [1. Two Sum](https://leetcode.com/problems/two-sum/)
+    - [167. Two Sum II](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
 
 ## 哈希表 vs 其他数据结构
 
