@@ -8,18 +8,12 @@ window.MathJax = {
     displayMath: [['$$', '$$'], ['\\[', '\\]']],
     processEscapes: true,
     processEnvironments: true
-  },
-  startup: {
-    typeset: false
   }
 };
 
-document$.subscribe(() => {
-  if (window.MathJax && MathJax.startup) {
-    MathJax.startup.promise.then(() => {
-      MathJax.typesetPromise().catch((err) => {
-        console.log('MathJax rendering error:', err);
-      });
-    });
+// 初始渲染和页面导航时重新渲染
+document$.subscribe(function() {
+  if (typeof MathJax !== 'undefined') {
+    MathJax.typesetPromise();
   }
 });
