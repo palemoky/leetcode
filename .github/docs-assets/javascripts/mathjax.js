@@ -12,15 +12,17 @@ window.MathJax = {
     displayMath: [['$$', '$$'], ['\\[', '\\]']],
     processEscapes: true,
     processEnvironments: true
+  },
+  options: {
+    ignoreHtmlClass: ".*|",
+    processHtmlClass: "arithmatex"
   }
 };
 
-document$.subscribe(function() {
-  if (typeof MathJax !== 'undefined' && MathJax.startup && MathJax.typesetPromise) {
+document$.subscribe(() => {
+  if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
     MathJax.typesetClear();
     MathJax.texReset();
-    MathJax.typesetPromise().catch(function(err) {
-      console.log('MathJax typeset error:', err);
-    });
+    MathJax.typesetPromise().catch(err => console.log('MathJax error:', err));
   }
 });
