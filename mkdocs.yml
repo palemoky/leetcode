@@ -84,6 +84,9 @@ markdown_extensions:
   - toc:
       permalink: true
       toc_depth: 3
+      slugify: !!python/object/apply:pymdownx.slugs.slugify
+        kwds:
+          case: lower
 
   # Python Markdown Extensions
   - pymdownx.arithmatex:

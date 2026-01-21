@@ -31,6 +31,7 @@ window.MathJax = {
 
 document$.subscribe(() => {
   if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
+    MathJax.startup.output.clearCache();
     MathJax.typesetClear();
     MathJax.texReset();
     MathJax.typesetPromise().catch(err => console.log('MathJax error:', err));
