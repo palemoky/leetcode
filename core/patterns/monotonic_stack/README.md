@@ -61,7 +61,7 @@ for i := 0; i < len(nums); i++ {
 - 单调队列（Monotonic Queue）：用于滑动窗口最值
 - 双指针、前缀和等可与单调栈结合
 
-# LeetCode 经典题目
+# 经典题目
 
 - [739. 每日温度 (Daily Temperatures)](https://leetcode.com/problems/daily-temperatures/)
 - [84. 柱状图中最大的矩形 (Largest Rectangle in Histogram)](https://leetcode.com/problems/largest-rectangle-in-histogram/)

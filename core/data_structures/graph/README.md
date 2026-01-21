@@ -520,7 +520,7 @@ def bidirectional_bfs(graph: list[list[int]], start: int, target: int) -> int:
 - **单词接龙** - 词汇转换问题
 - **基因序列** - DNA 序列相似度
 
-**LeetCode 经典题目:**
+**经典题目**
 
 - [127. Word Ladder](https://leetcode.com/problems/word-ladder/) - 单词接龙(BFS 最短路径)
 - [433. Minimum Genetic Mutation](https://leetcode.com/problems/minimum-genetic-mutation/) - 基因序列(BFS)

@@ -16,16 +16,11 @@
 address(arr[i]) = base_address + i × element_size
 ```
 
-**优势**：
-
-- ✅ 缓存友好（Cache-friendly）
-- ✅ 支持随机访问
-- ✅ 内存局部性好
-
-**劣势**：
-
-- ❌ 插入/删除需要移动元素
-- ❌ 固定大小（静态数组）
+| 优势                          | 劣势                      |
+| :---------------------------- | :------------------------ |
+| **缓存友好** (Cache-friendly) | **插入/删除需要移动元素** |
+| **支持随机访问**              | **固定大小** (静态数组)   |
+| **内存局部性好**              |                           |
 
 !!! Tip
 
@@ -517,36 +512,36 @@ for i := 0; i < 1000; i++ {
 arr = append(arr, batch...)
 ```
 
-## 经典题目清单
+## 经典题目
 
-### 基础题
+=== "基础题"
 
-- [1. Two Sum](https://leetcode.com/problems/two-sum/) — 两数之和
-- [26. Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/) — 删除有序数组中的重复项
-- [27. Remove Element](https://leetcode.com/problems/remove-element/) — 移除元素
-- [88. Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/) — 合并两个有序数组
-- [283. Move Zeroes](https://leetcode.com/problems/move-zeroes/) — 移动零
+    - [1. Two Sum](https://leetcode.com/problems/two-sum/) — 两数之和
+    - [26. Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/) — 删除有序数组中的重复项
+    - [27. Remove Element](https://leetcode.com/problems/remove-element/) — 移除元素
+    - [88. Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/) — 合并两个有序数组
+    - [283. Move Zeroes](https://leetcode.com/problems/move-zeroes/) — 移动零
 
-### 进阶题
+=== "进阶题"
 
-- [15. 3Sum](https://leetcode.com/problems/3sum/) — 三数之和
-- [53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray/) — 最大子数组和
-- [121. Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/) — 买卖股票的最佳时机
-- [238. Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/) — 除自身以外数组的乘积
-- [560. Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/) — 和为 K 的子数组
+    - [15. 3Sum](https://leetcode.com/problems/3sum/) — 三数之和
+    - [53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray/) — 最大子数组和
+    - [121. Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/) — 买卖股票的最佳时机
+    - [238. Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/) — 除自身以外数组的乘积
+    - [560. Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/) — 和为 K 的子数组
 
-### 高级题
+=== "高级题"
 
-- [42. Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/) — 接雨水
-- [84. Largest Rectangle in Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/) — 柱状图中最大的矩形
-- [239. Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/) — 滑动窗口最大值
+    - [42. Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/) — 接雨水
+    - [84. Largest Rectangle in Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/) — 柱状图中最大的矩形
+    - [239. Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/) — 滑动窗口最大值
 
 ## 总结
 
 数组是最基础但也是最重要的数据结构，掌握以下要点：
 
-1. ✅ **理解特性**：连续内存、随机访问、固定类型
-2. ✅ **熟练操作**：遍历、插入、删除、切片、排序
-3. ✅ **掌握模式**：双指针、滑动窗口、前缀和、二分查找
-4. ✅ **注意陷阱**：越界、切片共享、扩容、值副本
-5. ✅ **性能优化**：预分配容量、复用切片、批量操作
+1. **理解特性**：连续内存、随机访问、固定类型
+2. **熟练操作**：遍历、插入、删除、切片、排序
+3. **掌握模式**：双指针、滑动窗口、前缀和、二分查找
+4. **注意陷阱**：越界、切片共享、扩容、值副本
+5. **性能优化**：预分配容量、复用切片、批量操作

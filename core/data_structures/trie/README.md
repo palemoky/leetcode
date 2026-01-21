@@ -308,19 +308,19 @@ def insert_with_frequency(self, word: str) -> None:
 
 ## 经典题目
 
-### 基础题
+=== "基础题"
 
-- [208. 实现 Trie (前缀树)](https://leetcode.com/problems/implement-trie-prefix-tree/)
-- [720. 词典中最长的单词](https://leetcode.com/problems/longest-word-in-dictionary/)
-- [14. 最长公共前缀](https://leetcode.com/problems/longest-common-prefix/)
+    - [208. 实现 Trie (前缀树)](https://leetcode.com/problems/implement-trie-prefix-tree/)
+    - [720. 词典中最长的单词](https://leetcode.com/problems/longest-word-in-dictionary/)
+    - [14. 最长公共前缀](https://leetcode.com/problems/longest-common-prefix/)
 
-### 进阶题
+=== "进阶题"
 
-- [211. 添加与搜索单词 - 数据结构设计](https://leetcode.com/problems/design-add-and-search-words-data-structure/) - 支持通配符
-- [212. 单词搜索 II](https://leetcode.com/problems/word-search-ii/) - Trie + 回溯
-- [677. 键值映射](https://leetcode.com/problems/map-sum-pairs/) - 前缀求和
-- [648. 单词替换](https://leetcode.com/problems/replace-words/) - 词根替换
-- [1268. 搜索推荐系统](https://leetcode.com/problems/search-suggestions-system/) - 自动补全
+    - [211. 添加与搜索单词 - 数据结构设计](https://leetcode.com/problems/design-add-and-search-words-data-structure/) - 支持通配符
+    - [212. 单词搜索 II](https://leetcode.com/problems/word-search-ii/) - Trie + 回溯
+    - [677. 键值映射](https://leetcode.com/problems/map-sum-pairs/) - 前缀求和
+    - [648. 单词替换](https://leetcode.com/problems/replace-words/) - 词根替换
+    - [1268. 搜索推荐系统](https://leetcode.com/problems/search-suggestions-system/) - 自动补全
 
 ---
 

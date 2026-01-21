@@ -256,18 +256,18 @@
 
 ## 经典题目
 
-### 基础题
+=== "基础题"
 
-- [206. 反转链表](https://leetcode.com/problems/reverse-linked-list/)
-- [21. 合并两个有序链表](https://leetcode.com/problems/merge-two-sorted-lists/)
-- [83. 删除排序链表中的重复元素](https://leetcode.com/problems/remove-duplicates-from-sorted-list/)
-- [876. 链表的中间结点](https://leetcode.com/problems/middle-of-the-linked-list/)
+    - [206. 反转链表](https://leetcode.com/problems/reverse-linked-list/)
+    - [21. 合并两个有序链表](https://leetcode.com/problems/merge-two-sorted-lists/)
+    - [83. 删除排序链表中的重复元素](https://leetcode.com/problems/remove-duplicates-from-sorted-list/)
+    - [876. 链表的中间结点](https://leetcode.com/problems/middle-of-the-linked-list/)
 
-### 进阶题
+=== "进阶题"
 
-- [92. 反转链表 II](https://leetcode.com/problems/reverse-linked-list-ii/) - 部分反转
-- [143. 重排链表](https://leetcode.com/problems/reorder-list/)
-- [160. 相交链表](https://leetcode.com/problems/intersection-of-two-linked-lists/) - 第一个公共节点
-- [234. 回文链表](https://leetcode.com/problems/palindrome-linked-list/)
-- [2. 两数相加](https://leetcode.com/problems/add-two-numbers/)
-- [23. 合并 K 个升序链表](https://leetcode.com/problems/merge-k-sorted-lists/)
+    - [92. 反转链表 II](https://leetcode.com/problems/reverse-linked-list-ii/) - 部分反转
+    - [143. 重排链表](https://leetcode.com/problems/reorder-list/)
+    - [160. 相交链表](https://leetcode.com/problems/intersection-of-two-linked-lists/) - 第一个公共节点
+    - [234. 回文链表](https://leetcode.com/problems/palindrome-linked-list/)
+    - [2. 两数相加](https://leetcode.com/problems/add-two-numbers/)
+    - [23. 合并 K 个升序链表](https://leetcode.com/problems/merge-k-sorted-lists/)
