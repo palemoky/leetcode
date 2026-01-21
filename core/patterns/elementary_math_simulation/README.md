@@ -93,6 +93,10 @@
     - [29. 两数相除](https://leetcode.com/problems/divide-two-integers/)
     - [166. 分数到小数](https://leetcode.com/problems/fraction-to-recurring-decimal/)
 
+---
+
+## 数据转换
+
 === "整数拆到数组"
 
     | 项目 | 公式/说明 |
@@ -134,9 +138,11 @@
     - [504. 七进制数](https://leetcode.com/problems/base-7/)
     - [405. 数字转换为十六进制数](https://leetcode.com/problems/convert-a-number-to-hexadecimal/)
 
-=== "辅助函数"
+---
 
-    **大数比较**
+## 辅助函数
+
+=== "大数比较"
 
     在实现减法或除法时，比较大小是必不可少的前置步骤。
 
@@ -157,7 +163,7 @@
     }
     ```
 
-    **移除前导零**
+=== "移除前导零"
 
     在减法和除法中需要特别注意移除结果中的前导零。
 
