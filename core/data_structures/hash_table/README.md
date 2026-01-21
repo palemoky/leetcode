@@ -108,131 +108,131 @@ fmt.Println(len(m))
 
 ## 经典应用场景
 
-### 1. 快速查找
+=== "快速查找"
 
-**问题**：判断元素是否存在
+    **问题**：判断元素是否存在
 
-```go
-// 判断数组中是否存在重复元素
-func containsDuplicate(nums []int) bool {
-    seen := make(map[int]bool)
-    for _, num := range nums {
-        if seen[num] {
-            return true
-        }
-        seen[num] = true
-    }
-    return false
-}
-```
-
-**经典题目**：
-
-- [217. Contains Duplicate](https://leetcode.com/problems/contains-duplicate/)
-- [1. Two Sum](https://leetcode.com/problems/two-sum/)
-
-### 2. 计数统计
-
-**问题**：统计元素出现次数
-
-```go
-// 统计字符串中每个字符的出现次数
-func countChars(s string) map[rune]int {
-    count := make(map[rune]int)
-    for _, ch := range s {
-        count[ch]++
-    }
-    return count
-}
-```
-
-**经典题目**：
-
-- [242. Valid Anagram](https://leetcode.com/problems/valid-anagram/)
-- [383. Ransom Note](https://leetcode.com/problems/ransom-note/)
-- [387. First Unique Character in a String](https://leetcode.com/problems/first-unique-character-in-a-string/)
-
-### 3. 去重
-
-**问题**：移除重复元素
-
-```go
-// 数组去重
-func removeDuplicates(nums []int) []int {
-    seen := make(map[int]bool)
-    result := []int{}
-    for _, num := range nums {
-        if !seen[num] {
+    ```go
+    // 判断数组中是否存在重复元素
+    func containsDuplicate(nums []int) bool {
+        seen := make(map[int]bool)
+        for _, num := range nums {
+            if seen[num] {
+                return true
+            }
             seen[num] = true
-            result = append(result, num)
         }
+        return false
     }
-    return result
-}
-```
+    ```
 
-### 4. 分组映射
+    **经典题目**：
 
-**问题**：将元素按某种规则分组
+    - [217. Contains Duplicate](https://leetcode.com/problems/contains-duplicate/)
+    - [1. Two Sum](https://leetcode.com/problems/two-sum/)
 
-```go
-// 字母异位词分组
-func groupAnagrams(strs []string) [][]string {
-    groups := make(map[string][]string)
-    for _, str := range strs {
-        // 排序后的字符串作为键
-        key := sortString(str)
-        groups[key] = append(groups[key], str)
-    }
+=== "计数统计"
 
-    result := [][]string{}
-    for _, group := range groups {
-        result = append(result, group)
-    }
-    return result
-}
-```
+    **问题**：统计元素出现次数
 
-**经典题目**：
-
-- [49. Group Anagrams](https://leetcode.com/problems/group-anagrams/)
-
-### 5. 缓存/记忆化
-
-**问题**：存储计算结果避免重复计算
-
-```go
-// 斐波那契数列（记忆化递归）
-func fib(n int, memo map[int]int) int {
-    if n <= 1 {
-        return n
-    }
-    if val, exists := memo[n]; exists {
-        return val
-    }
-    memo[n] = fib(n-1, memo) + fib(n-2, memo)
-    return memo[n]
-}
-```
-
-### 6. 索引映射
-
-**问题**：建立值到索引的映射
-
-```go
-// 两数之和
-func twoSum(nums []int, target int) []int {
-    indexMap := make(map[int]int)
-    for i, num := range nums {
-        complement := target - num
-        if j, exists := indexMap[complement]; exists {
-            return []int{j, i}
+    ```go
+    // 统计字符串中每个字符的出现次数
+    func countChars(s string) map[rune]int {
+        count := make(map[rune]int)
+        for _, ch := range s {
+            count[ch]++
         }
-        indexMap[num] = i
+        return count
     }
-    return nil
-}
-```
+    ```
+
+    **经典题目**：
+
+    - [242. Valid Anagram](https://leetcode.com/problems/valid-anagram/)
+    - [383. Ransom Note](https://leetcode.com/problems/ransom-note/)
+    - [387. First Unique Character in a String](https://leetcode.com/problems/first-unique-character-in-a-string/)
+
+=== "去重"
+
+    **问题**：移除重复元素
+
+    ```go
+    // 数组去重
+    func removeDuplicates(nums []int) []int {
+        seen := make(map[int]bool)
+        result := []int{}
+        for _, num := range nums {
+            if !seen[num] {
+                seen[num] = true
+                result = append(result, num)
+            }
+        }
+        return result
+    }
+    ```
+
+=== "分组映射"
+
+    **问题**：将元素按某种规则分组
+
+    ```go
+    // 字母异位词分组
+    func groupAnagrams(strs []string) [][]string {
+        groups := make(map[string][]string)
+        for _, str := range strs {
+            // 排序后的字符串作为键
+            key := sortString(str)
+            groups[key] = append(groups[key], str)
+        }
+
+        result := [][]string{}
+        for _, group := range groups {
+            result = append(result, group)
+        }
+        return result
+    }
+    ```
+
+    **经典题目**：
+
+    - [49. Group Anagrams](https://leetcode.com/problems/group-anagrams/)
+
+=== "缓存/记忆化"
+
+    **问题**：存储计算结果避免重复计算
+
+    ```go
+    // 斐波那契数列（记忆化递归）
+    func fib(n int, memo map[int]int) int {
+        if n <= 1 {
+            return n
+        }
+        if val, exists := memo[n]; exists {
+            return val
+        }
+        memo[n] = fib(n-1, memo) + fib(n-2, memo)
+        return memo[n]
+    }
+    ```
+
+=== "索引映射"
+
+    **问题**：建立值到索引的映射
+
+    ```go
+    // 两数之和
+    func twoSum(nums []int, target int) []int {
+        indexMap := make(map[int]int)
+        for i, num := range nums {
+            complement := target - num
+            if j, exists := indexMap[complement]; exists {
+                return []int{j, i}
+            }
+            indexMap[num] = i
+        }
+        return nil
+    }
+    ```
 
 **经典题目**：
 
@@ -385,25 +385,25 @@ m["alice"] = p // ✅
 
 ## 经典题目清单
 
-### 基础题
+=== "基础题"
 
-- [1. Two Sum](https://leetcode.com/problems/two-sum/) — 两数之和（入门必做）
-- [217. Contains Duplicate](https://leetcode.com/problems/contains-duplicate/) — 存在重复元素
-- [242. Valid Anagram](https://leetcode.com/problems/valid-anagram/) — 有效的字母异位词
-- [383. Ransom Note](https://leetcode.com/problems/ransom-note/) — 赎金信
+    - [1. Two Sum](https://leetcode.com/problems/two-sum/) — 两数之和（入门必做）
+    - [217. Contains Duplicate](https://leetcode.com/problems/contains-duplicate/) — 存在重复元素
+    - [242. Valid Anagram](https://leetcode.com/problems/valid-anagram/) — 有效的字母异位词
+    - [383. Ransom Note](https://leetcode.com/problems/ransom-note/) — 赎金信
 
-### 进阶题
+=== "进阶题"
 
-- [49. Group Anagrams](https://leetcode.com/problems/group-anagrams/) — 字母异位词分组
-- [128. Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/) — 最长连续序列
-- [146. LRU Cache](https://leetcode.com/problems/lru-cache/) — LRU 缓存（哈希表 + 双向链表）
-- [387. First Unique Character in a String](https://leetcode.com/problems/first-unique-character-in-a-string/) — 字符串中的第一个唯一字符
+    - [49. Group Anagrams](https://leetcode.com/problems/group-anagrams/) — 字母异位词分组
+    - [128. Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/) — 最长连续序列
+    - [146. LRU Cache](https://leetcode.com/problems/lru-cache/) — LRU 缓存（哈希表 + 双向链表）
+    - [387. First Unique Character in a String](https://leetcode.com/problems/first-unique-character-in-a-string/) — 字符串中的第一个唯一字符
 
-### 高级题
+=== "高级题"
 
-- [149. Max Points on a Line](https://leetcode.com/problems/max-points-on-a-line/) — 直线上最多的点数
-- [380. Insert Delete GetRandom O(1)](https://leetcode.com/problems/insert-delete-getrandom-o1/) — 常数时间插入、删除和获取随机元素
-- [460. LFU Cache](https://leetcode.com/problems/lfu-cache/) — LFU 缓存
+    - [149. Max Points on a Line](https://leetcode.com/problems/max-points-on-a-line/) — 直线上最多的点数
+    - [380. Insert Delete GetRandom O(1)](https://leetcode.com/problems/insert-delete-getrandom-o1/) — 常数时间插入、删除和获取随机元素
+    - [460. LFU Cache](https://leetcode.com/problems/lfu-cache/) — LFU 缓存
 
 ## 总结
 
