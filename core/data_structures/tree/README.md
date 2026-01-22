@@ -1,5 +1,7 @@
 # 树
 
+## 基本概念
+
 树是一种层次化的数据结构，在现实生活和计算机科学中都有广泛应用:
 
 - **现实生活**: 组织架构、家族谱系、生物分类等
@@ -7,12 +9,12 @@
 
 树的遍历是许多算法的基础，如动态规划（DFS 关注节点状态）、回溯（关注决策路径）等。掌握树的操作，对理解算法设计至关重要。
 
-## 树的基本性质
+### 树的性质
 
 - 第 i 层最多有 $2^{i-1}$ 个结点
 - 如果二叉树的深度为 k，那么此二叉树 **最多有 $2^k-1$ 个结点**
 
-## 二叉树分类
+### 二叉树分类
 
 <div align="center">
   <table>
@@ -33,13 +35,11 @@
   </table>
 </div>
 
-### 完美二叉树（Perfect Binary Tree）
+#### 完美二叉树（Perfect Binary Tree）
 
 所有层的节点都被完全填满。在完美二叉树中，若树的高度为 $h$，则节点总数为 $2^{(h+1)}-1$，呈现标准的指数级关系，反映了自然界中常见的细胞分裂现象。
 
----
-
-### 完全二叉树（Complete Binary Tree）
+#### 完全二叉树（Complete Binary Tree）
 
 仅允许最底层的节点不完全填满，且最底层的节点必须从左至右依次连续填充。二叉堆是完全二叉树的重要应用场景。
 
@@ -53,9 +53,172 @@
 | **右孩子** | $2 \times i + 1$                         | $2 \times i + 2$                           |
 | **父节点** | $\left\lfloor \frac{i}{2} \right\rfloor$ | $\left\lfloor \frac{i-1}{2} \right\rfloor$ |
 
----
+#### 满二叉树（Full Binary Tree）
 
-## 堆
+非叶节点都有 0 个或两个子节点。一个有趣的规律是：叶节点的数量=内部节点数量+1
+
+## 遍历方式
+
+二叉树的遍历分为广度优先（BFS）和深度优先（DFS）两种，其中DFS又分为前、中、后序遍历。这4种遍历方式极其重要，之后的动态规划、回溯等都依赖于此。
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center" style="vertical-align: bottom;" >
+        <img src="binary_tree_bfs.webp" alt="Binary Tree BFS" /><br />
+        <sub class="img-caption">Binary Tree BFS</sub>
+      </td>
+      <td align="center" style="vertical-align: bottom;" >
+        <img src="binary_tree_dfs.webp" alt="Binary Tree DFS" /><br />
+        <sub class="img-caption">Binary Tree DFS</sub>
+      </td>
+    </tr>
+  </table>
+</div>
+
+| 遍历方式                | 顺序     | 特点                                                 | 实现    | 应用场景                       |
+| ----------------------- | -------- | ---------------------------------------------------- | ------- | ------------------------------ |
+| **广度优先遍历（BFS）** | 层序遍历 | 按层从上到下、从左到右依次访问每一层的节点           | 队列    | 树的深度、宽度、层、最短路径   |
+| **前序遍历（DFS）**     | 根-左-右 | **自顶向下** 从根节点到叶子节点传递信息              | 递归/栈 | 复制树、序列化、路径查找       |
+| **中序遍历（DFS）**     | 左-根-右 | 纵向一条线从左向右扫描。最难，最常考，**专用于 BST** | 递归/栈 | BST 有序输出、验证 BST         |
+| **后序遍历（DFS）**     | 左-右-根 | **自底向上** 从叶节点到根节点返回信息                | 递归/栈 | 删除树、计算高度、最近公共祖先 |
+
+!!! Note
+
+    在 DFS 的遍历中，**前、中、后指的是根节点的位置**。递归解法更容易理解和编写，因为直接调用了系统栈，而迭代解法则是在手动维护栈结构，控制节点入栈/出栈顺序。
+
+    快速排序就是前序遍历，归并排序就是后序遍历。
+
+<div align="center">
+  <table>
+    <tr>
+      <td align="center">
+        <img src="bfs_traversal.webp" alt="BFS 遍历" /><br />
+        <sub>BFS: 横向扩散，逐层遍历</sub>
+      </td>
+      <td align="center">
+        <img src="dfs_traversal.webp" alt="DFS 前序遍历" /><br />
+        <sub>DFS (前序遍历): 纵向深入，一条路走到底</sub>
+      </td>
+    </tr>
+  </table>
+</div>
+
+- **BFS**: 从根节点向四周扩散，逐层遍历，类似水中的波纹，这使得 BFS 适合求最短路径
+- **DFS**: 纵向深入，沿着一条路径走到底，再回溯探索其他路径
+
+BFS 与 DFS 的区别：
+
+- **最短路径**: 在 **无权图** 中，BFS 找到的路径一定是最短的(边数最少)
+- **空间复杂度**: BFS 的空间复杂度为 $O(w)$(w 为最大宽度)，DFS 为 $O(h)$(h 为树高)。对于 **完全二叉树**，BFS 的空间开销远大于 DFS
+
+=== "递归解题模板"
+
+    递归解法可以分为两类思路：
+
+    - **遍历思路**：遍历整棵树，在遍历过程中更新外部变量或执行操作（类似回溯算法的思维）
+    - **分解思路**：将问题分解为子问题，通过子问题的解推导出原问题的解（类似动态规划的思维）
+
+    !!! Abstract "递归 -> 下地下室取东西"
+
+        如果我们把递归的过程想象成去地下室每层房间取东西，那么就有三种情况：
+
+        1. 下去时打包好带上 → 前序遍历
+        2. 下去时打包好，上来时带上 → 中序遍历
+        3. 触底返回时打包好带上 → 后序遍历
+
+    ```go
+    func traversal(root *TreeNode) []int {
+        if root == nil {
+            return []int{}
+        }
+
+        // Preorder: 根 -> 左 -> 右
+        // nums := []int{root.Val}
+        // nums = append(nums, traversal(root.Left)...)
+        // nums = append(nums, traversal(root.Right)...)
+
+        // Inorder: 左 -> 根 -> 右
+        nums := traversal(root.Left)
+        nums = append(nums, root.Val)
+        nums = append(nums, traversal(root.Right)...)
+
+        // Postorder: 左 -> 右 -> 根
+        // nums := traversal(root.Left)
+        // nums = append(nums, traversal(root.Right)...)
+        // nums = append(nums, root.Val)
+
+        return nums
+    }
+    ```
+
+    !!! Note
+
+        如果要倒序打印单链表上的所有节点的值，可以采用后序递归操作。
+
+        ```go
+        func reversePrint(head *ListNode) []int {
+            if head == nil {
+                return []int{}
+            }
+
+            return append(reversePrint(head.Next), head.Val)
+        }
+        ```
+
+=== "迭代解题模板"
+
+    颜色标记法通过调整入栈顺序即可通杀前、中、后序遍历
+
+    ```go
+    const (
+        WHITE = 0
+        BLACK = 1
+    )
+
+    type ColorNode struct {
+        Color int
+        Node  *TreeNode
+    }
+
+    func iterative(root *TreeNode) []int {
+        nums := []int{}
+        stack := []ColorNode{{WHITE, root}}
+        for len(stack) > 0 {
+            cn := stack[len(stack)-1] // cn is colorNode
+            stack = stack[:len(stack)-1]
+
+            if cn.Node == nil {
+                continue
+            }
+
+            if cn.Color == WHITE {
+                // 前序的压入顺序：右-左-根（BLACK）
+                // stack = append(stack, ColorNode{WHITE, cn.Node.Right})
+                // stack = append(stack, ColorNode{WHITE, cn.Node.Left})
+                // stack = append(stack, ColorNode{BLACK, cn.Node})
+
+                // 中序的压入顺序：右-根（BLACK）-左
+                stack = append(stack, ColorNode{WHITE, cn.Node.Right})
+                stack = append(stack, ColorNode{BLACK, cn.Node})
+                stack = append(stack, ColorNode{WHITE, cn.Node.Left})
+
+                // 后序的压入顺序：根（BLACK）-右-左
+                // stack = append(stack, ColorNode{BLACK, cn.Node})
+                // stack = append(stack, ColorNode{WHITE, cn.Node.Right})
+                // stack = append(stack, ColorNode{WHITE, cn.Node.Left})
+            } else {
+                nums = append(nums, cn.Node.Val)
+            }
+        }
+
+        return nums
+    }
+    ```
+
+## 特殊树结构
+
+### 堆（Heap）
 
 堆是一种满足堆性质的完全二叉树，常用来实现优先队列。堆分为小顶堆和大顶堆两种类型。
 
@@ -104,15 +267,7 @@
 - [215. Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/) — 数组中第 K 个最大元素（Top-k / 堆）
 - [347. Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/) — 前 K 个高频元素（哈希 + 堆）
 
----
-
-### 满二叉树（Full Binary Tree）
-
-非叶节点都有 0 个或两个子节点。一个有趣的规律是：叶节点的数量=内部节点数量+1
-
----
-
-## 二叉搜索树（Binary Search Tree）
+### 二叉搜索树（BST）
 
 每个节点的数值比左子树上的节点大，比右子树上的节点小。排序二叉树相比于其他数据结构的优势在于查找、插入的时间复杂度较低，为 $O(logn)$。二叉搜索树相比于有序数组的二分搜索，在保证搜索效率不变的情况下，插入和删除不需要移动大量的元素，从而提升整体效率。
 
@@ -219,17 +374,13 @@ BST 有两种不同的写法，处理细节也不同：
 - 统计某个元素在有序数组中出现的次数：`count = rightBound - leftBound + 1`
 - 经典题目：[34. Find First and Last Position of Element in Sorted Array](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
 
----
-
-## 平衡二叉搜索树
+### 平衡二叉树
 
 <figure>
     <img src="binary_tree_special_cases.webp" alt="Binary Tree Special Cases" width="60%" />
 </figure>
 
----
-
-### AVL 树
+#### AVL树
 
 > AVL 得名于两位苏联犹太人发明者：Adelson-Velsky and Landis
 
@@ -277,9 +428,7 @@ AVL 树的应用场景：
 
 红黑树相比于 AVL 树来说，平衡条件更宽松，插入与删除节点所需的旋转操作更少，节点增删操作的平均效率更高。
 
----
-
-### 红黑树（Red-Black Tree）
+#### 红黑树
 
 **红黑树在保留 AVL 树高效查找特性的同时，对 AVL 树的再平衡性能做了优化。**
 
@@ -304,74 +453,9 @@ AVL 树的应用场景：
 - RBT 中，空节点是有效节点，因此叶节点是空节点
 - AVL 对比 RBT 来看，只在搜索方面有微弱优势：由于 AVL 的平均高度比 RBT 更矮，因此理论查找速度更快，但在实际工程里，这点差距往往可以忽略（比如缓存命中、磁盘 I/O 延迟远远大于树的查找开销）
 
----
+### B/B+树
 
-## 跳表
-
-### 简介与实现原理
-
-跳表是基于 **链表+随机索引** 的数据结构，通过多层索引链表，实现与平衡树相同的 **$O(log n)$** 级别的读写操作。由美国计算机科学家 William Pugh 于 1989 年发明。
-
-<div align="center">
-  <table>
-    <tr>
-      <td align="center"  style="vertical-align: bottom;">
-        <img src="skip_list.webp" alt="Skip List"  /><br />
-        <br /><sub class="img-caption">Skip List</sub><br />
-      </td>
-      <td align="center" style="vertical-align: bottom;">
-        <img src="skip_list_add_element.webp" alt="Insert element to skip list"  /><br />
-        <sub class="img-caption">Insert element to skip list</sub>
-      </td>
-    </tr>
-  </table>
-</div>
-
-跳表查找时从顶部最稀疏的子序列向下进行, 直至需要查找的元素在该层两个相邻的元素中间。
-
-写入时就像 **插扑克牌** 一样放在指定位置，然后通过 **抛硬币** 来决定是否在上层插入索引：不停地抛硬币，直到首次出现反面为止，连续抛出正面的次数，就是新节点索引的总高度。例如：
-假设写入值在最底层为 Level 0，那么，
-
-1. 第一次抛硬币结果为正面：在 Level 1 建立索引
-2. 第二次抛硬币结果为正面：在 Level 2 建立索引
-3. 第三次抛硬币结果为反面：停止建立索引
-
-连续抛硬币的随机过程在数学上保证了跳表索引的随机性：
-
-- 一个节点有 1 层索引的概率是 $\frac{1}{2}$。
-- 一个节点有 2 层索引的概率是 $\frac{1}{2} \times \frac{1}{2} = \frac{1}{4}$。
-- 一个节点有 k 层索引的概率是 $(\frac{1}{2})^k$。
-
-这意味着，层越高，索引就越稀疏。每一层的节点数大约是下一层的一半。这种结构在宏观上就极其类似一棵完美的二叉搜索树，从而保证了其平均查找、插入、删除的时间复杂度都是 $O(log n)$。
-
-### 跳表 VS 平衡二叉树（红黑树）
-
-跳表用一个极其优雅和简单的随机化思想，达到了与极其复杂的确定性算法（如红黑树）相媲美的 $O(log n)$性能。相比于平衡二叉树，跳表通过 **链表+抛硬币** 的结构具有轻量、直观、实现简单的特点。跳表在保证同等性能的前提下，在并发场景下更具优势：
-
-- **局部性操作**：当插入或删除一个跳表节点时，只需要局部修改少数几个前驱节点的指针。
-- **低锁粒度**：在多线程环境下，这意味着只需要锁定这几个前驱节点即可完成操作，其他线程可以同时在树的其他部分进行读写，并发性能极高。
-- **全局性操作**：平衡二叉树的一个“旋转”操作，可能会牵扯到根节点或者树的很大一部分。在并发环境下，执行旋转可能需要锁定整个树或者一个巨大的子树，这会成为严重的性能瓶颈。
-
-基于以上因素，跳表正在许多场景中逐步取代红黑树，如 Redis 的 zset。另外，由于跳表同样是有序的数据结构，因此在涉及快速查找、顺序遍历、范围查询、有序任务（如定时任务、倒排索引、消息队列）时都非常适合。
-
-跳表相比于平衡二叉树严格的、确定的时间复杂度来说，其性能是基于概率的，即抛硬币时产生极其不平衡的结构，但这个概率可以低到忽略不计。跳表正是采用工程思维牺牲部分严谨性来提升效率，比特币的设计哲学与此类似：
-
-| 设计哲学                                        | 跳表 (Skip List)                                                                                                                                                                                                                                                             | 比特币 (Bitcoin)                                                                                                                                                                                                                                                                                          |
-| ----------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **1. 接受概率，放弃确定性**                     | 放弃了平衡二叉树那种确定性的、严格的平衡。它通过抛硬币（随机性）来构建索引层。它不保证树在任何时刻都处于完美平衡，但在概率上，它能以极高的可能性维持 $O(log n)$的性能。                                                                                                      | 放弃了传统分布式系统（如银行）那种确定性的、中心化的共识。它通过工作量证明（PoW，一个概率性谜题）来决定记账权。它不保证交易的瞬间最终性，但随着区块不断叠加，交易被推翻的概率会以指数级下降，趋近于零。                                                                                                   |
-| **2. 牺牲次要，保全核心**                       | 核心矛盾：如何在保持高性能的同时，让实现变得极其简单，并拥有超强的并发能力？<br><br>牺牲：<br>1. 内存空间（比红黑树占用更多指针）。<br>2. 理论上的最坏情况保证（有极小概率退化）。<br><br>保全：<br>1. 实现极简（相比红黑树的旋转变色）。<br>2. 并发性能极高（锁粒度极小）。 | 核心矛盾：如何在完全没有信任的去中心化网络中，实现一个不可篡改的、安全的公共账本？<br><br>牺牲：<br>1. 效率（PoW 是巨大的能源消耗）。<br>2. 交易速度/TPS（每秒只能处理个位数交易）。<br>3. 可扩展性（区块大小受限）。<br><br>保全：<br>1. 去中心化（没有任何单点故障或控制）。<br>2. 安全性与不可篡改性。 |
-| **3. 优雅的简单暴力**                           | 平衡二叉树的“旋转”是一种非常精巧、复杂的操作。而跳表的“抛硬币、加一层索引”则是一种优雅的、基于概率的“简单暴力”，它用最简单的方式解决了平衡问题。                                                                                                                             | 传统分布式共识算法（如 Paxos, Raft）非常复杂，需要节点间多轮通信投票。而比特币的“谁先算出题谁记账，其他人抄作业”的 PoW 机制，是一种极其创新的、基于算力竞争的“简单暴力”，它用最直接的方式解决了“拜占庭将军问题”。                                                                                         |
-| **4. 最终结果：解决了“完美方案”解决不了的问题** | 红黑树虽然理论完美，但其复杂的实现和糟糕的并发性能，使其在很多现代高并发场景下（如 Redis）并不适用。跳表以其“不完美”的设计，成为了这些场景下的最优解。                                                                                                                       | 传统的中心化系统（如 Visa）虽然高效，但无法解决信任和审查的问题。比特币以其“笨拙”的设计，创造了人类历史上第一个无需信任、抗审查的价值存储和转移网络，解决了传统金融无法解决的问题。                                                                                                                       |
-
-### 跳表 VS 堆
-
-堆适合最大/最小，Top-1 或 Top-k 很小的场景，而跳表能同时满足 Top-k、范围查询、rank 查询、动态更新，比堆更灵活高效。以取前 100 个元素为例，在堆中，需要弹出 100 次或维护大小为 100 的堆，但跳表只需要在起始位置向前顺序访问链表的 100 个元素即可。
-
----
-
-## 多叉树
-
-### B 树（B-Tree）
+#### B 树
 
 > B 树和红黑树都是由德国计算机科学家 Rudolf Bayer 在 1972 年发明
 
@@ -386,9 +470,7 @@ B 树是一个一般化的二叉搜索树，每个节点可以拥有两个以上
 B 树的生长方式：**向上生长**。B 树的所有叶子节点必须在同一层，因此 B 树永远不会在一个叶子节点下挂载新的节点来增加数据，这会破坏平衡。
 B 树插入数据时，会发生分裂和提升，真正的修改发生在父节点，它接受了被提升上来的键，并更新了其子节点指针。
 
----
-
-### B+ 树
+#### B+ 树
 
 B+ 树通过将数据存储在叶子节点、叶子节点间通过链表相连解决了 B 树的以下问题：
 
@@ -400,174 +482,19 @@ B+ 树通过将数据存储在叶子节点、叶子节点间通过链表相连�
 
 ![B+ Tree](B+_Tree.webp)
 
----
+### 前缀树（Trie）
+
+Trie 是一种专门用于高效处理字符串集合的多叉树结构，在搜索引擎的自动补全、拼写检查、IP 路由等场景中有广泛应用。
+**核心特性：**
+
+- 前缀搜索时间复杂度：$O(m)$（m 为字符串长度）
+- 适用于字符串集合的快速查找和前缀匹配
+
+详细内容请参考：[Trie 数据结构详解](../trie/README.md)
 
 ### 平衡树进化之路
 
 ![The Evolution of Balanced Trees](the_evolution_of_balanced_trees.webp)
-
-## 二叉树的遍历
-
-以下 4 种遍历是基本功，掌握它们，绝大多数二叉树问题都能迎刃而解。
-
-### BFS vs DFS
-
-| 遍历方式                | 顺序     | 特点                                                 | 实现    | 应用场景                       |
-| ----------------------- | -------- | ---------------------------------------------------- | ------- | ------------------------------ |
-| **广度优先遍历（BFS）** | 层序遍历 | 按层从上到下、从左到右依次访问每一层的节点           | 队列    | 树的深度、宽度、层、最短路径   |
-| **前序遍历（DFS）**     | 根-左-右 | **自顶向下** 从根节点到叶子节点传递信息              | 递归/栈 | 复制树、序列化、路径查找       |
-| **中序遍历（DFS）**     | 左-根-右 | 纵向一条线从左向右扫描。最难，最常考，**专用于 BST** | 递归/栈 | BST 有序输出、验证 BST         |
-| **后序遍历（DFS）**     | 左-右-根 | **自底向上** 从叶节点到根节点返回信息                | 递归/栈 | 删除树、计算高度、最近公共祖先 |
-
-!!! Note
-
-    在 DFS 的遍历中，**前、中、后指的是根节点的位置**。递归解法更容易理解和编写，因为直接调用了系统栈，而迭代解法则是在手动维护栈结构，控制节点入栈/出栈顺序。
-
-    快速排序就是前序遍历，归并排序就是后序遍历。
-
-<div align="center">
-  <table>
-    <tr>
-      <td align="center" style="vertical-align: bottom;" >
-        <img src="binary_tree_bfs.webp" alt="Binary Tree BFS" /><br />
-        <sub class="img-caption">Binary Tree BFS</sub>
-      </td>
-      <td align="center" style="vertical-align: bottom;" >
-        <img src="binary_tree_dfs.webp" alt="Binary Tree DFS" /><br />
-        <sub class="img-caption">Binary Tree DFS</sub>
-      </td>
-    </tr>
-  </table>
-</div>
-
-**BFS vs DFS 的遍历方式:**
-
-- **BFS**: 从根节点向四周扩散，逐层遍历，类似水中的波纹，这使得 BFS 适合求最短路径
-- **DFS**: 纵向深入，沿着一条路径走到底，再回溯探索其他路径
-
-<div align="center">
-  <table>
-    <tr>
-      <td align="center">
-        <img src="bfs_traversal.webp" alt="BFS 遍历" /><br />
-        <sub>BFS: 横向扩散，逐层遍历</sub>
-      </td>
-      <td align="center">
-        <img src="dfs_traversal.webp" alt="DFS 前序遍历" /><br />
-        <sub>DFS (前序遍历): 纵向深入，一条路走到底</sub>
-      </td>
-    </tr>
-  </table>
-</div>
-
-BFS 与 DFS 最主要的区别：
-
-- **最短路径**: 在 **无权图** 中，BFS 找到的路径一定是最短的(边数最少)
-- **空间复杂度**: BFS 的空间复杂度为 $O(w)$(w 为最大宽度)，DFS 为 $O(h)$(h 为树高)。对于 **完全二叉树**，BFS 的空间开销远大于 DFS
-
-### 递归解题模板
-
-递归解法可以分为两类思路：
-
-- **遍历思路**：遍历整棵树，在遍历过程中更新外部变量或执行操作（类似回溯算法的思维）
-- **分解思路**：将问题分解为子问题，通过子问题的解推导出原问题的解（类似动态规划的思维）
-
-!!! Abstract "递归 -> 下地下室取东西"
-
-    如果我们把递归的过程想象成去地下室每层房间取东西，那么就有三种情况：
-
-    1. 下去时打包好带上 → 前序遍历
-    2. 下去时打包好，上来时带上 → 中序遍历
-    3. 触底返回时打包好带上 → 后序遍历
-
-```go
-func traversal(root *TreeNode) []int {
-    if root == nil {
-        return []int{}
-    }
-
-    // Preorder: 根 -> 左 -> 右
-    // nums := []int{root.Val}
-    // nums = append(nums, traversal(root.Left)...)
-    // nums = append(nums, traversal(root.Right)...)
-
-    // Inorder: 左 -> 根 -> 右
-    nums := traversal(root.Left)
-    nums = append(nums, root.Val)
-    nums = append(nums, traversal(root.Right)...)
-
-    // Postorder: 左 -> 右 -> 根
-    // nums := traversal(root.Left)
-    // nums = append(nums, traversal(root.Right)...)
-    // nums = append(nums, root.Val)
-
-    return nums
-}
-```
-
-!!! Note
-
-    如果要倒序打印单链表上的所有节点的值，可以采用后序递归操作。
-
-    ```go
-    func reversePrint(head *ListNode) []int {
-        if head == nil {
-            return []int{}
-        }
-
-        return append(reversePrint(head.Next), head.Val)
-    }
-    ```
-
-### 迭代解题模板
-
-颜色标记法通过调整入栈顺序即可通杀前、中、后序遍历
-
-```go
-const (
-    WHITE = 0
-    BLACK = 1
-)
-
-type ColorNode struct {
-    Color int
-    Node  *TreeNode
-}
-
-func iterative(root *TreeNode) []int {
-    nums := []int{}
-    stack := []ColorNode{{WHITE, root}}
-    for len(stack) > 0 {
-        cn := stack[len(stack)-1] // cn is colorNode
-        stack = stack[:len(stack)-1]
-
-        if cn.Node == nil {
-            continue
-        }
-
-        if cn.Color == WHITE {
-            // 前序的压入顺序：右-左-根（BLACK）
-            // stack = append(stack, ColorNode{WHITE, cn.Node.Right})
-            // stack = append(stack, ColorNode{WHITE, cn.Node.Left})
-            // stack = append(stack, ColorNode{BLACK, cn.Node})
-
-            // 中序的压入顺序：右-根（BLACK）-左
-            stack = append(stack, ColorNode{WHITE, cn.Node.Right})
-            stack = append(stack, ColorNode{BLACK, cn.Node})
-            stack = append(stack, ColorNode{WHITE, cn.Node.Left})
-
-            // 后序的压入顺序：根（BLACK）-右-左
-            // stack = append(stack, ColorNode{BLACK, cn.Node})
-            // stack = append(stack, ColorNode{WHITE, cn.Node.Right})
-            // stack = append(stack, ColorNode{WHITE, cn.Node.Left})
-        } else {
-            nums = append(nums, cn.Node.Val)
-        }
-    }
-
-    return nums
-}
-```
 
 ## 经典题目
 
