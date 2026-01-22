@@ -1,17 +1,7 @@
 # Trie
 
-**字典树、前缀树**
-
-Trie 是一种专门用于高效处理字符串集合的树形数据结构,在搜索引擎的自动补全、拼写检查、IP 路由等场景中有广泛应用。
-
----
-
-## 核心概念
-
-### 什么是 Trie?
-
 ![Trie Example](trie_example.webp){ align=right width=30% }
-Trie(发音为 "try")是一种 **多叉树**，用于存储字符串集合。字符存储在边上，从根节点到某个节点的路径上的所有字符连接起来，就是该节点对应的字符串前缀。
+Trie（发音为 "try"，字典树、前缀树）是一种专门用于高效处理字符串集合的 **多叉树**，用于存储字符串集合。字符存储在边上，从根节点到某个节点的路径上的所有字符连接起来，就是该节点对应的字符串前缀。
 
 **关键特性:**
 
@@ -22,7 +12,7 @@ Trie(发音为 "try")是一种 **多叉树**，用于存储字符串集合。字
 
 > 图片来源: [Wikipedia - Trie](https://en.wikipedia.org/wiki/Trie)
 
-### 为什么使用 Trie?
+由于 Trie 具有前缀搜索极快（$O(m)$）、自动补全效率高、字符串排序天然有序等优点，在搜索引擎的自动补全、拼写检查、IP 路由等场景中有广泛应用。代价则是每个节点需要存储多个子节点指针所占据的空间。
 
 | 操作           | 数组/列表      | 哈希表         | Trie                                       |
 | -------------- | -------------- | -------------- | ------------------------------------------ |
@@ -31,17 +21,7 @@ Trie(发音为 "try")是一种 **多叉树**，用于存储字符串集合。字
 | **前缀搜索**   | $O(n \cdot m)$ | $O(n \cdot m)$ | $O(m)$                                     |
 | **空间复杂度** | $O(n \cdot m)$ | $O(n \cdot m)$ | $O(\text{ALPHABET\_SIZE} \cdot n \cdot m)$ |
 
-其中 $n$ 是字符串数量,$m$ 是字符串平均长度。
-
-**Trie 的优势:**
-
-- ✅ 前缀搜索极快: $O(m)$
-- ✅ 自动补全效率高
-- ✅ 字符串排序天然有序
-
-**Trie 的劣势:**
-
-- ❌ 空间占用大(每个节点需要存储多个子节点指针)
+其中 $n$ 是字符串数量，$m$ 是字符串平均长度。
 
 ---
 
@@ -215,94 +195,94 @@ class Trie:
 
 ## 变体
 
-### 1. 压缩 Trie (Radix Tree)
+=== "压缩 Trie (Radix Tree)"
 
-将只有一个子节点的路径压缩成一个节点,节省空间。
+    将只有一个子节点的路径压缩成一个节点,节省空间。
 
-```python
-class RadixNode:
-    def __init__(self, label: str = ""):
-        self.label = label  # 边上的字符串
-        self.children = {}
-        self.is_end_of_word = False
-```
+    ```python
+    class RadixNode:
+        def __init__(self, label: str = ""):
+            self.label = label  # 边上的字符串
+            self.children = {}
+            self.is_end_of_word = False
+    ```
 
-### 2. 后缀 Trie
+=== "后缀 Trie"
 
-存储一个字符串的所有后缀,用于字符串匹配。
+    存储一个字符串的所有后缀,用于字符串匹配。
 
-### 3. 带计数的 Trie
+=== "带计数的 Trie"
 
-每个节点记录经过该节点的单词数量。
+    每个节点记录经过该节点的单词数量。
 
-```python
-class TrieNode:
-    def __init__(self):
-        self.children = {}
-        self.is_end_of_word = False
-        self.count = 0  # 经过该节点的单词数量
-```
+    ```python
+    class TrieNode:
+        def __init__(self):
+            self.children = {}
+            self.is_end_of_word = False
+            self.count = 0  # 经过该节点的单词数量
+    ```
 
 ---
 
 ## 典型应用场景
 
-### 1. 自动补全
+=== "自动补全"
 
-```python
-def autocomplete(self, prefix: str, limit: int = 10) -> list[str]:
-    """返回最多 limit 个以 prefix 开头的单词"""
-    words = self.find_words_with_prefix(prefix)
-    return words[:limit]
-```
+    ```python
+    def autocomplete(self, prefix: str, limit: int = 10) -> list[str]:
+        """返回最多 limit 个以 prefix 开头的单词"""
+        words = self.find_words_with_prefix(prefix)
+        return words[:limit]
+    ```
 
-### 2. 拼写检查
+=== "拼写检查"
 
-```python
-def spell_check(self, word: str) -> list[str]:
-    """返回与 word 相似的单词(编辑距离为1)"""
-    suggestions = []
+    ```python
+    def spell_check(self, word: str) -> list[str]:
+        """返回与 word 相似的单词(编辑距离为1)"""
+        suggestions = []
 
-    # 1. 删除一个字符
-    for i in range(len(word)):
-        candidate = word[:i] + word[i+1:]
-        if self.search(candidate):
-            suggestions.append(candidate)
-
-    # 2. 替换一个字符
-    for i in range(len(word)):
-        for c in 'abcdefghijklmnopqrstuvwxyz':
-            candidate = word[:i] + c + word[i+1:]
+        # 1. 删除一个字符
+        for i in range(len(word)):
+            candidate = word[:i] + word[i+1:]
             if self.search(candidate):
                 suggestions.append(candidate)
 
-    # 3. 插入一个字符
-    for i in range(len(word) + 1):
-        for c in 'abcdefghijklmnopqrstuvwxyz':
-            candidate = word[:i] + c + word[i:]
-            if self.search(candidate):
-                suggestions.append(candidate)
+        # 2. 替换一个字符
+        for i in range(len(word)):
+            for c in 'abcdefghijklmnopqrstuvwxyz':
+                candidate = word[:i] + c + word[i+1:]
+                if self.search(candidate):
+                    suggestions.append(candidate)
 
-    return list(set(suggestions))
-```
+        # 3. 插入一个字符
+        for i in range(len(word) + 1):
+            for c in 'abcdefghijklmnopqrstuvwxyz':
+                candidate = word[:i] + c + word[i:]
+                if self.search(candidate):
+                    suggestions.append(candidate)
 
-### 3. 词频统计
+        return list(set(suggestions))
+    ```
 
-```python
-class TrieNode:
-    def __init__(self):
-        self.children = {}
-        self.frequency = 0  # 该单词出现的次数
+=== "词频统计"
 
-def insert_with_frequency(self, word: str) -> None:
-    """插入单词并统计频率"""
-    node = self.root
-    for char in word:
-        if char not in node.children:
-            node.children[char] = TrieNode()
-        node = node.children[char]
-    node.frequency += 1
-```
+    ```python
+    class TrieNode:
+        def __init__(self):
+            self.children = {}
+            self.frequency = 0  # 该单词出现的次数
+
+    def insert_with_frequency(self, word: str) -> None:
+        """插入单词并统计频率"""
+        node = self.root
+        for char in word:
+            if char not in node.children:
+                node.children[char] = TrieNode()
+            node = node.children[char]
+        node.frequency += 1
+    ```
 
 ---
 
@@ -326,35 +306,35 @@ def insert_with_frequency(self, word: str) -> None:
 
 ## 优化技巧
 
-### 1. 使用数组代替字典(固定字符集)
+=== "使用数组代替字典(固定字符集)"
 
-```python
-class TrieNode:
-    def __init__(self):
-        # 假设只有小写字母
-        self.children = [None] * 26
-        self.is_end_of_word = False
+    ```python
+    class TrieNode:
+        def __init__(self):
+            # 假设只有小写字母
+            self.children = [None] * 26
+            self.is_end_of_word = False
 
-def insert(self, word: str) -> None:
-    node = self.root
-    for char in word:
-        index = ord(char) - ord('a')
-        if node.children[index] is None:
-            node.children[index] = TrieNode()
-        node = node.children[index]
-    node.is_end_of_word = True
-```
+    def insert(self, word: str) -> None:
+        node = self.root
+        for char in word:
+            index = ord(char) - ord('a')
+            if node.children[index] is None:
+                node.children[index] = TrieNode()
+            node = node.children[index]
+        node.is_end_of_word = True
+    ```
 
-**优势**: 访问速度更快
-**劣势**: 空间占用更大(即使字符不存在也要分配空间)
+    **优势**: 访问速度更快
+    **劣势**: 空间占用更大(即使字符不存在也要分配空间)
 
-### 2. 延迟删除
+=== "延迟删除"
 
-不立即删除节点，而是标记为"已删除"，定期清理。
+    不立即删除节点，而是标记为"已删除"，定期清理。
 
-### 3. 路径压缩
+=== "路径压缩"
 
-合并只有一个子节点的节点，减少空间占用。
+    合并只有一个子节点的节点，减少空间占用。
 
 ---
 
@@ -381,11 +361,3 @@ def insert(self, word: str) -> None:
 | 范围查询     | 平衡树         | 有序存储        |
 | 模糊匹配     | **Trie** + DFS | 支持通配符      |
 | 后缀查询     | 后缀树/数组    | 专门优化        |
-
----
-
-## 参考资料
-
-- [LeetCode Trie Tag](https://leetcode.com/tag/trie/)
-- [Wikipedia: Trie](https://en.wikipedia.org/wiki/Trie)
-- [OI Wiki: Trie](https://oi-wiki.org/string/trie/)
