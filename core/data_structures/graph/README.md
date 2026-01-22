@@ -362,7 +362,7 @@ def is_bipartite(graph: list[list[int]]) -> bool:
 
 === "Kahn 算法 (BFS + 入度)"
 
-    **核心思想**: 不断移除入度为 0 的节点,并更新其邻居的入度。
+    **核心思想**: 不断移除入度为 0 的节点，并更新其邻居的入度。
 
     ```python
     from collections import deque
