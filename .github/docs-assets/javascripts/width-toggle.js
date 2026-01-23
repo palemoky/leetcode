@@ -6,7 +6,7 @@
 
 document$.subscribe(() => {
   // Check if toggle button already exists to avoid duplicates
-  if (document.querySelector('.md-header__option[title="Switch to wide-screen mode"]')) {
+  if (document.querySelector('.width-toggle-btn')) {
     return;
   }
 
@@ -16,14 +16,23 @@ document$.subscribe(() => {
     document.body.setAttribute('data-wide-screen', 'true');
   }
 
-  // Create toggle button
-  const button = document.createElement('button');
-  button.className = 'md-header__option md-icon';
-  button.title = 'Switch to wide-screen mode';
-  button.setAttribute('aria-label', 'Switch to wide-screen mode');
+  // Create toggle button using Material for MkDocs pattern
+  const button = document.createElement('label');
+  button.className = 'md-header__button md-icon';
+  button.setAttribute('for', '');
+  button.setAttribute('data-md-color-media', '');
 
-  // Icon:
-  button.innerHTML = '<img src="/images/wide-screen-icon.svg" width="24" height="24" alt="Switch to wide-screen mode" />';
+  // Create tooltip span (shows immediately like theme toggle)
+  const tooltip = document.createElement('span');
+  tooltip.className = 'md-header__button__tooltip md-tooltip md-tooltip--grow';
+  tooltip.textContent = 'Switch to wide-screen mode';
+
+  // Create icon container
+  const iconContainer = document.createElement('span');
+  iconContainer.innerHTML = '<img src="/images/wide-screen-icon.svg" width="24" height="24" alt="" style="vertical-align: middle;" />';
+
+  button.appendChild(tooltip);
+  button.appendChild(iconContainer);
 
   // Add a specific class for precise styling
   button.classList.add('width-toggle-btn');
