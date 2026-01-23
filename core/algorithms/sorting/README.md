@@ -6,7 +6,7 @@
 
 ## 十大常用基础排序算法
 
-<table>
+<table style="width: 100%; display: table;">
   <colgroup>
     <col style="width: 12%;" /> <!-- 名称 -->
     <col style="width: 8%;" />  <!-- 数据对象 -->
