@@ -86,11 +86,6 @@ figcaption {
   margin: 0 !important;
 }
 
-/* Prevent images from getting too huge in wide screen mode */
-[data-wide-screen="true"] .md-typeset img {
-  max-width: 55rem; /* Approx standard content width */
-}
-
 .width-toggle-btn {
   cursor: pointer;
 }
