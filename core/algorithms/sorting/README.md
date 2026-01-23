@@ -22,7 +22,7 @@
   </thead>
   <tbody>
     <tr>
-      <td><a href="https://b23.tv/BV181421876R">冒泡排序</a><br />（bubble sort）</td>
+      <td><a href="https://b23.tv/BV181421876R">冒泡排序</a><br />bubble sort</td>
       <td>数组</td>
       <td>✓</td>
       <td>✓</td>
@@ -33,7 +33,7 @@
       <td>数据量小、对稳定性有要求</td>
     </tr>
     <tr>
-      <td rowspan="2"><a href="https://b23.tv/BV1kjsuenE8v">选择排序</a><br />（selection sort）</td>
+      <td rowspan="2"><a href="https://b23.tv/BV1kjsuenE8v">选择排序</a><br />selection sort</td>
       <td>数组</td>
       <td>×</td>
       <td rowspan="2">✓</td>
@@ -48,7 +48,7 @@
       <td>✓</td>
     </tr>
     <tr>
-      <td><a href="https://b23.tv/BV1tf421Q7eh">插入排序</a><br />（insertion sort）</td>
+      <td><a href="https://b23.tv/BV1tf421Q7eh">插入排序</a><br />insertion sort</td>
       <td>数组、链表</td>
       <td>✓</td>
       <td>✓</td>
@@ -59,7 +59,7 @@
       <td>数据量小、部分有序</td>
     </tr>
     <tr>
-      <td><a href="https://b23.tv/BV1HYtseiEQ8">堆排序</a><br />（heap sort）</td>
+      <td><a href="https://b23.tv/BV1HYtseiEQ8">堆排序</a><br />heap sort</td>
       <td>数组</td>
       <td>×</td>
       <td>✓</td>
@@ -70,7 +70,7 @@
       <td>原地排序</td>
     </tr>
     <tr>
-      <td rowspan="2"><a href="https://b23.tv/BV1em1oYTEFf">归并排序</a><br />（merge sort）</td>
+      <td rowspan="2"><a href="https://b23.tv/BV1em1oYTEFf">归并排序</a><br />merge sort</td>
       <td>数组</td>
       <td rowspan="2">✓</td>
       <td rowspan="2">✓</td>
@@ -86,7 +86,7 @@
       <td>$O(1)$</td>
     </tr>
     <tr>
-      <td rowspan="2"><a href="https://b23.tv/BV1y4421Z7hK">快速排序</a><br />（quick sort）</td>
+      <td rowspan="2"><a href="https://b23.tv/BV1y4421Z7hK">快速排序</a><br />quick sort</td>
       <td>数组</td>
       <td>×</td>
       <td rowspan="2">✓</td>
@@ -101,7 +101,7 @@
       <td>✓</td>
     </tr>
     <tr>
-      <td><a href="https://b23.tv/BV1bm42137UZ">希尔排序</a><br />（shell sort）</td>
+      <td><a href="https://b23.tv/BV1bm42137UZ">希尔排序</a><br />shell sort</td>
       <td>数组</td>
       <td>×</td>
       <td>✓</td>
@@ -112,7 +112,7 @@
       <td></td>
     </tr>
     <tr>
-      <td>计数排序<br />（counting sort）</td>
+      <td>计数排序<br />counting sort</td>
       <td rowspan="3">数组、链表</td>
       <td rowspan="3">✓</td>
       <td rowspan="3">×</td>
@@ -123,13 +123,13 @@
       <td rowspan="3">数据范围有限、整数排序</td>
     </tr>
     <tr>
-      <td>桶排序<br />（bucket sort）</td>
+      <td>桶排序<br />bucket sort</td>
       <td>$O(n)$ / $O(n^2)$</td>
       <td>$O(m)$</td>
       <td>将值为 i 的元素放入 i 号桶，最后依次把桶里的元素倒出来。</td>
     </tr>
     <tr>
-      <td><a href="https://b23.tv/BV1KrzrYeEDw">基数排序</a><br />（radix sort）</td>
+      <td><a href="https://b23.tv/BV1KrzrYeEDw">基数排序</a><br />radix sort</td>
       <td>$O(k \times n) / O(n^2)$</td>
       <td>$O(n)$</td>
       <td>一种多关键字的排序算法，可用桶排序实现。</td>

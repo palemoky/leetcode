@@ -17,10 +17,11 @@ document$.subscribe(() => {
   }
 
   // Create toggle button
-  // We use md-header__button class to inherit theme tooltip behavior
-  const button = document.createElement('button');
-  button.className = 'md-header__option md-header__button md-icon width-toggle-btn';
-  button.setAttribute('aria-label', 'Switch to wide-screen mode');
+  // Use label element to match MkDocs Material structure for tooltips
+  const button = document.createElement('label');
+  button.className = 'md-header__button md-icon width-toggle-btn';
+  button.style.cursor = 'pointer'; // Ensure pointer cursor
+  // No 'for' attribute needed as we handle click via JS, but it makes it look like a label
 
   // Custom Tooltip (appears immediately)
   const tooltip = document.createElement('span');
@@ -28,15 +29,21 @@ document$.subscribe(() => {
   tooltip.textContent = 'Switch to wide-screen mode';
   tooltip.style.fontWeight = '700'; // Make tooltip bold as requested
 
-  // Icon
+  // Icon container
+  const iconContainer = document.createElement('span');
+  iconContainer.style.display = 'inline-block';
+  iconContainer.style.verticalAlign = 'middle';
+
   const icon = document.createElement('img');
   icon.src = '/images/wide-screen-icon.svg';
   icon.width = 24;
   icon.height = 24;
   icon.alt = 'Switch to wide-screen mode';
 
+  iconContainer.appendChild(icon);
+
   button.appendChild(tooltip);
-  button.appendChild(icon);
+  button.appendChild(iconContainer);
 
   button.addEventListener('click', () => {
     const body = document.body;
