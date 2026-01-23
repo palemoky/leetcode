@@ -71,3 +71,17 @@ figcaption {
 .md-typeset table th[rowspan] {
   vertical-align: middle !important;
 }
+
+/* === Wide Screen Mode === */
+[data-wide-screen="true"] .md-sidebar {
+  display: none !important;
+}
+
+[data-wide-screen="true"] .md-grid {
+  max-width: 90% !important;
+  margin: 0 auto !important;
+}
+
+[data-wide-screen="true"] .md-content {
+  margin: 0 !important;
+}

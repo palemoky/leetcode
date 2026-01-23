@@ -8,13 +8,13 @@
 
 <table style="width: 100%; display: table; table-layout: fixed;">
   <colgroup>
-    <col style="width: 12%;" /> <!-- 名称 -->
-    <col style="width: 8%;" />  <!-- 数据对象 -->
-    <col style="width: 6%;" />  <!-- 稳定性 -->
-    <col style="width: 6%;" />  <!-- 比较类 -->
-    <col style="width: 12%;" /> <!-- 时间复杂度 -->
-    <col style="width: 12%;" /> <!-- 空间复杂度 -->
-    <col style="width: 15%;" /> <!-- 原理 -->
+    <col style="width: 11%;" /> <!-- 名称 -->
+    <col style="width: 10%;" /> <!-- 数据对象 -->
+    <col style="width: 5%;" />  <!-- 稳定性 -->
+    <col style="width: 5%;" />  <!-- 比较类 -->
+    <col style="width: 15%;" /> <!-- 时间复杂度 -->
+    <col style="width: 11%;" /> <!-- 空间复杂度 -->
+    <col style="width: 14%;" /> <!-- 原理 -->
     <col style="width: 18%;" /> <!-- 描述 -->
     <col style="width: 11%;" /> <!-- 适用场景 -->
   </colgroup>
