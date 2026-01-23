@@ -85,3 +85,7 @@ figcaption {
 [data-wide-screen="true"] .md-content {
   margin: 0 !important;
 }
+
+.width-toggle-btn {
+  cursor: pointer;
+}
