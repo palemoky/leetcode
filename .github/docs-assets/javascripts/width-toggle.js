@@ -6,7 +6,7 @@
 
 document$.subscribe(() => {
   // Check if toggle button already exists to avoid duplicates
-  if (document.querySelector('.md-header__option[title="Switch to wide-screen mode"]')) {
+  if (document.querySelector('.width-toggle-btn')) {
     return;
   }
 
@@ -19,7 +19,7 @@ document$.subscribe(() => {
   // Create toggle button
   const button = document.createElement('button');
   button.className = 'md-header__option md-icon';
-  button.title = 'Switch to wide-screen mode';
+  // Removed title attribute to use custom CSS tooltip instead
   button.setAttribute('aria-label', 'Switch to wide-screen mode');
 
   // Icon:
