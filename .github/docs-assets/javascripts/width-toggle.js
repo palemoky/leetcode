@@ -19,12 +19,12 @@ document$.subscribe(() => {
   // Create toggle button
   // Create toggle button
   // We manually construct the tooltipped structure to match the theme's rendered output
-  // <button class="md-header__button md-icon">
+  // <button class="md-header__option md-icon">
   //   <span class="md-tooltip">Switch to wide-screen mode</span>
   //   ...icon...
   // </button>
   const button = document.createElement('button');
-  button.className = 'md-header__button md-icon width-toggle-btn';
+  button.className = 'md-header__option md-icon width-toggle-btn';
   button.style.cursor = 'pointer';
   // IMPORTANT: Do NOT set .title attribute, otherwise the browser native tooltip appears
   button.setAttribute('aria-label', 'Switch to wide-screen mode');
