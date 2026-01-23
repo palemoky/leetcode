@@ -25,8 +25,8 @@ document$.subscribe(() => {
   // Icon (inline SVG for theme color support):
   button.innerHTML = `
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-      <path d="M2 6V4C2 2.9 2.9 2 4 2H20C21.1 2 22 2.9 22 4V6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-      <path d="M2 18V20C2 21.1 2.9 22 4 22H20C21.1 22 22 21.1 22 20V18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M2 7V5C2 3.9 2.9 3 4 3H20C21.1 3 22 3.9 22 5V7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M2 17V19C2 20.1 2.9 21 4 21H20C21.1 21 22 20.1 22 19V17" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
       <path d="M8 12H2M2 12L4.5 9.5M2 12L4.5 14.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
       <path d="M16 12H22M22 12L19.5 9.5M22 12L19.5 14.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
