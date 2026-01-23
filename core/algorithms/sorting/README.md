@@ -48,7 +48,7 @@
       <td>✓</td>
     </tr>
     <tr>
-      <td>插入排序<br />（insertion sort）</td>
+      <td><a href="https://b23.tv/BV1tf421Q7eh">插入排序</a><br />（insertion sort）</td>
       <td>数组、链表</td>
       <td>✓</td>
       <td>✓</td>
@@ -101,7 +101,7 @@
       <td>✓</td>
     </tr>
     <tr>
-      <td>希尔排序<br />（shell sort）</td>
+      <td><a href="https://b23.tv/BV1bm42137UZ">希尔排序</a><br />（shell sort）</td>
       <td>数组</td>
       <td>×</td>
       <td>✓</td>
