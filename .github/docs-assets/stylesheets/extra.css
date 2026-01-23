@@ -66,6 +66,7 @@ figcaption {
 /* === Table Enhancements === */
 
 /* Vertically center content in table cells with rowspan */
-td[rowspan] {
-  vertical-align: middle;
+td[rowspan],
+th[rowspan] {
+  vertical-align: middle !important;
 }
