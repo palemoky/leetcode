@@ -89,11 +89,11 @@ figcaption {
 .width-toggle-btn {
   cursor: pointer;
   position: relative;
-  color: var(--md-default-fg-color);
 }
 
+.width-toggle-btn svg,
 .width-toggle-btn img {
-  filter: brightness(0) saturate(100%) invert(var(--md-icon-invert, 0));
+  color: var(--md-default-fg-color);
 }
 
 /* Custom tooltip for immediate display with bold text */
