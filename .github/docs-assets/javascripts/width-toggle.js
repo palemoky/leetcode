@@ -17,13 +17,26 @@ document$.subscribe(() => {
   }
 
   // Create toggle button
-  // Use label and title, letting MkDocs Material's JS handle the tooltip conversion
-  const button = document.createElement('label');
+  // Create toggle button
+  // We manually construct the tooltipped structure to match the theme's rendered output
+  // <button class="md-header__button md-icon">
+  //   <span class="md-tooltip">Switch to wide-screen mode</span>
+  //   ...icon...
+  // </button>
+  const button = document.createElement('button');
   button.className = 'md-header__button md-icon width-toggle-btn';
   button.style.cursor = 'pointer';
-  button.title = 'Switch to wide-screen mode'; // Theme JS will convert this to a tooltip
+  // IMPORTANT: Do NOT set .title attribute, otherwise the browser native tooltip appears
+  button.setAttribute('aria-label', 'Switch to wide-screen mode');
 
-  // Icon container
+  // 1. Tooltip Element (theme CSS handles visibility on hover)
+  // .md-tooltip--bottom is often default for header, or we rely on default positioning
+  const tooltip = document.createElement('span');
+  tooltip.className = 'md-tooltip';
+  tooltip.textContent = 'Switch to wide-screen mode';
+  tooltip.style.fontWeight = '700'; // formatting
+
+  // 2. Icon Container
   const iconContainer = document.createElement('span');
   iconContainer.style.display = 'inline-block';
   iconContainer.style.verticalAlign = 'middle';
@@ -32,10 +45,12 @@ document$.subscribe(() => {
   icon.src = '/images/wide-screen-icon.svg';
   icon.width = 24;
   icon.height = 24;
-  icon.alt = 'Switch to wide-screen mode';
+  icon.alt = ''; // decorative inside button
 
   iconContainer.appendChild(icon);
 
+  // Append in correct order: tooltip first (often), or just inside parent
+  button.appendChild(tooltip);
   button.appendChild(iconContainer);
 
   button.addEventListener('click', () => {
