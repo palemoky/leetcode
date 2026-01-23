@@ -6,7 +6,7 @@
 
 document$.subscribe(() => {
   // Check if toggle button already exists to avoid duplicates
-  if (document.querySelector('.md-header__option[title="切换宽屏模式"]')) {
+  if (document.querySelector('.md-header__option[title="Switch to wide-screen mode"]')) {
     return;
   }
 
@@ -19,11 +19,11 @@ document$.subscribe(() => {
   // Create toggle button
   const button = document.createElement('button');
   button.className = 'md-header__option md-icon';
-  button.title = '切换宽屏模式';
-  button.setAttribute('aria-label', '切换宽屏模式');
+  button.title = 'Switch to wide-screen mode';
+  button.setAttribute('aria-label', 'Switch to wide-screen mode');
 
   // Icon:
-  button.innerHTML = '<img src="/images/wide-screen-icon.png" width="24" height="24" alt="切换宽屏模式" />';
+  button.innerHTML = '<img src="/images/wide-screen-icon.svg" width="24" height="24" alt="Switch to wide-screen mode" />';
 
   // Add a specific class for precise styling
   button.classList.add('width-toggle-btn');
