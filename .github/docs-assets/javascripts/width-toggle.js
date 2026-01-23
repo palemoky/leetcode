@@ -6,7 +6,7 @@
 
 document$.subscribe(() => {
   // Check if toggle button already exists to avoid duplicates
-  if (document.querySelector('.width-toggle-btn')) {
+  if (document.querySelector('.md-header__option[title="Switch to wide-screen mode"]')) {
     return;
   }
 
@@ -17,41 +17,16 @@ document$.subscribe(() => {
   }
 
   // Create toggle button
-  // Create toggle button
-  // We manually construct the tooltipped structure to match the theme's rendered output
-  // <button class="md-header__option md-icon">
-  //   <span class="md-tooltip">Switch to wide-screen mode</span>
-  //   ...icon...
-  // </button>
   const button = document.createElement('button');
-  button.className = 'md-header__option md-icon width-toggle-btn';
-  button.style.cursor = 'pointer';
-  // IMPORTANT: Do NOT set .title attribute, otherwise the browser native tooltip appears
+  button.className = 'md-header__option md-icon';
+  button.title = 'Switch to wide-screen mode';
   button.setAttribute('aria-label', 'Switch to wide-screen mode');
 
-  // 1. Tooltip Element (theme CSS handles visibility on hover)
-  // .md-tooltip--bottom is often default for header, or we rely on default positioning
-  const tooltip = document.createElement('span');
-  tooltip.className = 'md-tooltip';
-  tooltip.textContent = 'Switch to wide-screen mode';
-  tooltip.style.fontWeight = '700'; // formatting
+  // Icon:
+  button.innerHTML = '<img src="/images/wide-screen-icon.svg" width="24" height="24" alt="Switch to wide-screen mode" />';
 
-  // 2. Icon Container
-  const iconContainer = document.createElement('span');
-  iconContainer.style.display = 'inline-block';
-  iconContainer.style.verticalAlign = 'middle';
-
-  const icon = document.createElement('img');
-  icon.src = '/images/wide-screen-icon.svg';
-  icon.width = 24;
-  icon.height = 24;
-  icon.alt = ''; // decorative inside button
-
-  iconContainer.appendChild(icon);
-
-  // Append in correct order: tooltip first (often), or just inside parent
-  button.appendChild(tooltip);
-  button.appendChild(iconContainer);
+  // Add a specific class for precise styling
+  button.classList.add('width-toggle-btn');
 
   button.addEventListener('click', () => {
     const body = document.body;
