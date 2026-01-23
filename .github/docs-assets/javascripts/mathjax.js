@@ -4,34 +4,39 @@
  */
 window.MathJax = {
   loader: {
-    load: ['[tex]/mhchem', '[tex]/extpfeil']
+    load: ["[tex]/mhchem", "[tex]/extpfeil"],
   },
   tex: {
-    packages: {'[+]': ['mhchem', 'extpfeil']},
-    inlineMath: [['$', '$'], ['\\(', '\\)']],
-    displayMath: [['$$', '$$'], ['\\[', '\\]']],
+    packages: { "[+]": ["mhchem", "extpfeil"] },
+    inlineMath: [
+      ["$", "$"],
+      ["\\(", "\\)"],
+    ],
+    displayMath: [
+      ["$$", "$$"],
+      ["\\[", "\\]"],
+    ],
     processEscapes: true,
-    processEnvironments: true
+    processEnvironments: true,
   },
   options: {
-    ignoreHtmlClass: ".*|",
-    processHtmlClass: "arithmatex"
+    skipHtmlTags: ["script", "noscript", "style", "textarea", "pre", "code"],
   },
   startup: {
     ready: () => {
       MathJax.startup.defaultReady();
       MathJax.startup.promise.catch((err) => {
-        console.error('MathJax initialization error:', err);
+        console.error("MathJax initialization error:", err);
       });
-    }
-  }
+    },
+  },
 };
 
 document$.subscribe(() => {
-  if (typeof MathJax !== 'undefined' && MathJax.typesetPromise) {
+  if (typeof MathJax !== "undefined" && MathJax.typesetPromise) {
     MathJax.startup.output.clearCache();
     MathJax.typesetClear();
     MathJax.texReset();
-    MathJax.typesetPromise().catch(err => console.log('MathJax error:', err));
+    MathJax.typesetPromise().catch((err) => console.log("MathJax error:", err));
   }
 });
