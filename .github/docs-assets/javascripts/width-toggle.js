@@ -25,10 +25,10 @@ document$.subscribe(() => {
   // Icon (inline SVG for theme color support):
   button.innerHTML = `
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24">
-      <path d="M2 8V6C2 4.9 2.9 4 4 4H20C21.1 4 22 4.9 22 6V8" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-      <path d="M2 16V18C2 19.1 2.9 20 4 20H20C21.1 20 22 19.1 22 18V16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
-      <path d="M10 12H2M2 12L4.5 9.5M2 12L4.5 14.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
-      <path d="M14 12H22M22 12L19.5 9.5M22 12L19.5 14.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M2 6V4C2 2.9 2.9 2 4 2H20C21.1 2 22 2.9 22 4V6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M2 18V20C2 21.1 2.9 22 4 22H20C21.1 22 22 21.1 22 20V18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/>
+      <path d="M8 12H2M2 12L4.5 9.5M2 12L4.5 14.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M16 12H22M22 12L19.5 9.5M22 12L19.5 14.5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>
     </svg>
   `;
 

@@ -93,10 +93,16 @@ figcaption {
 
 .width-toggle-btn svg,
 .width-toggle-btn img {
+  color: var(--md-default-fg-color);
+}
+
+/* Dark mode: use pure white for icon to match other header icons */
+[data-md-color-scheme="slate"] .width-toggle-btn svg,
+[data-md-color-scheme="slate"] .width-toggle-btn img {
   color: #fff;
 }
 
-/* Custom tooltip for immediate display matching native style */
+/* Custom tooltip for immediate display with bold text */
 .width-toggle-btn::after {
   content: attr(aria-label);
   position: absolute;
@@ -105,9 +111,10 @@ figcaption {
   transform: translateX(-50%);
   margin-top: 8px;
   padding: 6px 12px;
-  background-color: rgba(0, 0, 0, 0.9);
-  color: #fff;
-  border-radius: 2px;
+  background-color: var(--md-default-bg-color);
+  color: var(--md-default-fg-color);
+  border: 1px solid var(--md-default-fg-color--lighter);
+  border-radius: 4px;
   font-family: Roboto, -apple-system, "system-ui", "Helvetica, Arial", "sans-serif";
   font-size: 13.33px;
   font-weight: 400;
@@ -117,6 +124,7 @@ figcaption {
   visibility: hidden;
   transition: opacity 0.15s ease-in-out;
   z-index: 9999;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 }
 
 .width-toggle-btn:hover::after {
