@@ -62,3 +62,10 @@ figcaption {
 .img-caption {
   font-size: 14px;
 }
+
+/* === Table Enhancements === */
+
+/* Vertically center content in table cells with rowspan */
+td[rowspan] {
+  vertical-align: middle;
+}

@@ -18,132 +18,121 @@
       <th>原理</th>
       <th>描述</th>
       <th>适用场景</th>
-      <th>动画</th>
     </tr>
   </thead>
   <tbody>
     <tr>
-      <td><strong>冒泡排序</strong><br />（bubble sort）</td>
+      <td><a href="https://b23.tv/BV181421876R">冒泡排序</a><br />（bubble sort）</td>
       <td>数组</td>
       <td>✓</td>
       <td>✓</td>
-      <td markdown="1">$O(n^2)$</td>
-      <td markdown="1">$O(1)$</td>
+      <td>$O(n^2)$</td>
+      <td>$O(1)$</td>
       <td>每轮将相邻元素两两比较，大的往后交换，重复 n 轮</td>
       <td>(无序区, 有序区)。<br />从无序区通过交换找出最大元素放到有序区前端。</td>
       <td>数据量小、对稳定性有要求</td>
-      <td><a href="https://www.bilibili.com/video/BV181421876R">冒泡排序</a></td>
     </tr>
     <tr>
-      <td rowspan="2" style="vertical-align: middle;"><strong>选择排序</strong><br />（selection sort）</td>
+      <td rowspan="2"><a href="https://b23.tv/BV1kjsuenE8v">选择排序</a><br />（selection sort）</td>
       <td>数组</td>
       <td>×</td>
-      <td rowspan="2" style="vertical-align: middle;">✓</td>
-      <td rowspan="2" style="vertical-align: middle;" markdown="1">$O(n^2)$</td>
-      <td rowspan="2" style="vertical-align: middle;" markdown="1">$O(1)$</td>
-      <td rowspan="2" style="vertical-align: middle;">每轮选择剩余元素中的最小值，放到前面</td>
-      <td rowspan="2" style="vertical-align: middle;">(有序区, 无序区)。<br />在无序区里找一个最小的元素跟在有序区的后面。对数组：比较得多，换得少。</td>
-      <td rowspan="2" style="vertical-align: middle;">数据量小</td>
-      <td rowspan="2" style="vertical-align: middle;"><a href="https://www.bilibili.com/video/BV1kjsuenE8v">选择排序</a></td>
+      <td rowspan="2">✓</td>
+      <td rowspan="2">$O(n^2)$</td>
+      <td rowspan="2">$O(1)$</td>
+      <td rowspan="2">每轮选择剩余元素中的最小值，放到前面</td>
+      <td rowspan="2">(有序区, 无序区)。<br />在无序区里找一个最小的元素跟在有序区的后面。对数组：比较得多，换得少。</td>
+      <td rowspan="2">数据量小</td>
     </tr>
     <tr>
       <td>链表</td>
       <td>✓</td>
     </tr>
     <tr>
-      <td><strong>插入排序</strong><br />（insertion sort）</td>
+      <td>插入排序<br />（insertion sort）</td>
       <td>数组、链表</td>
       <td>✓</td>
       <td>✓</td>
-      <td markdown="1">$O(n^2)$</td>
-      <td markdown="1">$O(1)$</td>
+      <td>$O(n^2)$</td>
+      <td>$O(1)$</td>
       <td>每次将一个元素插入到已排序部分的合适位置</td>
       <td>(有序区, 无序区)。<br />把无序区的第一个元素插入到有序区的合适位置。对数组：比较得少，换得多。</td>
       <td>数据量小、部分有序</td>
-      <td></td>
     </tr>
     <tr>
-      <td><strong>堆排序</strong><br />（heap sort）</td>
+      <td><a href="https://b23.tv/BV1HYtseiEQ8">堆排序</a><br />（heap sort）</td>
       <td>数组</td>
       <td>×</td>
       <td>✓</td>
-      <td markdown="1">$O(n \log n)$</td>
-      <td markdown="1">$O(1)$</td>
+      <td>$O(n \log n)$</td>
+      <td>$O(1)$</td>
       <td>构建最大/最小堆，依次取出堆顶元素</td>
       <td>(最大堆, 有序区)。<br />从堆顶把根卸出来放在有序区之前，再恢复堆。</td>
       <td>原地排序</td>
-      <td><a href="https://www.bilibili.com/video/BV1HYtseiEQ8">堆排序</a></td>
     </tr>
     <tr>
-      <td rowspan="2" style="vertical-align: middle;"><strong>归并排序</strong><br />（merge sort）</td>
+      <td rowspan="2"><a href="https://b23.tv/BV1em1oYTEFf">归并排序</a><br />（merge sort）</td>
       <td>数组</td>
-      <td rowspan="2" style="vertical-align: middle;">✓</td>
-      <td rowspan="2" style="vertical-align: middle;">✓</td>
-      <td markdown="1">$O(n \log n)$</td>
-      <td markdown="1">$O(n) + O(\log n)$</td>
-      <td rowspan="2" style="vertical-align: middle;">递归分组，合并有序子数组</td>
-      <td rowspan="2" style="vertical-align: middle;">把数据分为两段，从两段中逐个选最小的元素移入新数据段的末尾。可从上到下或从下到上进行。</td>
-      <td rowspan="2" style="vertical-align: middle;">大数据、链表排序、稳定性要求高</td>
-      <td rowspan="2" style="vertical-align: middle;"><a href="https://www.bilibili.com/video/BV1em1oYTEFf">归并排序</a></td>
+      <td rowspan="2">✓</td>
+      <td rowspan="2">✓</td>
+      <td>$O(n \log n)$</td>
+      <td>$O(n) + O(\log n)$</td>
+      <td rowspan="2">递归分组，合并有序子数组</td>
+      <td rowspan="2">把数据分为两段，从两段中逐个选最小的元素移入新数据段的末尾。可从上到下或从下到上进行。</td>
+      <td rowspan="2">大数据、链表排序、稳定性要求高</td>
     </tr>
     <tr>
       <td>链表</td>
-      <td markdown="1">$O(n \log n)$</td>
-      <td markdown="1">$O(1)$</td>
+      <td>$O(n \log n)$</td>
+      <td>$O(1)$</td>
     </tr>
     <tr>
-      <td rowspan="2" style="vertical-align: middle;"><strong>快速排序</strong><br />（quick sort）</td>
+      <td rowspan="2"><a href="https://b23.tv/BV1y4421Z7hK">快速排序</a><br />（quick sort）</td>
       <td>数组</td>
       <td>×</td>
-      <td rowspan="2" style="vertical-align: middle;">✓</td>
-      <td rowspan="2" style="vertical-align: middle;" markdown="1">$O(n \log n) / O(n^2)$</td>
-      <td rowspan="2" style="vertical-align: middle;" markdown="1">$O(\log n)$</td>
-      <td rowspan="2" style="vertical-align: middle;">选定基准，分区递归排序左右两部分</td>
-      <td rowspan="2" style="vertical-align: middle;">(小数, 基准元素, 大数)。<br />在区间中随机挑选一个元素作基准，将小于基准的元素放在基准之前，大于基准的元素放在基准之后，再分别对小数区与大数区进行排序。</td>
-      <td rowspan="2" style="vertical-align: middle;">通用、高效排序</td>
-      <td rowspan="2" style="vertical-align: middle;"><a href="https://www.bilibili.com/video/BV1y4421Z7hK">快速排序</a></td>
+      <td rowspan="2">✓</td>
+      <td rowspan="2">$O(n \log n) / O(n^2)$</td>
+      <td rowspan="2">$O(\log n)$</td>
+      <td rowspan="2">选定基准，分区递归排序左右两部分</td>
+      <td rowspan="2">(小数, 基准元素, 大数)。<br />在区间中随机挑选一个元素作基准，将小于基准的元素放在基准之前，大于基准的元素放在基准之后，再分别对小数区与大数区进行排序。</td>
+      <td rowspan="2">通用、高效排序</td>
     </tr>
     <tr>
       <td>链表</td>
       <td>✓</td>
     </tr>
     <tr>
-      <td><strong>希尔排序</strong><br />（shell sort）</td>
+      <td>希尔排序<br />（shell sort）</td>
       <td>数组</td>
       <td>×</td>
       <td>✓</td>
-      <td markdown="1">$O(n \log^2 n) / O(n^2)$</td>
-      <td markdown="1">$O(1)$</td>
+      <td>$O(n \log^2 n) / O(n^2)$</td>
+      <td>$O(1)$</td>
       <td></td>
       <td>每一轮按照事先决定的间隔进行插入排序，间隔会依次缩小，最后一次一定要是 1。</td>
       <td></td>
-      <td></td>
     </tr>
     <tr>
-      <td><strong>计数排序</strong><br />（counting sort）</td>
-      <td rowspan="3" style="vertical-align: middle;">数组、链表</td>
-      <td rowspan="3" style="vertical-align: middle;">✓</td>
-      <td rowspan="3" style="vertical-align: middle;">×</td>
-      <td markdown="1">$O(n + m)$</td>
-      <td markdown="1">$O(n + m)$</td>
-      <td rowspan="3" style="vertical-align: middle;">利用元素值域特性进行分组计数或分桶</td>
+      <td>计数排序<br />（counting sort）</td>
+      <td rowspan="3">数组、链表</td>
+      <td rowspan="3">✓</td>
+      <td rowspan="3">×</td>
+      <td>$O(n + m)$</td>
+      <td>$O(n + m)$</td>
+      <td rowspan="3">利用元素值域特性进行分组计数或分桶</td>
       <td>统计小于等于该元素的值的元素的个数 i，于是该元素就放在目标数组的索引 i 位 (i≥0)。</td>
-      <td rowspan="3" style="vertical-align: middle;">数据范围有限、整数排序</td>
-      <td></td>
+      <td rowspan="3">数据范围有限、整数排序</td>
     </tr>
     <tr>
-      <td><strong>桶排序</strong><br />（bucket sort）</td>
-      <td markdown="1">$O(n)$ / $O(n^2)$</td>
-      <td markdown="1">$O(m)$</td>
+      <td>桶排序<br />（bucket sort）</td>
+      <td>$O(n)$ / $O(n^2)$</td>
+      <td>$O(m)$</td>
       <td>将值为 i 的元素放入 i 号桶，最后依次把桶里的元素倒出来。</td>
-      <td></td>
     </tr>
     <tr>
-      <td><strong>基数排序</strong><br />（radix sort）</td>
-      <td markdown="1">$O(k \times n) / O(n^2)$</td>
-      <td markdown="1">$O(n)$</td>
+      <td><a href="https://b23.tv/BV1KrzrYeEDw">基数排序</a><br />（radix sort）</td>
+      <td>$O(k \times n) / O(n^2)$</td>
+      <td>$O(n)$</td>
       <td>一种多关键字的排序算法，可用桶排序实现。</td>
-      <td><a href="https://www.bilibili.com/video/BV1KrzrYeEDw">基数排序</a></td>
     </tr>
   </tbody>
 </table>
@@ -157,7 +146,7 @@
 
 !!! Note "重要说明"
 
-    - **比较类 vs 非比较类**：计数排序、桶排序、基数排序均为非比较类排序。现代编程语言的内置排序（如 C++、Java、Python）都是**比较类排序**（一般 $O(n \log n)$），因为要能支持**通用对象排序**。
+    - **比较类 vs 非比较类**：计数排序、桶排序、基数排序均为非比较类排序。现代编程语言的内置排序（如 C++、Java、Python）都是 **比较类排序**（一般 $O(n \log n)$），因为要能支持 **通用对象排序**。
     - **必须掌握**：排序算法是算法基础，建议至少熟练掌握冒泡、插入、选择、快排、归并五种实现。
     - **选择依据**：选择合适的排序算法需结合数据规模、稳定性需求和空间限制。
 
@@ -213,29 +202,29 @@
 
 ### Tim 排序（归并+插入）
 
-Timsort 是一中混合（归并+插入）稳定的排序算法。具有 _O_(_n_ log _n_) 的平均和最坏时间复杂度，最优可达 _O_(n)，空间复杂度为 _O_(n)。该算法是目前已知最快的排序算法，在 Python、Swift、Rust 等语言的内置排序功能中被用作默认算法。
+Timsort 是一种混合（归并+插入）稳定的排序算法。具有 $O(n \log n)$ 的平均和最坏时间复杂度，最优可达 $O(n)$，空间复杂度为 $O(n)$。该算法是目前已知最快的排序算法，在 Python、Swift、Rust 等语言的内置排序功能中被用作默认算法。
 
 ### 内省排序（Introsort）（快排+堆排）
 
-内省排序首先从快速排序开始，当递归深度超过一定深度（深度为排序元素数量的对数值）后转为堆排序。采用这个方法，内省排序既能在常规数据集上实现快速排序的高性能，又能在最坏情况下仍保持 _O_(_n_ log _n_) 的时间复杂度。由于这两种算法都属于比较排序算法，所以内省排序也是一个比较排序算法。
+内省排序首先从快速排序开始，当递归深度超过一定深度（深度为排序元素数量的对数值）后转为堆排序。采用这个方法，内省排序既能在常规数据集上实现快速排序的高性能，又能在最坏情况下仍保持 $O(n \log n)$ 的时间复杂度。由于这两种算法都属于比较排序算法，所以内省排序也是一个比较排序算法。
 
 ### 不同语言内置排序算法对比
 
-| **语言 / 库**                          | **算法实现**                                  | **稳定性** | **特点**                                           |
-| -------------------------------------- | --------------------------------------------- | ---------- | -------------------------------------------------- |
-| **C (qsort)**                          | 快速排序为主（不同实现可能混合插入排序）      | ×          | 简单高效，但可能退化到 $O(n²)$                     |
-| **C++ (std::sort)**                    | **Introsort**（快速排序 + 堆排序 + 插入排序） | ×          | 平均 $O(n log n)$，最坏 $O(n log n)$，避免快排退化 |
-| **C++ (std::stable_sort)**             | 归并排序（常带优化）                          | ✓          | 保证稳定性，但需要额外内存                         |
-| **Java (Arrays.sort, 基本类型)**       | **Dual-Pivot QuickSort**（双轴快排）          | ×          | 比普通快排常数更小，性能优越                       |
-| **Java (Arrays.sort, 对象类型)**       | **Timsort**（归并 + 插入）                    | ✓          | 对部分有序数据非常快，最坏 $O(n log n)$            |
-| **Python (list.sort / sorted)**        | **Timsort**                                   | ✓          | 专门为现实数据优化，利用已有有序片段               |
-| **JavaScript (V8 引擎)**               | 小数组：插入排序；大数组：快排 + 混合         | ×          | 对象数组时可能使用归并变体                         |
-| **JavaScript (SpiderMonkey, Firefox)** | **Timsort / 归并变体**                        | ✓          | 性能和 Python 类似                                 |
-| **Go (sort.Sort)**                     | **Introsort**（快排 + 堆排 + 插入）           | ×          | 类似 C++ std::sort                                 |
-| **Rust (sort)**                        | **Introsort**（快排 + 堆排 + 插入）           | ×          | 与 C++ 类似                                        |
-| **Rust (sort_stable)**                 | **归并排序**                                  | ✓          | 保证稳定性                                         |
+| **语言 / 库**                      | **算法实现**                                  | **稳定性** | **特点**                                           |
+| ---------------------------------- | --------------------------------------------- | ---------- | -------------------------------------------------- |
+| C (qsort)                          | 快速排序为主（不同实现可能混合插入排序）      | ×          | 简单高效，但可能退化到 $O(n²)$                     |
+| C++ (std::sort)                    | **Introsort**（快速排序 + 堆排序 + 插入排序） | ×          | 平均 $O(n log n)$，最坏 $O(n log n)$，避免快排退化 |
+| C++ (std::stable_sort)             | 归并排序（常带优化）                          | ✓          | 保证稳定性，但需要额外内存                         |
+| Java (Arrays.sort, 基本类型)       | **Dual-Pivot QuickSort**（双轴快排）          | ×          | 比普通快排常数更小，性能优越                       |
+| Java (Arrays.sort, 对象类型)       | **Timsort**（归并 + 插入）                    | ✓          | 对部分有序数据非常快，最坏 $O(n log n)$            |
+| Python (list.sort / sorted)        | **Timsort**                                   | ✓          | 专门为现实数据优化，利用已有有序片段               |
+| JavaScript (V8 引擎)               | 小数组：插入排序；大数组：快排 + 混合         | ×          | 对象数组时可能使用归并变体                         |
+| JavaScript (SpiderMonkey, Firefox) | **Timsort / 归并变体**                        | ✓          | 性能和 Python 类似                                 |
+| Go (sort.Sort)                     | **Introsort**（快排 + 堆排 + 插入）           | ×          | 类似 C++ std::sort                                 |
+| Rust (sort)                        | **Introsort**（快排 + 堆排 + 插入）           | ×          | 与 C++ 类似                                        |
+| Rust (sort_stable)                 | **归并排序**                                  | ✓          | 保证稳定性                                         |
 
 - 几乎所有标准库排序都是 **混合算法**，避免单一算法的缺陷，保证最坏复杂度不超过 $O(n log n)$
-- 数值数组：大多用快速排序或 Introsort（追求性能）。
-- 对象数组（需要稳定性）：多数用 Timsort / 归并排序。
-- 小规模数据：经常用 插入排序 优化。
+- 数值数组：大多用快速排序或 Introsort（追求性能）
+- 对象数组：多数用 Timsort / 归并排序（追求稳定性）
+- 小规模数据：经常用插入排序优化

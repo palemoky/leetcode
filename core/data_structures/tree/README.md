@@ -236,7 +236,7 @@ BFS 与 DFS 的区别：
 
 常见操作的时间复杂度：
 
-[![Heap Sort](heap_sort_video_thumbnail.webp){ align=right width=20% }](https://www.bilibili.com/video/BV1HYtseiEQ8)
+[![Heap Sort](heap_sort_video_thumbnail.webp){ align=right width=20% }](https://b23.tv/BV1HYtseiEQ8)
 
 - push / pop（上浮或下沉）: $O(log n)$。建堆时，需要不断比较插入元素与插入位置元素的大小，插入后还要对子节点沉浮以保证堆的有序性。
 - peek / top: $O(1)$
