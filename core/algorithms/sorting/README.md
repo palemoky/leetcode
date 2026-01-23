@@ -9,14 +9,14 @@
 <table style="width: 100%; display: table; table-layout: fixed;">
   <colgroup>
     <col style="width: 14%;" /> <!-- 名称 -->
-    <col style="width: 7%;" />  <!-- 数据对象 -->
+    <col style="width: 12%;" />  <!-- 数据对象 -->
     <col style="width: 5%;" />  <!-- 稳定性 -->
     <col style="width: 5%;" />  <!-- 比较类 -->
     <col style="width: 23%;" /> <!-- 时间复杂度 -->
-    <col style="width: 10%;" /> <!-- 空间复杂度 -->
-    <col style="width: 10%;" /> <!-- 原理 -->
+    <col style="width: 14%;" /> <!-- 空间复杂度 -->
+    <col style="width: 14%;" /> <!-- 原理 -->
     <col style="width: 18%;" /> <!-- 描述 -->
-    <col style="width: 8%;" />  <!-- 适用场景 -->
+    <col style="width: 12%;" />  <!-- 适用场景 -->
   </colgroup>
   <thead>
     <tr>
