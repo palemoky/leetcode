@@ -1,127 +1,303 @@
 # Go 语言核心技巧
 
-本篇整理了 Go 语言开发中关于变量声明、类型转换及数学运算的核心技巧，旨在帮助开发者写出更高效、更安全的 Go 代码。
+本篇整理了 Go 语言在 LeetCode 刷题中的 **“生存指南”**，涵盖了从数据结构实现到语言陷阱的全方位技巧。
 
-## 变量声明对比
+## 1. 数据结构实现指南
 
-### 切片与映射 (Slice & Map)
+Go 的标准库以“通用”著称，不像 C++ STL 或 Python `collections` 那样开箱即用，因此熟练掌握以下模板是刷题的基础。
 
-切片（Slice）是 Go 中最常用的数据结构之一，不同的声明方式在底层实现和性能上有显著差异：
+### 堆 (Heap) / 优先队列
 
-| 声明方式            | 底层数组        | 优点                         | 使用场景           | 备注                                                                 |
-| ------------------- | --------------- | ---------------------------- | ------------------ | -------------------------------------------------------------------- |
-| `var s []T`         | `nil`           | 不分配内存，仅占用结构体空间 | 全局变量、函数签名 | 1. `nil` 切片可以直接 `append`<br />2. 具名返回值 `[]T` 等同于此方式 |
-| `s := []T{}`        | 空数组          | 语义明确，序列化后为 `[]`    | 局部变量初始化     | 1. 最常用方式之一<br />2. 扩容时会有性能开销                         |
-| `s := make([]T, N)` | 预分配 N 个零值 | **性能最优**，避免频繁扩容   | 已知容量大小的场景 | 如果确定在原值上修改，可直接声明长度；否则推荐使用 `make([]T, 0, N)` |
-
-!!! tip "推荐实践"
-
-    在处理大数据量的切片时，务必使用 `make([]T, 0, capacity)` 预分配容量，以大幅提升性能。
-
-### 通道 (Channel)
-
-| 声明方式                | 特性           | 使用场景         | 备注                            |
-| ----------------------- | -------------- | ---------------- | ------------------------------- |
-| `var ch chan T`         | `nil` channel  | 永远阻塞         | 常用于 `select` 中禁用某个 case |
-| `ch := make(chan T)`    | 无缓冲 channel | 同步通信         | 发送方会阻塞直到接收方就绪      |
-| `ch := make(chan T, N)` | 有缓冲 channel | 异步通信（解耦） | 缓冲区未满时发送不阻塞          |
-
----
-
-## 类型转换与性能优化
-
-### `[]byte` 使用指南
-
-在 Go 中，`string` 底层是 `[]byte`。需要注意的是，`string` 是不可变的，而 `[]byte` 是可变的。
-
-#### 常用操作对比
-
-| 操作方式            | 性能 | 内存分配   | 使用场景         | 备注                             |
-| ------------------- | ---- | ---------- | ---------------- | -------------------------------- |
-| `[]byte(str)`       | 较慢 | 分配新内存 | 基础转换         | 会复制数据，安全但有开销         |
-| `bytes.NewBuffer()` | 中等 | 按需分配   | 频繁读写         | 适合动态构建字节流               |
-| `unsafe.Slice()`    | 最快 | 无分配     | 性能极度敏感场景 | **危险**，需确保底层数组生命周期 |
-
-#### `[]byte` 与 `string` 互转
-
-| 转换方式          | 开销          | 安全性     | 适用场景               |
-| ----------------- | ------------- | ---------- | ---------------------- |
-| `string(b)`       | $O(n)$ 复制   | 安全       | 绝大多数场景           |
-| `unsafe.String()` | $O(1)$ 零复制 | **不安全** | 追求极限性能的只读场景 |
-
-!!! warning "常见陷阱：频繁转换"
-
-    ```go
-    // ❌ 错误做法：在循环中频繁转换，导致大量无意义的内存分配
-    for _, str := range strs {
-        data := []byte(str)
-        process(data)
-    }
-
-    // ✅ 正确做法：复用 Buffer，提升性能
-    var buf []byte
-    for _, str := range strs {
-        buf = buf[:0] // 重置长度，保留容量
-        buf = append(buf, str...)
-        process(buf)
-    }
-    ```
-
-#### 内存优化技巧
-
-- **预分配容量**：`make([]byte, 0, 1024)` 减少扩容。
-- **对象池复用**：在高并发场景下，使用 `sync.Pool` 复用 `[]byte` 或 `bytes.Buffer`。
-
-### 数字与字符串互转 (`strconv`)
-
-在追求性能的场景下，应优先使用 `strconv` 包而非 `fmt` 包。
-
-#### 标准转换方式
-
-| 函数                                 | 功能                      | 性能 | 推荐度     |
-| ------------------------------------ | ------------------------- | ---- | ---------- |
-| `strconv.Itoa(i)`                    | `int` -> `string`         | 最快 | ⭐⭐⭐⭐⭐ |
-| `strconv.Atoi(s)`                    | `string` -> `int`         | 快   | ⭐⭐⭐⭐⭐ |
-| `strconv.FormatInt(i, base)`         | `int64` -> `string`(进制) | 快   | ⭐⭐⭐⭐   |
-| `strconv.ParseInt(s, base, bitSize)` | `string` -> `int64`       | 快   | ⭐⭐⭐⭐   |
-| `fmt.Sprintf("%d", i)`               | 任意转换                  | 最慢 | ⭐         |
-
-!!! success "最佳实践：错误处理"
-
-    ```go
-    // ✅ 始终检查 strconv 的错误返回
-    num, err := strconv.Atoi(str)
-    if err != nil {
-        return fmt.Errorf("解析数字失败: %w", err)
-    }
-    ```
-
-!!! tip "批量转换技巧"
-
-    如果在循环中需要将大量数字转为 `[]byte`，使用 `strconv.AppendInt` 可以直接向缓冲区追加，避免产生中间字符串。
-
----
-
-## 数学运算小技巧
-
-### 向上取整 (Ceil) 技巧
-
-在处理分页、分片或批处理时，经常需要计算 $a/b$ 的向上取整结果，但直接使用 `math.Ceil` 需要转换浮点数，性能较差。
-
-对于正整数 $a > 0, b > 0$，可使用以下纯整数公式：
-$\text{ceil}(a / b) = \frac{a + b - 1}{b}$
-
-**原理分析**：
-给 $a$ 增加 $b-1$ 的余量。如果 $a$ 能被 $b$ 整除，余量不会导致进位；如果不能整除，余量会确保结果进 1。
-
-**代码示例**：
+Go 需要实现 `heap.Interface` 接口。为了避免重复写模板，推荐使用 **函数闭包** 实现通用堆：
 
 ```go
-// 计算需要的块数 (每一块大小为 k)
-chunks := (totalSize + k - 1) / k
+import "container/heap"
+
+// 通用堆模板：只需定义 Less 函数
+type Hp struct {
+    sort.IntSlice
+    LessFunc func(i, j int) bool
+}
+
+func (h Hp) Less(i, j int) bool { return h.LessFunc(h.IntSlice[i], h.IntSlice[j]) }
+func (h *Hp) Push(v any)        { h.IntSlice = append(h.IntSlice, v.(int)) }
+func (h *Hp) Pop() any          { a := h.IntSlice; v := a[len(a)-1]; h.IntSlice = a[:len(a)-1]; return v }
+
+// 使用示例：
+func solve() {
+    // 建立大顶堆
+    pq := &Hp{IntSlice: []int{}, LessFunc: func(i, j int) bool { return i > j }}
+    heap.Init(pq)
+    heap.Push(pq, 10)
+    top := heap.Pop(pq).(int)
+}
 ```
 
-!!! note "注意事项"
+### 栈 (Stack) & 队列 (Queue)
 
-    1. 仅适用于 $a > 0$ 且 $b > 0$ 的场景。
-    2. 当 $a$ 接近 `MaxInt` 时，需要注意 `a + b - 1` 可能导致的 **整数溢出**，考虑使用 `math.MinInt64` 并检查 `a > math.MaxInt - (b - 1)`。
+Go 使用 `slice` 模拟栈和队列。
+
+| 结构     | 操作 | 代码                                      | 复杂度 | 备注               |
+| :------- | :--- | :---------------------------------------- | :----- | :----------------- |
+| **栈**   | 入栈 | `st = append(st, v)`                      | $O(1)$ |                    |
+|          | 出栈 | `v := st[len(st)-1]; st = st[:len(st)-1]` | $O(1)$ | 记得判空           |
+|          | 栈顶 | `st[len(st)-1]`                           | $O(1)$ |                    |
+| **队列** | 入队 | `q = append(q, v)`                        | $O(1)$ |                    |
+|          | 出队 | `v := q[0]; q = q[1:]`                    | $O(1)$ | **注意内存泄漏！** |
+
+!!! warning "队列的内存陷阱"
+
+    使用 `q = q[1:]` 会导致底层数组无法释放前半部分的空间。如果队列生命周期很长，建议在长度过大且有效元素较少时重建切片，或者使用环形数组。
+
+### 集合 (Set)
+
+Go 没有内置 `set`，通常用 `map[T]struct{}` 模拟。
+
+```go
+// 初始化
+set := make(map[int]struct{})
+
+// 添加
+set[1] = struct{}{}
+
+// 查找
+if _, exists := set[1]; exists { ... }
+
+// 删除
+delete(set, 1)
+```
+
+**为什么用 `struct{}`？**
+空结构体 `struct{}` 在 Go 中 **不占用内存空间**（size 为 0），比 `map[int]bool` 更节省内存。
+
+---
+
+## 2. 避坑指南 (The Trap)
+
+### Map 的随机性
+
+**陷阱**：Go 的 `map` 遍历顺序是 **完全随机** 的！且每次运行都不一样。
+**后果**：如果题目要求按顺序输出分组结果，直接遍历 `map` 必挂。
+**解法**：先提取 Key 到切片，对 Key 排序，再遍历。
+
+```go
+keys := make([]int, 0, len(m))
+for k := range m {
+    keys = append(keys, k)
+}
+sort.Ints(keys) // 关键步骤
+for _, k := range keys {
+    val := m[k]
+    // ...
+}
+```
+
+### 循环变量引用陷阱 (Pre-Go 1.22)
+
+**陷阱**：在 `for` 循环中获取元素指针或闭包引用。
+**现状**：Go 1.22+ 已经修复了此问题，循环变量每次迭代都会创建新实例。但在老版本环境中（某些笔试平台），仍需注意：
+
+```go
+// 老版本解法：中间变量接引
+for _, v := range nums {
+    v := v // 影子变量
+    result = append(result, &v)
+}
+```
+
+### 二维切片初始化
+
+**陷阱**：不能像 Python 那样 `[[0]*n]*m`（这是浅拷贝），Go 必须手动循环。
+
+```go
+// 初始化 dp[m][n]
+dp := make([][]int, m)
+for i := range dp {
+    dp[i] = make([]int, n)
+}
+```
+
+---
+
+## 3. LeetCode 实用技巧
+
+### 字符串高效处理
+
+Go 的 `string` 是不可变的，`[]byte` 是可变的。
+
+- **大量拼接**：务必使用 `strings.Builder` (推荐) 或 `bytes.NewBuffer`。
+  - `strings.Builder`：专门为构建字符串优化，零拷贝转换为 string。
+  - `bytes.NewBuffer`：更通用，适合同时也需要字节流操作的场景。
+- **修改字符**：先转 `[]byte`，改完再转回 `string`。
+- **遍历字符**：
+  - `for i := 0; i < len(s); i++`：按 **字节 (byte)** 遍历，适合 ASCII。
+  - `for i, r := range s`：按 **字符 (rune)** 遍历，适合含中文等多字节字符。
+
+### 常用简易辅助函数
+
+LeetCode 环境通常没有 `generics` 版本的 `Max/Min/Abs`（Go 1.21 前），建议背诵以下三行：
+
+```go
+func min(a, b int) int { if a < b { return a }; return b }
+func max(a, b int) int { if a > b { return a }; return b }
+func abs(a int) int    { if a < 0 { return -a }; return a }
+```
+
+### 排序黑科技
+
+`sort.Slice` 极其灵活，配合匿名函数可以对任意结构排序：
+
+```go
+//按两个字段排序：先按 Age 升序，Age 相同按 Name 降序
+sort.Slice(people, func(i, j int) bool {
+    if people[i].Age != people[j].Age {
+        return people[i].Age < people[j].Age
+    }
+    return people[i].Name > people[j].Name
+})
+```
+
+---
+
+### 二分查找神器
+
+标准库 `sort.Search(n, f)` 是刷题神器，它返回 `[0, n)` 中 **第一个满足 `f(i) == true`** 的下标。
+
+```go
+// 二分查找第一个 >= target 的位置 (Lower Bound)
+// 如果所有元素都 < target，返回 len(nums)
+idx := sort.Search(len(nums), func(i int) bool {
+    return nums[i] >= target
+})
+
+// 二分查找第一个 > target 的位置 (Upper Bound)
+idx := sort.Search(len(nums), func(i int) bool {
+    return nums[i] > target
+})
+```
+
+#### 原理
+
+Go 的 `sort.Search` 相当于 C++ 的 `std::lower_bound`。只要 `f(i)` 满足单调性（先 `false` 后 `true`），它就能稳定找到 `true/false` 的临界点。
+
+### 位运算黑科技 (`math/bits`)
+
+Go 提供了超级好用的位运算包 `math/bits`，无需手写位操作：
+
+| 函数                    | 功能                             | 对应 C++                |
+| :---------------------- | :------------------------------- | :---------------------- |
+| `bits.OnesCount(x)`     | 统计二进制中 1 的个数            | `__builtin_popcount`    |
+| `bits.Len(x)`           | 二进制长度 (最高位 1 的位置 + 1) | `32 - __builtin_clz(x)` |
+| `bits.Reverse(x)`       | 二进制翻转                       | -                       |
+| `bits.RotateLeft(x, k)` | 循环左移 k 位 (k<0 为右移)       | -                       |
+
+```go
+// 常用场景：状态压缩 DP 统计状态中 1 的个数
+cnt := bits.OnesCount(state)
+```
+
+### 随机数 (`math/rand`)
+
+对于需要随机化的算法（如 **快速选择**、**Treap**），Go 的 `rand` 需要注意随机种子：
+
+```go
+// Go 1.22+ (math/rand/v2) - 推荐
+// 自动初始化 Seed，性能更好
+idx := rand.IntN(len(nums)) // 生成 [0, n) 的随机数
+
+// Go < 1.22 (math/rand)
+// 注意函数名是 Intn (小写 n)
+idx := rand.Intn(len(nums))
+```
+
+---
+
+## 4. 核心语法与底层陷阱
+
+### 变量声明对比
+
+| 声明方式            | 底层     | 优缺点                    | 场景            | 备注                        |
+| ------------------- | -------- | ------------------------- | --------------- | --------------------------- |
+| `var s []T`         | nil      | 不分配内存，可直接 append | 全局/延迟初始化 | 具名返回值 `[]T` 也是此类型 |
+| `s := []T{}`        | 空数组   | 非 nil，序列化为 `[]`     | 明确需要空列表  | 扩容时会有性能开销          |
+| `s := make([]T, n)` | 零值数组 | **性能最优**，一次分配    | 已知大小        |                             |
+
+### 切片 (Slice) 的暗坑
+
+切片不仅仅是一个动态数组，它的底层是一个 `struct { ptr, len, cap }`。
+
+- **引用传递**：切片传参是“值传递”，但传递的是结构体副本（指针指向同一底层数组）。在函数内修改元素会影响原切片，但 **append 导致扩容** 后，会指向新数组，不再影响原切片。
+- **内存泄漏**：`s2 := s1[100:101]`。若 `s1` 是 1GB 的大数组，只要 `s2` 还在，这 1GB 内存就不会被回收。
+  - **解法**：使用 `copy` 复制所需数据到新切片。
+
+### Map 的关键特性
+
+- **无序性**：遍历顺序随机。
+- **非并发安全**：多协程并发读写会直接 `fatal error`（panic 无法捕获）。需要加锁 `sync.RWMutex` 或使用 `sync.Map`。
+- **内存不收缩**：删除 Key 不会释放内存，只有置 `nil` 才会由 GC 回收。
+
+### Defer 的“三大天条”
+
+1.  **LIFO 执行**：后 `defer` 的先执行（栈顺序）。
+2.  **参数预计算**：`defer fmt.Println(i)` 会在 `defer`声明时**立即计算** `i` 的值并压栈。若要获取最终值，需使用闭包 `defer func() { fmt.Println(i) }()`。
+3.  **修改返回值**：`defer` 可以读取并修改 **具名返回值**（Named Return Value）。
+
+```go
+func test() (result int) {
+    defer func() { result++ }()
+    return 1 // result = 1 -> defer -> result = 2
+}
+```
+
+### Interface 的 Nil 判空
+
+**记住：Interface 包含 `(Type, Value)` 两个部分。只有 Type 和 Value 都为 nil，Interface 才等于 nil。**
+
+```go
+var p *int = nil
+var i interface{} = p
+// i != nil，因为 i 的 Type 是 *int，Value 是 nil
+if i == nil { exclude() } // ❌ 永远进不去
+if v := reflect.ValueOf(i); v.IsNil() { } // ✅ 正确判断
+```
+
+### Channel 状态
+
+| 操作             | nil channel | closed channel          | active channel        |
+| :--------------- | :---------- | :---------------------- | :-------------------- |
+| **close**        | panic       | panic                   | 成功关闭 (不能重复关) |
+| **send (ch <-)** | 永久阻塞    | panic                   | 阻塞直到由接收方      |
+| **recv (<- ch)** | 永久阻塞    | 立即返回零值 (v, false) | 阻塞直到有发送方      |
+
+---
+
+## 5. 类型转换
+
+### 基础转换
+
+| 转换                 | 代码                      | 备注               |
+| :------------------- | :------------------------ | :----------------- |
+| `string` -> `int`    | `v, _ := strconv.Atoi(s)` | 忽略错误仅用于刷题 |
+| `int` -> `string`    | `s := strconv.Itoa(v)`    | 最快               |
+| `byte` -> `int`      | `int(c - '0')`            | 字符转数字         |
+| `int` -> `byte`      | `byte(v + '0')`           | 数字转字符         |
+| `string` -> `[]byte` | `[]byte(s)`               | 发生内存拷贝       |
+| `[]byte` -> `string` | `string(b)`               | 发生内存拷贝       |
+
+### 零拷贝转换 (Unsafe)
+
+在追求极致性能（如千万级 QPS）时使用，普通刷题 **慎用**。
+
+```go
+import "unsafe"
+
+// string -> []byte (只读，修改会导致 panic)
+func StringToBytes(s string) []byte {
+    return unsafe.Slice(unsafe.StringData(s), len(s))
+}
+
+// []byte -> string (零拷贝)
+func BytesToString(b []byte) string {
+    return unsafe.String(unsafe.SliceData(b), len(b))
+}
+```
