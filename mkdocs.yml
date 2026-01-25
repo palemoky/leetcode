@@ -188,4 +188,4 @@ nav:
       - 最大公约数与最小公倍数: math/GCD&LCM/README.md
       - 矩阵运算: math/matrix/README.md
   - 语言:
-      - Go: lang/Go.md
+      - Go: lang/go.md
