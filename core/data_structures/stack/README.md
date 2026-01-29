@@ -101,30 +101,30 @@
 单调栈是一种特殊的栈应用，栈内元素保持单调递增或递减。主要用于解决 **寻找最近的更大/更小元素** 这类问题。
 
 - **适用场景**：找左边/右边第一个比当前元素大/小的元素。
-- **经典例题**：[739. 每日温度](https://leetcode.com/problems/daily-temperatures/)
+- **经典例题**：[739. 每日温度](https://leetcode.cn/problems/daily-temperatures/)
 
 ## 经典题目
 
 === "基础题"
 
-    - [20. Valid Parentheses](https://leetcode.com/problems/valid-parentheses/) — 有效的括号（栈的经典应用）
-    - [155. Min Stack](https://leetcode.com/problems/min-stack/) — 最小栈（辅助栈思想）
-    - [232. Implement Queue using Stacks](https://leetcode.com/problems/implement-queue-using-stacks/) — 用栈实现队列
-    - [1047. Remove All Adjacent Duplicates In String](https://leetcode.com/problems/remove-all-adjacent-duplicates-in-string/) — 删除字符串中的所有相邻重复项
+    - [20. Valid Parentheses](https://leetcode.cn/problems/valid-parentheses/) — 有效的括号（栈的经典应用）
+    - [155. Min Stack](https://leetcode.cn/problems/min-stack/) — 最小栈（辅助栈思想）
+    - [232. Implement Queue using Stacks](https://leetcode.cn/problems/implement-queue-using-stacks/) — 用栈实现队列
+    - [1047. Remove All Adjacent Duplicates In String](https://leetcode.cn/problems/remove-all-adjacent-duplicates-in-string/) — 删除字符串中的所有相邻重复项
 
 === "进阶题"
 
-    - [150. Evaluate Reverse Polish Notation](https://leetcode.com/problems/evaluate-reverse-polish-notation/) — 逆波兰表达式求值
-    - [71. Simplify Path](https://leetcode.com/problems/simplify-path/) — 简化路径
-    - [394. Decode String](https://leetcode.com/problems/decode-string/) — 字符串解码（辅助栈）
-    - [739. Daily Temperatures](https://leetcode.com/problems/daily-temperatures/) — 每日温度（单调栈入门）
+    - [150. Evaluate Reverse Polish Notation](https://leetcode.cn/problems/evaluate-reverse-polish-notation/) — 逆波兰表达式求值
+    - [71. Simplify Path](https://leetcode.cn/problems/simplify-path/) — 简化路径
+    - [394. Decode String](https://leetcode.cn/problems/decode-string/) — 字符串解码（辅助栈）
+    - [739. Daily Temperatures](https://leetcode.cn/problems/daily-temperatures/) — 每日温度（单调栈入门）
 
 === "高级题"
 
-    - [84. Largest Rectangle in Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/) — 柱状图中最大的矩形（单调栈经典）
-    - [42. Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/) — 接雨水（单调栈解法）
-    - [32. Longest Valid Parentheses](https://leetcode.com/problems/longest-valid-parentheses/) — 最长有效括号
-    - [224. Basic Calculator](https://leetcode.com/problems/basic-calculator/) — 基本计算器（处理括号和优先级）
+    - [84. Largest Rectangle in Histogram](https://leetcode.cn/problems/largest-rectangle-in-histogram/) — 柱状图中最大的矩形（单调栈经典）
+    - [42. Trapping Rain Water](https://leetcode.cn/problems/trapping-rain-water/) — 接雨水（单调栈解法）
+    - [32. Longest Valid Parentheses](https://leetcode.cn/problems/longest-valid-parentheses/) — 最长有效括号
+    - [224. Basic Calculator](https://leetcode.cn/problems/basic-calculator/) — 基本计算器（处理括号和优先级）
 
 ## 总结
 

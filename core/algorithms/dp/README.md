@@ -147,19 +147,19 @@ func fib(n int) int {
 
 **经典题目**：
 
-- [70. Climbing Stairs](https://leetcode.com/problems/climbing-stairs/) — 爬楼梯（入门题）
-- [198. House Robber](https://leetcode.com/problems/house-robber/) — 打家劫舍
-- [300. Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/) — 最长递增子序列
+- [70. Climbing Stairs](https://leetcode.cn/problems/climbing-stairs/) — 爬楼梯（入门题）
+- [198. House Robber](https://leetcode.cn/problems/house-robber/) — 打家劫舍
+- [300. Longest Increasing Subsequence](https://leetcode.cn/problems/longest-increasing-subsequence/) — 最长递增子序列
 
 ### 2. 背包问题
 
 **特征**：在限制条件下选择物品，使得价值最大
 
-| 类型         | 特点                 | 经典题目                                                                                     |
-| ------------ | -------------------- | -------------------------------------------------------------------------------------------- |
-| **0-1 背包** | 每个物品只能选一次   | [416. Partition Equal Subset Sum](https://leetcode.com/problems/partition-equal-subset-sum/) |
-| **完全背包** | 每个物品可以选无限次 | [322. Coin Change](https://leetcode.com/problems/coin-change/)                               |
-| **多重背包** | 每个物品有数量限制   | -                                                                                            |
+| 类型         | 特点                 | 经典题目                                                                                    |
+| ------------ | -------------------- | ------------------------------------------------------------------------------------------- |
+| **0-1 背包** | 每个物品只能选一次   | [416. Partition Equal Subset Sum](https://leetcode.cn/problems/partition-equal-subset-sum/) |
+| **完全背包** | 每个物品可以选无限次 | [322. Coin Change](https://leetcode.cn/problems/coin-change/)                               |
+| **多重背包** | 每个物品有数量限制   | -                                                                                           |
 
 ### 3. 区间 DP
 
@@ -167,8 +167,8 @@ func fib(n int) int {
 
 **经典题目**：
 
-- [5. Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/) — 最长回文子串
-- [516. Longest Palindromic Subsequence](https://leetcode.com/problems/longest-palindromic-subsequence/) — 最长回文子序列
+- [5. Longest Palindromic Substring](https://leetcode.cn/problems/longest-palindromic-substring/) — 最长回文子串
+- [516. Longest Palindromic Subsequence](https://leetcode.cn/problems/longest-palindromic-subsequence/) — 最长回文子序列
 
 ### 4. 路径问题
 
@@ -176,9 +176,9 @@ func fib(n int) int {
 
 **经典题目**：
 
-- [62. Unique Paths](https://leetcode.com/problems/unique-paths/) — 不同路径
-- [64. Minimum Path Sum](https://leetcode.com/problems/minimum-path-sum/) — 最小路径和
-- [120. Triangle](https://leetcode.com/problems/triangle/) — 三角形最小路径和
+- [62. Unique Paths](https://leetcode.cn/problems/unique-paths/) — 不同路径
+- [64. Minimum Path Sum](https://leetcode.cn/problems/minimum-path-sum/) — 最小路径和
+- [120. Triangle](https://leetcode.cn/problems/triangle/) — 三角形最小路径和
 
 ### 5. 字符串 DP
 
@@ -186,8 +186,8 @@ func fib(n int) int {
 
 **经典题目**：
 
-- [72. Edit Distance](https://leetcode.com/problems/edit-distance/) — 编辑距离
-- [1143. Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/) — 最长公共子序列
+- [72. Edit Distance](https://leetcode.cn/problems/edit-distance/) — 编辑距离
+- [1143. Longest Common Subsequence](https://leetcode.cn/problems/longest-common-subsequence/) — 最长公共子序列
 
 ## 0-1 背包详解
 
@@ -289,13 +289,13 @@ for i := 2; i <= n; i++ {
 
 ## 经典题目清单
 
-- [70. Climbing Stairs](https://leetcode.com/problems/climbing-stairs/) — 爬楼梯（入门）
-- [198. House Robber](https://leetcode.com/problems/house-robber/) — 打家劫舍
-- [322. Coin Change](https://leetcode.com/problems/coin-change/) — 零钱兑换（完全背包）
-- [416. Partition Equal Subset Sum](https://leetcode.com/problems/partition-equal-subset-sum/) — 分割等和子集（0-1 背包）
-- [62. Unique Paths](https://leetcode.com/problems/unique-paths/) — 不同路径
-- [64. Minimum Path Sum](https://leetcode.com/problems/minimum-path-sum/) — 最小路径和
-- [300. Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/) — 最长递增子序列
-- [1143. Longest Common Subsequence](https://leetcode.com/problems/longest-common-subsequence/) — 最长公共子序列
-- [72. Edit Distance](https://leetcode.com/problems/edit-distance/) — 编辑距离
-- [5. Longest Palindromic Substring](https://leetcode.com/problems/longest-palindromic-substring/) — 最长回文子串
+- [70. Climbing Stairs](https://leetcode.cn/problems/climbing-stairs/) — 爬楼梯（入门）
+- [198. House Robber](https://leetcode.cn/problems/house-robber/) — 打家劫舍
+- [322. Coin Change](https://leetcode.cn/problems/coin-change/) — 零钱兑换（完全背包）
+- [416. Partition Equal Subset Sum](https://leetcode.cn/problems/partition-equal-subset-sum/) — 分割等和子集（0-1 背包）
+- [62. Unique Paths](https://leetcode.cn/problems/unique-paths/) — 不同路径
+- [64. Minimum Path Sum](https://leetcode.cn/problems/minimum-path-sum/) — 最小路径和
+- [300. Longest Increasing Subsequence](https://leetcode.cn/problems/longest-increasing-subsequence/) — 最长递增子序列
+- [1143. Longest Common Subsequence](https://leetcode.cn/problems/longest-common-subsequence/) — 最长公共子序列
+- [72. Edit Distance](https://leetcode.cn/problems/edit-distance/) — 编辑距离
+- [5. Longest Palindromic Substring](https://leetcode.cn/problems/longest-palindromic-substring/) — 最长回文子串

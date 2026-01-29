@@ -425,24 +425,24 @@ class UnionFind:
 
 === "基础题"
 
-    - [547. 省份数量](https://leetcode.com/problems/number-of-provinces/) — 基本连通性
-    - [200. 岛屿数量](https://leetcode.com/problems/number-of-islands/) — 二维并查集
-    - [684. 冗余连接](https://leetcode.com/problems/redundant-connection/) — 检测环
-    - [990. 等式方程的可满足性](https://leetcode.com/problems/satisfiability-of-equality-equations/) — 关系判断
+    - [547. 省份数量](https://leetcode.cn/problems/number-of-provinces/) — 基本连通性
+    - [200. 岛屿数量](https://leetcode.cn/problems/number-of-islands/) — 二维并查集
+    - [684. 冗余连接](https://leetcode.cn/problems/redundant-connection/) — 检测环
+    - [990. 等式方程的可满足性](https://leetcode.cn/problems/satisfiability-of-equality-equations/) — 关系判断
 
 === "进阶题"
 
-    - [721. 账户合并](https://leetcode.com/problems/accounts-merge/) — 字符串映射
-    - [128. 最长连续序列](https://leetcode.com/problems/longest-consecutive-sequence/) — 动态合并
-    - [1319. 连通网络的操作次数](https://leetcode.com/problems/number-of-operations-to-make-network-connected/) — 连通分量
-    - [1584. 连接所有点的最小费用](https://leetcode.com/problems/min-cost-to-connect-all-points/) — 最小生成树
+    - [721. 账户合并](https://leetcode.cn/problems/accounts-merge/) — 字符串映射
+    - [128. 最长连续序列](https://leetcode.cn/problems/longest-consecutive-sequence/) — 动态合并
+    - [1319. 连通网络的操作次数](https://leetcode.cn/problems/number-of-operations-to-make-network-connected/) — 连通分量
+    - [1584. 连接所有点的最小费用](https://leetcode.cn/problems/min-cost-to-connect-all-points/) — 最小生成树
 
 === "高级题"
 
-    - [1579. 保证图可完全遍历](https://leetcode.com/problems/remove-max-number-of-edges-to-keep-graph-fully-traversable/) — 双并查集
-    - [952. 按公因数计算最大组件大小](https://leetcode.com/problems/largest-component-size-by-common-factor/) — 数学 + 并查集
-    - [399. 除法求值](https://leetcode.com/problems/evaluate-division/) — 带权并查集
-    - [1697. 检查边长度限制的路径是否存在](https://leetcode.com/problems/checking-existence-of-edge-length-limited-paths/) — 离线查询
+    - [1579. 保证图可完全遍历](https://leetcode.cn/problems/remove-max-number-of-edges-to-keep-graph-fully-traversable/) — 双并查集
+    - [952. 按公因数计算最大组件大小](https://leetcode.cn/problems/largest-component-size-by-common-factor/) — 数学 + 并查集
+    - [399. 除法求值](https://leetcode.cn/problems/evaluate-division/) — 带权并查集
+    - [1697. 检查边长度限制的路径是否存在](https://leetcode.cn/problems/checking-existence-of-edge-length-limited-paths/) — 离线查询
 
 ---
 

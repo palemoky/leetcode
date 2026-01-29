@@ -255,15 +255,15 @@ func subarraySum(nums []int, k int) int {
 
 === "基础题"
 
-- [LeetCode 303. 区域和检索 - 数组不可变](https://leetcode.com/problems/range-sum-query-immutable/)
-- [LeetCode 304. 二维区域和检索 - 矩阵不可变](https://leetcode.com/problems/range-sum-query-2d-immutable/)
+- [LeetCode 303. 区域和检索 - 数组不可变](https://leetcode.cn/problems/range-sum-query-immutable/)
+- [LeetCode 304. 二维区域和检索 - 矩阵不可变](https://leetcode.cn/problems/range-sum-query-2d-immutable/)
 
 === "进阶题"
 
-- [LeetCode 560. 和为 K 的子数组](https://leetcode.com/problems/subarray-sum-equals-k/)
-- [LeetCode 974. 和可被 K 整除的子数组](https://leetcode.com/problems/subarray-sums-divisible-by-k/)
-- [LeetCode 525. 连续数组](https://leetcode.com/problems/contiguous-array/)
-- [LeetCode 1314. 矩阵区域和](https://leetcode.com/problems/matrix-block-sum/)
+- [LeetCode 560. 和为 K 的子数组](https://leetcode.cn/problems/subarray-sum-equals-k/)
+- [LeetCode 974. 和可被 K 整除的子数组](https://leetcode.cn/problems/subarray-sums-divisible-by-k/)
+- [LeetCode 525. 连续数组](https://leetcode.cn/problems/contiguous-array/)
+- [LeetCode 1314. 矩阵区域和](https://leetcode.cn/problems/matrix-block-sum/)
 
 ---
 

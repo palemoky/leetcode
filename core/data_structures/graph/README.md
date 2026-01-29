@@ -257,7 +257,7 @@ def is_bipartite(graph: list[list[int]]) -> bool:
 
 - 任务分配问题
 - 配对问题
-- LeetCode: [785. Is Graph Bipartite?](https://leetcode.com/problems/is-graph-bipartite/), [886. Possible Bipartition](https://leetcode.com/problems/possible-bipartition/)
+- LeetCode: [785. Is Graph Bipartite?](https://leetcode.cn/problems/is-graph-bipartite/), [886. Possible Bipartition](https://leetcode.cn/problems/possible-bipartition/)
 
 ---
 
@@ -419,7 +419,7 @@ def is_bipartite(graph: list[list[int]]) -> bool:
 - 课程安排（有先修课程要求）
 - 任务调度（GitHub Actions 的任务依赖，比如环境初始化在构建前，部署在构建后）
 - 编译依赖（Go 语言的循环依赖检测）
-- LeetCode: [207. Course Schedule](https://leetcode.com/problems/course-schedule/), [210. Course Schedule II](https://leetcode.com/problems/course-schedule-ii/)
+- LeetCode: [207. Course Schedule](https://leetcode.cn/problems/course-schedule/), [210. Course Schedule II](https://leetcode.cn/problems/course-schedule-ii/)
 
 ---
 
@@ -522,10 +522,10 @@ def bidirectional_bfs(graph: list[list[int]], start: int, target: int) -> int:
 
 **经典题目**
 
-- [127. Word Ladder](https://leetcode.com/problems/word-ladder/) - 单词接龙(BFS 最短路径)
-- [433. Minimum Genetic Mutation](https://leetcode.com/problems/minimum-genetic-mutation/) - 基因序列(BFS)
-- [1091. Shortest Path in Binary Matrix](https://leetcode.com/problems/shortest-path-in-binary-matrix/) - 二进制矩阵最短路径
-- [752. Open the Lock](https://leetcode.com/problems/open-the-lock/) - 开锁(双向 BFS)
+- [127. Word Ladder](https://leetcode.cn/problems/word-ladder/) - 单词接龙(BFS 最短路径)
+- [433. Minimum Genetic Mutation](https://leetcode.cn/problems/minimum-genetic-mutation/) - 基因序列(BFS)
+- [1091. Shortest Path in Binary Matrix](https://leetcode.cn/problems/shortest-path-in-binary-matrix/) - 二进制矩阵最短路径
+- [752. Open the Lock](https://leetcode.cn/problems/open-the-lock/) - 开锁(双向 BFS)
 
 ---
 
@@ -625,4 +625,4 @@ def bellman_ford(edges: list[tuple[int, int, int]], n: int, start: int) -> list[
 - 航班网络 - 权重是票价/飞行时间
 - 物流配送 - 权重是运输成本
 - 社交网络影响力 - 权重是亲密度/互动频率
-- LeetCode: [743. Network Delay Time](https://leetcode.com/problems/network-delay-time/), [787. Cheapest Flights Within K Stops](https://leetcode.com/problems/cheapest-flights-within-k-stops/)
+- LeetCode: [743. Network Delay Time](https://leetcode.cn/problems/network-delay-time/), [787. Cheapest Flights Within K Stops](https://leetcode.cn/problems/cheapest-flights-within-k-stops/)

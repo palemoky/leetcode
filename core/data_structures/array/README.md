@@ -233,9 +233,9 @@ arr3 := make([]int, 0, 10)  // 长度 0，容量 10
 
 **经典题目**：
 
-- [26. Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/)
-- [27. Remove Element](https://leetcode.com/problems/remove-element/)
-- [167. Two Sum II](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
+- [26. Remove Duplicates from Sorted Array](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/)
+- [27. Remove Element](https://leetcode.cn/problems/remove-element/)
+- [167. Two Sum II](https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/)
 
 ### 2. 滑动窗口
 
@@ -266,8 +266,8 @@ func maxSumSubarray(arr []int, k int) int {
 
 **经典题目**：
 
-- [209. Minimum Size Subarray Sum](https://leetcode.com/problems/minimum-size-subarray-sum/)
-- [3. Longest Substring Without Repeating Characters](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
+- [209. Minimum Size Subarray Sum](https://leetcode.cn/problems/minimum-size-subarray-sum/)
+- [3. Longest Substring Without Repeating Characters](https://leetcode.cn/problems/longest-substring-without-repeating-characters/)
 
 ### 3. 前缀和
 
@@ -292,8 +292,8 @@ func rangeSum(prefixSum []int, left, right int) int {
 
 **经典题目**：
 
-- [303. Range Sum Query - Immutable](https://leetcode.com/problems/range-sum-query-immutable/)
-- [560. Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/)
+- [303. Range Sum Query - Immutable](https://leetcode.cn/problems/range-sum-query-immutable/)
+- [560. Subarray Sum Equals K](https://leetcode.cn/problems/subarray-sum-equals-k/)
 
 ### 4. 原地修改
 
@@ -313,8 +313,8 @@ func moveZeroes(nums []int) {
 
 **经典题目**：
 
-- [283. Move Zeroes](https://leetcode.com/problems/move-zeroes/)
-- [75. Sort Colors](https://leetcode.com/problems/sort-colors/)
+- [283. Move Zeroes](https://leetcode.cn/problems/move-zeroes/)
+- [75. Sort Colors](https://leetcode.cn/problems/sort-colors/)
 
 ### 5. 二分查找
 
@@ -341,8 +341,8 @@ func binarySearch(arr []int, target int) int {
 
 **经典题目**：
 
-- [704. Binary Search](https://leetcode.com/problems/binary-search/)
-- [35. Search Insert Position](https://leetcode.com/problems/search-insert-position/)
+- [704. Binary Search](https://leetcode.cn/problems/binary-search/)
+- [35. Search Insert Position](https://leetcode.cn/problems/search-insert-position/)
 
 ## 多维数组
 
@@ -376,9 +376,9 @@ for i := 0; i < len(matrix); i++ {
 
 **经典题目**：
 
-- [48. Rotate Image](https://leetcode.com/problems/rotate-image/)
-- [54. Spiral Matrix](https://leetcode.com/problems/spiral-matrix/)
-- [73. Set Matrix Zeroes](https://leetcode.com/problems/set-matrix-zeroes/)
+- [48. Rotate Image](https://leetcode.cn/problems/rotate-image/)
+- [54. Spiral Matrix](https://leetcode.cn/problems/spiral-matrix/)
+- [73. Set Matrix Zeroes](https://leetcode.cn/problems/set-matrix-zeroes/)
 
 ## 常见陷阱
 
@@ -516,25 +516,25 @@ arr = append(arr, batch...)
 
 === "基础题"
 
-    - [1. Two Sum](https://leetcode.com/problems/two-sum/) — 两数之和
-    - [26. Remove Duplicates from Sorted Array](https://leetcode.com/problems/remove-duplicates-from-sorted-array/) — 删除有序数组中的重复项
-    - [27. Remove Element](https://leetcode.com/problems/remove-element/) — 移除元素
-    - [88. Merge Sorted Array](https://leetcode.com/problems/merge-sorted-array/) — 合并两个有序数组
-    - [283. Move Zeroes](https://leetcode.com/problems/move-zeroes/) — 移动零
+    - [1. Two Sum](https://leetcode.cn/problems/two-sum/) — 两数之和
+    - [26. Remove Duplicates from Sorted Array](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/) — 删除有序数组中的重复项
+    - [27. Remove Element](https://leetcode.cn/problems/remove-element/) — 移除元素
+    - [88. Merge Sorted Array](https://leetcode.cn/problems/merge-sorted-array/) — 合并两个有序数组
+    - [283. Move Zeroes](https://leetcode.cn/problems/move-zeroes/) — 移动零
 
 === "进阶题"
 
-    - [15. 3Sum](https://leetcode.com/problems/3sum/) — 三数之和
-    - [53. Maximum Subarray](https://leetcode.com/problems/maximum-subarray/) — 最大子数组和
-    - [121. Best Time to Buy and Sell Stock](https://leetcode.com/problems/best-time-to-buy-and-sell-stock/) — 买卖股票的最佳时机
-    - [238. Product of Array Except Self](https://leetcode.com/problems/product-of-array-except-self/) — 除自身以外数组的乘积
-    - [560. Subarray Sum Equals K](https://leetcode.com/problems/subarray-sum-equals-k/) — 和为 K 的子数组
+    - [15. 3Sum](https://leetcode.cn/problems/3sum/) — 三数之和
+    - [53. Maximum Subarray](https://leetcode.cn/problems/maximum-subarray/) — 最大子数组和
+    - [121. Best Time to Buy and Sell Stock](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/) — 买卖股票的最佳时机
+    - [238. Product of Array Except Self](https://leetcode.cn/problems/product-of-array-except-self/) — 除自身以外数组的乘积
+    - [560. Subarray Sum Equals K](https://leetcode.cn/problems/subarray-sum-equals-k/) — 和为 K 的子数组
 
 === "高级题"
 
-    - [42. Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/) — 接雨水
-    - [84. Largest Rectangle in Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/) — 柱状图中最大的矩形
-    - [239. Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/) — 滑动窗口最大值
+    - [42. Trapping Rain Water](https://leetcode.cn/problems/trapping-rain-water/) — 接雨水
+    - [84. Largest Rectangle in Histogram](https://leetcode.cn/problems/largest-rectangle-in-histogram/) — 柱状图中最大的矩形
+    - [239. Sliding Window Maximum](https://leetcode.cn/problems/sliding-window-maximum/) — 滑动窗口最大值
 
 ## 总结
 

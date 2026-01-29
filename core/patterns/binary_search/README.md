@@ -68,12 +68,12 @@ func lowerBound(nums []int, target int) int {
 
 ## 经典题目
 
-- [LeetCode 704. Binary Search](https://leetcode.com/problems/binary-search/)
-- [LeetCode 35. Search Insert Position](https://leetcode.com/problems/search-insert-position/)
-- [LeetCode 278. First Bad Version](https://leetcode.com/problems/first-bad-version/)
-- [LeetCode 33. Search in Rotated Sorted Array](https://leetcode.com/problems/search-in-rotated-sorted-array/)
-- [LeetCode 69. Sqrt(x)](https://leetcode.com/problems/sqrtx/)
-- [LeetCode 875. Koko Eating Bananas](https://leetcode.com/problems/koko-eating-bananas/)
+- [LeetCode 704. Binary Search](https://leetcode.cn/problems/binary-search/)
+- [LeetCode 35. Search Insert Position](https://leetcode.cn/problems/search-insert-position/)
+- [LeetCode 278. First Bad Version](https://leetcode.cn/problems/first-bad-version/)
+- [LeetCode 33. Search in Rotated Sorted Array](https://leetcode.cn/problems/search-in-rotated-sorted-array/)
+- [LeetCode 69. Sqrt(x)](https://leetcode.cn/problems/sqrtx/)
+- [LeetCode 875. Koko Eating Bananas](https://leetcode.cn/problems/koko-eating-bananas/)
 
 ## 总结
 

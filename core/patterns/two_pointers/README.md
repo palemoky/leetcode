@@ -75,13 +75,13 @@ func removeDuplicates(nums []int, k int) int {
 
 **经典题目**：
 
-- [LeetCode 27. 移除元素](https://leetcode.com/problems/remove-element/)
-- [LeetCode 283. 移动零](https://leetcode.com/problems/move-zeroes/)
-- [LeetCode 2460. 对数组执行操作](https://leetcode.com/problems/apply-operations-to-an-array/)
-- [LeetCode 26. 删除有序数组中的重复项](https://leetcode.com/problems/remove-duplicates-from-sorted-array/)
-- [LeetCode 80. 删除有序数组中的重复项 II](https://leetcode.com/problems/remove-duplicates-from-sorted-array-ii/)
-- [LeetCode 876. 链表的中间结点](https://leetcode.com/problems/middle-of-the-linked-list/)
-- [LeetCode 141. 环形链表](https://leetcode.com/problems/linked-list-cycle/)
+- [LeetCode 27. 移除元素](https://leetcode.cn/problems/remove-element/)
+- [LeetCode 283. 移动零](https://leetcode.cn/problems/move-zeroes/)
+- [LeetCode 2460. 对数组执行操作](https://leetcode.cn/problems/apply-operations-to-an-array/)
+- [LeetCode 26. 删除有序数组中的重复项](https://leetcode.cn/problems/remove-duplicates-from-sorted-array/)
+- [LeetCode 80. 删除有序数组中的重复项 II](https://leetcode.cn/problems/remove-duplicates-from-sorted-array-ii/)
+- [LeetCode 876. 链表的中间结点](https://leetcode.cn/problems/middle-of-the-linked-list/)
+- [LeetCode 141. 环形链表](https://leetcode.cn/problems/linked-list-cycle/)
 
 ---
 
@@ -123,10 +123,10 @@ for left < right {  // 或 left <= right，见下方说明
 
 **经典题目**：
 
-- [LeetCode 167. 两数之和 II - 输入有序数组](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
-- [LeetCode 125. 验证回文串](https://leetcode.com/problems/valid-palindrome/)
-- [LeetCode 11. 盛最多水的容器](https://leetcode.com/problems/container-with-most-water/)
-- [LeetCode 15. 三数之和](https://leetcode.com/problems/3sum/)
+- [LeetCode 167. 两数之和 II - 输入有序数组](https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/)
+- [LeetCode 125. 验证回文串](https://leetcode.cn/problems/valid-palindrome/)
+- [LeetCode 11. 盛最多水的容器](https://leetcode.cn/problems/container-with-most-water/)
+- [LeetCode 15. 三数之和](https://leetcode.cn/problems/3sum/)
 
 ---
 
@@ -160,10 +160,10 @@ for right := 0; right < len(s); right++ {
 
 **经典题目**：
 
-- [LeetCode 3. 无重复字符的最长子串](https://leetcode.com/problems/longest-substring-without-repeating-characters/)
-- [LeetCode 76. 最小覆盖子串](https://leetcode.com/problems/minimum-window-substring/)
-- [LeetCode 209. 长度最小的子数组](https://leetcode.com/problems/minimum-size-subarray-sum/)
-- [LeetCode 438. 找到字符串中所有字母异位词](https://leetcode.com/problems/find-all-anagrams-in-a-string/)
+- [LeetCode 3. 无重复字符的最长子串](https://leetcode.cn/problems/longest-substring-without-repeating-characters/)
+- [LeetCode 76. 最小覆盖子串](https://leetcode.cn/problems/minimum-window-substring/)
+- [LeetCode 209. 长度最小的子数组](https://leetcode.cn/problems/minimum-size-subarray-sum/)
+- [LeetCode 438. 找到字符串中所有字母异位词](https://leetcode.cn/problems/find-all-anagrams-in-a-string/)
 
 ---
 
@@ -195,9 +195,9 @@ for i < len(nums1) && j < len(nums2) {
 
 **经典题目**：
 
-- [LeetCode 88. 合并两个有序数组](https://leetcode.com/problems/merge-sorted-array/)
-- [LeetCode 21. 合并两个有序链表](https://leetcode.com/problems/merge-two-sorted-lists/)
-- [LeetCode 986. 区间列表的交集](https://leetcode.com/problems/interval-list-intersections/)
+- [LeetCode 88. 合并两个有序数组](https://leetcode.cn/problems/merge-sorted-array/)
+- [LeetCode 21. 合并两个有序链表](https://leetcode.cn/problems/merge-two-sorted-lists/)
+- [LeetCode 986. 区间列表的交集](https://leetcode.cn/problems/interval-list-intersections/)
 
 ---
 
@@ -228,7 +228,7 @@ for fast != nil {
 
 **经典题目**：
 
-- [LeetCode 19. 删除链表的倒数第 N 个结点](https://leetcode.com/problems/remove-nth-node-from-end-of-list/)
+- [LeetCode 19. 删除链表的倒数第 N 个结点](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/)
 
 ---
 

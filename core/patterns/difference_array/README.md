@@ -239,15 +239,15 @@ $$
 
 === "基础题"
 
-    - [LeetCode 370. 区间加法](https://leetcode.com/problems/range-addition/) (Premium)
-    - [LeetCode 1109. 航班预订统计](https://leetcode.com/problems/corporate-flight-bookings/)
-    - [LeetCode 1094. 拼车](https://leetcode.com/problems/car-pooling/)
+    - [LeetCode 370. 区间加法](https://leetcode.cn/problems/range-addition/) (Premium)
+    - [LeetCode 1109. 航班预订统计](https://leetcode.cn/problems/corporate-flight-bookings/)
+    - [LeetCode 1094. 拼车](https://leetcode.cn/problems/car-pooling/)
 
 === "进阶题"
 
-    - [LeetCode 995. K 连续位的最小翻转次数](https://leetcode.com/problems/minimum-number-of-k-consecutive-bit-flips/)
-    - [LeetCode 2536. 子矩阵元素加 1](https://leetcode.com/problems/increment-submatrices-by-one/)
-    - [LeetCode 2132. 用邮票贴满网格图](https://leetcode.com/problems/stamping-the-grid/)
+    - [LeetCode 995. K 连续位的最小翻转次数](https://leetcode.cn/problems/minimum-number-of-k-consecutive-bit-flips/)
+    - [LeetCode 2536. 子矩阵元素加 1](https://leetcode.cn/problems/increment-submatrices-by-one/)
+    - [LeetCode 2132. 用邮票贴满网格图](https://leetcode.cn/problems/stamping-the-grid/)
 
 ---
 

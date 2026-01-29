@@ -103,9 +103,9 @@ func maxPowerLE(base, limit int) int {
 
 ## 相关题目
 
-- [LeetCode 231. Power of Two](https://leetcode.com/problems/power-of-two/)
-- [LeetCode 326. Power of Three](https://leetcode.com/problems/power-of-three/)
-- [LeetCode 342. Power of Four](https://leetcode.com/problems/power-of-four/)
+- [LeetCode 231. Power of Two](https://leetcode.cn/problems/power-of-two/)
+- [LeetCode 326. Power of Three](https://leetcode.cn/problems/power-of-three/)
+- [LeetCode 342. Power of Four](https://leetcode.cn/problems/power-of-four/)
 
 ---
 

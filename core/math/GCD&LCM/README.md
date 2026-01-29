@@ -122,6 +122,6 @@ func lcm(a, b int) int {
 
 ## 相关题目
 
-- [1071. Greatest Common Divisor of Strings](https://leetcode.com/problems/greatest-common-divisor-of-strings/) 直接与 GCD 相关
-- [914. X of a Kind in a Deck of Cards](https://leetcode.com/problems/x-of-a-kind-in-a-deck-of-cards/) 求多个数的 GCD
-- [204. Count Primes](https://leetcode.com/problems/count-primes/) 质数判断和筛法（与质因数分解相关）
+- [1071. Greatest Common Divisor of Strings](https://leetcode.cn/problems/greatest-common-divisor-of-strings/) 直接与 GCD 相关
+- [914. X of a Kind in a Deck of Cards](https://leetcode.cn/problems/x-of-a-kind-in-a-deck-of-cards/) 求多个数的 GCD
+- [204. Count Primes](https://leetcode.cn/problems/count-primes/) 质数判断和筛法（与质因数分解相关）

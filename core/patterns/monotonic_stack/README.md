@@ -43,11 +43,11 @@ for i := 0; i < len(nums); i++ {
 
 ## 常见题型
 
-- [739. Daily Temperatures](https://leetcode.com/problems/daily-temperatures/)（下一个更高温度）
-- [496. Next Greater Element I](https://leetcode.com/problems/next-greater-element-i/)
-- [503. Next Greater Element II](https://leetcode.com/problems/next-greater-element-ii/)
-- [84. Largest Rectangle in Histogram](https://leetcode.com/problems/largest-rectangle-in-histogram/)
-- [42. Trapping Rain Water](https://leetcode.com/problems/trapping-rain-water/)
+- [739. Daily Temperatures](https://leetcode.cn/problems/daily-temperatures/)（下一个更高温度）
+- [496. Next Greater Element I](https://leetcode.cn/problems/next-greater-element-i/)
+- [503. Next Greater Element II](https://leetcode.cn/problems/next-greater-element-ii/)
+- [84. Largest Rectangle in Histogram](https://leetcode.cn/problems/largest-rectangle-in-histogram/)
+- [42. Trapping Rain Water](https://leetcode.cn/problems/trapping-rain-water/)
 
 ## 技巧与注意事项
 
@@ -63,15 +63,15 @@ for i := 0; i < len(nums); i++ {
 
 # 经典题目
 
-- [739. 每日温度 (Daily Temperatures)](https://leetcode.com/problems/daily-temperatures/)
-- [84. 柱状图中最大的矩形 (Largest Rectangle in Histogram)](https://leetcode.com/problems/largest-rectangle-in-histogram/)
-- [42. 接雨水 (Trapping Rain Water)](https://leetcode.com/problems/trapping-rain-water/)
-- [496. 下一个更大元素 I (Next Greater Element I)](https://leetcode.com/problems/next-greater-element-i/)
-- [503. 下一个更大元素 II (Next Greater Element II)](https://leetcode.com/problems/next-greater-element-ii/)
-- [85. 最大矩形 (Maximal Rectangle)](https://leetcode.com/problems/maximal-rectangle/)
-- [907. 子数组的最小值之和 (Sum of Subarray Minimums)](https://leetcode.com/problems/sum-of-subarray-minimums/)
-- [901. 股票价格跨度 (Online Stock Span)](https://leetcode.com/problems/online-stock-span/)
-- [1019. 链表中的下一个更大节点 (Next Greater Node In Linked List)](https://leetcode.com/problems/next-greater-node-in-linked-list/)
-- [1944. 队列中可以看到的人数 (Number of Visible People in a Queue)](https://leetcode.com/problems/number-of-visible-people-in-a-queue/)
-- [2289. 使数组按非递减顺序排列 (Steps to Make Array Non-decreasing)](https://leetcode.com/problems/steps-to-make-array-non-decreasing/)
-- [20. 有效的括号 (Valid Parentheses)](https://leetcode.com/problems/valid-parentheses/)
+- [739. 每日温度 (Daily Temperatures)](https://leetcode.cn/problems/daily-temperatures/)
+- [84. 柱状图中最大的矩形 (Largest Rectangle in Histogram)](https://leetcode.cn/problems/largest-rectangle-in-histogram/)
+- [42. 接雨水 (Trapping Rain Water)](https://leetcode.cn/problems/trapping-rain-water/)
+- [496. 下一个更大元素 I (Next Greater Element I)](https://leetcode.cn/problems/next-greater-element-i/)
+- [503. 下一个更大元素 II (Next Greater Element II)](https://leetcode.cn/problems/next-greater-element-ii/)
+- [85. 最大矩形 (Maximal Rectangle)](https://leetcode.cn/problems/maximal-rectangle/)
+- [907. 子数组的最小值之和 (Sum of Subarray Minimums)](https://leetcode.cn/problems/sum-of-subarray-minimums/)
+- [901. 股票价格跨度 (Online Stock Span)](https://leetcode.cn/problems/online-stock-span/)
+- [1019. 链表中的下一个更大节点 (Next Greater Node In Linked List)](https://leetcode.cn/problems/next-greater-node-in-linked-list/)
+- [1944. 队列中可以看到的人数 (Number of Visible People in a Queue)](https://leetcode.cn/problems/number-of-visible-people-in-a-queue/)
+- [2289. 使数组按非递减顺序排列 (Steps to Make Array Non-decreasing)](https://leetcode.cn/problems/steps-to-make-array-non-decreasing/)
+- [20. 有效的括号 (Valid Parentheses)](https://leetcode.cn/problems/valid-parentheses/)

@@ -260,8 +260,8 @@ hasRead := hasPermission(perm, READ)  // true
 
 **经典题目**：
 
-- [LeetCode 698. Partition to K Equal Sum Subsets](https://leetcode.com/problems/partition-to-k-equal-sum-subsets/)
-- [LeetCode 847. Shortest Path Visiting All Nodes](https://leetcode.com/problems/shortest-path-visiting-all-nodes/)
+- [LeetCode 698. Partition to K Equal Sum Subsets](https://leetcode.cn/problems/partition-to-k-equal-sum-subsets/)
+- [LeetCode 847. Shortest Path Visiting All Nodes](https://leetcode.cn/problems/shortest-path-visiting-all-nodes/)
 
 ### 3. 快速幂运算
 
@@ -299,23 +299,23 @@ func pow(x, n int) int {
 
 === "基础题"
 
-    - [191. Number of 1 Bits](https://leetcode.com/problems/number-of-1-bits/) — 统计二进制中 1 的个数
-    - [136. Single Number](https://leetcode.com/problems/single-number/) — 找出唯一的数
-    - [231. Power of Two](https://leetcode.com/problems/power-of-two/) — 判断是否为 2 的幂
-    - [338. Counting Bits](https://leetcode.com/problems/counting-bits/) — 计算 0 到 n 每个数的 1 的个数
+    - [191. Number of 1 Bits](https://leetcode.cn/problems/number-of-1-bits/) — 统计二进制中 1 的个数
+    - [136. Single Number](https://leetcode.cn/problems/single-number/) — 找出唯一的数
+    - [231. Power of Two](https://leetcode.cn/problems/power-of-two/) — 判断是否为 2 的幂
+    - [338. Counting Bits](https://leetcode.cn/problems/counting-bits/) — 计算 0 到 n 每个数的 1 的个数
 
 === "进阶题"
 
-    - [137. Single Number II](https://leetcode.com/problems/single-number-ii/) — 其他数出现 3 次
-    - [260. Single Number III](https://leetcode.com/problems/single-number-iii/) — 找出两个唯一的数
-    - [201. Bitwise AND of Numbers Range](https://leetcode.com/problems/bitwise-and-of-numbers-range/) — 区间按位与
-    - [371. Sum of Two Integers](https://leetcode.com/problems/sum-of-two-integers/) — 不用加减法实现加法
+    - [137. Single Number II](https://leetcode.cn/problems/single-number-ii/) — 其他数出现 3 次
+    - [260. Single Number III](https://leetcode.cn/problems/single-number-iii/) — 找出两个唯一的数
+    - [201. Bitwise AND of Numbers Range](https://leetcode.cn/problems/bitwise-and-of-numbers-range/) — 区间按位与
+    - [371. Sum of Two Integers](https://leetcode.cn/problems/sum-of-two-integers/) — 不用加减法实现加法
 
 === "高级题"
 
-    - [78. Subsets](https://leetcode.com/problems/subsets/) — 子集枚举（位掩码）
-    - [698. Partition to K Equal Sum Subsets](https://leetcode.com/problems/partition-to-k-equal-sum-subsets/) — 状态压缩 DP
-    - [847. Shortest Path Visiting All Nodes](https://leetcode.com/problems/shortest-path-visiting-all-nodes/) — 状态压缩 BFS
+    - [78. Subsets](https://leetcode.cn/problems/subsets/) — 子集枚举（位掩码）
+    - [698. Partition to K Equal Sum Subsets](https://leetcode.cn/problems/partition-to-k-equal-sum-subsets/) — 状态压缩 DP
+    - [847. Shortest Path Visiting All Nodes](https://leetcode.cn/problems/shortest-path-visiting-all-nodes/) — 状态压缩 BFS
 
 ## 性能对比
 

@@ -17,16 +17,16 @@
 
 ## 经典问题
 
-- [39. 组合总和](https://leetcode.com/problems/combination-sum/)
-- [46. 全排列](https://leetcode.com/problems/permutations/)
-- [78. 子集](https://leetcode.com/problems/subsets/)
-- [77. 组合](https://leetcode.com/problems/combinations/)
-- [90. 子集 II](https://leetcode.com/problems/subsets-ii/)
-- [40. 组合总和 II](https://leetcode.com/problems/combination-sum-ii/)
-- [47. 全排列 II](https://leetcode.com/problems/permutations-ii/)
-- [51. N 皇后](https://leetcode.com/problems/n-queens/)
-- [79. 单词搜索](https://leetcode.com/problems/word-search/)
-- [37. 解数独](https://leetcode.com/problems/sudoku-solver/)
+- [39. 组合总和](https://leetcode.cn/problems/combination-sum/)
+- [46. 全排列](https://leetcode.cn/problems/permutations/)
+- [78. 子集](https://leetcode.cn/problems/subsets/)
+- [77. 组合](https://leetcode.cn/problems/combinations/)
+- [90. 子集 II](https://leetcode.cn/problems/subsets-ii/)
+- [40. 组合总和 II](https://leetcode.cn/problems/combination-sum-ii/)
+- [47. 全排列 II](https://leetcode.cn/problems/permutations-ii/)
+- [51. N 皇后](https://leetcode.cn/problems/n-queens/)
+- [79. 单词搜索](https://leetcode.cn/problems/word-search/)
+- [37. 解数独](https://leetcode.cn/problems/sudoku-solver/)
 
 ## 回溯解题模板
 
@@ -60,7 +60,7 @@ func backtrackSubsets(nums []int) [][]int {
 
 ## 参考资料
 
-- [LeetCode 回溯标签](https://leetcode.com/tag/backtracking/)
+- [LeetCode 回溯标签](https://leetcode.cn/tag/backtracking/)
 - [OI Wiki: 回溯](https://oi-wiki.org/basic/backtracking/)
 - [CP Algorithms: 回溯](https://cp-algorithms.com/backtracking.html)
 
@@ -96,9 +96,9 @@ func traverse(root *TreeNode) {
 
 **掌握三道核心题，理解所有回溯问题**：
 
-- **组合 (Combination)**: [LeetCode 77. 组合](https://leetcode.com/problems/combinations/)
-- **排列 (Permutation)**: [LeetCode 46. 全排列](https://leetcode.com/problems/permutations/)
-- **子集 (Subset)**: [LeetCode 78. 子集](https://leetcode.com/problems/subsets/)
+- **组合 (Combination)**: [LeetCode 77. 组合](https://leetcode.cn/problems/combinations/)
+- **排列 (Permutation)**: [LeetCode 46. 全排列](https://leetcode.cn/problems/permutations/)
+- **子集 (Subset)**: [LeetCode 78. 子集](https://leetcode.cn/problems/subsets/)
 
 这三类问题的本质都是 **遍历多叉树**：
 

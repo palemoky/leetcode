@@ -16,14 +16,14 @@
 
 ## 经典题目
 
-- [122. 买卖股票的最佳时机 II](https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/)
-- [435. 无重叠区间](https://leetcode.com/problems/non-overlapping-intervals/)
-- [452. 用最少数量的箭引爆气球](https://leetcode.com/problems/minimum-number-of-arrows-to-burst-balloons/)
-- [860. 柠檬水找零](https://leetcode.com/problems/lemonade-change/)
-- [455. 分发饼干](https://leetcode.com/problems/assign-cookies/)
-- [406. 根据身高重建队列](https://leetcode.com/problems/queue-reconstruction-by-height/)
-- [135. 分发糖果](https://leetcode.com/problems/candy/)
-- [605. 种花问题](https://leetcode.com/problems/can-place-flowers/)
+- [122. 买卖股票的最佳时机 II](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/)
+- [435. 无重叠区间](https://leetcode.cn/problems/non-overlapping-intervals/)
+- [452. 用最少数量的箭引爆气球](https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/)
+- [860. 柠檬水找零](https://leetcode.cn/problems/lemonade-change/)
+- [455. 分发饼干](https://leetcode.cn/problems/assign-cookies/)
+- [406. 根据身高重建队列](https://leetcode.cn/problems/queue-reconstruction-by-height/)
+- [135. 分发糖果](https://leetcode.cn/problems/candy/)
+- [605. 种花问题](https://leetcode.cn/problems/can-place-flowers/)
 
 ## 贪心算法模板
 
@@ -98,6 +98,6 @@ def greedy_solve(intervals: list[list[int]]) -> int:
 
 ## 参考资料
 
-- [LeetCode 贪心标签](https://leetcode.com/tag/greedy/)
+- [LeetCode 贪心标签](https://leetcode.cn/tag/greedy/)
 - [OI Wiki: 贪心算法](https://oi-wiki.org/basic/greedy/)
 - [CP Algorithms: Greedy](https://cp-algorithms.com/greedy.html)

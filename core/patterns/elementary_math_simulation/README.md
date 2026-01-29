@@ -46,11 +46,11 @@
 
     **相关题目**:
 
-    - [415. 字符串相加](https://leetcode.com/problems/add-strings/) (十进制加法)
-    - [67. 二进制求和](https://leetcode.com/problems/add-binary/) (二进制加法, BASE=2)
-    - [2. 两数相加](https://leetcode.com/problems/add-two-numbers/) (链表形式,无需反转)
-    - [66. 加一](https://leetcode.com/problems/plus-one/) (简化版加法,加一个常数 1)
-    - [989. 数组形式的整数加法](https://leetcode.com/problems/add-to-array-form-of-integer/) (简化版字符串相加)
+    - [415. 字符串相加](https://leetcode.cn/problems/add-strings/) (十进制加法)
+    - [67. 二进制求和](https://leetcode.cn/problems/add-binary/) (二进制加法, BASE=2)
+    - [2. 两数相加](https://leetcode.cn/problems/add-two-numbers/) (链表形式,无需反转)
+    - [66. 加一](https://leetcode.cn/problems/plus-one/) (简化版加法,加一个常数 1)
+    - [989. 数组形式的整数加法](https://leetcode.cn/problems/add-to-array-form-of-integer/) (简化版字符串相加)
 
 === "减法"
 
@@ -78,7 +78,7 @@
 
     **相关题目**:
 
-    - [43. 字符串相乘](https://leetcode.com/problems/multiply-strings/)
+    - [43. 字符串相乘](https://leetcode.cn/problems/multiply-strings/)
 
 === "除法"
 
@@ -90,8 +90,8 @@
 
     **相关题目**:
 
-    - [29. 两数相除](https://leetcode.com/problems/divide-two-integers/)
-    - [166. 分数到小数](https://leetcode.com/problems/fraction-to-recurring-decimal/)
+    - [29. 两数相除](https://leetcode.cn/problems/divide-two-integers/)
+    - [166. 分数到小数](https://leetcode.cn/problems/fraction-to-recurring-decimal/)
 
 ---
 
@@ -135,8 +135,8 @@
 
     **相关题目**:
 
-    - [504. 七进制数](https://leetcode.com/problems/base-7/)
-    - [405. 数字转换为十六进制数](https://leetcode.com/problems/convert-a-number-to-hexadecimal/)
+    - [504. 七进制数](https://leetcode.cn/problems/base-7/)
+    - [405. 数字转换为十六进制数](https://leetcode.cn/problems/convert-a-number-to-hexadecimal/)
 
 ---
 

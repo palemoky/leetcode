@@ -278,27 +278,27 @@ func mergeTwoLists(l1, l2 *ListNode) *ListNode {
 
 === "基础题"
 
-    - [206. 反转链表](https://leetcode.com/problems/reverse-linked-list/) — 迭代/递归
-    - [21. 合并两个有序链表](https://leetcode.com/problems/merge-two-sorted-lists/) — 双指针
-    - [83. 删除排序链表中的重复元素](https://leetcode.com/problems/remove-duplicates-from-sorted-list/) — 遍历
-    - [876. 链表的中间结点](https://leetcode.com/problems/middle-of-the-linked-list/) — 快慢指针
-    - [141. 环形链表](https://leetcode.com/problems/linked-list-cycle/) — 快慢指针
+    - [206. 反转链表](https://leetcode.cn/problems/reverse-linked-list/) — 迭代/递归
+    - [21. 合并两个有序链表](https://leetcode.cn/problems/merge-two-sorted-lists/) — 双指针
+    - [83. 删除排序链表中的重复元素](https://leetcode.cn/problems/remove-duplicates-from-sorted-list/) — 遍历
+    - [876. 链表的中间结点](https://leetcode.cn/problems/middle-of-the-linked-list/) — 快慢指针
+    - [141. 环形链表](https://leetcode.cn/problems/linked-list-cycle/) — 快慢指针
 
 === "进阶题"
 
-    - [19. 删除链表的倒数第 N 个结点](https://leetcode.com/problems/remove-nth-node-from-end-of-list/) — 快慢指针 + dummy
-    - [92. 反转链表 II](https://leetcode.com/problems/reverse-linked-list-ii/) — 部分反转
-    - [143. 重排链表](https://leetcode.com/problems/reorder-list/) — 找中点 + 反转 + 合并
-    - [160. 相交链表](https://leetcode.com/problems/intersection-of-two-linked-lists/) — 双指针
-    - [234. 回文链表](https://leetcode.com/problems/palindrome-linked-list/) — 快慢指针 + 反转
-    - [2. 两数相加](https://leetcode.com/problems/add-two-numbers/) — 模拟加法
+    - [19. 删除链表的倒数第 N 个结点](https://leetcode.cn/problems/remove-nth-node-from-end-of-list/) — 快慢指针 + dummy
+    - [92. 反转链表 II](https://leetcode.cn/problems/reverse-linked-list-ii/) — 部分反转
+    - [143. 重排链表](https://leetcode.cn/problems/reorder-list/) — 找中点 + 反转 + 合并
+    - [160. 相交链表](https://leetcode.cn/problems/intersection-of-two-linked-lists/) — 双指针
+    - [234. 回文链表](https://leetcode.cn/problems/palindrome-linked-list/) — 快慢指针 + 反转
+    - [2. 两数相加](https://leetcode.cn/problems/add-two-numbers/) — 模拟加法
 
 === "高级题"
 
-    - [23. 合并 K 个升序链表](https://leetcode.com/problems/merge-k-sorted-lists/) — 分治/堆
-    - [25. K 个一组翻转链表](https://leetcode.com/problems/reverse-nodes-in-k-group/) — 分组反转
-    - [138. 复制带随机指针的链表](https://leetcode.com/problems/copy-list-with-random-pointer/) — 哈希表/原地修改
-    - [142. 环形链表 II](https://leetcode.com/problems/linked-list-cycle-ii/) — 快慢指针数学性质
+    - [23. 合并 K 个升序链表](https://leetcode.cn/problems/merge-k-sorted-lists/) — 分治/堆
+    - [25. K 个一组翻转链表](https://leetcode.cn/problems/reverse-nodes-in-k-group/) — 分组反转
+    - [138. 复制带随机指针的链表](https://leetcode.cn/problems/copy-list-with-random-pointer/) — 哈希表/原地修改
+    - [142. 环形链表 II](https://leetcode.cn/problems/linked-list-cycle-ii/) — 快慢指针数学性质
 
 ## 总结
 

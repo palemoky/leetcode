@@ -271,8 +271,8 @@ BFS 与 DFS 的区别：
 
 经典题目
 
-- [215. Kth Largest Element in an Array](https://leetcode.com/problems/kth-largest-element-in-an-array/) — 数组中第 K 个最大元素（Top-k / 堆）
-- [347. Top K Frequent Elements](https://leetcode.com/problems/top-k-frequent-elements/) — 前 K 个高频元素（哈希 + 堆）
+- [215. Kth Largest Element in an Array](https://leetcode.cn/problems/kth-largest-element-in-an-array/) — 数组中第 K 个最大元素（Top-k / 堆）
+- [347. Top K Frequent Elements](https://leetcode.cn/problems/top-k-frequent-elements/) — 前 K 个高频元素（哈希 + 堆）
 
 ### 二叉搜索树（BST）
 
@@ -379,7 +379,7 @@ BST 有两种不同的写法，处理细节也不同：
 
 - 在有序数组中查找元素的第一次和最后一次出现位置
 - 统计某个元素在有序数组中出现的次数：`count = rightBound - leftBound + 1`
-- 经典题目：[34. Find First and Last Position of Element in Sorted Array](https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/)
+- 经典题目：[34. Find First and Last Position of Element in Sorted Array](https://leetcode.cn/problems/find-first-and-last-position-of-element-in-sorted-array/)
 
 ### 平衡二叉树
 
@@ -507,29 +507,29 @@ Trie 是一种专门用于高效处理字符串集合的多叉树结构，在搜
 
 === "基础题"
 
-    - [144. Binary Tree Preorder Traversal](https://leetcode.com/problems/binary-tree-preorder-traversal/) — 前序遍历
-    - [94. Binary Tree Inorder Traversal](https://leetcode.com/problems/binary-tree-inorder-traversal/) — 中序遍历
-    - [145. Binary Tree Postorder Traversal](https://leetcode.com/problems/binary-tree-postorder-traversal/) — 后序遍历
-    - [102. Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/) — 层序遍历
-    - [104. Maximum Depth of Binary Tree](https://leetcode.com/problems/maximum-depth-of-binary-tree/) — 最大深度
-    - [111. Minimum Depth of Binary Tree](https://leetcode.com/problems/minimum-depth-of-binary-tree/) — 最小深度
-    - [226. Invert Binary Tree](https://leetcode.com/problems/invert-binary-tree/) — 翻转二叉树
-    - [101. Symmetric Tree](https://leetcode.com/problems/symmetric-tree/) — 对称二叉树
-    - [112. Path Sum](https://leetcode.com/problems/path-sum/) — 路径总和
-    - [617. Merge Two Binary Trees](https://leetcode.com/problems/merge-two-binary-trees/) — 合并二叉树
+    - [144. Binary Tree Preorder Traversal](https://leetcode.cn/problems/binary-tree-preorder-traversal/) — 前序遍历
+    - [94. Binary Tree Inorder Traversal](https://leetcode.cn/problems/binary-tree-inorder-traversal/) — 中序遍历
+    - [145. Binary Tree Postorder Traversal](https://leetcode.cn/problems/binary-tree-postorder-traversal/) — 后序遍历
+    - [102. Binary Tree Level Order Traversal](https://leetcode.cn/problems/binary-tree-level-order-traversal/) — 层序遍历
+    - [104. Maximum Depth of Binary Tree](https://leetcode.cn/problems/maximum-depth-of-binary-tree/) — 最大深度
+    - [111. Minimum Depth of Binary Tree](https://leetcode.cn/problems/minimum-depth-of-binary-tree/) — 最小深度
+    - [226. Invert Binary Tree](https://leetcode.cn/problems/invert-binary-tree/) — 翻转二叉树
+    - [101. Symmetric Tree](https://leetcode.cn/problems/symmetric-tree/) — 对称二叉树
+    - [112. Path Sum](https://leetcode.cn/problems/path-sum/) — 路径总和
+    - [617. Merge Two Binary Trees](https://leetcode.cn/problems/merge-two-binary-trees/) — 合并二叉树
 
 === "进阶题"
 
-    - [110. Balanced Binary Tree](https://leetcode.com/problems/balanced-binary-tree/) — 平衡二叉树
-    - [98. Validate Binary Search Tree](https://leetcode.com/problems/validate-binary-search-tree/) — 验证二叉搜索树
-    - [235. Lowest Common Ancestor of a BST](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-search-tree/) — 二叉搜索树的最近公共祖先
-    - [236. Lowest Common Ancestor of a Binary Tree](https://leetcode.com/problems/lowest-common-ancestor-of-a-binary-tree/) — 二叉树的最近公共祖先
-    - [113. Path Sum II](https://leetcode.com/problems/path-sum-ii/) — 路径总和 II
-    - [105. Construct Binary Tree from Preorder and Inorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-preorder-and-inorder-traversal/) — 从前序与中序遍历序列构造二叉树
-    - [106. Construct Binary Tree from Inorder and Postorder Traversal](https://leetcode.com/problems/construct-binary-tree-from-inorder-and-postorder-traversal/) — 从中序与后序遍历序列构造二叉树
-    - [543. Diameter of Binary Tree](https://leetcode.com/problems/diameter-of-binary-tree/) — 二叉树的直径
+    - [110. Balanced Binary Tree](https://leetcode.cn/problems/balanced-binary-tree/) — 平衡二叉树
+    - [98. Validate Binary Search Tree](https://leetcode.cn/problems/validate-binary-search-tree/) — 验证二叉搜索树
+    - [235. Lowest Common Ancestor of a BST](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-search-tree/) — 二叉搜索树的最近公共祖先
+    - [236. Lowest Common Ancestor of a Binary Tree](https://leetcode.cn/problems/lowest-common-ancestor-of-a-binary-tree/) — 二叉树的最近公共祖先
+    - [113. Path Sum II](https://leetcode.cn/problems/path-sum-ii/) — 路径总和 II
+    - [105. Construct Binary Tree from Preorder and Inorder Traversal](https://leetcode.cn/problems/construct-binary-tree-from-preorder-and-inorder-traversal/) — 从前序与中序遍历序列构造二叉树
+    - [106. Construct Binary Tree from Inorder and Postorder Traversal](https://leetcode.cn/problems/construct-binary-tree-from-inorder-and-postorder-traversal/) — 从中序与后序遍历序列构造二叉树
+    - [543. Diameter of Binary Tree](https://leetcode.cn/problems/diameter-of-binary-tree/) — 二叉树的直径
 
 === "高级题"
 
-    - [124. Binary Tree Maximum Path Sum](https://leetcode.com/problems/binary-tree-maximum-path-sum/) — 二叉树中的最大路径和
-    - [297. Serialize and Deserialize Binary Tree](https://leetcode.com/problems/serialize-and-deserialize-binary-tree/) — 二叉树的序列化与反序列化
+    - [124. Binary Tree Maximum Path Sum](https://leetcode.cn/problems/binary-tree-maximum-path-sum/) — 二叉树中的最大路径和
+    - [297. Serialize and Deserialize Binary Tree](https://leetcode.cn/problems/serialize-and-deserialize-binary-tree/) — 二叉树的序列化与反序列化

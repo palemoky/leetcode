@@ -79,7 +79,7 @@
 
 为了解决普通数组队列出队后空间浪费的问题，使用固定大小的数组和头尾指针，逻辑上形成环状。
 
-- **经典题目**：[622. Design Circular Queue](https://leetcode.com/problems/design-circular-queue/)
+- **经典题目**：[622. Design Circular Queue](https://leetcode.cn/problems/design-circular-queue/)
 
 ### 2. 优先队列 (Priority Queue)
 
@@ -91,7 +91,7 @@
 
 队列内元素保持单调递增或递减，常用于解决滑动窗口最大值问题。
 
-- **经典题目**：[239. Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/)
+- **经典题目**：[239. Sliding Window Maximum](https://leetcode.cn/problems/sliding-window-maximum/)
 
 ## 应用场景
 
@@ -104,23 +104,23 @@
 
 === "基础题"
 
-    - [225. Implement Stack using Queues](https://leetcode.com/problems/implement-stack-using-queues/) — 用队列实现栈
-    - [387. First Unique Character in a String](https://leetcode.com/problems/first-unique-character-in-a-string/) — 字符串中的第一个唯一字符
-    - [933. Number of Recent Calls](https://leetcode.com/problems/number-of-recent-calls/) — 最近的请求次数
+    - [225. Implement Stack using Queues](https://leetcode.cn/problems/implement-stack-using-queues/) — 用队列实现栈
+    - [387. First Unique Character in a String](https://leetcode.cn/problems/first-unique-character-in-a-string/) — 字符串中的第一个唯一字符
+    - [933. Number of Recent Calls](https://leetcode.cn/problems/number-of-recent-calls/) — 最近的请求次数
 
 === "进阶题 (BFS)"
 
-    - [102. Binary Tree Level Order Traversal](https://leetcode.com/problems/binary-tree-level-order-traversal/) — 二叉树的层序遍历
-    - [200. Number of Islands](https://leetcode.com/problems/number-of-islands/) — 岛屿数量 (BFS解法)
-    - [279. Perfect Squares](https://leetcode.com/problems/perfect-squares/) — 完全平方数 (BFS求最短路径)
-    - [752. Open the Lock](https://leetcode.com/problems/open-the-lock/) — 打开转盘锁
+    - [102. Binary Tree Level Order Traversal](https://leetcode.cn/problems/binary-tree-level-order-traversal/) — 二叉树的层序遍历
+    - [200. Number of Islands](https://leetcode.cn/problems/number-of-islands/) — 岛屿数量 (BFS解法)
+    - [279. Perfect Squares](https://leetcode.cn/problems/perfect-squares/) — 完全平方数 (BFS求最短路径)
+    - [752. Open the Lock](https://leetcode.cn/problems/open-the-lock/) — 打开转盘锁
 
 === "高级题"
 
-    - [239. Sliding Window Maximum](https://leetcode.com/problems/sliding-window-maximum/) — 滑动窗口最大值 (单调队列)
-    - [622. Design Circular Queue](https://leetcode.com/problems/design-circular-queue/) — 设计循环队列
-    - [641. Design Circular Deque](https://leetcode.com/problems/design-circular-deque/) — 设计循环双端队列
-    - [862. Shortest Subarray with Sum at Least K](https://leetcode.com/problems/shortest-subarray-with-sum-at-least-k/) — 和至少为 K 的最短子数组
+    - [239. Sliding Window Maximum](https://leetcode.cn/problems/sliding-window-maximum/) — 滑动窗口最大值 (单调队列)
+    - [622. Design Circular Queue](https://leetcode.cn/problems/design-circular-queue/) — 设计循环队列
+    - [641. Design Circular Deque](https://leetcode.cn/problems/design-circular-deque/) — 设计循环双端队列
+    - [862. Shortest Subarray with Sum at Least K](https://leetcode.cn/problems/shortest-subarray-with-sum-at-least-k/) — 和至少为 K 的最短子数组
 
 ## 总结
 

@@ -128,8 +128,8 @@ fmt.Println(len(m))
 
     **经典题目**：
 
-    - [217. Contains Duplicate](https://leetcode.com/problems/contains-duplicate/)
-    - [1. Two Sum](https://leetcode.com/problems/two-sum/)
+    - [217. Contains Duplicate](https://leetcode.cn/problems/contains-duplicate/)
+    - [1. Two Sum](https://leetcode.cn/problems/two-sum/)
 
 === "计数统计"
 
@@ -148,9 +148,9 @@ fmt.Println(len(m))
 
     **经典题目**：
 
-    - [242. Valid Anagram](https://leetcode.com/problems/valid-anagram/)
-    - [383. Ransom Note](https://leetcode.com/problems/ransom-note/)
-    - [387. First Unique Character in a String](https://leetcode.com/problems/first-unique-character-in-a-string/)
+    - [242. Valid Anagram](https://leetcode.cn/problems/valid-anagram/)
+    - [383. Ransom Note](https://leetcode.cn/problems/ransom-note/)
+    - [387. First Unique Character in a String](https://leetcode.cn/problems/first-unique-character-in-a-string/)
 
 === "去重"
 
@@ -195,7 +195,7 @@ fmt.Println(len(m))
 
     **经典题目**：
 
-    - [49. Group Anagrams](https://leetcode.com/problems/group-anagrams/)
+    - [49. Group Anagrams](https://leetcode.cn/problems/group-anagrams/)
 
 === "缓存/记忆化"
 
@@ -236,8 +236,8 @@ fmt.Println(len(m))
 
     **经典题目**：
 
-    - [1. Two Sum](https://leetcode.com/problems/two-sum/)
-    - [167. Two Sum II](https://leetcode.com/problems/two-sum-ii-input-array-is-sorted/)
+    - [1. Two Sum](https://leetcode.cn/problems/two-sum/)
+    - [167. Two Sum II](https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/)
 
 ## 哈希表 vs 其他数据结构
 
@@ -387,23 +387,23 @@ m["alice"] = p // ✅
 
 === "基础题"
 
-    - [1. Two Sum](https://leetcode.com/problems/two-sum/) — 两数之和（入门必做）
-    - [217. Contains Duplicate](https://leetcode.com/problems/contains-duplicate/) — 存在重复元素
-    - [242. Valid Anagram](https://leetcode.com/problems/valid-anagram/) — 有效的字母异位词
-    - [383. Ransom Note](https://leetcode.com/problems/ransom-note/) — 赎金信
+    - [1. Two Sum](https://leetcode.cn/problems/two-sum/) — 两数之和（入门必做）
+    - [217. Contains Duplicate](https://leetcode.cn/problems/contains-duplicate/) — 存在重复元素
+    - [242. Valid Anagram](https://leetcode.cn/problems/valid-anagram/) — 有效的字母异位词
+    - [383. Ransom Note](https://leetcode.cn/problems/ransom-note/) — 赎金信
 
 === "进阶题"
 
-    - [49. Group Anagrams](https://leetcode.com/problems/group-anagrams/) — 字母异位词分组
-    - [128. Longest Consecutive Sequence](https://leetcode.com/problems/longest-consecutive-sequence/) — 最长连续序列
-    - [146. LRU Cache](https://leetcode.com/problems/lru-cache/) — LRU 缓存（哈希表 + 双向链表）
-    - [387. First Unique Character in a String](https://leetcode.com/problems/first-unique-character-in-a-string/) — 字符串中的第一个唯一字符
+    - [49. Group Anagrams](https://leetcode.cn/problems/group-anagrams/) — 字母异位词分组
+    - [128. Longest Consecutive Sequence](https://leetcode.cn/problems/longest-consecutive-sequence/) — 最长连续序列
+    - [146. LRU Cache](https://leetcode.cn/problems/lru-cache/) — LRU 缓存（哈希表 + 双向链表）
+    - [387. First Unique Character in a String](https://leetcode.cn/problems/first-unique-character-in-a-string/) — 字符串中的第一个唯一字符
 
 === "高级题"
 
-    - [149. Max Points on a Line](https://leetcode.com/problems/max-points-on-a-line/) — 直线上最多的点数
-    - [380. Insert Delete GetRandom O(1)](https://leetcode.com/problems/insert-delete-getrandom-o1/) — 常数时间插入、删除和获取随机元素
-    - [460. LFU Cache](https://leetcode.com/problems/lfu-cache/) — LFU 缓存
+    - [149. Max Points on a Line](https://leetcode.cn/problems/max-points-on-a-line/) — 直线上最多的点数
+    - [380. Insert Delete GetRandom O(1)](https://leetcode.cn/problems/insert-delete-getrandom-o1/) — 常数时间插入、删除和获取随机元素
+    - [460. LFU Cache](https://leetcode.cn/problems/lfu-cache/) — LFU 缓存
 
 ## 总结
 
