@@ -2,6 +2,22 @@ package lru_cache
 
 import "container/list"
 
+// 解题思路：
+// 可以把 LRU 想象为一摞书，每次抽出来（阅读或做笔记）和新加入的书都在最顶上，超过最大数量时，把底部的书淘汰
+
+// 哈希表 (O(1) 查找)              双向链表 (O(1) 移动/删除)
+// ┌─────────────────┐
+// │ cache map       │             head (虚拟节点)
+// │                 │               ↓
+// │ key=1 → *Node1 ─┼─────────→  [Node1: k=1, v=10]
+// │                 │               ↕ (prev/next指针)
+// │ key=3 → *Node3 ─┼─────────→  [Node3: k=3, v=30]
+// │                 │               ↕
+// │ key=2 → *Node2 ─┼─────────→  [Node2: k=2, v=20]
+// │                 │               ↓
+// └─────────────────┘             tail (虚拟节点)
+// 以上为图示，节点在哈希表中是随机存放的，通过指针连接为双向链表
+
 // 解法一: 使用标准库 container/list
 // Time: O(1) for both Get and Put, Space: O(capacity)
 type entry struct {
@@ -72,8 +88,8 @@ func Constructor(capacity int) LRUCache {
 	lru := LRUCache{
 		capacity: capacity,
 		cache:    make(map[int]*Node),
-		head:     &Node{}, // 虚拟头节点
-		tail:     &Node{}, // 虚拟尾节点
+		head:     &Node{},
+		tail:     &Node{},
 	}
 	lru.head.next = lru.tail
 	lru.tail.prev = lru.head
