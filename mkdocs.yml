@@ -152,7 +152,7 @@ extra:
 
 # 导航结构
 nav:
-  - 首页: README.md
+  - 首页: index.md
   - 数据结构:
       - 数据结构概览: data_structures/README.md
       - 数组: data_structures/array/README.md
