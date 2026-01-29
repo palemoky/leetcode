@@ -32,7 +32,6 @@ jobs:
         run: |
           rm -rf docs
           cp -r core docs
-          mv docs/README.md docs/index.md
 
       - name: Copy assets from .github/docs-assets
         run: |
