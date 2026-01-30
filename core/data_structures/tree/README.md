@@ -83,7 +83,7 @@
 | **中序遍历（DFS）**     | 左-根-右 | 纵向一条线从左向右扫描。最难，最常考，**专用于 BST** | 递归/栈 | BST 有序输出、验证 BST         |
 | **后序遍历（DFS）**     | 左-右-根 | **自底向上** 从叶节点到根节点返回信息                | 递归/栈 | 删除树、计算高度、最近公共祖先 |
 
-![Postorder Traversal](postorder_traversal_figure.webp){ align=right width=20% }
+![Postorder Traversal](postorder_traversal_figure.webp){ align=right width=25% }
 相比前序和中序，**后序遍历的迭代实现最复杂**。它是在中序遍历的基础上增加了一个核心判断：**只有当右子树为空或已被访问过时，才访问根节点**。
 
 核心判定公式：`curr.Right == nil || curr.Right == prev`

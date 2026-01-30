@@ -131,3 +131,33 @@ figcaption {
   opacity: 1;
   visibility: visible;
 }
+
+/* === Code Block Enhancements === */
+/* Automatically show language labels in the top-right corner of code blocks */
+.highlight {
+  position: relative;
+}
+
+/* Match class names starting with language- and extract language */
+.highlight code > span[class^="language-"]::before {
+  content: "CODE"; /* Default display */
+  position: absolute;
+  right: 10px;
+  top: 5px;
+  font-size: 0.6rem;
+  color: var(--md-code-fg-color);
+  opacity: 0.6;
+  text-transform: uppercase;
+  background: var(--md-code-bg-color);
+  padding: 2px 4px;
+  border-radius: 2px;
+}
+
+/* Map specific languages to precise labels */
+.highlight code > .language-go::before { content: "Go"; }
+.highlight code > .language-python::before { content: "Python"; }
+.highlight code > .language-java::before { content: "Java"; }
+.highlight code > .language-rust::before { content: "Rust"; }
+.highlight code > .language-cpp::before { content: "C++"; }
+.highlight code > .language-javascript::before { content: "JavaScript"; }
+.highlight code > .language-typescript::before { content: "TypeScript"; }
