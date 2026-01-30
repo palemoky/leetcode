@@ -146,7 +146,7 @@ node.Next = newNode
 2. **基本情况 (Base Case)**：`head == nil` 或 `head.Next == nil`
 3. **递归步骤**：假设子问题已解决，处理当前节点
 
-**示例：反转链表**
+**示例：反转链表（递归法）**
 
 ```go
 func reverseList(head *ListNode) *ListNode {
@@ -165,6 +165,31 @@ func reverseList(head *ListNode) *ListNode {
     return newHead
 }
 ```
+
+#### 链表反转的两种方法
+
+**迭代法** - 适合全部反转（如 [206. 反转链表](https://leetcode.cn/problems/reverse-linked-list/)）
+
+- 像翻书，逐个改变指针方向：`1→2→3` ⇒ `1←2 3` ⇒ `1←2←3`
+
+**头插法** - 适合局部反转（如 [92. 反转链表 II](https://leetcode.cn/problems/reverse-linked-list-ii/)）
+
+- 像抽扑克牌，依次插到头部：`prev→1→2→3→4` ⇒ `prev→2→1→3→4` ⇒ `prev→3→2→1→4`
+
+<div align="center">
+    <table>
+    <tr>
+        <td align="center">
+        <img src="reverse_by_iteration.webp" alt="迭代法反转链表" /><br />
+        <sub>迭代法反转链表</sub>
+        </td>
+        <td align="center">
+        <img src="reverse_by_head_insert.webp" alt="头插法反转链表" /><br />
+        <sub>头插法反转链表</sub>
+        </td>
+    </tr>
+    </table>
+</div>
 
 ### 3. 双指针
 
@@ -299,31 +324,6 @@ func mergeTwoLists(l1, l2 *ListNode) *ListNode {
     - [25. K 个一组翻转链表](https://leetcode.cn/problems/reverse-nodes-in-k-group/) — 分组反转
     - [138. 复制带随机指针的链表](https://leetcode.cn/problems/copy-list-with-random-pointer/) — 哈希表/原地修改
     - [142. 环形链表 II](https://leetcode.cn/problems/linked-list-cycle-ii/) — 快慢指针数学性质
-
-=== Tip "链表反转的两种方法"
-
-    **迭代法** - 适合全部反转（如 [206. 反转链表](https://leetcode.cn/problems/reverse-linked-list/)）
-
-    - 像翻书，逐个改变指针方向：`1→2→3` ⇒ `1←2 3` ⇒ `1←2←3`
-
-    **头插法** - 适合局部反转（如 [92. 反转链表 II](https://leetcode.cn/problems/reverse-linked-list-ii/)）
-
-    - 像抽扑克牌，依次插到头部：`prev→1→2→3→4` ⇒ `prev→2→1→3→4` ⇒ `prev→3→2→1→4`
-
-    <div align="center">
-      <table>
-        <tr>
-          <td align="center">
-            <img src="reverse_by_iteration.webp" alt="迭代法反转链表" /><br />
-            <sub>迭代法反转链表</sub>
-          </td>
-          <td align="center">
-            <img src="reverse_by_head_insert.webp" alt="头插法反转链表" /><br />
-            <sub>头插法反转链表</sub>
-          </td>
-        </tr>
-      </table>
-    </div>
 
 ## 总结
 
