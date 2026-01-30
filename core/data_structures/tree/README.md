@@ -83,19 +83,19 @@
 | **中序遍历（DFS）**     | 左-根-右 | 纵向一条线从左向右扫描。最难，最常考，**专用于 BST** | 递归/栈 | BST 有序输出、验证 BST         |
 | **后序遍历（DFS）**     | 左-右-根 | **自底向上** 从叶节点到根节点返回信息                | 递归/栈 | 删除树、计算高度、最近公共祖先 |
 
-![Postorder Traversal](postorder_traversal_figure.webp){ align=right width=30% }
+![Postorder Traversal](postorder_traversal_figure.webp){ align=right width=20% }
 相比前序和中序，**后序遍历的迭代实现最复杂**。它是在中序遍历的基础上增加了一个核心判断：**只有当右子树为空或已被访问过时，才访问根节点**。
 
 核心判定公式：`curr.Right == nil || curr.Right == prev`
 
-- `prev`：记录上一个**刚刚访问过**的节点，防止在回溯过程中反复进入右子树。
+- `prev`：记录上一个 **刚刚访问过** 的节点，防止在回溯过程中反复进入右子树。
 - 在后序遍历中，`prev` 的作用类似于回溯算法中的`used[]`标记位。
 
 以 `[1,2,3,4,5]` 为例，观察节点 `2` 的两次“路过”：
 
 **第一次路过节点 2：准备检查右子树**
 
-```go
+```go title="Go 伪代码"
 // 栈路径：1 -> 2 -> 4 -> (回到) 2
 stack = [1, 2]
 curr = 2
@@ -112,7 +112,7 @@ if curr.Right == nil || curr.Right == prev {
 
 **第二次路过节点 2：子树全部处理完，最终访问**
 
-```go
+```go title="Go 伪代码"
 // 栈路径：1 -> 2 -> (转向) 5 -> (回到) 2
 stack = [1, 2]
 curr = 2
