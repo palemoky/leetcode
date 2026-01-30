@@ -18,26 +18,29 @@ func preorderRecursive(root *utils.TreeNode) []int {
 	return nums
 }
 
-// 解法二（推荐）：借助栈 LIFO 的性质实现前序遍历
-// Time: O(n), Space: O(n)
+// 解法二（⭐推荐）：迭代 + 栈
+// Time: O(n), Space: O(h) - h为树的高度
 func preorderIterativeStack(root *utils.TreeNode) []int {
+	nums := []int{}
 	if root == nil {
-		return []int{}
+		return nums
 	}
 
 	stack := []*utils.TreeNode{root}
-	nums := []int{}
 	for len(stack) > 0 {
-		root := stack[len(stack)-1]
-		stack = stack[:len(stack)-1] // Pop
+		// 弹出栈顶节点
+		node := stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
 
-		nums = append(nums, root.Val) // 收集结果
+		// 访问节点
+		nums = append(nums, node.Val)
 
-		if root.Right != nil {
-			stack = append(stack, root.Right) // 先压右
+		// 先压右子节点，再压左子节点（栈是LIFO，所以先压右）
+		if node.Right != nil {
+			stack = append(stack, node.Right)
 		}
-		if root.Left != nil {
-			stack = append(stack, root.Left) // 再压左
+		if node.Left != nil {
+			stack = append(stack, node.Left)
 		}
 	}
 

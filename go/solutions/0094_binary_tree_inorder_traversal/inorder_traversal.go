@@ -14,26 +14,29 @@ func inorderRecursive(root *utils.TreeNode) []int {
 	return nums
 }
 
-// Time: O(n), Space: O(n)
+// 中序遍历：左 → 根 → 右
+// Time: O(n), Space: O(h) - h为树的高度
 func inorderIterative(root *utils.TreeNode) []int {
 	nums := []int{}
 	stack := []*utils.TreeNode{}
-	for root != nil || len(stack) > 0 {
-		// 一路向左，不停把左子树压入栈中
-		for root != nil {
-			stack = append(stack, root) // push to stack
-			root = root.Left
+
+	curr := root
+	for curr != nil || len(stack) > 0 {
+		// 把节点一路向左压入栈，一直到树底
+		for curr != nil {
+			stack = append(stack, curr)
+			curr = curr.Left
 		}
 
-		// 左边到头了，从栈中取出压入的左子树，逆序取值
-		root = stack[len(stack)-1]
-		stack = stack[:len(stack)-1] // pop from stack
+		// 开始倒序处理栈中的节点（即从下往上遍历树）
+		curr = stack[len(stack)-1]
+		stack = stack[:len(stack)-1]
 
-		// 收集结果
-		nums = append(nums, root.Val)
+		// 访问节点
+		nums = append(nums, curr.Val)
 
 		// 转向右子树，开始新的“一路向左”
-		root = root.Right
+		curr = curr.Right
 	}
 
 	return nums
