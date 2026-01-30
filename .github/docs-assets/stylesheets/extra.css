@@ -138,26 +138,35 @@ figcaption {
   position: relative;
 }
 
-/* Match class names starting with language- and extract language */
-.highlight code > span[class^="language-"]::before {
-  content: "CODE"; /* Default display */
+/* Show language label for code blocks without explicit title */
+.highlight:not(:has(.code-block-caption)) code[class*="language-"]::after {
+  content: attr(data-lang);
   position: absolute;
-  right: 10px;
-  top: 5px;
-  font-size: 0.6rem;
+  right: 0.5em;
+  top: 0.5em;
+  font-size: 0.65rem;
+  font-weight: 600;
   color: var(--md-code-fg-color);
-  opacity: 0.6;
-  text-transform: uppercase;
-  background: var(--md-code-bg-color);
-  padding: 2px 4px;
-  border-radius: 2px;
+  opacity: 0.4;
+  text-transform: capitalize;
+  pointer-events: none;
+  z-index: 1;
 }
 
-/* Map specific languages to precise labels */
-.highlight code > .language-go::before { content: "Go"; }
-.highlight code > .language-python::before { content: "Python"; }
-.highlight code > .language-java::before { content: "Java"; }
-.highlight code > .language-rust::before { content: "Rust"; }
-.highlight code > .language-cpp::before { content: "C++"; }
-.highlight code > .language-javascript::before { content: "JavaScript"; }
-.highlight code > .language-typescript::before { content: "TypeScript"; }
+/* Language-specific labels (fallback if data-lang is not available) */
+.highlight:not(:has(.code-block-caption)) code.language-go::after { content: "Go"; }
+.highlight:not(:has(.code-block-caption)) code.language-python::after { content: "Python"; }
+.highlight:not(:has(.code-block-caption)) code.language-java::after { content: "Java"; }
+.highlight:not(:has(.code-block-caption)) code.language-rust::after { content: "Rust"; }
+.highlight:not(:has(.code-block-caption)) code.language-cpp::after { content: "C++"; }
+.highlight:not(:has(.code-block-caption)) code.language-c::after { content: "C"; }
+.highlight:not(:has(.code-block-caption)) code.language-javascript::after { content: "JavaScript"; }
+.highlight:not(:has(.code-block-caption)) code.language-typescript::after { content: "TypeScript"; }
+.highlight:not(:has(.code-block-caption)) code.language-bash::after { content: "Bash"; }
+.highlight:not(:has(.code-block-caption)) code.language-shell::after { content: "Shell"; }
+.highlight:not(:has(.code-block-caption)) code.language-sql::after { content: "SQL"; }
+.highlight:not(:has(.code-block-caption)) code.language-yaml::after { content: "YAML"; }
+.highlight:not(:has(.code-block-caption)) code.language-json::after { content: "JSON"; }
+.highlight:not(:has(.code-block-caption)) code.language-markdown::after { content: "Markdown"; }
+.highlight:not(:has(.code-block-caption)) code.language-html::after { content: "HTML"; }
+.highlight:not(:has(.code-block-caption)) code.language-css::after { content: "CSS"; }
