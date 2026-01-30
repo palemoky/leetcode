@@ -2,38 +2,36 @@ package binary_tree_level_order_traversal
 
 import "leetcode/go/solutions/utils"
 
+// 层序遍历顺序就像Z字形，通过两个嵌套循环，外层控制深度，内层控制宽度
 // Time: O(n), Space: O(n)
 func levelOrder(root *utils.TreeNode) [][]int {
-	nums := [][]int{}
+	result := [][]int{}
 	if root == nil {
-		return nums
+		return result
 	}
 
-	queue := []*utils.TreeNode{root} // 将整棵树放入队列
-	// 遍历树的深度
-	for len(queue) > 0 { // 由于最后不断地弹出已遍历元素，此处必须是 len(queue)
-		levelSize := len(queue)
-		row := []int{} // 收集每层的结果
-		// 当前行元素的最大长度就等于树的深度，依次读取当前深度的节点
-		for i := range levelSize {
-			// 左右节点可能为空，因此非空时放入下一层
-			if queue[i].Left != nil {
-				queue = append(queue, queue[i].Left) // enqueue
-			}
+	queue := []*utils.TreeNode{root} // 初始化队列，放入根节点
+	for len(queue) > 0 {             // 遍历树的深度
+		level := make([]int, 0, len(queue))
+		for range len(queue) { // 遍历当前层的宽度
+			// 从队列头部弹出节点
+			node := queue[0]
+			queue = queue[1:]
 
-			if queue[i].Right != nil {
-				queue = append(queue, queue[i].Right) // enqueue
-			}
+			// 收集当前层的值
+			level = append(level, node.Val)
 
-			// 读取当前层的值
-			row = append(row, queue[i].Val)
+			// 将子节点加入队列
+			if node.Left != nil {
+				queue = append(queue, node.Left)
+			}
+			if node.Right != nil {
+				queue = append(queue, node.Right)
+			}
 		}
 
-		// 裁切掉已扫描过的节点
-		queue = queue[levelSize:] // dequeue
-		// 将当前深度的节点放入结果集中
-		nums = append(nums, row)
+		result = append(result, level)
 	}
 
-	return nums
+	return result
 }
