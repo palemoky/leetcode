@@ -70,8 +70,8 @@ func TestReverseBetween(t *testing.T) {
 	}
 
 	funcsToTest := map[string]func(*utils.ListNode, int, int) *utils.ListNode{
-		"reverseBetweenByThreeSteps": reverseBetweenByThreeSteps,
-		"reverseBetweenByHeadInsert": reverseBetweenByHeadInsert,
+		"reverseBetweenByHeadInsert (头插法)": reverseBetweenByHeadInsert,
+		"reverseBetweenByIteration (迭代法)":  reverseBetweenByIteration,
 	}
 
 	for fnName, fn := range funcsToTest {
