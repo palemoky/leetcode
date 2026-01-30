@@ -134,39 +134,36 @@ figcaption {
 
 /* === Code Block Enhancements === */
 /* Automatically show language labels in the top-right corner of code blocks */
-.highlight {
-  position: relative;
-}
+/* Note: In Material for MkDocs, the language class is on the container div, not the code element */
+/* e.g., <div class="language-go highlight"> */
 
-/* Show language label for code blocks without explicit title */
-.highlight:not(:has(.code-block-caption)) code[class*="language-"]::after {
-  content: attr(data-lang);
+/* Only show language label when there's no explicit title (code-block-caption) */
+.highlight[class*="language-"]:not(:has(.code-block-caption))::before {
   position: absolute;
-  right: 0.5em;
+  right: 2.5em; /* Offset to avoid overlap with copy button */
   top: 0.5em;
   font-size: 0.65rem;
   font-weight: 600;
   color: var(--md-code-fg-color);
   opacity: 0.4;
-  text-transform: capitalize;
   pointer-events: none;
   z-index: 1;
 }
 
-/* Language-specific labels (fallback if data-lang is not available) */
-.highlight:not(:has(.code-block-caption)) code.language-go::after { content: "Go"; }
-.highlight:not(:has(.code-block-caption)) code.language-python::after { content: "Python"; }
-.highlight:not(:has(.code-block-caption)) code.language-java::after { content: "Java"; }
-.highlight:not(:has(.code-block-caption)) code.language-rust::after { content: "Rust"; }
-.highlight:not(:has(.code-block-caption)) code.language-cpp::after { content: "C++"; }
-.highlight:not(:has(.code-block-caption)) code.language-c::after { content: "C"; }
-.highlight:not(:has(.code-block-caption)) code.language-javascript::after { content: "JavaScript"; }
-.highlight:not(:has(.code-block-caption)) code.language-typescript::after { content: "TypeScript"; }
-.highlight:not(:has(.code-block-caption)) code.language-bash::after { content: "Bash"; }
-.highlight:not(:has(.code-block-caption)) code.language-shell::after { content: "Shell"; }
-.highlight:not(:has(.code-block-caption)) code.language-sql::after { content: "SQL"; }
-.highlight:not(:has(.code-block-caption)) code.language-yaml::after { content: "YAML"; }
-.highlight:not(:has(.code-block-caption)) code.language-json::after { content: "JSON"; }
-.highlight:not(:has(.code-block-caption)) code.language-markdown::after { content: "Markdown"; }
-.highlight:not(:has(.code-block-caption)) code.language-html::after { content: "HTML"; }
-.highlight:not(:has(.code-block-caption)) code.language-css::after { content: "CSS"; }
+/* Language-specific labels */
+.language-go.highlight:not(:has(.code-block-caption))::before { content: "Go"; }
+.language-python.highlight:not(:has(.code-block-caption))::before { content: "Python"; }
+.language-java.highlight:not(:has(.code-block-caption))::before { content: "Java"; }
+.language-rust.highlight:not(:has(.code-block-caption))::before { content: "Rust"; }
+.language-cpp.highlight:not(:has(.code-block-caption))::before { content: "C++"; }
+.language-c.highlight:not(:has(.code-block-caption))::before { content: "C"; }
+.language-javascript.highlight:not(:has(.code-block-caption))::before { content: "JavaScript"; }
+.language-typescript.highlight:not(:has(.code-block-caption))::before { content: "TypeScript"; }
+.language-bash.highlight:not(:has(.code-block-caption))::before { content: "Bash"; }
+.language-shell.highlight:not(:has(.code-block-caption))::before { content: "Shell"; }
+.language-sql.highlight:not(:has(.code-block-caption))::before { content: "SQL"; }
+.language-yaml.highlight:not(:has(.code-block-caption))::before { content: "YAML"; }
+.language-json.highlight:not(:has(.code-block-caption))::before { content: "JSON"; }
+.language-markdown.highlight:not(:has(.code-block-caption))::before { content: "Markdown"; }
+.language-html.highlight:not(:has(.code-block-caption))::before { content: "HTML"; }
+.language-css.highlight:not(:has(.code-block-caption))::before { content: "CSS"; }
