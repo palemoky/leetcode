@@ -85,7 +85,7 @@
 
 元素按照优先级出队，而不是进入顺序。通常使用 **堆 (Heap)** 实现。
 
-- **详见**：[堆 (Heap)](../tree/README.md### 堆（Heap）)
+- **详见**：[堆 (Heap)](../tree/README.md#堆heap)
 
 ### 3. 单调队列 (Monotonic Queue)
 
