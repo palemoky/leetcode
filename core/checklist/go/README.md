@@ -358,11 +358,14 @@
 
 === "对称树"
 
+    <div class="grid" markdown>
+    <div markdown>
     对称树的定义：
-
     - 左子树的左节点 == 右子树的右节点
-
     - 左子树的右节点 == 右子树的左节点
+    </div>
+    <div markdown>![对称树示意图](symmetric_tree.webp)</div>
+    </div>
 
     镜像递归
     ```go
