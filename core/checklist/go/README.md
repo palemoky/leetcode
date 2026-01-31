@@ -366,7 +366,7 @@
 
     - 左子树的右节点 == 右子树的左节点
     </div>
-    <div markdown>![对称树示意图](symmetric_tree.webp)</div>
+    <div><img src="symmetric_tree.webp" alt="对称树示意图" style="width: 30%;"></div>
     </div>
 
     镜像递归
