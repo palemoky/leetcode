@@ -356,6 +356,25 @@
 
 当节点需要依赖左右子树的信息时，使用前序遍历，这样不仅代码简单，而且高效
 
+=== "翻转二叉树"
+
+    ```go
+    func invertTree(root *TreeNode) *TreeNode {
+      if root == nil {
+          return nil
+      }
+
+      // 交换当前节点的左右子树
+      root.Left, root.Right = root.Right, root.Left
+
+      // 递归翻转子树
+      invertTree(root.Left)
+      invertTree(root.Right)
+
+      return root
+    }
+    ```
+
 === "对称树"
 
     <div class="grid" markdown>
