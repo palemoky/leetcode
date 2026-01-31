@@ -329,6 +329,8 @@
 
 ### 后序遍历题目
 
+当节点需要依赖左右子树的信息时，使用后序遍历
+
 === "最大深度"
 
     后序遍历的递归解法：**先钻到最底下，在返回时再做处理**
@@ -346,7 +348,56 @@
     }
     ```
 
+=== "树的直径"
+
+=== "平衡树"
+
 ### 前序遍历题目
+
+当节点需要依赖左右子树的信息时，使用前序遍历，这样不仅代码简单，而且高效
+
+=== "对称树"
+
+    对称树的定义：
+
+    - 左子树的左节点 == 右子树的右节点
+
+    - 左子树的右节点 == 右子树的左节点
+
+    镜像递归
+    ```go
+    func isSymmetricMirrorRecursive(root *utils.TreeNode) bool {
+    	if root == nil {
+    		return true
+    	}
+    	return isMirror(root.Left, root.Right)
+    }
+
+    func isMirror(left, right *utils.TreeNode) bool {
+    	// 递归终止条件
+      // 检查节点存在的对称性
+    	if left == nil && right == nil {
+    		return true
+    	}
+    	if left == nil || right == nil {
+    		return false
+    	}
+
+      // 递归处理逻辑
+    	// 检查节点值的对称性
+    	if left.Val != right.Val {
+    		return false
+    	}
+
+    	// 递归处理：交叉比较子树（镜像对称）
+    	return isMirror(left.Left, right.Right) &&
+    		isMirror(left.Right, right.Left)
+    }
+    ```
+
+=== "路径和"
+
+=== "复制树"
 
 ### 层序遍历题目
 
@@ -359,6 +410,15 @@
 ## 队列
 
 ## 二分查找
+
+## 递归
+
+编写递归步骤：
+
+1. 明确输入输出
+2. 明确递归终止条件（什么时候触底反弹？）
+3. 明确递归处理逻辑（每层要做什么事？）
+4. 明确递归过程（下楼做还是返回做？）
 
 ## 回溯
 
