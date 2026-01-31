@@ -16,41 +16,18 @@ func TestIsSymmetric(t *testing.T) {
 		input []any
 		want  bool
 	}{
-		{
-			name:  "Empty tree",
-			input: []any{},
-			want:  true,
-		},
-		{
-			name:  "Single node",
-			input: []any{1},
-			want:  true,
-		},
-		{
-			name:  "Symmetric tree",
-			input: []any{1, 2, 2, 3, 4, 4, 3},
-			want:  true,
-		},
-		{
-			name:  "Asymmetric tree",
-			input: []any{1, 2, 2, nil, 3, nil, 3},
-			want:  false,
-		},
-		{
-			name:  "Left only",
-			input: []any{1, 2, nil},
-			want:  false,
-		},
-		{
-			name:  "Right only",
-			input: []any{1, nil, 2},
-			want:  false,
-		},
+		{"Empty tree", []any{}, true},
+		{"Single node", []any{1}, true},
+		{"Symmetric tree", []any{1, 2, 2, 3, 4, 4, 3}, true},
+		{"Asymmetric tree", []any{1, 2, 2, nil, 3, nil, 3}, false},
+		{"Left only", []any{1, 2, nil}, false},
+		{"Right only", []any{1, nil, 2}, false},
 	}
 
 	funcsToTest := map[string]func(root *utils.TreeNode) bool{
-		"LevelOrder": isSymmetricLevelOrder,
-		"TwoQueues":  isSymmetricTwoQueues,
+		"MirrorRecursive": isSymmetricMirrorRecursive,
+		"LevelOrder":      isSymmetricLevelOrder,
+		"TwoQueues":       isSymmetricTwoQueues,
 	}
 
 	for fnName, fn := range funcsToTest {

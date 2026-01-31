@@ -6,7 +6,39 @@ import (
 	"leetcode/go/solutions/utils"
 )
 
-// 解法一思路：层序遍历，收集每层的节点（包括nil节点）后判断是否为回文
+// 推荐解法：镜像递归
+// 核心思路：对称树 = 左子树的左孩子 vs 右子树的右孩子 && 左子树的右孩子 vs 右子树的左孩子
+// 优点：代码简洁，逻辑清晰，面试首选
+// Time: O(n), Space: O(h) h 为树高（递归栈深度）
+func isSymmetricMirrorRecursive(root *utils.TreeNode) bool {
+	if root == nil {
+		return true
+	}
+	return isMirror(root.Left, root.Right)
+}
+
+func isMirror(left, right *utils.TreeNode) bool {
+	// 递归终止条件
+	// 检查节点存在的对称性
+	if left == nil && right == nil {
+		return true
+	}
+	if left == nil || right == nil {
+		return false
+	}
+
+	// 递归处理逻辑
+	// 检查节点值的对称性
+	if left.Val != right.Val {
+		return false
+	}
+
+	// 递归处理：交叉比较子树（镜像对称）
+	return isMirror(left.Left, right.Right) && isMirror(left.Right, right.Left)
+}
+
+// 解法一：层序遍历，收集每层的节点（包括nil节点）后判断是否为回文
+// 缺点：需要额外空间存储每一层的节点值
 // Time: O(n), Space(n)
 func isSymmetricLevelOrder(root *utils.TreeNode) bool {
 	if root == nil {
@@ -42,7 +74,7 @@ func isSymmetricLevelOrder(root *utils.TreeNode) bool {
 	return true
 }
 
-// 解法二思路：直接将左右子树成对放入队列比较
+// 解法二：直接将左右子树成对放入队列比较（迭代版镜像比较）
 // 优点：无需存储整层所有节点的值，只存储待比较的节点对，因此效率更高
 // Time: O(n), Space(n)
 func isSymmetricTwoQueues(root *utils.TreeNode) bool {
