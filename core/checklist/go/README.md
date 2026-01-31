@@ -336,21 +336,64 @@
     后序遍历的递归解法：**先钻到最底下，在返回时再做处理**
 
     ```go
-    func maxDepthDFS(root *TreeNode) int {
+    func maxDepth(root *TreeNode) int {
     	if root == nil {
     		return 0
     	}
 
-    	left := maxDepthDFS(root.Left)
-    	right := maxDepthDFS(root.Right)
+    	left := maxDepth(root.Left)
+    	right := maxDepth(root.Right)
 
     	return max(left, right) + 1
     }
     ```
 
-=== "树的直径"
-
 === "平衡树"
+
+    平衡树就是左右子树高度差不超过 1，所以要基于后序遍历的树深度来求解
+
+    ```go
+    func abs(x int) int {
+      if x < 0 {
+    		return -x
+    	}
+    	return x
+    }
+
+    func isBalanced(root *utils.TreeNode) bool {
+    	return checkHeight(root) != -1
+    }
+
+    // 返回树的高度，如果不平衡则返回 -1
+    // 后序遍历：先递归左右子树，返回时处理当前节点
+    func checkHeight(root *utils.TreeNode) int {
+    	if root == nil {
+    		return 0
+    	}
+
+    	// 后序遍历：先检查左子树
+    	leftHeight := checkHeight(root.Left)
+    	if leftHeight == -1 {
+    		return -1 // 左子树不平衡，提前终止
+    	}
+
+    	// 后序遍历：再检查右子树
+    	rightHeight := checkHeight(root.Right)
+    	if rightHeight == -1 {
+    		return -1 // 右子树不平衡，提前终止
+    	}
+
+    	// 返回时处理：检查当前节点是否平衡
+    	if abs(leftHeight-rightHeight) > 1 {
+    		return -1 // 当前节点不平衡
+    	}
+
+    	// 返回当前节点的高度（自底向上汇总信息）
+    	return max(leftHeight, rightHeight) + 1
+    }
+    ```
+
+=== "树的直径"
 
 ### 前序遍历题目
 
