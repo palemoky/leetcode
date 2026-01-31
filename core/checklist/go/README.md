@@ -427,6 +427,30 @@
 
 ## 数组
 
+=== "无重复字符的最长子串"
+
+    ```go
+    func lengthOfLongestSubstring(s string) int {
+        // 哈希表记录出现的元素及索引
+        // 哈希表出现的元素，left 移动到哈希表中索引 +1 位置，否则右指针右移扩大窗口
+
+        seen := map[byte]int{}
+        left, right, maxWin := 0, 0, 0
+        for right < len(s) {
+            if prevIndex, ok := seen[s[right]]; ok {
+                left = prevIndex + 1
+            }
+
+            seen[s[right]] = right
+            right++
+
+            maxWin = max(maxWin, right-left)
+        }
+
+        return maxWin
+    }
+    ```
+
 ## 字符串
 
 ## 栈
