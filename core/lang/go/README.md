@@ -2,7 +2,7 @@
 
 本篇整理了 Go 语言在 LeetCode 刷题中的 **“生存指南”**，涵盖了从数据结构实现到语言陷阱的全方位技巧。
 
-## 1. 数据结构实现指南
+## 数据结构实现指南
 
 Go 的标准库以“通用”著称，不像 C++ STL 或 Python `collections` 那样开箱即用，因此熟练掌握以下模板是刷题的基础。
 
@@ -72,7 +72,7 @@ delete(set, 1)
 
 ---
 
-## 2. 避坑指南 (The Trap)
+## 避坑指南 (The Trap)
 
 ### Map 的随机性
 
@@ -119,7 +119,7 @@ for i := range dp {
 
 ---
 
-## 3. LeetCode 实用技巧
+## LeetCode 实用技巧
 
 ### 字符串高效处理
 
@@ -212,7 +212,7 @@ idx := rand.Intn(len(nums))
 
 ---
 
-## 4. 核心语法与底层陷阱
+## 核心语法与底层陷阱
 
 ### 变量声明对比
 
@@ -271,7 +271,7 @@ if v := reflect.ValueOf(i); v.IsNil() { } // ✅ 正确判断
 
 ---
 
-## 5. 类型转换
+## 类型转换
 
 ### 基础转换
 
@@ -301,3 +301,113 @@ func BytesToString(b []byte) string {
     return unsafe.String(unsafe.SliceData(b), len(b))
 }
 ```
+
+## 指针
+
+### 参数传递机制
+
+**值传递（Pass by Value）**：
+
+- **C、Java、Go**：所有参数都是值传递，包括指针（传递的是指针地址的副本）
+- 特点：修改参数不影响原变量，除非传递指针并通过指针修改
+
+**对象引用传递（Pass by Object-Reference）**：
+
+- **Python、JavaScript、Ruby**：传递的是对象引用的副本
+- 特点：可以修改对象内容，但重新赋值不影响原变量
+- 注意：这**不是真正的引用传递**，而是"共享传递"（Call by Sharing）
+
+**引用传递（Pass by Reference）**：
+
+- **C++、C#、PHP、Swift**：提供特殊语法，参数成为原变量的"别名"
+- 语法：C++/PHP 用 `&`，Swift 用 `inout`，C# 用 `ref`/`out`
+- 特点：修改参数直接影响原变量，包括重新赋值
+
+---
+
+### Go 的指针特性
+
+虽然所有变量都会指向内存地址，但只有语言允许显式**取地址**（`&`）、**解引用**（`*`）、**操作地址本身**时，才被认为支持指针操作。
+
+Go 和 C 一样，支持**多级指针**（如 `**T`、`***T`）。
+
+![Pointer Memory Layout](pointer_memory_layout.webp)
+
+---
+
+### 多级指针示例
+
+以验证二叉搜索树为例，需要在递归中修改外部变量 `prev`：
+
+```go
+func isValidBST(root *TreeNode) bool {
+	var prev *TreeNode  // 一级指针
+	return inorder(root, &prev)  // 传递指针的地址（二级指针）
+}
+
+func inorder(node *TreeNode, prev **TreeNode) bool {  // 接收二级指针
+	if node == nil {
+		return true
+	}
+
+	if !inorder(node.Left, prev) {
+		return false
+	}
+
+	// 通过二级指针修改外部变量
+	if *prev != nil && node.Val <= (*prev).Val {
+		return false
+	}
+	*prev = node  // 解引用赋值
+
+	return inorder(node.Right, prev)
+}
+```
+
+**问题**：
+
+- 二级指针 `**TreeNode` 语法复杂
+- 需要频繁解引用 `*prev`、`(*prev).Val`
+- 容易出错，可读性差
+
+---
+
+### 用闭包避免多级指针
+
+Go 社区不鼓励使用多级指针，推荐用 **闭包** 来捕获外部变量：
+
+```go
+func isValidBST(root *TreeNode) bool {
+    var prev *TreeNode  // 闭包自动捕获这个变量
+
+    var inorder func(*TreeNode) bool
+    inorder = func(node *TreeNode) bool {
+        if node == nil {
+            return true
+        }
+
+        if !inorder(node.Left) {
+            return false
+        }
+
+        // 直接访问外部变量，无需解引用
+        if prev != nil && node.Val <= prev.Val {
+            return false
+        }
+        prev = node  // 直接赋值
+
+        return inorder(node.Right)
+    }
+
+    return inorder(root)
+}
+```
+
+**优势**：
+
+- 无需二级指针，代码更简洁
+- 无需解引用，可读性更好
+- 符合 Go 社区最佳实践
+
+> **Note**
+> Go、Python、Java、JavaScript 等语言会 **隐式自动捕获** 外部变量，而 PHP、C++ 则需要 **显式声明** 被捕获的变量（如 PHP 的 `use (&$var)`，C++ 的 `[&var]`）。
