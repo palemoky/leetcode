@@ -308,18 +308,18 @@ func BytesToString(b []byte) string {
 
 **值传递（Pass by Value）**：
 
-- **C、Java、Go**：所有参数都是值传递，包括指针（传递的是指针地址的副本）
+- C、Java、Go：所有参数都是值传递，包括指针（传递的是指针地址的副本）
 - 特点：修改参数不影响原变量，除非传递指针并通过指针修改
 
 **对象引用传递（Pass by Object-Reference）**：
 
-- **Python、JavaScript、Ruby**：传递的是对象引用的副本
+- Python、JavaScript、Ruby：传递的是对象引用的副本
 - 特点：可以修改对象内容，但重新赋值不影响原变量
-- 注意：这**不是真正的引用传递**，而是"共享传递"（Call by Sharing）
+- 注意：这 **不是真正的引用传递**，而是"共享传递"（Call by Sharing）
 
 **引用传递（Pass by Reference）**：
 
-- **C++、C#、PHP、Swift**：提供特殊语法，参数成为原变量的"别名"
+- C++、C#、PHP、Swift：提供特殊语法，参数成为原变量的"别名"
 - 语法：C++/PHP 用 `&`，Swift 用 `inout`，C# 用 `ref`/`out`
 - 特点：修改参数直接影响原变量，包括重新赋值
 
@@ -327,9 +327,9 @@ func BytesToString(b []byte) string {
 
 ### Go 的指针特性
 
-虽然所有变量都会指向内存地址，但只有语言允许显式**取地址**（`&`）、**解引用**（`*`）、**操作地址本身**时，才被认为支持指针操作。
+虽然所有变量都会指向内存地址，但只有语言允许显式 **取地址**（`&`）、 **解引用**（`*`）、**操作地址本身** 时，才被认为支持指针操作。
 
-Go 和 C 一样，支持**多级指针**（如 `**T`、`***T`）。
+Go 和 C 一样，支持 **多级指针**（如 `**T`、`***T`）。
 
 ![Pointer Memory Layout](pointer_memory_layout.webp)
 
@@ -409,5 +409,6 @@ func isValidBST(root *TreeNode) bool {
 - 无需解引用，可读性更好
 - 符合 Go 社区最佳实践
 
-> **Note**
-> Go、Python、Java、JavaScript 等语言会 **隐式自动捕获** 外部变量，而 PHP、C++ 则需要 **显式声明** 被捕获的变量（如 PHP 的 `use (&$var)`，C++ 的 `[&var]`）。
+!!! Note
+
+    Go、Python、Java、JavaScript 等语言会 **隐式自动捕获** 外部变量，而 PHP、C++ 则需要 **显式声明** 被捕获的变量（如 PHP 的 `use (&$var)`，C++ 的 `[&var]`）。
