@@ -395,6 +395,38 @@
 
 === "树的直径"
 
+### 中序遍历题目
+
+=== "验证二叉搜索树"
+
+    由于需要捕获外部变量，因此适合使用闭包，并且可以避免二级指针
+
+    ```go
+    func isValidBST(root *TreeNode) bool {
+        var prev *TreeNode  // 递归共享变量，通过闭包捕获
+
+        var inorder func(*TreeNode) bool
+        inorder = func(node *TreeNode) bool {
+            if node == nil {
+                return true
+            }
+
+            if !inorder(node.Left) {
+                return false
+            }
+
+            if prev != nil && node.Val <= prev.Val {  // 使用外部变量
+                return false
+            }
+            prev = node  // 修改外部变量
+
+            return inorder(node.Right)
+        }
+
+        return inorder(root)
+    }
+    ```
+
 ### 前序遍历题目
 
 当节点需要依赖左右子树的信息时，使用前序遍历，这样不仅代码简单，而且高效
@@ -432,6 +464,7 @@
     </div>
 
     镜像递归
+
     ```go
     func isSymmetricMirrorRecursive(root *utils.TreeNode) bool {
     	if root == nil {
