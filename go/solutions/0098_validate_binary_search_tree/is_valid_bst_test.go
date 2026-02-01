@@ -26,8 +26,10 @@ func TestIsValidBST(t *testing.T) {
 	}
 
 	funcsToTest := map[string]func(root *utils.TreeNode) bool{
-		"DFS":         isValidBSTDFS,
-		"SortedArray": isValidBSTSortedArray,
+		"Closure": isValidBSTClosure,
+		"Pointer": isValidBSTPointer,
+		"DFS":     isValidBSTDFS,
+		"Array":   isValidBSTArray,
 	}
 
 	for fnName, fn := range funcsToTest {
