@@ -15,5 +15,6 @@ func hasPathSum(root *utils.TreeNode, targetSum int) bool {
 
 	remainingSum := targetSum - root.Val
 	// 只需要左、右子树其中一个满足条件即可
+	// 短路求值提前终止
 	return hasPathSum(root.Left, remainingSum) || hasPathSum(root.Right, remainingSum)
 }

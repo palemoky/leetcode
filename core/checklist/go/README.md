@@ -505,6 +505,26 @@
 
 === "路径和"
 
+    判断给定的树中是否有和为 targetSum 的路径存在。
+
+    ```go
+    func hasPathSum(root *utils.TreeNode, targetSum int) bool {
+    	if root == nil {
+    		return false
+    	}
+
+    	// 到达叶子节点
+    	if root.Left == nil && root.Right == nil {
+    		return root.Val == targetSum
+    	}
+
+    	remainingSum := targetSum - root.Val
+    	// 只需要左、右子树其中一个满足条件即可
+      // 短路求值提前终止
+    	return hasPathSum(root.Left, remainingSum) || hasPathSum(root.Right, remainingSum)
+    }
+    ```
+
 === "复制树"
 
 ### 层序遍历题目
