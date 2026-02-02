@@ -111,6 +111,5 @@ func isValid(node *utils.TreeNode, lower, upper int64) bool {
 	// 递归检查左右子树，并更新边界
 	// 对于左子树，上界是当前节点的值
 	// 对于右子树，下界是当前节点的值
-	return isValid(node.Left, lower, val) &&
-		isValid(node.Right, val, upper)
+	return isValid(node.Left, lower, val) && isValid(node.Right, val, upper)
 }

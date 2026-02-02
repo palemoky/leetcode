@@ -403,23 +403,31 @@
 
     ```go
     func isValidBST(root *TreeNode) bool {
-        var prev *TreeNode  // 递归共享变量，通过闭包捕获
+        // prev 记录中序遍历中上一个访问的节点
+        // 放在闭包外部，所有递归调用共享同一个变量
+        var prev *TreeNode
 
+        // 定义闭包函数，自动捕获外部的 prev 变量
         var inorder func(*TreeNode) bool
         inorder = func(node *TreeNode) bool {
+            // 递归终止条件：空节点视为有效
             if node == nil {
                 return true
             }
 
+            // 中序遍历：左 -> 根 -> 右
+            // 1. 先递归检查左子树
             if !inorder(node.Left) {
-                return false
+                return false // 左子树不合法，提前终止
             }
 
-            if prev != nil && node.Val <= prev.Val {  // 使用外部变量
-                return false
+            // 2. 检查当前节点：BST 的中序遍历必须严格递增
+            if prev != nil && node.Val <= prev.Val {
+                return false // 不满足严格递增，不是 BST
             }
-            prev = node  // 修改外部变量
+            prev = node // 更新 prev 为当前节点，供下一个节点比较
 
+            // 3. 递归检查右子树
             return inorder(node.Right)
         }
 
