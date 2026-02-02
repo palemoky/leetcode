@@ -20,19 +20,14 @@ func diameterOfBinaryTree(root *utils.TreeNode) int {
 
 		// 以当前 node 为"拐点"，计算穿过它的直径
 		// 直径 = 左子树深度 + 右子树深度
-		currentDiameter := leftDepth + rightDepth
-		if currentDiameter > maxDiameter {
-			maxDiameter = currentDiameter // 闭包可以修改外层变量
-		}
+		maxDiameter = max(maxDiameter, leftDepth+rightDepth)
 
 		// 返回当前节点的深度给父节点
 		// 深度 = 1 (当前节点) + 左右子树中较深的那个
-		if leftDepth > rightDepth {
-			return 1 + leftDepth
-		}
-		return 1 + rightDepth
+		return 1 + max(leftDepth, rightDepth)
 	}
 
 	depth(root)
+
 	return maxDiameter
 }

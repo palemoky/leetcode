@@ -364,6 +364,8 @@ func inorder(node *TreeNode, prev **TreeNode) bool {  // 接收二级指针
 }
 ```
 
+> 二叉树的直径、最大路径和也和验证二叉搜索树一样，使用了多级指针。
+
 **问题**：
 
 - 二级指针 `**TreeNode` 语法复杂

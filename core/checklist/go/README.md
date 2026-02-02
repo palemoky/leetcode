@@ -395,6 +395,34 @@
 
 === "树的直径"
 
+    ```go
+    func diameterOfBinaryTree(root *utils.TreeNode) int {
+    	maxDiameter := 0
+
+    	// 使用闭包捕获 maxDiameter
+    	var depth func(*utils.TreeNode) int
+    	depth = func(node *utils.TreeNode) int {
+    		if node == nil {
+    			return 0
+    		}
+
+    		// 后序遍历：先递归计算左右子树的深度
+    		leftDepth := depth(node.Left)
+    		rightDepth := depth(node.Right)
+
+    		// 当前节点的直径 = 左子树深度 + 右子树深度
+    		maxDiameter = max(maxDiameter, leftDepth+rightDepth)
+
+    		// 计算当前节点的深度
+    		return 1 + max(leftDepth, rightDepth)
+    	}
+
+    	depth(root)
+
+    	return maxDiameter
+    }
+    ```
+
 ### 中序遍历题目
 
 === "验证二叉搜索树"
