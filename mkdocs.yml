@@ -194,3 +194,4 @@ nav:
   - 刷题清单:
       - 刷题清单: checklist/README.md
       - Go: checklist/go/README.md
+      - Python: checklist/python/README.md
