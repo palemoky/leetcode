@@ -300,7 +300,7 @@
     }
     ```
 
-=== "递归解法"
+=== "DFS 递归解法"
 
     ```go
     func traversal(root *TreeNode) []int {
@@ -399,7 +399,7 @@
 
 === "验证二叉搜索树"
 
-    由于需要捕获外部变量，因此适合使用闭包，并且可以避免二级指针
+    由于需要捕获外部变量，因此可以使用闭包避免二级指针
 
     ```go
     func isValidBST(root *TreeNode) bool {
