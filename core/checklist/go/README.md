@@ -399,7 +399,6 @@
     func diameterOfBinaryTree(root *utils.TreeNode) int {
     	maxDiameter := 0
 
-    	// 使用闭包捕获 maxDiameter
     	var depth func(*utils.TreeNode) int
     	depth = func(node *utils.TreeNode) int {
     		if node == nil {
@@ -414,12 +413,46 @@
     		maxDiameter = max(maxDiameter, leftDepth+rightDepth)
 
     		// 计算当前节点的深度
-    		return 1 + max(leftDepth, rightDepth)
+    		return max(leftDepth, rightDepth) + 1
     	}
 
     	depth(root)
 
     	return maxDiameter
+    }
+    ```
+
+=== "最大路径和"
+
+    与树的直径类似，对于每个节点，`路径和 = 左子树贡献 + 右子树贡献 + 当前节点值`
+
+    ```go
+    func maxPathSum(root *utils.TreeNode) int {
+    	maxSum := math.MinInt32 // 初始化为最小值，因为节点值可能为负
+
+    	var maxGain func(*utils.TreeNode) int
+    	maxGain = func(node *utils.TreeNode) int {
+    		if node == nil {
+    			return 0
+    		}
+
+    		// 后序遍历：先递归计算左右子树的最大贡献
+    		// 如果子树贡献为负，则不选择该子树（取 0）
+    		leftGain := max(maxGain(node.Left), 0)
+    		rightGain := max(maxGain(node.Right), 0)
+
+    		// 以当前节点为"拐点"的路径和
+    		// 路径和 = 左子树贡献 + 右子树贡献 + 当前节点值
+    		currentPathSum := leftGain + rightGain + node.Val
+    		maxSum = max(maxSum, currentPathSum)
+
+    		// 返回给父节点的最大贡献：只能选择左或右其中一条路径
+    		// 贡献 = 当前节点值 + max(左子树贡献, 右子树贡献)
+    		return node.Val + max(leftGain, rightGain)
+    	}
+
+    	maxGain(root)
+    	return maxSum
     }
     ```
 

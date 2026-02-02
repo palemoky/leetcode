@@ -22,9 +22,8 @@ func diameterOfBinaryTree(root *utils.TreeNode) int {
 		// 直径 = 左子树深度 + 右子树深度
 		maxDiameter = max(maxDiameter, leftDepth+rightDepth)
 
-		// 返回当前节点的深度给父节点
-		// 深度 = 1 (当前节点) + 左右子树中较深的那个
-		return 1 + max(leftDepth, rightDepth)
+		// 计算当前节点深度
+		return max(leftDepth, rightDepth) + 1
 	}
 
 	depth(root)
