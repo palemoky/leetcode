@@ -38,14 +38,23 @@ func TestLowestCommonAncestor(t *testing.T) {
 		{"Leftmost and rightmost", []any{6, 2, 8, 0, 4, 7, 9, nil, nil, 3, 5}, 0, 9, 6},
 	}
 
-	for _, tc := range testCases {
-		t.Run(tc.name, func(t *testing.T) {
-			t.Parallel()
-			root := utils.BuildTree(tc.input)
-			p := findNode(root, tc.p)
-			q := findNode(root, tc.q)
-			got := lowestCommonAncestor(root, p, q)
-			assert.Equal(t, tc.want, got.Val, "Input: %v, p=%d, q=%d", tc.input, tc.p, tc.q)
+	funcsToTest := map[string]func(*utils.TreeNode, *utils.TreeNode, *utils.TreeNode) *utils.TreeNode{
+		"Iterative": lowestCommonAncestorIterative,
+		"Recursive": lowestCommonAncestorRecursive,
+	}
+
+	for fnName, fn := range funcsToTest {
+		t.Run(fnName, func(t *testing.T) {
+			for _, tc := range testCases {
+				t.Run(tc.name, func(t *testing.T) {
+					t.Parallel()
+					root := utils.BuildTree(tc.input)
+					p := findNode(root, tc.p)
+					q := findNode(root, tc.q)
+					got := fn(root, p, q)
+					assert.Equal(t, tc.want, got.Val, "Input: %v, p=%d, q=%d", tc.input, tc.p, tc.q)
+				})
+			}
 		})
 	}
 }
