@@ -462,11 +462,11 @@
       <table>
         <tr>
           <td align="center">
-            <img src="lowest_common_ancestor_of_a_binary_tree.webp" alt="LCA 示例" /><br />
+            <img src="LCA/lowest_common_ancestor_of_a_binary_tree.webp" alt="LCA 示例" /><br />
             <sub>最近公共祖先示例</sub>
           </td>
           <td align="center">
-            <img src="lca_logic.webp" alt="LCA 逻辑" /><br />
+            <img src="LCA/lca_logic.webp" alt="LCA 逻辑" /><br />
             <sub>LCA 判断逻辑</sub>
           </td>
         </tr>
@@ -499,6 +499,42 @@
 
     	// 情况3：p 和 q 都在右子树（或右子树找到一个）→ 返回右子树的结果
     	return right
+    }
+    ```
+
+=== "二叉搜索树的最近公共祖先"
+
+    由于 BST 的有序性，其解法与普通的 LCA 相似：如果 p 和 q 都小于当前节点，则 LCA 在左子树；如果 p 和 q 都大于当前节点，则 LCA 在右子树；否则当前节点就是 LCA。
+
+    ```go
+    // 迭代解法(推荐)
+    // Time: O(h), Space: O(1)
+    func lowestCommonAncestorIterative(root, p, q *utils.TreeNode) *utils.TreeNode {
+    	for root != nil {
+    		if p.Val < root.Val && q.Val < root.Val {
+    			root = root.Left
+    		} else if p.Val > root.Val && q.Val > root.Val {
+    			root = root.Right
+    		} else {
+    			return root
+    		}
+    	}
+
+    	return nil
+    }
+    ```
+
+    ```go
+    // 递归解法
+    // Time: O(h), Space: O(h)
+    func lowestCommonAncestorRecursive(root, p, q *utils.TreeNode) *utils.TreeNode {
+    	if p.Val < root.Val && q.Val < root.Val {
+    		return lowestCommonAncestorRecursive(root.Left, p, q)
+    	}
+    	if p.Val > root.Val && q.Val > root.Val {
+    		return lowestCommonAncestorRecursive(root.Right, p, q)
+    	}
+    	return root
     }
     ```
 
