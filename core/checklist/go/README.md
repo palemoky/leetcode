@@ -360,13 +360,13 @@
     	return x
     }
 
-    func isBalanced(root *utils.TreeNode) bool {
+    func isBalanced(root *TreeNode) bool {
     	return checkHeight(root) != -1
     }
 
     // 返回树的高度，如果不平衡则返回 -1
     // 后序遍历：先递归左右子树，返回时处理当前节点
-    func checkHeight(root *utils.TreeNode) int {
+    func checkHeight(root *TreeNode) int {
     	if root == nil {
     		return 0
     	}
@@ -396,11 +396,11 @@
 === "树的直径"
 
     ```go
-    func diameterOfBinaryTree(root *utils.TreeNode) int {
+    func diameterOfBinaryTree(root *TreeNode) int {
     	maxDiameter := 0
 
-    	var depth func(*utils.TreeNode) int
-    	depth = func(node *utils.TreeNode) int {
+    	var depth func(*TreeNode) int
+    	depth = func(node *TreeNode) int {
     		if node == nil {
     			return 0
     		}
@@ -427,11 +427,11 @@
     与树的直径类似，对于每个节点，`路径和 = 左子树贡献 + 右子树贡献 + 当前节点值`
 
     ```go
-    func maxPathSum(root *utils.TreeNode) int {
+    func maxPathSum(root *TreeNode) int {
     	maxSum := math.MinInt32 // 初始化为最小值，因为节点值可能为负
 
-    	var maxGain func(*utils.TreeNode) int
-    	maxGain = func(node *utils.TreeNode) int {
+    	var maxGain func(*TreeNode) int
+    	maxGain = func(node *TreeNode) int {
     		if node == nil {
     			return 0
     		}
@@ -461,11 +461,11 @@
     <div align="center">
       <table>
         <tr>
-          <td align="center">
+          <td align="center" style="vertical-align: bottom;">
             <img src="LCA/lowest_common_ancestor_of_a_binary_tree.webp" alt="LCA 示例" /><br />
             <sub>最近公共祖先示例</sub>
           </td>
-          <td align="center">
+          <td align="center" style="vertical-align: bottom;">
             <img src="LCA/lca_logic.webp" alt="LCA 逻辑" /><br />
             <sub>LCA 判断逻辑</sub>
           </td>
@@ -474,7 +474,7 @@
     </div>
 
     ```go
-    func lowestCommonAncestor(root, p, q *utils.TreeNode) *utils.TreeNode {
+    func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
     	// 递归终止条件：
     	// 1. 搜到底了（nil）
     	// 2. 找到目标节点（p 或 q）
@@ -509,7 +509,7 @@
     ```go
     // 迭代解法(推荐)
     // Time: O(h), Space: O(1)
-    func lowestCommonAncestorIterative(root, p, q *utils.TreeNode) *utils.TreeNode {
+    func lowestCommonAncestorIterative(root, p, q *TreeNode) *TreeNode {
     	for root != nil {
     		if p.Val < root.Val && q.Val < root.Val {
     			root = root.Left
@@ -527,7 +527,7 @@
     ```go
     // 递归解法
     // Time: O(h), Space: O(h)
-    func lowestCommonAncestorRecursive(root, p, q *utils.TreeNode) *utils.TreeNode {
+    func lowestCommonAncestorRecursive(root, p, q *TreeNode) *TreeNode {
     	if p.Val < root.Val && q.Val < root.Val {
     		return lowestCommonAncestorRecursive(root.Left, p, q)
     	}
@@ -617,14 +617,14 @@
     镜像递归
 
     ```go
-    func isSymmetricMirrorRecursive(root *utils.TreeNode) bool {
+    func isSymmetricMirrorRecursive(root *TreeNode) bool {
     	if root == nil {
     		return true
     	}
     	return isMirror(root.Left, root.Right)
     }
 
-    func isMirror(left, right *utils.TreeNode) bool {
+    func isMirror(left, right *TreeNode) bool {
     	// 递归终止条件
       // 检查节点存在的对称性
     	if left == nil && right == nil {
@@ -651,7 +651,7 @@
     判断给定的树中是否有和为 targetSum 的路径存在。
 
     ```go
-    func hasPathSum(root *utils.TreeNode, targetSum int) bool {
+    func hasPathSum(root *TreeNode, targetSum int) bool {
     	if root == nil {
     		return false
     	}
