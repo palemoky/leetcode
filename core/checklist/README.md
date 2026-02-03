@@ -26,7 +26,7 @@
 3. [**94** 二叉树的中序遍历](https://leetcode.cn/problems/binary-tree-inorder-traversal/)
 4. [**145** 二叉树的后序遍历](https://leetcode.cn/problems/binary-tree-postorder-traversal/)
 
-### 性质类（轮换刷）
+### 性质类
 
 5. [**104** 二叉树的最大深度](https://leetcode.cn/problems/maximum-depth-of-binary-tree/)
 6. [**101** 对称二叉树](https://leetcode.cn/problems/symmetric-tree/)

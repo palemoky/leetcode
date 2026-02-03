@@ -211,9 +211,9 @@
     }
     ```
 
-=== "后续遍历（最复杂）"
+=== "后序遍历（最复杂）"
 
-    后序遍历和中序遍历有点像，主要不同点在于，中序遍历对每个节点只访问一次，而后序遍历则可能访问两次，且通过 `prev` 来记录是否已经访问。后续遍历的`prev` 类似于回溯中的 `used[]`
+    后序遍历和中序遍历有点像，主要不同点在于，中序遍历对每个节点只访问一次，而后序遍历则可能访问两次，且通过 `prev` 来记录是否已经访问。后序遍历的`prev` 类似于回溯中的 `used[]`
 
     !!! Note
 
@@ -453,6 +453,52 @@
 
     	maxGain(root)
     	return maxSum
+    }
+    ```
+
+=== "最近公共祖先"
+
+    <div align="center">
+      <table>
+        <tr>
+          <td align="center">
+            <img src="lowest_common_ancestor_of_a_binary_tree.webp" alt="LCA 示例" /><br />
+            <sub>最近公共祖先示例</sub>
+          </td>
+          <td align="center">
+            <img src="lca_logic.webp" alt="LCA 逻辑" /><br />
+            <sub>LCA 判断逻辑</sub>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    ```go
+    func lowestCommonAncestor(root, p, q *utils.TreeNode) *utils.TreeNode {
+    	// 递归终止条件：
+    	// 1. 搜到底了（nil）
+    	// 2. 找到目标节点（p 或 q）
+    	if root == nil || root == p || root == q {
+    		return root
+    	}
+
+    	// 后序遍历：先递归左右子树
+    	left := lowestCommonAncestor(root.Left, p, q)
+    	right := lowestCommonAncestor(root.Right, p, q)
+
+    	// 根据左右子树的返回值判断 LCA 位置
+    	// 情况1：p 和 q 分散在左右两侧 → 当前节点就是 LCA
+    	if left != nil && right != nil {
+    		return root
+    	}
+
+    	// 情况2：p 和 q 都在左子树 → 返回左子树的结果
+    	if left != nil {
+    		return left
+    	}
+
+    	// 情况3：p 和 q 都在右子树（或右子树找到一个）→ 返回右子树的结果
+    	return right
     }
     ```
 
