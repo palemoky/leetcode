@@ -51,6 +51,16 @@ func TestIsBalanced(t *testing.T) {
 			input: []any{1, 2, 2, 3, 3, nil, nil, 4, 4},
 			want:  false,
 		},
+		{
+			name:  "Left balanced, right unbalanced",
+			input: []any{1, 2, 3, nil, nil, 4, nil, nil, nil, nil, nil, 5},
+			want:  false,
+		},
+		{
+			name:  "Root unbalanced (height diff = 2)",
+			input: []any{1, 2, 3, 4, 5, nil, nil, 6},
+			want:  false,
+		},
 	}
 
 	funcsToTest := map[string]func(*utils.TreeNode) bool{

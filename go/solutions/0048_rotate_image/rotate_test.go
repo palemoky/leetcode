@@ -25,6 +25,11 @@ func TestRotateFlip(t *testing.T) {
 		want  [][]int
 	}{
 		{
+			"0x0 (empty)",
+			[][]int{},
+			[][]int{},
+		},
+		{
 			"1x1",
 			[][]int{{1}},
 			[][]int{{1}},
