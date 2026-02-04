@@ -1,6 +1,34 @@
 # Go 刷题清单
 
-## 链表
+## 数组（高频）
+
+=== "无重复字符的最长子串"
+
+    ```go
+    func lengthOfLongestSubstring(s string) int {
+        // 哈希表记录出现的元素及索引
+        // 哈希表出现的元素，left 移动到哈希表中索引 +1 位置，否则右指针右移扩大窗口
+
+        seen := map[byte]int{}
+        left, right, maxWin := 0, 0, 0
+        for right < len(s) {
+            if prevIndex, ok := seen[s[right]]; ok {
+                left = prevIndex + 1
+            }
+
+            seen[s[right]] = right
+            right++
+
+            maxWin = max(maxWin, right-left)
+        }
+
+        return maxWin
+    }
+    ```
+
+## 字符串（高频）
+
+## 链表（高频）
 
 === "反转链表"
 
@@ -113,7 +141,7 @@
     }
     ```
 
-## 二叉树
+## 二叉树（高频）
 
 ### 遍历方式
 
@@ -672,6 +700,42 @@
 
 ### 层序遍历题目
 
+=== "右视图"
+
+    **LeetCode 199 - 高频题**
+
+    ```go
+    func rightSideView(root *TreeNode) []int {
+    	ans := []int{}
+    	if root == nil {
+    		return ans
+    	}
+
+    	queue := []*TreeNode{root}
+    	for len(queue) > 0 {
+    		width := len(queue)
+    		for i := range width {
+    			node := queue[0]
+    			queue = queue[1:]
+
+    			// 只把每层的最后一个节点加入结果集
+    			if i == width-1 {
+    				ans = append(ans, node.Val)
+    			}
+
+    			if node.Left != nil {
+    				queue = append(queue, node.Left)
+    			}
+    			if node.Right != nil {
+    				queue = append(queue, node.Right)
+    			}
+    		}
+    	}
+
+    	return ans
+    }
+    ```
+
 === "最小深度"
 
     ```go
@@ -708,47 +772,13 @@
     }
     ```
 
-=== "右视图"
-
-    ```go
-    func rightSideView(root *TreeNode) []int {
-    	ans := []int{}
-    	if root == nil {
-    		return ans
-    	}
-
-    	queue := []*TreeNode{root}
-    	for len(queue) > 0 {
-    		width := len(queue)
-    		for i := range width {
-    			node := queue[0]
-    			queue = queue[1:]
-
-    			// 只把每层的最后一个节点加入结果集
-    			if i == width-1 {
-    				ans = append(ans, node.Val)
-    			}
-
-    			if node.Left != nil {
-    				queue = append(queue, node.Left)
-    			}
-    			if node.Right != nil {
-    				queue = append(queue, node.Right)
-    			}
-    		}
-    	}
-
-    	return ans
-    }
-    ```
-
-=== "左下角"
+=== "左下角 ⭐"
 
     ```go
     // Time: O(n), Space: O(n)
-    func findBottomLeftValue(root *utils.TreeNode) int {
+    func findBottomLeftValue(root *TreeNode) int {
     	firstNode := 0
-    	queue := []*utils.TreeNode{root}
+    	queue := []*TreeNode{root}
     	for len(queue) > 0 {
     		for i := range len(queue) {
     			node := queue[0]
@@ -772,39 +802,17 @@
     }
     ```
 
-## 数组
+## 栈（中高频）
 
-=== "无重复字符的最长子串"
+## 队列（中高频）
 
-    ```go
-    func lengthOfLongestSubstring(s string) int {
-        // 哈希表记录出现的元素及索引
-        // 哈希表出现的元素，left 移动到哈希表中索引 +1 位置，否则右指针右移扩大窗口
+## 二分查找（高频）
 
-        seen := map[byte]int{}
-        left, right, maxWin := 0, 0, 0
-        for right < len(s) {
-            if prevIndex, ok := seen[s[right]]; ok {
-                left = prevIndex + 1
-            }
+## 动态规划（高频但较难）
 
-            seen[s[right]] = right
-            right++
+## 回溯（中高频）
 
-            maxWin = max(maxWin, right-left)
-        }
-
-        return maxWin
-    }
-    ```
-
-## 字符串
-
-## 栈
-
-## 队列
-
-## 二分查找
+## 贪心（中低频）
 
 ## 递归
 
@@ -815,8 +823,4 @@
 3. 明确递归处理逻辑（每层要做什么事？）
 4. 明确递归过程（下楼做还是返回做？）
 
-## 回溯
-
-## 动态规划
-
-## 图论
+## 图论（中低频）
