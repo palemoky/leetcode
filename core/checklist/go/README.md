@@ -672,6 +672,106 @@
 
 ### 层序遍历题目
 
+=== "最小深度"
+
+    ```go
+    func minDepth(root *TreeNode) int {
+    	if root == nil {
+    		return 0
+    	}
+
+    	depth := 1 // 非空节点的最小深度为 1
+    	queue := []*TreeNode{root}
+
+    	for len(queue) > 0 {
+    		for range len(queue) {
+    			node := queue[0]
+    			queue = queue[1:]
+
+    			// 找到第一个叶子节点，立即返回
+    			if node.Left == nil && node.Right == nil {
+    				return depth
+    			}
+
+    			if node.Left != nil {
+    				queue = append(queue, node.Left)
+    			}
+    			if node.Right != nil {
+    				queue = append(queue, node.Right)
+    			}
+    		}
+
+    		depth++
+    	}
+
+    	return depth
+    }
+    ```
+
+=== "右视图"
+
+    ```go
+    func rightSideView(root *TreeNode) []int {
+    	ans := []int{}
+    	if root == nil {
+    		return ans
+    	}
+
+    	queue := []*TreeNode{root}
+    	for len(queue) > 0 {
+    		width := len(queue)
+    		for i := range width {
+    			node := queue[0]
+    			queue = queue[1:]
+
+    			// 只把每层的最后一个节点加入结果集
+    			if i == width-1 {
+    				ans = append(ans, node.Val)
+    			}
+
+    			if node.Left != nil {
+    				queue = append(queue, node.Left)
+    			}
+    			if node.Right != nil {
+    				queue = append(queue, node.Right)
+    			}
+    		}
+    	}
+
+    	return ans
+    }
+    ```
+
+=== "左下角"
+
+    ```go
+    // Time: O(n), Space: O(n)
+    func findBottomLeftValue(root *utils.TreeNode) int {
+    	firstNode := 0
+    	queue := []*utils.TreeNode{root}
+    	for len(queue) > 0 {
+    		for i := range len(queue) {
+    			node := queue[0]
+    			queue = queue[1:]
+
+    			// 只记录每层的第一个节点
+    			if i == 0 {
+    				firstNode = node.Val
+    			}
+
+    			if node.Left != nil {
+    				queue = append(queue, node.Left)
+    			}
+    			if node.Right != nil {
+    				queue = append(queue, node.Right)
+    			}
+    		}
+    	}
+
+    	return firstNode
+    }
+    ```
+
 ## 数组
 
 === "无重复字符的最长子串"
