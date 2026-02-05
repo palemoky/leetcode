@@ -20,7 +20,7 @@
 | **Peek**    | $O(1)$     | 直接访问队头                                            |
 | **Search**  | $O(n)$     | 需要遍历队列                                            |
 
-## 实现方式 (Go)
+## 实现方式
 
 在 Go 语言算法题中，通常使用切片（Slice）模拟队列。
 
@@ -75,19 +75,19 @@
 
 ## 变种
 
-### 1. 循环队列 (Circular Queue)
+### 1. 循环队列
 
 为了解决普通数组队列出队后空间浪费的问题，使用固定大小的数组和头尾指针，逻辑上形成环状。
 
 - **经典题目**：[622. Design Circular Queue](https://leetcode.cn/problems/design-circular-queue/)
 
-### 2. 优先队列 (Priority Queue)
+### 2. 优先队列
 
 元素按照优先级出队，而不是进入顺序。通常使用 **堆 (Heap)** 实现。
 
 - **详见**：[堆 (Heap)](../tree/README.md#堆heap)
 
-### 3. 单调队列 (Monotonic Queue)
+### 3. 单调队列
 
 队列内元素保持单调递增或递减，常用于解决滑动窗口最大值问题。
 

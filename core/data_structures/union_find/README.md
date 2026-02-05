@@ -131,7 +131,7 @@ class UnionFind:
 
 ## 优化技巧
 
-### 1. 路径压缩（Path Compression）
+### 1. 路径压缩
 
 在 `find` 操作中，将查找路径上的所有节点直接连接到根节点。
 
@@ -145,7 +145,7 @@ def find(self, x: int) -> int:
     return self.parent[x]
 ```
 
-### 2. 按秩合并（Union by Rank）
+### 2. 按秩合并
 
 **秩（Rank）通常指树的高度**。在 `union` 操作中，总是将高度小的树连接到高度大的树下。
 
@@ -169,7 +169,7 @@ def union(self, x: int, y: int) -> bool:
     return True
 ```
 
-### 3. 按大小合并（Union by Size）
+### 3. 按大小合并
 
 这是按秩合并的一个变体，**使用集合大小作为"秩"的度量**，将小集合合并到大集合。与按高度合并相比，按大小合并的优势是可以直接获取集合大小。
 
