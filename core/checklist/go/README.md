@@ -857,7 +857,7 @@
     }
     ```
 
-=== "左下角 ⭐"
+=== "左下角"
 
     ```go
     // Time: O(n), Space: O(n)
@@ -884,6 +884,48 @@
     	}
 
     	return firstNode
+    }
+    ```
+
+## DFS
+
+=== "岛屿数量"
+
+    可用DFS、BFS、并查集3种解法，但推荐DFS
+
+    ```go
+    // Time: O(m×n), Space: O(m×n) 递归栈
+    func numIslandsDFS(grid [][]byte) int {
+    	if len(grid) == 0 {
+    		return 0
+    	}
+
+    	count := 0
+    	for i := range grid {
+    		for j := range grid[0] {
+    			if grid[i][j] == '1' {
+    				count++
+    				dfs(grid, i, j)
+    			}
+    		}
+    	}
+    	return count
+    }
+
+    func dfs(grid [][]byte, i, j int) {
+    	// 边界检查
+    	if i < 0 || i >= len(grid) || j < 0 || j >= len(grid[0]) || grid[i][j] == '0' {
+    		return
+    	}
+
+    	// 标记为已访问
+    	grid[i][j] = '0'
+
+    	// 递归访问四个方向
+    	dfs(grid, i-1, j) // 上
+    	dfs(grid, i+1, j) // 下
+    	dfs(grid, i, j-1) // 左
+    	dfs(grid, i, j+1) // 右
     }
     ```
 
