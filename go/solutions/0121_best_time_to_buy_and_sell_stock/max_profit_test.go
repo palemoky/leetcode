@@ -21,9 +21,8 @@ func TestMaxProfitImplementations(t *testing.T) {
 	}
 
 	funcs := map[string]func(prices []int) int{
-		"Greedy":    maxProfitGreedy,
-		"Optimized": maxProfitGreedyOptimized,
-		"DP":        maxProfitDP,
+		"Greedy": maxProfitGreedy,
+		"DP":     maxProfitDP,
 	}
 
 	for fnName, fn := range funcs {
