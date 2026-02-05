@@ -129,8 +129,6 @@ class UnionFind:
     **时间复杂度**: $O(1)$
     **空间复杂度**: $O(1)$
 
----
-
 ## 优化技巧
 
 ### 1. 路径压缩（Path Compression）
@@ -200,8 +198,6 @@ class UnionFind:
         """获取 x 所在集合的大小"""
         return self.size[self.find(x)]
 ```
-
----
 
 ## 进阶操作
 
@@ -322,8 +318,6 @@ class UnionFind:
             return True
     ```
 
----
-
 ## 典型应用场景
 
 === "判断图的连通性"
@@ -419,8 +413,6 @@ class UnionFind:
         return result
     ```
 
----
-
 ## 经典题目
 
 === "基础题"
@@ -444,8 +436,6 @@ class UnionFind:
     - [399. 除法求值](https://leetcode.cn/problems/evaluate-division/) — 带权并查集
     - [1697. 检查边长度限制的路径是否存在](https://leetcode.cn/problems/checking-existence-of-edge-length-limited-paths/) — 离线查询
 
----
-
 ## 并查集 VS 其他数据结构
 
 | 场景         | 推荐数据结构    | 原因                             |
@@ -456,8 +446,6 @@ class UnionFind:
 | 最小生成树   | **并查集**      | Kruskal 算法的核心               |
 | 强连通分量   | Tarjan/Kosaraju | 有向图的强连通性                 |
 | 等价关系判断 | **并查集**      | 天然支持传递性                   |
-
----
 
 ## 实现要点
 
@@ -474,8 +462,6 @@ class UnionFind:
     - 如果需要获取集合大小，使用 **按大小合并** 代替按秩合并
     - 对于带权问题，使用 **带权并查集**
     - 对于需要撤销的场景，使用 **可持久化并查集**
-
----
 
 ## 总结
 

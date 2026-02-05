@@ -141,6 +141,91 @@
     }
     ```
 
+=== "LRU缓存"
+
+    双向链表 + 哈希表
+
+    ```go
+    type Node struct {
+    	key, value int
+    	prev, next *Node
+    }
+
+    type LRUCache struct {
+    	capacity int
+    	cache    map[int]*Node // 哈希表：key -> 链表节点
+    	head     *Node         // 虚拟头节点（最近使用）
+    	tail     *Node         // 虚拟尾节点（最久未使用）
+    }
+
+    func Constructor(capacity int) LRUCache {
+    	lru := LRUCache{
+    		capacity: capacity,
+    		cache:    make(map[int]*Node),
+    		head:     &Node{},
+    		tail:     &Node{},
+    	}
+    	lru.head.next = lru.tail
+    	lru.tail.prev = lru.head
+    	return lru
+    }
+
+    func (lc *LRUCache) Get(key int) int {
+    	if node, exists := lc.cache[key]; exists {
+    		// 将节点移到头部（标记为最近使用）
+    		lc.moveToHead(node)
+    		return node.value
+    	}
+    	return -1
+    }
+
+    func (lc *LRUCache) Put(key int, value int) {
+    	if node, exists := lc.cache[key]; exists {
+    		// 更新已存在的节点
+    		node.value = value
+    		lc.moveToHead(node)
+    	} else {
+    		// 创建新节点
+    		newNode := &Node{key: key, value: value}
+    		lc.cache[key] = newNode
+    		lc.addToHead(newNode)
+
+    		// 检查容量，必要时删除最久未使用的节点
+    		if len(lc.cache) > lc.capacity {
+    			removed := lc.removeTail()
+    			delete(lc.cache, removed.key)
+    		}
+    	}
+    }
+
+    // 辅助方法：将节点添加到头部
+    func (lc *LRUCache) addToHead(node *Node) {
+    	node.prev = lc.head
+    	node.next = lc.head.next
+    	lc.head.next.prev = node
+    	lc.head.next = node
+    }
+
+    // 辅助方法：移除节点
+    func (lc *LRUCache) removeNode(node *Node) {
+    	node.prev.next = node.next
+    	node.next.prev = node.prev
+    }
+
+    // 辅助方法：将节点移到头部
+    func (lc *LRUCache) moveToHead(node *Node) {
+    	lc.removeNode(node)
+    	lc.addToHead(node)
+    }
+
+    // 辅助方法：移除尾部节点
+    func (lc *LRUCache) removeTail() *Node {
+    	node := lc.tail.prev
+    	lc.removeNode(node)
+    	return node
+    }
+    ```
+
 ## 二叉树（高频）
 
 ### 遍历方式
