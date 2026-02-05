@@ -222,6 +222,29 @@ idx := rand.Intn(len(nums))
 | `s := []T{}`        | 空数组   | 非 nil，序列化为 `[]`     | 明确需要空列表  | 扩容时会有性能开销          |
 | `s := make([]T, n)` | 零值数组 | **性能最优**，一次分配    | 已知大小        |                             |
 
+`:=` 只能用在函数内，且只能声明非递归闭包，如：
+
+```go
+func test() {
+	// 递归闭包必须用 var 声明
+	var f func(int) int
+	f = func(n int) int {
+		if n <= 1 {
+			return n
+		}
+		return f(n-1) + f(n-2) // 如未提前声明 f，此时的 f() 则因不存在而报错
+	}
+
+	// 非递归闭包可以用 := 声明
+	g := func(n int) int {
+		if n <= 1 {
+			return n
+		}
+		return g(n-1) + g(n-2)
+	}
+}
+```
+
 ### 切片 (Slice) 的暗坑
 
 切片不仅仅是一个动态数组，它的底层是一个 `struct { ptr, len, cap }`。
