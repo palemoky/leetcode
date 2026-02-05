@@ -35,7 +35,7 @@ func binarySearch(nums []int, target int) int {
 }
 ```
 
-### 2. 查找插入位置（lower_bound）
+### 2. 查找插入位置
 
 ```go
 func lowerBound(nums []int, target int) int {
