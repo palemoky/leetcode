@@ -85,28 +85,36 @@
 
 === "局部反转链表"
 
-    头插法，将每个要反转的节点连接到 `prev` 后
+    <table>
+      <tr>
+        <td style="vertical-align: top;">
+          头插法,将每个要反转的节点连接到 <code>prev</code> 后
+          <br><br>
+          <pre><code class="language-go">func reverseBetween(head *ListNode, left, right int) *ListNode {
+        dummy := &ListNode{Next: head}
 
-    ```go
-    func reverseBetween(head *ListNode, left, right int) *ListNode {
-    	dummy := &ListNode{Next: head}
+        prev := dummy
+        for range left - 1 {
+            prev = prev.Next
+        }
 
-    	prev := dummy
-    	for range left - 1 {
-    		prev = prev.Next
-    	}
+        cur := prev.Next
+        for range right - left {
+            next := cur.Next
+            cur.Next = next.Next
+            next.Next = prev.Next
+            prev.Next = next
+        }
 
-    	cur := prev.Next
-    	for range right - left {
-    		next := cur.Next
-    		cur.Next = next.Next
-    		next.Next = prev.Next
-    		prev.Next = next
-    	}
-
-    	return dummy.Next
-    }
-    ```
+        return dummy.Next
+    }</code></pre>
+        </td>
+        <td align="center" style="vertical-align: top;">
+          <img src="../../data_structures/linked_list/reverse_by_head_insert.webp" alt="头插法反转链表" /><br />
+          <sub>头插法反转链表过程</sub>
+        </td>
+      </tr>
+    </table>
 
 === "K个一组反转链表"
 
