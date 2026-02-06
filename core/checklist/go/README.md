@@ -88,7 +88,7 @@
     头插法，将每个要反转的节点连接到 `prev` 后
 
     ```go
-    func reverseBetween(head *ListNode, left int, right int) *ListNode {
+    func reverseBetween(head *ListNode, left, right int) *ListNode {
     	dummy := &ListNode{Next: head}
 
     	prev := dummy

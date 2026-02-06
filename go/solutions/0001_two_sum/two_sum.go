@@ -19,13 +19,13 @@ func twoSumBruteForce(nums []int, target int) []int {
 // 解法二：哈希表+一次遍历
 // Time: O(N), Space: O(N)
 func twoSumHashMap(nums []int, target int) []int {
-	m := make(map[int]int, len(nums))
+	seen := make(map[int]int, len(nums))
 	for i, num := range nums {
-		if j, ok := m[target-num]; ok {
+		if j, ok := seen[target-num]; ok {
 			return []int{i, j}
 		}
 
-		m[num] = i
+		seen[num] = i
 	}
 
 	return []int{}
