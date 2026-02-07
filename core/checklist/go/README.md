@@ -24,7 +24,7 @@
 
 === "字母异位词分组"
 
-## 双指针（高频）
+## 双指针
 
 === "无重复字符的最长子串"
 
@@ -64,7 +64,7 @@
 
 === "比较版本号"
 
-## 链表（高频）
+## 链表
 
 === "反转链表"
 
@@ -88,25 +88,27 @@
     头插法，将每个要反转的节点连接到 `prev` 后
 
     ```go
-    func reverseBetween(head *ListNode, left int, right int) *ListNode {
-    	dummy := &ListNode{Next: head}
+    func reverseBetween(head *ListNode, left, right int) *ListNode {
+        dummy := &ListNode{Next: head}
 
-    	prev := dummy
-    	for range left - 1 {
-    		prev = prev.Next
-    	}
+        prev := dummy
+        for range left - 1 {
+            prev = prev.Next
+        }
 
-    	cur := prev.Next
-    	for range right - left {
-    		next := cur.Next
-    		cur.Next = next.Next
-    		next.Next = prev.Next
-    		prev.Next = next
-    	}
+        cur := prev.Next
+        for range right - left {
+            next := cur.Next
+            cur.Next = next.Next
+            next.Next = prev.Next
+            prev.Next = next
+        }
 
-    	return dummy.Next
+        return dummy.Next
     }
     ```
+
+    ![reverse_by_head_insert](../../data_structures/linked_list/reverse_by_head_insert.webp)
 
 === "K个一组反转链表"
 
@@ -272,7 +274,7 @@
     }
     ```
 
-## 二叉树（高频）
+## 二叉树
 
 ### 遍历方式
 
@@ -835,8 +837,6 @@
 
 === "右视图"
 
-    **LeetCode 199 - 高频题**
-
     ```go
     func rightSideView(root *TreeNode) []int {
     	ans := []int{}
@@ -1005,7 +1005,7 @@
 
 === "前K个高频元素"
 
-## 栈（中高频）
+## 栈
 
 === "有效的括号"
 
@@ -1015,11 +1015,11 @@
 
 === "字符串解码"
 
-## 队列（中高频）
+## 队列
 
 === "滑动窗口最大值"
 
-## 二分查找（高频）
+## 二分查找
 
 === "二分查找"
 
@@ -1029,7 +1029,7 @@
 
 === "在排序数组中查找元素的第一个和最后一个位置"
 
-## 动态规划（高频但较难）
+## 动态规划
 
 === "爬楼梯"
 
@@ -1055,7 +1055,7 @@
 
 === "最长有效括号"
 
-## 回溯（中高频）
+## 回溯
 
 === "全排列"
 
@@ -1065,7 +1065,7 @@
 
 === "括号生成"
 
-## 贪心（中低频）
+## 贪心
 
 === "买卖股票的最佳时机"
 
@@ -1096,4 +1096,4 @@
 3. 明确递归处理逻辑（每层要做什么事？）
 4. 明确递归过程（下楼做还是返回做？）
 
-## 图论（中低频）
+## 图论

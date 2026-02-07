@@ -1,10 +1,8 @@
-## LeetCode 面试「每日必练」清单
-
 > 目标：**看到题目就知道用什么模板**
 
-## 一、链表（每天 1 题）
+## 一、链表
 
-### 基础必会（按难度递进）
+### 基础必会
 
 1. [**21** 合并两个有序链表](https://leetcode.cn/problems/merge-two-sorted-lists/) - 双指针基础
 2. [**206** 反转链表](https://leetcode.cn/problems/reverse-linked-list/) - 必背模板
@@ -17,9 +15,9 @@
 6. [**142** 环形链表 II](https://leetcode.cn/problems/linked-list-cycle-ii/) - 数学推导
 7. [**25** K 个一组翻转链表](https://leetcode.cn/problems/reverse-nodes-in-k-group/) ⭐ - 分组反转
 
-## 二、二叉树（每天 1-2 题）
+## 二、二叉树
 
-### 遍历类（必须滚熟）
+### 遍历类
 
 1. [**102** 二叉树的层序遍历](https://leetcode.cn/problems/binary-tree-level-order-traversal/) - BFS 入门
 2. [**144** 二叉树的前序遍历](https://leetcode.cn/problems/binary-tree-preorder-traversal/)
@@ -39,7 +37,7 @@
 
 ## 三、数组 / 字符串
 
-### 滑动窗口（面试命根，必须熟到闭眼写）
+### 滑动窗口
 
 1. [**3** 无重复字符的最长子串](https://leetcode.cn/problems/longest-substring-without-repeating-characters/)
 2. [**438** 找到字符串中所有字母异位词](https://leetcode.cn/problems/find-all-anagrams-in-a-string/)
@@ -63,7 +61,7 @@
 4. [**225** 用队列实现栈](https://leetcode.cn/problems/implement-stack-using-queues/)
 5. [**739** 每日温度](https://leetcode.cn/problems/daily-temperatures/) - 单调栈入门
 
-## 五、二分查找（边界一定要会）
+## 五、二分查找
 
 1. [**704** 二分查找](https://leetcode.cn/problems/binary-search/)
 2. [**35** 搜索插入位置](https://leetcode.cn/problems/search-insert-position/)
@@ -71,7 +69,7 @@
 4. [**153** 寻找旋转排序数组中的最小值](https://leetcode.cn/problems/find-minimum-in-rotated-sorted-array/)
 5. [**33** 搜索旋转排序数组](https://leetcode.cn/problems/search-in-rotated-sorted-array/)
 
-## 六、回溯（每天 1 题保持手感）
+## 六、回溯
 
 1. [**78** 子集](https://leetcode.cn/problems/subsets/) - 回溯入门
 2. [**77** 组合](https://leetcode.cn/problems/combinations/)
@@ -79,7 +77,7 @@
 4. [**39** 组合总和](https://leetcode.cn/problems/combination-sum/)
 5. [**47** 全排列 II](https://leetcode.cn/problems/permutations-ii/) - 去重技巧
 
-## 七、动态规划（DP）
+## 七、动态规划
 
 ### 入门必做
 

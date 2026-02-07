@@ -12,7 +12,7 @@
 
 ## 五种经典模式
 
-### 1. 快慢指针（Same Direction - Slow/Fast）
+### 1. 快慢指针
 
 **特点**：两个指针同向移动，速度不同
 
@@ -85,7 +85,7 @@ func removeDuplicates(nums []int, k int) int {
 
 ---
 
-### 2. 对撞指针（Opposite Direction）
+### 2. 对撞指针
 
 **特点**：两个指针从两端向中间移动
 
@@ -130,7 +130,7 @@ for left < right {  // 或 left <= right，见下方说明
 
 ---
 
-### 3. 滑动窗口（Sliding Window）
+### 3. 滑动窗口
 
 **特点**：维护一个动态区间 `[left, right]`，`right++` 是扩大窗口，`left++` 是缩小窗口，每个元素最多被访问两次（进入和离开各一次），因此时间复杂度为 $O(n)$
 
@@ -167,7 +167,7 @@ for right := 0; right < len(s); right++ {
 
 ---
 
-### 4. 分离双指针（Separate Pointers）
+### 4. 分离双指针
 
 **特点**：两个指针分别在不同数组/链表上移动
 
@@ -201,7 +201,7 @@ for i < len(nums1) && j < len(nums2) {
 
 ---
 
-### 5. 固定间距指针（Fixed Distance）
+### 5. 固定间距指针
 
 **特点**：两个指针保持固定距离 k
 
