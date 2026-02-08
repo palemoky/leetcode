@@ -116,31 +116,32 @@
 
     ```go
     func reverseKGroup(head *ListNode, k int) *ListNode {
-    	dummy := &ListNode{Next: head}
-    	pre := dummy
+        dummy := &ListNode{Next: head}
+        prev := dummy
 
-    	for {
-    		tail := pre
-    		for range k {
-    			tail = tail.Next
-    			if tail == nil {
-    				return dummy.Next
-    			}
-    		}
+        for {
+            tail := prev
+            for range k {
+                tail = tail.Next
+                if tail == nil {
+                    return dummy.Next
+                }
+            }
 
-    		nextGroup := tail.Next
+            nextGroup := tail.Next
 
-    		cur := pre.Next
-    		for range k - 1 {
-    			next := cur.Next
-    			cur.Next = next.Next
-    			next.Next = pre.Next
-    			pre.Next = next
-    		}
+            // 局部反转链表
+            cur := prev.Next
+            for range k - 1 {
+                next := cur.Next
+                cur.Next = next.Next
+                next.Next = prev.Next
+                prev.Next = next
+            }
 
-    		cur.Next = nextGroup
-    		pre = cur
-    	}
+            cur.Next = nextGroup
+            prev = cur
+        }
     }
     ```
 
@@ -195,82 +196,82 @@
 
     ```go
     type Node struct {
-    	key, value int
-    	prev, next *Node
+        key, value int
+        prev, next *Node
     }
 
     type LRUCache struct {
-    	capacity int
-    	cache    map[int]*Node // 哈希表：key -> 链表节点
-    	head     *Node         // 虚拟头节点（最近使用）
-    	tail     *Node         // 虚拟尾节点（最久未使用）
+        capacity int
+        cache    map[int]*Node // 哈希表：key -> 链表节点
+        head     *Node         // 虚拟头节点（最近使用）
+        tail     *Node         // 虚拟尾节点（最久未使用）
     }
 
     func Constructor(capacity int) LRUCache {
-    	lru := LRUCache{
-    		capacity: capacity,
-    		cache:    make(map[int]*Node),
-    		head:     &Node{},
-    		tail:     &Node{},
-    	}
-    	lru.head.next = lru.tail
-    	lru.tail.prev = lru.head
-    	return lru
+        lru := LRUCache{
+            capacity: capacity,
+            cache:    make(map[int]*Node),
+            head:     &Node{},
+            tail:     &Node{},
+        }
+        lru.head.next = lru.tail
+        lru.tail.prev = lru.head
+        return lru
     }
 
     func (lc *LRUCache) Get(key int) int {
-    	if node, exists := lc.cache[key]; exists {
-    		// 将节点移到头部（标记为最近使用）
-    		lc.moveToHead(node)
-    		return node.value
-    	}
-    	return -1
+        if node, exists := lc.cache[key]; exists {
+            // 将节点移到头部（标记为最近使用）
+            lc.moveToHead(node)
+            return node.value
+        }
+        return -1
     }
 
     func (lc *LRUCache) Put(key int, value int) {
-    	if node, exists := lc.cache[key]; exists {
-    		// 更新已存在的节点
-    		node.value = value
-    		lc.moveToHead(node)
-    	} else {
-    		// 创建新节点
-    		newNode := &Node{key: key, value: value}
-    		lc.cache[key] = newNode
-    		lc.addToHead(newNode)
+        if node, exists := lc.cache[key]; exists {
+            // 更新已存在的节点
+            node.value = value
+            lc.moveToHead(node)
+        } else {
+            // 创建新节点
+            newNode := &Node{key: key, value: value}
+            lc.cache[key] = newNode
+            lc.addToHead(newNode)
 
-    		// 检查容量，必要时删除最久未使用的节点
-    		if len(lc.cache) > lc.capacity {
-    			removed := lc.removeTail()
-    			delete(lc.cache, removed.key)
-    		}
-    	}
+            // 检查容量，必要时删除最久未使用的节点
+            if len(lc.cache) > lc.capacity {
+                removed := lc.removeTail()
+                delete(lc.cache, removed.key)
+            }
+        }
     }
 
     // 辅助方法：将节点添加到头部
     func (lc *LRUCache) addToHead(node *Node) {
-    	node.prev = lc.head
-    	node.next = lc.head.next
-    	lc.head.next.prev = node
-    	lc.head.next = node
+        node.prev = lc.head
+        node.next = lc.head.next
+        lc.head.next.prev = node
+        lc.head.next = node
     }
 
     // 辅助方法：移除节点
     func (lc *LRUCache) removeNode(node *Node) {
-    	node.prev.next = node.next
-    	node.next.prev = node.prev
+        node.prev.next = node.next
+        node.next.prev = node.prev
     }
 
     // 辅助方法：将节点移到头部
     func (lc *LRUCache) moveToHead(node *Node) {
-    	lc.removeNode(node)
-    	lc.addToHead(node)
+        lc.removeNode(node)
+        lc.addToHead(node)
     }
 
     // 辅助方法：移除尾部节点
     func (lc *LRUCache) removeTail() *Node {
-    	node := lc.tail.prev
-    	lc.removeNode(node)
-    	return node
+        node := lc.tail.prev
+        lc.removeNode(node)
+        return node
     }
     ```
 
@@ -322,7 +323,7 @@
         return ans
       }
 
-    	stack := []*TreeNode{root}
+      stack := []*TreeNode{root}
       for len(stack) > 0 {
         node := stack[len(stack)-1]
         stack = stack[:len(stack)-1]
@@ -332,12 +333,12 @@
         if node.Right != nil {
           stack = append(stack, node.Right)
         }
-        if node.Lfet != nil {
+        if node.Left != nil {
           stack = append(stack, node.Left)
         }
       }
 
-    	return ans
+      return ans
     }
     ```
 
@@ -498,14 +499,14 @@
 
     ```go
     func maxDepth(root *TreeNode) int {
-    	if root == nil {
-    		return 0
-    	}
+        if root == nil {
+            return 0
+        }
 
-    	left := maxDepth(root.Left)
-    	right := maxDepth(root.Right)
+        left := maxDepth(root.Left)
+        right := maxDepth(root.Right)
 
-    	return max(left, right) + 1
+        return max(left, right) + 1
     }
     ```
 
@@ -516,41 +517,41 @@
     ```go
     func abs(x int) int {
       if x < 0 {
-    		return -x
-    	}
-    	return x
+            return -x
+        }
+        return x
     }
 
     func isBalanced(root *TreeNode) bool {
-    	return checkHeight(root) != -1
+        return checkHeight(root) != -1
     }
 
     // 返回树的高度，如果不平衡则返回 -1
     // 后序遍历：先递归左右子树，返回时处理当前节点
     func checkHeight(root *TreeNode) int {
-    	if root == nil {
-    		return 0
-    	}
+        if root == nil {
+            return 0
+        }
 
-    	// 后序遍历：先检查左子树
-    	leftHeight := checkHeight(root.Left)
-    	if leftHeight == -1 {
-    		return -1 // 左子树不平衡，提前终止
-    	}
+        // 后序遍历：先检查左子树
+        leftHeight := checkHeight(root.Left)
+        if leftHeight == -1 {
+            return -1 // 左子树不平衡，提前终止
+        }
 
-    	// 后序遍历：再检查右子树
-    	rightHeight := checkHeight(root.Right)
-    	if rightHeight == -1 {
-    		return -1 // 右子树不平衡，提前终止
-    	}
+        // 后序遍历：再检查右子树
+        rightHeight := checkHeight(root.Right)
+        if rightHeight == -1 {
+            return -1 // 右子树不平衡，提前终止
+        }
 
-    	// 返回时处理：检查当前节点是否平衡
-    	if abs(leftHeight-rightHeight) > 1 {
-    		return -1 // 当前节点不平衡
-    	}
+        // 返回时处理：检查当前节点是否平衡
+        if abs(leftHeight-rightHeight) > 1 {
+            return -1 // 当前节点不平衡
+        }
 
-    	// 返回当前节点的高度（自底向上汇总信息）
-    	return max(leftHeight, rightHeight) + 1
+        // 返回当前节点的高度（自底向上汇总信息）
+        return max(leftHeight, rightHeight) + 1
     }
     ```
 
@@ -558,28 +559,28 @@
 
     ```go
     func diameterOfBinaryTree(root *TreeNode) int {
-    	maxDiameter := 0
+        maxDiameter := 0
 
-    	var depth func(*TreeNode) int
-    	depth = func(node *TreeNode) int {
-    		if node == nil {
-    			return 0
-    		}
+        var depth func(*TreeNode) int
+        depth = func(node *TreeNode) int {
+            if node == nil {
+                return 0
+            }
 
-    		// 后序遍历：先递归计算左右子树的深度
-    		leftDepth := depth(node.Left)
-    		rightDepth := depth(node.Right)
+            // 后序遍历：先递归计算左右子树的深度
+            leftDepth := depth(node.Left)
+            rightDepth := depth(node.Right)
 
-    		// 当前节点的直径 = 左子树深度 + 右子树深度
-    		maxDiameter = max(maxDiameter, leftDepth+rightDepth)
+            // 当前节点的直径 = 左子树深度 + 右子树深度
+            maxDiameter = max(maxDiameter, leftDepth+rightDepth)
 
-    		// 计算当前节点的深度
-    		return max(leftDepth, rightDepth) + 1
-    	}
+            // 计算当前节点的深度
+            return max(leftDepth, rightDepth) + 1
+        }
 
-    	depth(root)
+        depth(root)
 
-    	return maxDiameter
+        return maxDiameter
     }
     ```
 
@@ -589,31 +590,31 @@
 
     ```go
     func maxPathSum(root *TreeNode) int {
-    	maxSum := math.MinInt32 // 初始化为最小值，因为节点值可能为负
+        maxSum := math.MinInt32 // 初始化为最小值，因为节点值可能为负
 
-    	var maxGain func(*TreeNode) int
-    	maxGain = func(node *TreeNode) int {
-    		if node == nil {
-    			return 0
-    		}
+        var maxGain func(*TreeNode) int
+        maxGain = func(node *TreeNode) int {
+            if node == nil {
+                return 0
+            }
 
-    		// 后序遍历：先递归计算左右子树的最大贡献
-    		// 如果子树贡献为负，则不选择该子树（取 0）
-    		leftGain := max(maxGain(node.Left), 0)
-    		rightGain := max(maxGain(node.Right), 0)
+            // 后序遍历：先递归计算左右子树的最大贡献
+            // 如果子树贡献为负，则不选择该子树（取 0）
+            leftGain := max(maxGain(node.Left), 0)
+            rightGain := max(maxGain(node.Right), 0)
 
-    		// 以当前节点为"拐点"的路径和
-    		// 路径和 = 左子树贡献 + 右子树贡献 + 当前节点值
-    		currentPathSum := leftGain + rightGain + node.Val
-    		maxSum = max(maxSum, currentPathSum)
+            // 以当前节点为"拐点"的路径和
+            // 路径和 = 左子树贡献 + 右子树贡献 + 当前节点值
+            currentPathSum := leftGain + rightGain + node.Val
+            maxSum = max(maxSum, currentPathSum)
 
-    		// 返回给父节点的最大贡献：只能选择左或右其中一条路径
-    		// 贡献 = 当前节点值 + max(左子树贡献, 右子树贡献)
-    		return node.Val + max(leftGain, rightGain)
-    	}
+            // 返回给父节点的最大贡献：只能选择左或右其中一条路径
+            // 贡献 = 当前节点值 + max(左子树贡献, 右子树贡献)
+            return node.Val + max(leftGain, rightGain)
+        }
 
-    	maxGain(root)
-    	return maxSum
+        maxGain(root)
+        return maxSum
     }
     ```
 
@@ -636,30 +637,30 @@
 
     ```go
     func lowestCommonAncestor(root, p, q *TreeNode) *TreeNode {
-    	// 递归终止条件：
-    	// 1. 搜到底了（nil）
-    	// 2. 找到目标节点（p 或 q）
-    	if root == nil || root == p || root == q {
-    		return root
-    	}
+        // 递归终止条件：
+        // 1. 搜到底了（nil）
+        // 2. 找到目标节点（p 或 q）
+        if root == nil || root == p || root == q {
+            return root
+        }
 
-    	// 后序遍历：先递归左右子树
-    	left := lowestCommonAncestor(root.Left, p, q)
-    	right := lowestCommonAncestor(root.Right, p, q)
+        // 后序遍历：先递归左右子树
+        left := lowestCommonAncestor(root.Left, p, q)
+        right := lowestCommonAncestor(root.Right, p, q)
 
-    	// 根据左右子树的返回值判断 LCA 位置
-    	// 情况1：p 和 q 分散在左右两侧 → 当前节点就是 LCA
-    	if left != nil && right != nil {
-    		return root
-    	}
+        // 根据左右子树的返回值判断 LCA 位置
+        // 情况1：p 和 q 分散在左右两侧 → 当前节点就是 LCA
+        if left != nil && right != nil {
+            return root
+        }
 
-    	// 情况2：p 和 q 都在左子树 → 返回左子树的结果
-    	if left != nil {
-    		return left
-    	}
+        // 情况2：p 和 q 都在左子树 → 返回左子树的结果
+        if left != nil {
+            return left
+        }
 
-    	// 情况3：p 和 q 都在右子树（或右子树找到一个）→ 返回右子树的结果
-    	return right
+        // 情况3：p 和 q 都在右子树（或右子树找到一个）→ 返回右子树的结果
+        return right
     }
     ```
 
@@ -671,17 +672,17 @@
     // 迭代解法(推荐)
     // Time: O(h), Space: O(1)
     func lowestCommonAncestorIterative(root, p, q *TreeNode) *TreeNode {
-    	for root != nil {
-    		if p.Val < root.Val && q.Val < root.Val {
-    			root = root.Left
-    		} else if p.Val > root.Val && q.Val > root.Val {
-    			root = root.Right
-    		} else {
-    			return root
-    		}
-    	}
+        for root != nil {
+            if p.Val < root.Val && q.Val < root.Val {
+                root = root.Left
+            } else if p.Val > root.Val && q.Val > root.Val {
+                root = root.Right
+            } else {
+                return root
+            }
+        }
 
-    	return nil
+        return nil
     }
     ```
 
@@ -689,13 +690,13 @@
     // 递归解法
     // Time: O(h), Space: O(h)
     func lowestCommonAncestorRecursive(root, p, q *TreeNode) *TreeNode {
-    	if p.Val < root.Val && q.Val < root.Val {
-    		return lowestCommonAncestorRecursive(root.Left, p, q)
-    	}
-    	if p.Val > root.Val && q.Val > root.Val {
-    		return lowestCommonAncestorRecursive(root.Right, p, q)
-    	}
-    	return root
+        if p.Val < root.Val && q.Val < root.Val {
+            return lowestCommonAncestorRecursive(root.Left, p, q)
+        }
+        if p.Val > root.Val && q.Val > root.Val {
+            return lowestCommonAncestorRecursive(root.Right, p, q)
+        }
+        return root
     }
     ```
 
@@ -779,31 +780,31 @@
 
     ```go
     func isSymmetricMirrorRecursive(root *TreeNode) bool {
-    	if root == nil {
-    		return true
-    	}
-    	return isMirror(root.Left, root.Right)
+        if root == nil {
+            return true
+        }
+        return isMirror(root.Left, root.Right)
     }
 
     func isMirror(left, right *TreeNode) bool {
-    	// 递归终止条件
-      // 检查节点存在的对称性
-    	if left == nil && right == nil {
-    		return true
-    	}
-    	if left == nil || right == nil {
-    		return false
-    	}
+        // 递归终止条件
+        // 检查节点存在的对称性
+        if left == nil && right == nil {
+            return true
+        }
+        if left == nil || right == nil {
+            return false
+        }
 
       // 递归处理逻辑
-    	// 检查节点值的对称性
-    	if left.Val != right.Val {
-    		return false
-    	}
+        // 检查节点值的对称性
+        if left.Val != right.Val {
+            return false
+        }
 
-    	// 递归处理：交叉比较子树（镜像对称）
-    	return isMirror(left.Left, right.Right) &&
-    		isMirror(left.Right, right.Left)
+        // 递归处理：交叉比较子树（镜像对称）
+        return isMirror(left.Left, right.Right) &&
+            isMirror(left.Right, right.Left)
     }
     ```
 
@@ -813,19 +814,19 @@
 
     ```go
     func hasPathSum(root *TreeNode, targetSum int) bool {
-    	if root == nil {
-    		return false
-    	}
+        if root == nil {
+            return false
+        }
 
-    	// 到达叶子节点
-    	if root.Left == nil && root.Right == nil {
-    		return root.Val == targetSum
-    	}
+        // 到达叶子节点
+        if root.Left == nil && root.Right == nil {
+            return root.Val == targetSum
+        }
 
-    	remainingSum := targetSum - root.Val
-    	// 只需要左、右子树其中一个满足条件即可
+        remainingSum := targetSum - root.Val
+        // 只需要左、右子树其中一个满足条件即可
       // 短路求值提前终止
-    	return hasPathSum(root.Left, remainingSum) || hasPathSum(root.Right, remainingSum)
+        return hasPathSum(root.Left, remainingSum) || hasPathSum(root.Right, remainingSum)
     }
     ```
 
@@ -839,33 +840,33 @@
 
     ```go
     func rightSideView(root *TreeNode) []int {
-    	ans := []int{}
-    	if root == nil {
-    		return ans
-    	}
+        ans := []int{}
+        if root == nil {
+            return ans
+        }
 
-    	queue := []*TreeNode{root}
-    	for len(queue) > 0 {
-    		width := len(queue)
-    		for i := range width {
-    			node := queue[0]
-    			queue = queue[1:]
+        queue := []*TreeNode{root}
+        for len(queue) > 0 {
+            width := len(queue)
+            for i := range width {
+                node := queue[0]
+                queue = queue[1:]
 
-    			// 只把每层的最后一个节点加入结果集
-    			if i == width-1 {
-    				ans = append(ans, node.Val)
-    			}
+                // 只把每层的最后一个节点加入结果集
+                if i == width-1 {
+                    ans = append(ans, node.Val)
+                }
 
-    			if node.Left != nil {
-    				queue = append(queue, node.Left)
-    			}
-    			if node.Right != nil {
-    				queue = append(queue, node.Right)
-    			}
-    		}
-    	}
+                if node.Left != nil {
+                    queue = append(queue, node.Left)
+                }
+                if node.Right != nil {
+                    queue = append(queue, node.Right)
+                }
+            }
+        }
 
-    	return ans
+        return ans
     }
     ```
 
@@ -873,35 +874,35 @@
 
     ```go
     func minDepth(root *TreeNode) int {
-    	if root == nil {
-    		return 0
-    	}
+        if root == nil {
+            return 0
+        }
 
-    	depth := 1 // 非空节点的最小深度为 1
-    	queue := []*TreeNode{root}
+        depth := 1 // 非空节点的最小深度为 1
+        queue := []*TreeNode{root}
 
-    	for len(queue) > 0 {
-    		for range len(queue) {
-    			node := queue[0]
-    			queue = queue[1:]
+        for len(queue) > 0 {
+            for range len(queue) {
+                node := queue[0]
+                queue = queue[1:]
 
-    			// 找到第一个叶子节点，立即返回
-    			if node.Left == nil && node.Right == nil {
-    				return depth
-    			}
+                // 找到第一个叶子节点，立即返回
+                if node.Left == nil && node.Right == nil {
+                    return depth
+                }
 
-    			if node.Left != nil {
-    				queue = append(queue, node.Left)
-    			}
-    			if node.Right != nil {
-    				queue = append(queue, node.Right)
-    			}
-    		}
+                if node.Left != nil {
+                    queue = append(queue, node.Left)
+                }
+                if node.Right != nil {
+                    queue = append(queue, node.Right)
+                }
+            }
 
-    		depth++
-    	}
+            depth++
+        }
 
-    	return depth
+        return depth
     }
     ```
 
@@ -910,28 +911,28 @@
     ```go
     // Time: O(n), Space: O(n)
     func findBottomLeftValue(root *TreeNode) int {
-    	firstNode := 0
-    	queue := []*TreeNode{root}
-    	for len(queue) > 0 {
-    		for i := range len(queue) {
-    			node := queue[0]
-    			queue = queue[1:]
+        firstNode := 0
+        queue := []*TreeNode{root}
+        for len(queue) > 0 {
+            for i := range len(queue) {
+                node := queue[0]
+                queue = queue[1:]
 
-    			// 只记录每层的第一个节点
-    			if i == 0 {
-    				firstNode = node.Val
-    			}
+                // 只记录每层的第一个节点
+                if i == 0 {
+                    firstNode = node.Val
+                }
 
-    			if node.Left != nil {
-    				queue = append(queue, node.Left)
-    			}
-    			if node.Right != nil {
-    				queue = append(queue, node.Right)
-    			}
-    		}
-    	}
+                if node.Left != nil {
+                    queue = append(queue, node.Left)
+                }
+                if node.Right != nil {
+                    queue = append(queue, node.Right)
+                }
+            }
+        }
 
-    	return firstNode
+        return firstNode
     }
     ```
 
@@ -944,37 +945,37 @@
     ```go
     // Time: O(m×n), Space: O(m×n) 递归栈
     func numIslandsDFS(grid [][]byte) int {
-    	if len(grid) == 0 {
-    		return 0
-    	}
+        if len(grid) == 0 {
+            return 0
+        }
 
-    	count := 0
-    	for i := range grid {
-    		for j := range grid[0] {
-    			if grid[i][j] == '1' {
-    				count++
-    				dfs(grid, i, j)
-    			}
-    		}
-    	}
+        count := 0
+        for i := range grid {
+            for j := range grid[0] {
+                if grid[i][j] == '1' {
+                    count++
+                    dfs(grid, i, j)
+                }
+            }
+        }
 
-    	return count
+        return count
     }
 
     func dfs(grid [][]byte, i, j int) {
-    	// 边界检查
-    	if i < 0 || i >= len(grid) || j < 0 || j >= len(grid[0]) || grid[i][j] == '0' {
-    		return
-    	}
+        // 边界检查
+        if i < 0 || i >= len(grid) || j < 0 || j >= len(grid[0]) || grid[i][j] == '0' {
+            return
+        }
 
-    	// 标记为已访问
-    	grid[i][j] = '0'
+        // 标记为已访问
+        grid[i][j] = '0'
 
-    	// 递归访问四个方向
-    	dfs(grid, i-1, j) // 上
-    	dfs(grid, i+1, j) // 下
-    	dfs(grid, i, j-1) // 左
-    	dfs(grid, i, j+1) // 右
+        // 递归访问四个方向
+        dfs(grid, i-1, j) // 上
+        dfs(grid, i+1, j) // 下
+        dfs(grid, i, j-1) // 左
+        dfs(grid, i, j+1) // 右
     }
     ```
 
@@ -1071,13 +1072,13 @@
 
     ```go
     func maxProfit(prices []int) int {
-    	minPrice, maxProfit := math.MaxInt64, 0
-    	for _, price := range prices {
-    		minPrice = min(minPrice, price)
-    		maxProfit = max(maxProfit, price-minPrice)
-    	}
+        minPrice, maxProfit := math.MaxInt64, 0
+        for _, price := range prices {
+            minPrice = min(minPrice, price)
+            maxProfit = max(maxProfit, price-minPrice)
+        }
 
-    	return maxProfit
+        return maxProfit
     }
     ```
 
