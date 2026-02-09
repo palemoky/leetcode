@@ -214,8 +214,10 @@
             head:     &Node{},
             tail:     &Node{},
         }
+
         lru.head.next = lru.tail
         lru.tail.prev = lru.head
+
         return lru
     }
 
@@ -228,7 +230,7 @@
         return -1
     }
 
-    func (lc *LRUCache) Put(key int, value int) {
+    func (lc *LRUCache) Put(key, value int) {
         if node, exists := lc.cache[key]; exists {
             // 更新已存在的节点
             node.value = value
