@@ -448,7 +448,7 @@
         }
 
         // 查看栈顶不弹出
-        curr = stack[Len(stack)-1]
+        curr = stack[len(stack)-1]
 
         if curr.Right == nil || curr.Right == prev {
           stack = stack[:len(stack)-1]
