@@ -28,7 +28,7 @@ Python 不支持 `switch-case`，只支持 `match-case`
 拥有高效的推导式`[表达式 for 迭代变量 in 可迭代对象 [if 条件表达式]]`
 函数定义关键字是 `def`，而非 `function` 或 `func`
 
-就像Linux中一切皆文件一样，Python中，一切皆对象
+就像 Linux 中一切皆文件、Kubernetes 中一切皆资源一样，Python 中一切皆对象。
 
 Python 中只有 `for-in` 和 `while`，没有普通的 `for`
 
