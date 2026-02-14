@@ -319,7 +319,7 @@
     栈：先压右再压左
 
     ```go
-    func preorderTraversal(root *TreeNode) []int {
+    func preOrderTraversal(root *TreeNode) []int {
       ans := []int}{}
       if root == nil {
         return ans
@@ -349,7 +349,7 @@
     栈：一路向左，先处理完左子树再处理右子树
 
     ```go
-    func inorderTraversal(root *TreeNode) []int {
+    func inOrderTraversal(root *TreeNode) []int {
       ans := []int{}
       stack := []*TreeNode{}
 
@@ -435,7 +435,7 @@
         - 右子树访问完后，才真正访问当前节点
 
     ```go
-    func postorderTraversal(root *TreeNode) []int {
+    func postOrderTraversal(root *TreeNode) []int {
       ans := []int{}
       stack := []*TreeNode{}
       var prev *TreeNode
