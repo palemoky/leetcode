@@ -2,8 +2,11 @@ package group_anagrams
 
 import "slices"
 
-// Solution 1: 排序
-// Time: O(N*KlogK), Space: O(N*K)
+// 异位词：字母相同但顺序不同的字符串
+// 本题是 242 题的升级版，图解可参看 drawio 文件和 core/checklist/go/group_anagrams 中的图解
+
+// Solution 1: 异位词排序后就完全一样，用排序后的字符串作为 key
+// Time: O(m*nlogn), Space: O(m*n)
 func groupAnagramsSorting(strs []string) [][]string {
 	groups := map[string][]string{}
 	for _, str := range strs {
@@ -21,8 +24,8 @@ func groupAnagramsSorting(strs []string) [][]string {
 	return result
 }
 
-// Solution 2: 计数
-// Time: O(N*K), Space: O(N*K)
+// Solution 2: 统计每个字符出现的次数作为 key
+// Time: O(m*n), Space: O(m*n)
 func groupAnagramsCounting(strs []string) [][]string {
 	groups := map[[26]int][]string{}
 	for _, str := range strs {
