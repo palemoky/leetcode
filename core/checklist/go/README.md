@@ -24,6 +24,64 @@
 
 === "字母异位词分组"
 
+    <div align="center">
+      <table>
+        <tr>
+          <td align="center" style="vertical-align: bottom;">
+            <img src="group_anagrams/sort.webp" alt="排序解法" /><br />
+            <sub>排序解法</sub>
+          </td>
+          <td align="center" style="vertical-align: bottom;">
+            <img src="group_anagrams/count.webp" alt="计数解法" /><br />
+            <sub>计数解法</sub>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    ```go
+    // 排序解法
+    // Time: O(m*nlogn), Space: O(m*n)
+    func groupAnagrams(strs []string) [][]string {
+        groups := map[string][]string{}
+        for _, str := range strs {
+            bytes := []byte(str)
+            slices.Sort(bytes)
+            key := string(bytes)
+            groups[key] = append(groups[key], str)
+        }
+
+        result := make([][]string, 0, len(groups))
+        for _, group := range groups {
+            result = append(result, group)
+        }
+
+        return result
+    }
+    ```
+
+    ```go
+    // 计数解法
+    // Time: O(m*n), Space: O(m*n)
+    func groupAnagrams(strs []string) [][]string {
+        groups := map[[26]int][]string{}
+        for _, str := range strs {
+            count := [26]int{}
+            for _, ch := range str {
+                count[ch-'a']++
+            }
+            groups[count] = append(groups[count], str)
+        }
+
+        result := make([][]string, 0, len(groups))
+        for _, group := range groups {
+            result = append(result, group)
+        }
+
+        return result
+    }
+    ```
+
 ## 双指针
 
 === "无重复字符的最长子串"
