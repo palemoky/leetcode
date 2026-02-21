@@ -110,7 +110,58 @@
 
 === "三数之和"
 
-    对撞指针
+    ```go
+    func threeSum(nums []int) [][]int {
+    	if len(nums) < 3 {
+    		return nil
+    	}
+
+    	sort.Ints(nums)
+
+    	ans := [][]int{}
+    	// 先固定第一个数
+    	for i := 0; i < len(nums)-2; i++ {
+    		// 提前剪枝：如果第一个数已经大于0，后面都是正数，不可能和为0
+    		if nums[i] > 0 {
+    			break
+    		}
+
+    		if i > 0 && nums[i] == nums[i-1] {
+    			continue // 跳过重复的第一个数
+    		}
+
+    		// 用双指针让剩余两数之和与第一个数的和为0
+    		left, right := i+1, len(nums)-1
+    		for left < right {
+    			sum := nums[i] + nums[left] + nums[right]
+
+    			// 注意此时已经排序
+    			if sum < 0 { // 和太小，需要右移靠近较大数
+    				left++
+    			} else if sum > 0 { // 和太大，需要左移靠近较小数
+    				right--
+    			} else { // 和为 0
+    				ans = append(ans, []int{nums[i], nums[left], nums[right]})
+
+    				// 跳过重复的第二个数
+    				for left < right && nums[left] == nums[left+1] {
+    					left++
+    				}
+
+    				// 跳过重复的第三个数
+    				for left < right && nums[right] == nums[right-1] {
+    					right--
+    				}
+
+    				left++
+    				right--
+    			}
+    		}
+    	}
+
+    	return ans
+    }
+    ```
 
 === "最长回文子串"
 
