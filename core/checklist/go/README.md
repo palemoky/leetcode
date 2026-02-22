@@ -201,6 +201,27 @@
 
 === "合并两个有序数组"
 
+    双指针倒序填充
+
+    ```go
+    // Time: O(m+n), Space: O(1)
+    func merge(nums1 []int, m int, nums2 []int, n int) {
+    	p1, p2, tail := m-1, n-1, m+n-1
+
+    	// 只需检查 p2 >= 0，因为 nums2 处理完后，nums1 剩余元素已在正确位置
+    	for p2 >= 0 {
+    		if p1 >= 0 && nums1[p1] > nums2[p2] {
+    			nums1[tail] = nums1[p1]
+    			p1--
+    		} else {
+    			nums1[tail] = nums2[p2]
+    			p2--
+    		}
+    		tail--
+    	}
+    }
+    ```
+
 === "合并区间"
 
 === "比较版本号"
