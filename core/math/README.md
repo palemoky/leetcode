@@ -11,6 +11,19 @@
 | **Nim 游戏** | 极大极小值搜索 (Minimax) | 异或和 (XOR Sum)                    | 指数级 vs $O(n)$                 |
 | **判断质数** | 试除法                   | 费马小定理 / 米勒-拉宾检测          | $O(\sqrt{n})$ vs $O(k \log^3 n)$ |
 
+## 技巧
+
+### 字符串转数字
+
+逐字符从左往右扫描，每读一位，将已有结果左移一个十进制位（`×10`），再加上当前数字：
+
+```go
+x = x*10 + int(s[i]-'0')
+// "123" → x=1 → x=12 → x=123
+```
+
+应用：[165. 比较版本号](https://leetcode.cn/problems/compare-version-numbers/description/)
+
 ## 知识点导航
 
 - [最大公约数与最小公倍数 (GCD & LCM)](GCD&LCM/README.md)
