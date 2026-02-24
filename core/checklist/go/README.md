@@ -1273,6 +1273,26 @@
 
 === "二分查找"
 
+    ```go
+    func searchIterative(nums []int, target int) int {
+    	left, right := 0, len(nums)-1
+
+    	// 这里的二分查找的核心在于每次搜索都是以 mid 为单位跳跃
+    	for left <= right {
+    		mid := left + (right-left)/2
+    		if target < nums[mid] {
+    			right = mid - 1 // 左侧区间
+    		} else if target > nums[mid] {
+    			left = mid + 1 // 右侧区间
+    		} else {
+    			return mid // 找到
+    		}
+    	}
+
+    	return -1
+    }
+    ```
+
 === "搜索插入位置"
 
 === "搜索旋转排序数组"
