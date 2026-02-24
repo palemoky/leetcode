@@ -7,8 +7,7 @@ import (
 )
 
 var funcsToTest = map[string]func(string) bool{
-	"IfElse":     isValidIfElse,
-	"SwitchCase": isValidSwitchCase,
+	"isValid": isValid,
 }
 
 func TestIsValid(t *testing.T) {

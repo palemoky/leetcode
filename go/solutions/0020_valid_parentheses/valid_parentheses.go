@@ -2,7 +2,7 @@ package valid_parentheses
 
 // 解法一：使用栈+哈希表
 // Time: O(n), Space: O(n)
-func isValidIfElse(s string) bool {
+func isValid(s string) bool {
 	pairs := map[byte]byte{
 		')': '(',
 		']': '[',
@@ -19,32 +19,6 @@ func isValidIfElse(s string) bool {
 				return false
 			}
 			stack = stack[:n-1]
-		}
-	}
-
-	return len(stack) == 0
-}
-
-// 解法一的switch case写法
-// Time: O(n), Space: O(n)
-func isValidSwitchCase(s string) bool {
-	pairs := map[rune]rune{
-		')': '(',
-		']': '[',
-		'}': '{',
-	}
-
-	stack := []rune{}
-	for _, char := range s {
-		switch char {
-		case '(', '[', '{':
-			stack = append(stack, char)
-		case ')', ']', '}':
-			if len(stack) > 0 && stack[len(stack)-1] == pairs[char] {
-				stack = stack[:len(stack)-1]
-			} else {
-				return false
-			}
 		}
 	}
 
