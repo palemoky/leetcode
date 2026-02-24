@@ -191,6 +191,7 @@ nav:
   - 语言:
       - 编程语言概览: lang/README.md
       - Go: lang/go/README.md
+      - Python: lang/python/README.md
   - 刷题清单:
       - 刷题清单: checklist/README.md
       - Go: checklist/go/README.md
