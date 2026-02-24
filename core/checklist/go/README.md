@@ -1236,6 +1236,31 @@
 
 === "每日温度"
 
+    单调递减栈，当前温度高于栈顶时不断弹出并更新等待天数（出栈时更新结果）。建议手动模拟栈的变化过程来辅助理解。
+
+    ![温度折线图](daily_temperatures/example.webp)
+    ![单调递减栈](daily_temperatures/monotonic_stack.webp)
+
+    ```go
+    func dailyTemperatures(temperatures []int) []int {
+    	tLen := len(temperatures)
+    	ans := make([]int, tLen)
+
+    	stack := []int{} // 栈内存放 temperatures 的索引
+    	for i := range tLen {
+    		// 如果当前元素 > 栈顶元素，则不断弹出栈中的元素，直至当前元素 < 栈顶元素
+    		for len(stack) > 0 && temperatures[i] > temperatures[stack[len(stack)-1]] {
+    			top := stack[len(stack)-1]   // 取栈顶值，即 temperatures 数组中 i 之前的索引
+    			ans[top] = i - top           // 将差值更新到对应的位置
+    			stack = stack[:len(stack)-1] // pop
+    		}
+    		stack = append(stack, i) // push
+    	}
+
+    	return ans
+    }
+    ```
+
 === "柱状图中最大的矩形"
 
 === "字符串解码"
