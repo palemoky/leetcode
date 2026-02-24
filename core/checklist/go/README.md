@@ -1303,6 +1303,22 @@
 
 === "爬楼梯"
 
+    ```go
+    // Time: O(n), Space: O(1)
+    func climbStairsIterative(n int) int {
+    	if n <= 2 {
+    		return n
+    	}
+
+    	x, y := 1, 2
+    	for i := 3; i <= n; i++ {
+    		x, y = y, x+y
+    	}
+
+    	return y
+    }
+    ```
+
 === "最大子数组和"
 
 === "最长递增子序列"
