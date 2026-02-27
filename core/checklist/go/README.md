@@ -2,7 +2,7 @@
 
 ## 哈希表
 
-=== "两数之和"
+=== "#1 两数之和"
 
     ```go
     func twoSum(nums []int, target int) []int {
@@ -84,7 +84,7 @@
 
 ## 双指针
 
-=== "无重复字符的最长子串"
+=== "#3 无重复字符的最长子串"
 
     ```go
     func lengthOfLongestSubstring(s string) int {
@@ -108,7 +108,7 @@
     }
     ```
 
-=== "三数之和"
+=== "#15 三数之和"
 
     ```go
     func threeSum(nums []int) [][]int {
@@ -163,7 +163,7 @@
     }
     ```
 
-=== "最长回文子串"
+=== "#5 最长回文子串"
 
     由于本题查找最长回文子串，我们并不清楚回文边界，因此 **无法使用对撞指针**，只能用回文中心对称的特点，从中心向两侧扩展求解。
 
@@ -195,7 +195,7 @@
     }
     ```
 
-=== #31 "下一个排列"
+=== "#31 下一个排列"
 
     题目解释：将数组视为一个数字，在所有排列中找到**恰好比当前排列大的下一个排列**；若已是最大排列，则回绕到最小排列。
 
@@ -308,7 +308,7 @@
 
 ## 链表
 
-=== "反转链表"
+=== "#206 反转链表"
 
     ```go
     func reverseList(head *ListNode) *ListNode {
@@ -352,7 +352,7 @@
 
     ![reverse_by_head_insert](../../data_structures/linked_list/reverse_by_head_insert.webp)
 
-=== "K个一组反转链表"
+=== "#25 K个一组反转链表"
 
     分组+局部反转
 
@@ -453,7 +453,7 @@
     }
     ```
 
-=== "相交链表"
+=== "#160 相交链表"
 
 === "重排链表"
 
@@ -461,7 +461,7 @@
 
     归并排序
 
-=== "LRU缓存"
+=== "#146 LRU缓存"
 
     双向链表 + 哈希表
 
@@ -891,7 +891,7 @@
     }
     ```
 
-=== "最近公共祖先"
+=== "#236 最近公共祖先"
 
     <div align="center">
       <table>
@@ -1109,6 +1109,49 @@
 
 ### 层序遍历题目
 
+=== "#103 锯齿形层序遍历"
+
+    ```go
+    // Time: O(n), Space: O(n)
+    func zigzagLevelOrder(root *utils.TreeNode) [][]int {
+    	result := [][]int{}
+    	if root == nil {
+    		return result
+    	}
+
+    	leftToRight := true
+    	queue := []*utils.TreeNode{root}
+    	for len(queue) > 0 {
+    		levelSize := len(queue)
+    		level := make([]int, levelSize)
+
+    		for i := range levelSize {
+    			node := queue[0]
+    			queue = queue[1:]
+
+    			// 根据方向决定插入位置
+    			index := i
+    			if !leftToRight {
+    				index = levelSize - 1 - i
+    			}
+    			level[index] = node.Val
+
+    			if node.Left != nil {
+    				queue = append(queue, node.Left)
+    			}
+    			if node.Right != nil {
+    				queue = append(queue, node.Right)
+    			}
+    		}
+
+    		result = append(result, level)
+    		leftToRight = !leftToRight
+    	}
+
+    	return result
+    }
+    ```
+
 === "右视图"
 
     ```go
@@ -1211,7 +1254,7 @@
 
 ## DFS
 
-=== "岛屿数量"
+=== "#200 岛屿数量"
 
     可用DFS、BFS、并查集3种解法，但推荐DFS
 
@@ -1254,7 +1297,7 @@
 
 ## 堆/优先队列
 
-=== "数组中的第K个最大元素"
+=== "#215 数组中的第K个最大元素"
 
     使用小顶堆，维护K个最大元素
 
@@ -1275,7 +1318,7 @@
     }
     ```
 
-=== "合并K个升序链表"
+=== "#23 合并K个升序链表"
 
 === "前K个高频元素"
 
@@ -1412,7 +1455,7 @@
     }
     ```
 
-=== "最大子数组和"
+=== "#53 最大子数组和"
 
 === "最长递增子序列"
 
@@ -1426,7 +1469,7 @@
 
 === "零钱兑换"
 
-=== "接雨水"
+=== "#42 接雨水"
 
 === "编辑距离"
 
@@ -1436,7 +1479,7 @@
 
 ## 回溯
 
-=== "全排列"
+=== "#46 全排列"
 
 === "组合总和"
 
@@ -1446,7 +1489,7 @@
 
 ## 贪心
 
-=== "买卖股票的最佳时机"
+=== "#121 买卖股票的最佳时机"
 
     ```go
     func maxProfit(prices []int) int {
