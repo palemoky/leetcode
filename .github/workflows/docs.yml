@@ -29,7 +29,7 @@ jobs:
         uses: astral-sh/setup-uv@v7
 
       - name: Copy core to docs
-        run: cp -r core docs
+        run: cp -r core/* docs/
 
       - name: Build documentation
         run: uvx --from zensical zensical build
