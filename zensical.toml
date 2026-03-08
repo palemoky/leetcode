@@ -123,13 +123,13 @@ draggable = true
 skip_classes = ["skip-lightbox"]
 
 [project.markdown_extensions]
-abbr = true
-admonition = true
-attr_list = true
-def_list = true
-footnotes = true
-md_in_html = true
-tables = true
+abbr = {}
+admonition = {}
+attr_list = {}
+def_list = {}
+footnotes = {}
+md_in_html = {}
+tables = {}
 
 toc.permalink = true
 toc.toc_depth = 4
