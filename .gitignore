@@ -53,6 +53,5 @@ htmlcov/
 *.tmp
 *.temp
 
-# MkDocs
-docs/
+# MkDocs / Zensical
 site/

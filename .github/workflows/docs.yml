@@ -5,7 +5,7 @@ on:
     branches: main
     paths:
       - "core/**"
-      - "mkdocs.yml"
+      - "zensical.toml"
       - ".github/workflows/docs.yml"
   workflow_dispatch:
 
@@ -28,17 +28,11 @@ jobs:
       - name: Install uv
         uses: astral-sh/setup-uv@v7
 
-      - name: Setup docs directory
-        run: |
-          rm -rf docs
-          cp -r core docs
-
-      - name: Copy assets from .github/docs-assets
-        run: |
-          cp -r .github/docs-assets/* docs/
+      - name: Copy core to docs
+        run: cp -r core docs
 
       - name: Build documentation
-        run: uvx --from mkdocs --with mkdocs-material --with pymdown-extensions --with mkdocs-glightbox mkdocs build --strict
+        run: uvx --from zensical zensical build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v4
