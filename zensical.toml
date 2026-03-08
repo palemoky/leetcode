@@ -73,7 +73,7 @@ nav = [
 ]
 
 [project.theme]
-variant = "classic"
+variant = "modern"
 custom_dir = "docs/overrides"
 name = "material"
 language = "zh"
