@@ -11,15 +11,12 @@ copyright = "Copyright &copy; 2026 Palemoky"
 extra_javascript = [
   "javascripts/mathjax.js",
   "https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js",
-  "https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js",
-  "javascripts/glightbox.js",
   "javascripts/giscus.js",
   "javascripts/width-toggle.js"
 ]
 
 extra_css = [
-  "stylesheets/extra.css",
-  "https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css"
+  "stylesheets/extra.css"
 ]
 
 nav = [
