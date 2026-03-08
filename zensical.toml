@@ -74,7 +74,7 @@ nav = [
 
 [project.theme]
 variant = "classic"
-custom_dir = "overrides"
+custom_dir = "docs/overrides"
 name = "material"
 language = "zh"
 favicon = "images/logo.png"
