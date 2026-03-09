@@ -247,7 +247,7 @@ func mergeTwoLists(l1, l2 *ListNode) *ListNode {
     <tr>
       <td align="center"  style="vertical-align: bottom;">
         <img src="skip_list.webp" alt="Skip List"  /><br />
-        <br /><sub class="img-caption">Skip List</sub><br />
+        <sub class="img-caption">Skip List</sub>
       </td>
       <td align="center" style="vertical-align: bottom;">
         <img src="skip_list_add_element.webp" alt="Insert element to skip list"  /><br />
