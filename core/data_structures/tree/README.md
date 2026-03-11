@@ -89,8 +89,8 @@
       </td>
       <td align="center" style="vertical-align: middle; width: 25%;">
         <a href="https://b23.tv/BV1HYtseiEQ8">
-          <img src="heap_sort_video_thumbnail.webp" alt="Heap Sort" />
-          <sub>视频：堆排序动画讲解</sub>
+          <img src="heap_sort_video_thumbnail.webp" alt="Heap Sort" /><br>
+          <small>视频：堆排序动画讲解</small>
         </a>
       </td>
     </tr>
