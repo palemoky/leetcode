@@ -126,7 +126,7 @@ toc.toc_depth = 4
 
 [project.markdown_extensions.pymdownx]
 arithmatex.generic = true
-betterem.smart_enable = "all"
+betterem.smart_enable = "none"
 "blocks.admonition" = {} # Support GitHub style admonitions
 caret = {}
 details = {}
