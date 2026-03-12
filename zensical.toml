@@ -101,12 +101,11 @@ features = [
   "toc.follow"
 ]
 
+icon = { repo = "fontawesome/brands/github", edit = "lucide/file-edit" }
 palette = [
   { scheme = "default", accent = "blue", toggle.icon = "lucide/sun", toggle.name = "Switch to dark mode" },
   { scheme = "slate", accent = "cyan", toggle.icon = "lucide/moon", toggle.name = "Switch to light mode" },
 ]
-icon.repo = "fontawesome/brands/github"
-icon.edit = "lucide/file-edit"
 
 [project.plugins.search]
 lang = ["zh", "en"]
@@ -123,6 +122,7 @@ tables = {}
 
 toc.permalink = true
 toc.toc_depth = 4
+toc.slugify = { object = "pymdownx.slugs.slugify", kwds = { case = "lower" } }
 
 [project.markdown_extensions.pymdownx]
 arithmatex.generic = true
@@ -152,10 +152,11 @@ tilde = {}
 
 [project.extra]
 generator = false
-
-[[project.extra.social]]
-icon = "fontawesome/brands/github"
-link = "https://github.com/palemoky/leetcode"
+social = [
+  { icon = "fontawesome/brands/github", link = "https://github.com/palemoky" },
+  { icon = "fontawesome/solid/book", link = "https://readings.palemoky.com" },
+  # { icon = "fontawesome/solid/feather-pointed", link = "https://blog.palemoky.com" }
+]
 
 [project.extra.comments]
 enabled = true
