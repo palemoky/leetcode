@@ -2,7 +2,7 @@
 
 链表（Linked List）是一种线性数据结构，由一系列节点组成，每个节点包含数据和指向下一个节点的指针。与数组不同，链表的元素在内存中不连续存储。
 
-<figure>
+<figure markdown>
     ![Linked List Overview](linked_list.webp){ width=60% }
 </figure>
 

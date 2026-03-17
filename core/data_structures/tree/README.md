@@ -232,7 +232,7 @@ BST 有两种不同的写法，处理细节也不同：
 
 ### 平衡二叉树
 
-<figure>
+<figure markdown>
     ![Binary Tree Special Cases](binary_tree_special_cases.webp){ width=60% }
 </figure>
 
@@ -259,17 +259,17 @@ BST 有两种不同的写法，处理细节也不同：
 
 </div>
 
-<figure>
+<figure markdown>
     ![AVL Tree Rotation](avl_tree_rotation_cases.webp){ width=60% }
 </figure>
 
 <div class="grid cards" markdown>
 - <figure>
-    ![Balanced Binary Tree](imgs/balanced_binary_tree.webp)
+    ![Balanced Binary Tree](balanced_binary_tree.webp)
     <figcaption>Balanced Binary Tree</figcaption>
   </figure>
 - <figure>
-    ![Imbalanced Binary Tree](imgs/imbalanced_binary_tree.webp)
+    ![Imbalanced Binary Tree](imbalanced_binary_tree.webp)
     <figcaption>Imbalanced Binary Tree</figcaption>
   </figure>
 </div>
@@ -294,7 +294,7 @@ AVL 树的应用场景：
 4. 每个红色节点必须有两个黑色的子节点。（或者说不存在两个相邻的红色节点）（或者说红色节点的父节点和子节点均是黑色的）
 5. 从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点（保证平衡的关键）
 
-<figure>
+<figure markdown>
     ![Red Black Tree Example](red_black_tree_example.webp){ width=50% }
 </figure>
 
