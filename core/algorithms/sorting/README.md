@@ -174,7 +174,7 @@
 在计算机科学中，我们通常用大 $O$ 来描述某个特定算法时间与空间随着数据规模增加而变化的趋势。
 
 <figure>
-    ![Big-O Complexity Chart](Big_O.webp){ width="50%" }
+    ![Big-O Complexity Chart](Big_O.webp){ width=50% }
 </figure>
 
 ### 稳定性与不稳定性
