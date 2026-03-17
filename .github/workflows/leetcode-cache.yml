@@ -2,8 +2,8 @@ name: Update LeetCode Cache
 
 on:
   schedule:
-    # Run at 11:11 UTC on the 11th of every month
-    - cron: "11 11 11 * *"
+    # Run at 11:11 on day-of-month 30 in June and December.
+    - cron: "11 11 30 6,12 *"
   workflow_dispatch:
 
 jobs:
