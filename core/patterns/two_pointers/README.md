@@ -49,7 +49,7 @@ for fast := 0; fast < len(nums); fast++ {
 以 k=2 为例：
 
 <figure markdown>
-    ![Remove k duplicates from sorted array](remove_k_duplicates_from_sorted_array.webp){ width=60% }
+  ![Remove k duplicates from sorted array](remove_k_duplicates_from_sorted_array.webp){ width=60% }
 </figure>
 
 **代码模板**：
