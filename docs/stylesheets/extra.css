@@ -102,7 +102,7 @@ figcaption {
 /* Dark mode: use pure white for icon to match other header icons */
 [data-md-color-scheme="slate"] .width-toggle-btn svg,
 [data-md-color-scheme="slate"] .width-toggle-btn img {
-  color: #fff;
+  color: #E2E4E9D1;
 }
 
 /* Custom tooltip for immediate display with bold text */

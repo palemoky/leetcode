@@ -55,3 +55,4 @@ htmlcov/
 
 # MkDocs / Zensical
 site/
+.cache
