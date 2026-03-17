@@ -9,14 +9,14 @@ edit_uri = "edit/main/core/"
 copyright = "Copyright &copy; 2026 Palemoky"
 
 extra_javascript = [
-  "javascripts/mathjax.js",
+  "assets/javascripts/mathjax.js",
   "https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js",
-  "javascripts/giscus.js",
-  "javascripts/width-toggle.js"
+  "assets/javascripts/giscus.js",
+  "assets/javascripts/width-toggle.js"
 ]
 
 extra_css = [
-  "stylesheets/extra.css"
+  "assets/stylesheets/extra.css"
 ]
 
 nav = [
@@ -77,8 +77,8 @@ variant = "modern"
 custom_dir = "docs/overrides"
 name = "material"
 language = "zh"
-favicon = "images/logo.png"
-logo = "images/logo.png"
+favicon = "assets/images/logo.png"
+logo = "assets/images/logo.png"
 features = [
   "announce.dismiss",
   "content.action.edit",
