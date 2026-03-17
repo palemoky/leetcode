@@ -46,24 +46,82 @@ img[loading="lazy"] {
 
 /* === UI Enhancements === */
 
-/* Semantic figure and figcaption styles */
-figure {
-  margin: 1.5em 0;
+/* ==========================================================================
+   2. 核心排版：Figure & Image Captions
+   ========================================================================== */
+
+/* 通用 Figure 结构 */
+.md-typeset figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0.6em auto;
+  padding: 0;
+  width: fit-content;
   text-align: center;
 }
 
-figcaption {
-  font-size: 14px;
-  color: var(--md-default-fg-color--light);
-  margin-top: 0.5em;
+.md-typeset figure img {
+  display: block;
+  max-width: 100%;
+  height: auto;
 }
 
-/* Image caption styles for table cells (where figure tags are not suitable) */
-.img-caption {
-  font-size: 14px;
-  font-style: italic;
-  color: var(--md-default-fg-color--light);
-  margin-top: 0.5em;
+.md-typeset figcaption {
+    margin: 0.2em auto;
+    line-height: 1.4;
+    color: var(--md-default-fg-color--light);
+    font-size: 14px;
+}
+
+/* 移除 Markdown 渲染带来的干扰节点 */
+.md-typeset figure > p { margin: 0; }
+.md-typeset figure br { display: none; }
+
+/* ==========================================================================
+   3. 增强组件：Grid Cards (卡片布局)
+   ========================================================================== */
+
+/* 1. 强制让 li 成为 Flex 容器，并撑开高度 */
+.grid.cards ul li {
+    display: flex !important;
+    flex-direction: column;
+    padding: 16px;
+    height: 100%;
+}
+
+/* 2. 让 figure 撑满 li 的剩余空间 */
+.md-typeset .grid.cards figure {
+    display: flex;
+    flex-direction: column;
+    flex: 1;                  /* 核心：占据 li 的所有高度 */
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+/* 3. 图片容器：通过 flex-grow 和 margin 实现垂直居中 */
+.md-typeset .grid.cards figure img {
+    flex: 1;                  /* 占据上方所有可用空间 */
+    object-fit: contain;      /* 保持比例 */
+    width: 100%;
+    margin-top: auto;         /* 配合下方 margin 实现垂直对齐 */
+    margin-bottom: auto;
+    display: block;
+}
+
+/* 4. 说明文字：推到底部并清除底部间距 */
+.md-typeset .grid.cards figure figcaption {
+    margin-top: auto;         /* 核心：将自己推到容器最底部 */
+    padding-top: 15px;        /* 与上方图片区域保持固定间距 */
+    margin-bottom: 0;         /* 移除底部边距，让卡片整洁 */
+    flex-shrink: 0;           /* 防止文字被压缩 */
+    text-align: center;
+}
+
+/* 如果 li 下面还有除了 figure 之外的其他元素（如 .card-footer） */
+.grid.cards ul li > :last-child {
+    margin-top: auto;
 }
 
 /* === Table Enhancements === */

@@ -81,20 +81,15 @@
 | **小顶堆 (Min-heap)** | $Val(Parent) \le Val(Child)$ | 快速获取 **最小值** | 维护前 $k$ 个 **最大值**<br>(堆顶为第 $k$ 大) | `a[i] <= a[2*i] && a[i] <= a[2*i+1]` | `a[i] <= a[2*i+1] && a[i] <= a[2*i+2]` |
 | **大顶堆 (Max-heap)** | $Val(Parent) \ge Val(Child)$ | 快速获取 **最大值** | 维护前 $k$ 个 **最小值**<br>(堆顶为第 $k$ 小) | `a[i] >= a[2*i] && a[i] >= a[2*i+1]` | `a[i] >= a[2*i+1] && a[i] >= a[2*i+2]` |
 
-<div align="center">
-  <table>
-    <tr>
-      <td align="center" style="vertical-align: middle;">
-        <img src="min_heap_and_max_heap.webp" alt="Min Heap and Max Heap" />
-      </td>
-      <td align="center" style="vertical-align: middle; width: 25%;">
-        <a href="https://b23.tv/BV1HYtseiEQ8">
-          <img src="heap_sort_video_thumbnail.webp" alt="Heap Sort" /><br>
-          <small>视频：堆排序动画讲解</small>
-        </a>
-      </td>
-    </tr>
-  </table>
+<div class="grid cards" markdown>
+- <figure>
+    ![Min Heap and Max Heap](min_heap_and_max_heap.webp)
+    <figcaption>Min Heap and Max Heap</figcaption>
+  </figure>
+- <figure>
+    ![Heap Sort](heap_sort_video_thumbnail.webp)
+    <figcaption><a href="https://b23.tv/BV1HYtseiEQ8">堆排序动画讲解</a></figcaption>
+  </figure>
 </div>
 
 如图所示，两张图分别维护了前 12 个最大值和最小值。堆顶元素 `1` 和 `9` 扮演了 **“门槛值”（Threshold）** 的角色：
@@ -238,7 +233,7 @@ BST 有两种不同的写法，处理细节也不同：
 ### 平衡二叉树
 
 <figure>
-    <img src="binary_tree_special_cases.webp" alt="Binary Tree Special Cases" width="60%" />
+    ![Binary Tree Special Cases](binary_tree_special_cases.webp){ width="60%" }
 </figure>
 
 #### AVL树
@@ -265,22 +260,18 @@ BST 有两种不同的写法，处理细节也不同：
 </div>
 
 <figure>
-    <img src="avl_tree_rotation_cases.webp" alt="AVL Tree Rotation" width="60%" />
+    ![AVL Tree Rotation](avl_tree_rotation_cases.webp){ width="60%" }
 </figure>
 
-<div align="center">
-  <table>
-    <tr>
-      <td align="center" style="vertical-align: bottom;" style="padding-right: 20px;">
-        <img src="balanced_binary_tree.webp" alt="Balanced Binary Tree" width="300" /><br />
-        <sub class="img-caption">Balanced Binary Tree</sub>
-      </td>
-      <td align="center" style="vertical-align: bottom;" style="padding-right: 20px;">
-        <img src="imbalanced_binary_tree.webp" alt="Imbalanced Binary Tree" width="300" /><br />
-        <sub class="img-caption">Imbalanced Binary Tree</sub>
-      </td>
-    </tr>
-  </table>
+<div class="grid cards" markdown>
+- <figure>
+    ![Balanced Binary Tree](imgs/balanced_binary_tree.webp)
+    <figcaption>Balanced Binary Tree</figcaption>
+  </figure>
+- <figure>
+    ![Imbalanced Binary Tree](imgs/imbalanced_binary_tree.webp)
+    <figcaption>Imbalanced Binary Tree</figcaption>
+  </figure>
 </div>
 
 AVL 树的应用场景：
@@ -304,7 +295,7 @@ AVL 树的应用场景：
 5. 从任一节点到其每个叶子的所有简单路径都包含相同数目的黑色节点（保证平衡的关键）
 
 <figure>
-    <img src="red_black_tree_example.webp" alt="Red Black Tree Example" width="50%" />
+    ![Red Black Tree Example](red_black_tree_example.webp){ width="50%" }
 </figure>
 
 推论：

@@ -150,19 +150,15 @@
     - **必须掌握**：排序算法是算法基础，建议至少熟练掌握冒泡、插入、选择、快排、归并五种实现。
     - **选择依据**：选择合适的排序算法需结合数据规模、稳定性需求和空间限制。
 
-<div align="center">
-  <table border="0" cellpadding="0" cellspacing="0">
-    <tr>
-      <td align="center" style="vertical-align: bottom;">
-        <img src="quick_sorting.webp" alt="Quick Sorting" /><br />
-        <sub class="img-caption">快速排序示意图</sub>
-      </td>
-      <td align="center" style="vertical-align: bottom;">
-        <img src="merge_sorting.webp" alt="Merge Sorting" /><br />
-        <sub class="img-caption">归并排序示意图</sub>
-      </td>
-    </tr>
-  </table>
+<div class="grid cards" markdown>
+- <figure>
+    ![Quick Sorting](quick_sorting.webp)
+    <figcaption>快速排序示意图</figcaption>
+  </figure>
+- <figure>
+    ![Merge Sorting](merge_sorting.webp)
+    <figcaption>归并排序示意图</figcaption>
+  </figure>
 </div>
 
 !!! Tip "快速记忆口诀"
@@ -178,24 +174,22 @@
 在计算机科学中，我们通常用大 $O$ 来描述某个特定算法时间与空间随着数据规模增加而变化的趋势。
 
 <figure>
-    <img src="Big_O.webp" alt="Big-O Complexity Chart" width="50%" />
+    ![Big-O Complexity Chart](Big_O.webp){ width="50%" }
 </figure>
 
 ### 稳定性与不稳定性
 
 我们以纸牌排序为例，当纸牌用稳定排序按点值排序的时候，两个 5 之间必定保持它们最初的次序。在用不稳定排序来排序的时候，两个 5 可能被按相反次序来排序。
 
-<div align="center">
-  <table border="0" cellpadding="0" cellspacing="0">
-    <tr>
-      <td align="center" style="vertical-align: bottom;">
-        <img src="sorting_stable.webp" alt="稳定排序" width="70%" /><br />
-      </td>
-      <td align="center" style="vertical-align: bottom;">
-        <img src="sorting_unstable.webp" alt="不稳定排序" width="70%" /><br />
-      </td>
-    </tr>
-  </table>
+<div class="grid cards" markdown>
+- <figure>
+    ![稳定排序](sorting_stable.webp)
+    <figcaption>稳定排序</figcaption>
+  </figure>
+- <figure>
+    ![不稳定排序](sorting_unstable.webp)
+    <figcaption>不稳定排序</figcaption>
+  </figure>
 </div>
 
 稳定排序通常是通过相邻交换或辅助空间来实现的，比较温柔，不会乱跳。而不稳定排序则通常包含长距离交换实现，容易把顺序搞乱。

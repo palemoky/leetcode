@@ -2,19 +2,15 @@
 
 二叉树的遍历分为 **广度优先（BFS）** 和 **深度优先（DFS）** 两种，其中 DFS 又分为前序、中序、后序遍历。这 4 种遍历方式是算法的基础，动态规划、回溯等高级算法都依赖于此。
 
-<div align="center">
-  <table>
-    <tr>
-      <td align="center" style="vertical-align: bottom;" >
-        <img src="binary_tree_bfs.webp" alt="Binary Tree BFS" /><br />
-        <sub class="img-caption">Binary Tree BFS</sub>
-      </td>
-      <td align="center" style="vertical-align: bottom;" >
-        <img src="binary_tree_dfs.webp" alt="Binary Tree DFS" /><br />
-        <sub class="img-caption">Binary Tree DFS</sub>
-      </td>
-    </tr>
-  </table>
+<div class="grid cards" markdown>
+- <figure>
+    ![BFS 遍历](binary_tree_bfs.webp)
+    <figcaption>BFS 遍历</figcaption>
+  </figure>
+- <figure>
+    ![DFS 遍历](binary_tree_dfs.webp)
+    <figcaption>DFS 遍历</figcaption>
+  </figure>
 </div>
 
 ## 遍历方式对比
@@ -28,19 +24,15 @@
 
 ## BFS vs DFS
 
-<div align="center">
-  <table>
-    <tr>
-      <td align="center">
-        <img src="bfs_traversal.webp" alt="BFS 遍历" /><br />
-        <sub>BFS: 横向扩散，逐层遍历</sub>
-      </td>
-      <td align="center">
-        <img src="dfs_traversal.webp" alt="DFS 前序遍历" /><br />
-        <sub>DFS (前序遍历): 纵向深入，一条路走到底</sub>
-      </td>
-    </tr>
-  </table>
+<div class="grid cards" markdown>
+- <figure>
+    ![BFS 遍历](bfs_traversal.webp)
+    <figcaption>BFS: 横向扩散，逐层遍历</figcaption>
+  </figure>
+- <figure>
+    ![DFS 前序遍历](dfs_traversal.webp)
+    <figcaption>DFS (前序遍历): 纵向深入，一条路走到底</figcaption>
+  </figure>
 </div>
 
 **核心区别**：

@@ -397,19 +397,15 @@ def is_bipartite(graph: list[list[int]]) -> bool:
         return result
     ```
 
-<div align="center">
-  <table>
-    <tr>
-      <td align="center">
-        <img src="topological_sort_dfs.webp" alt="DFS 拓扑排序" width=80% /><br />
-        <sub>DFS + 后序遍历反转</sub>
-      </td>
-      <td align="center">
-        <img src="topological_sort_kahn.webp" alt="Kahn 算法拓扑排序" width=80% /><br />
-        <sub>Kahn 算法 (BFS + 入度)</sub>
-      </td>
-    </tr>
-  </table>
+<div class="grid cards" markdown>
+- <figure>
+    ![DFS 拓扑排序](topological_sort_dfs.webp)
+    <figcaption>DFS + 后序遍历反转</figcaption>
+  </figure>
+- <figure>
+    ![Kahn 算法拓扑排序](topological_sort_kahn.webp)
+    <figcaption>Kahn 算法（BFS + 入度）</figcaption>
+  </figure>
 </div>
 
 > 图片来源: [Jingsam](https://jingsam.github.io/)

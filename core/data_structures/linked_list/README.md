@@ -2,8 +2,8 @@
 
 链表（Linked List）是一种线性数据结构，由一系列节点组成，每个节点包含数据和指向下一个节点的指针。与数组不同，链表的元素在内存中不连续存储。
 
-<figure align="center">
-    <img src="linked_list.webp" alt="Linked List Overview" width="60%" />
+<figure>
+    ![Linked List Overview](linked_list.webp){ width="60%" }
 </figure>
 
 ## 核心概念
@@ -176,19 +176,15 @@ func reverseList(head *ListNode) *ListNode {
 
 - 像抽扑克牌，依次插到头部：`prev→1→2→3→4` ⇒ `prev→2→1→3→4` ⇒ `prev→3→2→1→4`
 
-<div align="center">
-    <table>
-    <tr>
-        <td align="center">
-        <img src="reverse_by_iteration.webp" alt="迭代法反转链表" /><br />
-        <sub>迭代法反转链表</sub>
-        </td>
-        <td align="center">
-        <img src="reverse_by_head_insert.webp" alt="头插法反转链表" /><br />
-        <sub>头插法反转链表</sub>
-        </td>
-    </tr>
-    </table>
+<div class="grid cards" markdown>
+- <figure>
+    ![迭代法反转链表](reverse_by_iteration.webp)
+    <figcaption>迭代法反转链表</figcaption>
+  </figure>
+- <figure>
+    ![头插法反转链表](reverse_by_head_insert.webp)
+    <figcaption>头插法反转链表</figcaption>
+  </figure>
 </div>
 
 ### 3. 双指针
@@ -242,19 +238,15 @@ func mergeTwoLists(l1, l2 *ListNode) *ListNode {
 
 跳表是基于 **链表+随机索引** 的数据结构，通过多层索引链表，实现与平衡树相同的 **$O(log n)$** 级别的读写操作。由美国计算机科学家 William Pugh 于 1989 年发明。
 
-<div align="center">
-  <table>
-    <tr>
-      <td align="center"  style="vertical-align: bottom;">
-        <img src="skip_list.webp" alt="Skip List"  /><br />
-        <sub class="img-caption">Skip List</sub>
-      </td>
-      <td align="center" style="vertical-align: bottom;">
-        <img src="skip_list_add_element.webp" alt="Insert element to skip list"  /><br />
-        <sub class="img-caption">Insert element to skip list</sub>
-      </td>
-    </tr>
-  </table>
+<div class="grid cards" markdown>
+- <figure>
+    ![跳表](skip_list.webp)
+    <figcaption>跳表</figcaption>
+  </figure>
+- <figure>
+    ![跳表插入元素](skip_list_add_element.webp)
+    <figcaption>跳表插入元素</figcaption>
+  </figure>
 </div>
 
 跳表查找时从顶部最稀疏的子序列向下进行, 直至需要查找的元素在该层两个相邻的元素中间。

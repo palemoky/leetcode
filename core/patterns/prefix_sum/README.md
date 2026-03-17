@@ -133,16 +133,20 @@ $$
 
 **查询过程可视化：**
 
-<table>
-  <tr>
-    <td align="center"><img src="bottom_right.webp" alt="右下角区域"></td>
-    <td align="center"><img src="subtract_top.webp" alt="减去上方区域"></td>
-  </tr>
-  <tr>
-    <td align="center"><img src="subtract_left.webp" alt="减去左方区域"></td>
-    <td align="center"><img src="add_top_left.webp" alt="加回左上角"></td>
-  </tr>
-</table>
+<div class="grid cards" markdown>
+- <figure>
+    ![右下角区域](bottom_right.webp)
+  </figure>
+- <figure>
+    ![减去上方区域](subtract_top.webp)
+  </figure>
+- <figure>
+    ![减去左方区域](subtract_left.webp)
+  </figure>
+- <figure>
+    ![加回左上角](add_top_left.webp)
+  </figure>
+</div>
 
 > Image From [Prefix Sum of Matrix - GeeksforGeeks](https://www.geeksforgeeks.org/dsa/prefix-sum-2d-array/)
 

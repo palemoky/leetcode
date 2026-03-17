@@ -24,19 +24,15 @@
 
 === "字母异位词分组"
 
-    <div align="center">
-      <table>
-        <tr>
-          <td align="center" style="vertical-align: bottom;">
-            <img src="group_anagrams/sort.webp" alt="排序解法" /><br />
-            <sub>排序解法</sub>
-          </td>
-          <td align="center" style="vertical-align: bottom;">
-            <img src="group_anagrams/count.webp" alt="计数解法" /><br />
-            <sub>计数解法</sub>
-          </td>
-        </tr>
-      </table>
+    <div class="grid cards" markdown>
+    - <figure>
+        ![排序解法](group_anagrams/sort.webp)
+        <figcaption>排序解法</figcaption>
+    </figure>
+    - <figure>
+        ![计数解法](group_anagrams/count.webp)
+        <figcaption>计数解法</figcaption>
+    </figure>
     </div>
 
     ```go
@@ -893,19 +889,15 @@
 
 === "#236 最近公共祖先"
 
-    <div align="center">
-      <table>
-        <tr>
-          <td align="center" style="vertical-align: bottom;">
-            <img src="LCA/lowest_common_ancestor_of_a_binary_tree.webp" alt="LCA 示例" /><br />
-            <sub>最近公共祖先示例</sub>
-          </td>
-          <td align="center" style="vertical-align: bottom;">
-            <img src="LCA/lca_logic.webp" alt="LCA 逻辑" /><br />
-            <sub>LCA 判断逻辑</sub>
-          </td>
-        </tr>
-      </table>
+    <div class="grid cards" markdown>
+    - <figure>
+        ![LCA 示例](LCA/lowest_common_ancestor_of_a_binary_tree.webp)
+        <figcaption>最近公共祖先示例</figcaption>
+    </figure>
+    - <figure>
+        ![LCA 逻辑](LCA/lca_logic.webp)
+        <figcaption>LCA 判断逻辑</figcaption>
+    </figure>
     </div>
 
     ```go

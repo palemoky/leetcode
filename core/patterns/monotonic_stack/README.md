@@ -4,19 +4,15 @@
 
 其本质是通过局部有序性，求得相邻的更大/更小数。
 
-<div align="center">
-  <table>
-    <tr>
-      <td align="center" style="vertical-align: bottom;">
-        <img src="monotonous-stack-before.svg" alt="Before pushing 14" /><br />
-        <sub class="img-caption">Before pushing 14</sub>
-      </td>
-      <td align="center" style="vertical-align: bottom;">
-        <img src="monotonous-stack-after.svg" alt="After pushing 14" /><br />
-        <sub class="img-caption">After pushing 14</sub>
-      </td>
-    </tr>
-  </table>
+<div class="grid cards" markdown>
+- <figure>
+    ![Before pushing 14](monotonous-stack-before.svg)
+    <figcaption>Before pushing 14</figcaption>
+  </figure>
+- <figure>
+    ![After pushing 14](monotonous-stack-after.svg)
+    <figcaption>After pushing 14</figcaption>
+  </figure>
 </div>
 
 ## 适用场景
