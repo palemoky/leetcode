@@ -4,7 +4,7 @@ on:
   push:
     branches: main
     paths:
-      - "core/**"
+      - "docs/**"
       - "zensical.toml"
       - ".github/workflows/docs.yml"
   workflow_dispatch:
@@ -27,9 +27,6 @@ jobs:
 
       - name: Install uv
         uses: astral-sh/setup-uv@v7
-
-      - name: Copy core to docs
-        run: cp -r core/* docs/
 
       - name: Build documentation
         run: uvx --from zensical zensical build

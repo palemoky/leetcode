@@ -4,7 +4,7 @@ Convert PNG/JPG/GIF images to WebP and update Markdown references
 
 Usage:
   python3 scripts/convert-images-to-webp.py           # Convert staged files (pre-commit hook)
-  python3 scripts/convert-images-to-webp.py --all     # Convert all images in core/
+  python3 scripts/convert-images-to-webp.py --all     # Convert all images in docs/
 """
 import argparse
 import subprocess
@@ -130,8 +130,8 @@ def get_images_to_convert(files=None, all_images=False):
         # Convert specified files
         return [Path(f) for f in files if Path(f).suffix.lower() in ('.png', '.jpg', '.jpeg', '.gif')]
     elif all_images:
-        # Convert all PNG/JPG/GIF images in core/
-        core_dir = Path('core')
+        # Convert all PNG/JPG/GIF images in docs/
+        core_dir = Path('docs')
         return list(core_dir.rglob('*.png')) + list(core_dir.rglob('*.jpg')) + list(core_dir.rglob('*.jpeg')) + list(core_dir.rglob('*.gif'))
     else:
         # Convert only staged files (pre-commit hook mode)
@@ -146,7 +146,7 @@ def get_images_to_convert(files=None, all_images=False):
             staged_files = result.stdout.strip().split('\n')
             return [
                 Path(f) for f in staged_files
-                if f and f.startswith('core/') and f.lower().endswith(('.png', '.jpg', '.jpeg', '.gif'))
+                if f and f.startswith('docs/') and f.lower().endswith(('.png', '.jpg', '.jpeg', '.gif'))
             ]
         except subprocess.CalledProcessError:
             return []
@@ -154,7 +154,7 @@ def get_images_to_convert(files=None, all_images=False):
 def main():
     """Main function"""
     parser = argparse.ArgumentParser(description='Convert images to WebP')
-    parser.add_argument('--all', action='store_true', help='Convert all images in core/ (not just staged)')
+    parser.add_argument('--all', action='store_true', help='Convert all images in docs/ (not just staged)')
     parser.add_argument('files', nargs='*', help='Specific files to convert')
     args = parser.parse_args()
 
@@ -180,7 +180,7 @@ def main():
         sys.exit(0)
 
     mode = "all images" if args.all else ("specified images" if args.files else "staged images")
-    print(f"\n🖼️  Found {len(core_images)} {mode} in core/ directory")
+    print(f"\n🖼️  Found {len(core_images)} {mode} in docs/ directory")
 
     converted_images = []
     for image_path in core_images:
@@ -194,7 +194,7 @@ def main():
 
     # Update Markdown references
     print("\n📝 Updating Markdown references...")
-    core_dir = Path('core')
+    core_dir = Path('docs')
     md_files = list(core_dir.rglob('*.md'))
 
     updated_files = []
@@ -244,7 +244,7 @@ def main():
 
     if args.all:
         print("\n💡 Don't forget to commit the changes:")
-        print("   git add core/")
+        print("   git add docs/")
         print("   git commit -m 'perf: convert all images to WebP'")
 
     sys.exit(0)

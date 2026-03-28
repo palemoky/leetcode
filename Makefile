@@ -7,7 +7,7 @@ help:
 	@echo "Usage:"
 	@echo "  make new go              - Create new Go solution"
 	@echo "  make new py              - Create new Python solution"
-	@echo "  make img2webp            - Convert PNG/JPG images to WebP in core/"
+	@echo "  make img2webp            - Convert PNG/JPG images to WebP in docs/"
 	@echo ""
 	@echo "Example:"
 	@echo "  make new go"
@@ -43,5 +43,5 @@ go py:
 
 # Convert images to WebP
 img2webp:
-	@echo "🖼️  Converting all images in core/ to WebP..."
+	@echo "🖼️  Converting all images in docs/ to WebP..."
 	@python3 scripts/img2webp.py --all

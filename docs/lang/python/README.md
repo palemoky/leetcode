@@ -60,7 +60,7 @@ Python中的序列分为
 ・`dictname.get(key[, 键不存在时的默认值])` 键不存在时不报错，可设置默认值
 ・`in`或`not in` 查询是否存在值
 ・`for k in dictname.keys():` 或 `for k in dictname:` 获取所有键（`keys()`会返回一个列表）
-・`for v in dictname.values():` 获取所有值 
+・`for v in dictname.values():` 获取所有值
 ・`for k, v in dictname.items():` 来遍历字典 | ・`{}`
 ・`dict()`
 ・`fromkeys` 创建带默认值的字典

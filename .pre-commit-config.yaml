@@ -135,7 +135,7 @@ repos:
         name: Convert images to WebP
         entry: python3 scripts/img2webp.py
         language: system
-        files: ^core/.*\.(png|jpg|jpeg|gif)$
+        files: ^docs/.*\.(png|jpg|jpeg|gif)$
         pass_filenames: true
 
 default_install_hook_types:
