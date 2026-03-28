@@ -126,7 +126,15 @@ img[loading="lazy"] {
 
 /* === Table Enhancements === */
 
-/* Vertically center content in table cells with rowspan */
+/* 表格单元格边框（确保 rowspan/colspan 单元格也有分隔线） */
+.md-typeset table:not([class]) {
+  border-collapse: collapse;
+}
+
+.md-typeset table:not([class]) :is(td, th) {
+  border: 1px solid var(--md-typeset-table-color);
+}
+
 /* Vertically center content in table cells with rowspan */
 .md-typeset table td[rowspan],
 .md-typeset table th[rowspan] {
