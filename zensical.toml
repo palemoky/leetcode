@@ -1,12 +1,12 @@
 [project]
-site_name = "算法笔记"
+site_name = "算玄阁"
 site_description = "聪明的穷举一切可能！"
 site_author = "palemoky"
 site_url = "https://algo.palemoky.com"
 repo_url = "https://github.com/palemoky/leetcode"
 repo_name = "palemoky/leetcode"
 edit_uri = "edit/main/docs/"
-copyright = "Copyright &copy; 2026 Palemoky"
+copyright = "Copyright &copy; <span id='copyright-year'>2026</span> Palemoky"
 
 extra_javascript = [
   "assets/javascripts/mathjax.js",
