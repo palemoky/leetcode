@@ -135,6 +135,10 @@ img[loading="lazy"] {
   border: 1px solid var(--md-typeset-table-color);
 }
 
+.md-typeset table:not([class]) th {
+  background-color: var(--md-default-fg-color--lightest);
+}
+
 /* Vertically center content in table cells with rowspan */
 .md-typeset table td[rowspan],
 .md-typeset table th[rowspan] {
