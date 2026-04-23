@@ -150,6 +150,8 @@ tabbed.alternate_style = true
 tasklist.custom_checkbox = true
 tilde = {}
 
+[project.markdown_extensions.zensical.extensions.glightbox]
+
 [project.extra]
 generator = false
 social = [
