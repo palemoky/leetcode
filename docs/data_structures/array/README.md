@@ -12,9 +12,9 @@
 
 数组元素在内存中连续排列，元素地址可以通过公式计算：
 
-```
-address(arr[i]) = base_address + i × element_size
-```
+$$
+\operatorname{address}(arr[i]) = \operatorname{base\_address} + i \times \operatorname{element\_size}
+$$
 
 | 优势                          | 劣势                      |
 | :---------------------------- | :------------------------ |
