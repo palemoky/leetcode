@@ -12,8 +12,8 @@
 
         seen := map[int]int{}
         for i, num := range nums {
-            if prevIndex, ok := seen[target-num]; ok {
-                return []int{prevIndex, i}
+            if j, ok := seen[target-num]; ok {
+                return []int{i, j}
             }
             seen[num] = i
         }
