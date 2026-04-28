@@ -4,27 +4,6 @@
 
 贪心算法在每一步都做出 **局部最优选择**，期望通过局部最优达到全局最优。它广泛应用于优化问题，在这些问题中，每一步选择最佳选项能够导致整体最优解。
 
-## 典型应用场景
-
-- **区间调度** (如活动选择问题)
-- **找零问题** (当面额是规范的)
-- **霍夫曼编码** (数据压缩)
-- **最小生成树** (Kruskal、Prim 算法)
-- **最短路径** (Dijkstra 算法,非负权重)
-- **任务分配与资源调度**
-- **字符串和数组问题** (如跳跃游戏、分割问题)
-
-## 经典题目
-
-- [122. 买卖股票的最佳时机 II](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/)
-- [435. 无重叠区间](https://leetcode.cn/problems/non-overlapping-intervals/)
-- [452. 用最少数量的箭引爆气球](https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/)
-- [860. 柠檬水找零](https://leetcode.cn/problems/lemonade-change/)
-- [455. 分发饼干](https://leetcode.cn/problems/assign-cookies/)
-- [406. 根据身高重建队列](https://leetcode.cn/problems/queue-reconstruction-by-height/)
-- [135. 分发糖果](https://leetcode.cn/problems/candy/)
-- [605. 种花问题](https://leetcode.cn/problems/can-place-flowers/)
-
 ## 贪心算法模板
 
 ```python
@@ -95,6 +74,28 @@ def greedy_solve(intervals: list[list[int]]) -> int:
 2. **选择极值**: 总是选最大/最小的
 3. **优先队列**: 动态维护最优选择
 4. **双指针**: 从两端向中间贪心选择
+
+## 典型应用场景
+
+- **区间调度** (如活动选择问题)
+- **找零问题** (当面额是规范的)
+- **霍夫曼编码** (数据压缩)
+- **最小生成树** (Kruskal、Prim 算法)
+- **最短路径** (Dijkstra 算法,非负权重)
+- **任务分配与资源调度**
+- **字符串和数组问题** (如跳跃游戏、分割问题)
+
+## 经典题目
+
+- [122. 买卖股票的最佳时机 II](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/)
+- [435. 无重叠区间](https://leetcode.cn/problems/non-overlapping-intervals/)
+- [452. 用最少数量的箭引爆气球](https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/)
+- [860. 柠檬水找零](https://leetcode.cn/problems/lemonade-change/)
+- [455. 分发饼干](https://leetcode.cn/problems/assign-cookies/)
+- [406. 根据身高重建队列](https://leetcode.cn/problems/queue-reconstruction-by-height/)
+- [135. 分发糖果](https://leetcode.cn/problems/candy/)
+- [605. 种花问题](https://leetcode.cn/problems/can-place-flowers/)
+-
 
 ## 参考资料
 

@@ -4,30 +4,6 @@
 
 回溯是一种通用的算法技术，通过递归尝试逐步构建解决方案来解决问题，在任何时候移除不满足约束条件的解决方案（即回溯）。它特别适用于组合问题，如排列、组合和子集。
 
-## 典型应用
-
-- 排列和组合
-- 子集和幂集
-- N 皇后问题
-- 数独求解器
-- 单词搜索
-- 图着色
-- 迷宫寻路
-- 分割问题
-
-## 经典问题
-
-- [39. 组合总和](https://leetcode.cn/problems/combination-sum/)
-- [46. 全排列](https://leetcode.cn/problems/permutations/)
-- [78. 子集](https://leetcode.cn/problems/subsets/)
-- [77. 组合](https://leetcode.cn/problems/combinations/)
-- [90. 子集 II](https://leetcode.cn/problems/subsets-ii/)
-- [40. 组合总和 II](https://leetcode.cn/problems/combination-sum-ii/)
-- [47. 全排列 II](https://leetcode.cn/problems/permutations-ii/)
-- [51. N 皇后](https://leetcode.cn/problems/n-queens/)
-- [79. 单词搜索](https://leetcode.cn/problems/word-search/)
-- [37. 解数独](https://leetcode.cn/problems/sudoku-solver/)
-
 ## 回溯解题模板
 
 ```go
@@ -114,6 +90,28 @@ func traverse(root *TreeNode) {
   ![全排列决策树](permutation_decision_tree.webp){ width=50% }
 </figure>
 
-## 其他经典问题
+## 典型应用
 
-汉诺塔、N 皇后、图着色、旅行商问题
+- 排列和组合
+- 子集和幂集
+- N 皇后问题
+- 数独求解器
+- 单词搜索
+- 图着色
+- 汉诺塔
+- 迷宫寻路
+- 分割问题
+- 旅行商问题
+
+## 经典题目
+
+- [39. 组合总和](https://leetcode.cn/problems/combination-sum/)
+- [46. 全排列](https://leetcode.cn/problems/permutations/)
+- [78. 子集](https://leetcode.cn/problems/subsets/)
+- [77. 组合](https://leetcode.cn/problems/combinations/)
+- [90. 子集 II](https://leetcode.cn/problems/subsets-ii/)
+- [40. 组合总和 II](https://leetcode.cn/problems/combination-sum-ii/)
+- [47. 全排列 II](https://leetcode.cn/problems/permutations-ii/)
+- [51. N 皇后](https://leetcode.cn/problems/n-queens/)
+- [79. 单词搜索](https://leetcode.cn/problems/word-search/)
+- [37. 解数独](https://leetcode.cn/problems/sudoku-solver/)

@@ -292,7 +292,7 @@ for i := 2; i <= n; i++ {
 4. **总结模板**：归纳不同类型 DP 的解题模板
 5. **刷题顺序**：线性 DP → 背包 DP → 区间 DP → 树形 DP
 
-## 经典题目清单
+## 经典题目
 
 - [70. Climbing Stairs](https://leetcode.cn/problems/climbing-stairs/) — 爬楼梯（入门）
 - [198. House Robber](https://leetcode.cn/problems/house-robber/) — 打家劫舍
