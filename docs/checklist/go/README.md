@@ -327,17 +327,17 @@
 
     ```go
     func reverseBetween(head *ListNode, left, right int) *ListNode {
-        dummy := &ListNode{Next: head}
+        dummy := &ListNode{Next: head} // 可能从头结点开始反转
 
         prev := dummy
-        for range left - 1 {
+        for i := 1; i < left; i++ {
             prev = prev.Next
         }
 
-        cur := prev.Next
-        for range right - left {
-            next := cur.Next
-            cur.Next = next.Next
+        curr := prev.Next
+        for i := left; i < right; i++ {
+            next := curr.Next
+            curr.Next = next.Next
             next.Next = prev.Next
             prev.Next = next
         }
