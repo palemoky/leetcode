@@ -335,7 +335,7 @@
         }
 
         curr := prev.Next
-        for i := left; i < right; i++ {
+        for ; left < right; left++ {
             next := curr.Next
             curr.Next = next.Next
             next.Next = prev.Next
