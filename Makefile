@@ -35,7 +35,16 @@ new:
 		exit 1; \
 	fi; \
 	read -p "Please input LeetCode problem number: " problem_num; \
-	python3 scripts/create_solution.py --language $$LANG $$problem_num
+	if command -v uv >/dev/null 2>&1; then \
+		cd python && uv run python ../scripts/create_solution.py --language $$LANG $$problem_num; \
+	elif command -v python3 >/dev/null 2>&1; then \
+		python3 scripts/create_solution.py --language $$LANG $$problem_num; \
+	elif command -v python >/dev/null 2>&1; then \
+		python scripts/create_solution.py --language $$LANG $$problem_num; \
+	else \
+		echo "Error: Neither uv nor python is available in PATH"; \
+		exit 1; \
+	fi
 
 # Prevent make from treating 'go' and 'py' as targets
 go py:
@@ -44,4 +53,13 @@ go py:
 # Convert images to WebP
 img2webp:
 	@echo "🖼️  Converting all images in docs/ to WebP..."
-	@python3 scripts/img2webp.py --all
+	@if command -v uv >/dev/null 2>&1; then \
+		cd python && uv run python ../scripts/img2webp.py --all; \
+	elif command -v python3 >/dev/null 2>&1; then \
+		python3 scripts/img2webp.py --all; \
+	elif command -v python >/dev/null 2>&1; then \
+		python scripts/img2webp.py --all; \
+	else \
+		echo "Error: Neither uv nor python is available in PATH"; \
+		exit 1; \
+	fi
