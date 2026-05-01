@@ -21,11 +21,11 @@
 
     <div class="grid cards" markdown>
     - <figure>
-        ![排序解法](group_anagrams/sort.webp)
+        ![排序解法](../imgs/group_anagrams/sort.webp)
         <figcaption>排序解法</figcaption>
     </figure>
     - <figure>
-        ![计数解法](group_anagrams/count.webp)
+        ![计数解法](../imgs/group_anagrams/count.webp)
         <figcaption>计数解法</figcaption>
     </figure>
     </div>
@@ -739,11 +739,11 @@
 
     <div class="grid cards" markdown>
     - <figure>
-        ![LCA 示例](LCA/lowest_common_ancestor_of_a_binary_tree.webp)
+        ![LCA 示例](../imgs/LCA/lowest_common_ancestor_of_a_binary_tree.webp)
         <figcaption>最近公共祖先示例</figcaption>
     </figure>
     - <figure>
-        ![LCA 逻辑](LCA/lca_logic.webp)
+        ![LCA 逻辑](../imgs/LCA/lca_logic.webp)
         <figcaption>LCA 判断逻辑</figcaption>
     </figure>
     </div>
@@ -866,7 +866,7 @@
 
     - 左子树的右节点 == 右子树的左节点
     </div>
-    <div markdown>![对称树示意图](symmetric_tree.webp)</div>
+    <div markdown>![对称树示意图](../imgs/symmetric_tree.webp)</div>
     </div>
 
     镜像递归
@@ -1124,8 +1124,8 @@
 
     单调递减栈，当前温度高于栈顶时不断弹出并更新等待天数（出栈时更新结果）。建议手动模拟栈的变化过程来辅助理解。
 
-    ![温度折线图](daily_temperatures/example.webp)
-    ![单调递减栈](daily_temperatures/monotonic_stack.webp)
+    ![温度折线图](../imgs/daily_temperatures/example.webp)
+    ![单调递减栈](../imgs/daily_temperatures/monotonic_stack.webp)
 
     ```python
     def dailyTemperatures(temperatures: list[int]) -> list[int]:
