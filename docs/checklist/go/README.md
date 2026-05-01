@@ -336,10 +336,10 @@
 
         curr := prev.Next
         for ; left < right; left++ {
-            next := curr.Next
-            curr.Next = next.Next
-            next.Next = prev.Next
-            prev.Next = next
+            next := curr.Next     // 暂存操作节点的移动路径
+            curr.Next = next.Next // 摘下节点
+            next.Next = prev.Next // 插到区间头部
+            prev.Next = next      // 移动操作的节点
         }
 
         return dummy.Next
@@ -1495,7 +1495,31 @@
     }
     ```
 
-=== "跳跃游戏"
+=== "#55 跳跃游戏"
+
+    解题思路：可跳跃范围覆盖最后一个元素的索引即可
+
+    ```go
+    func canJump(nums []int) bool {
+        cover := 0
+        for i, jump := range nums {
+            // 不可达位置
+            if i > cover {
+                return false
+            }
+
+            // 更新最大覆盖范围
+            cover = max(cover, i+jump) // 从 i 跳 jump 步
+
+            // 是否可以覆盖最后一个元素
+            if cover >= len(nums)-1 {
+                break
+            }
+        }
+
+        return true
+    }
+    ```
 
 === "加油站"
 
