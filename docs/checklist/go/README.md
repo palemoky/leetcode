@@ -321,7 +321,7 @@
 
 === "#92 局部反转链表"
 
-    头插法，将每个要反转的节点连接到 `prev` 后
+    头插法，把 `curr.Next` 节点插入区间头部（即 `prev` 后）。
 
     ```go
     func reverseBetween(head *ListNode, left, right int) *ListNode {
@@ -333,7 +333,7 @@
         }
 
         curr := prev.Next
-        for ; left < right; left++ {
+        for ; left < right; left++ { // 这段代码画个步骤图就出来了
             next := curr.Next     // 暂存操作节点的移动路径
             curr.Next = next.Next // 摘下节点
             next.Next = prev.Next // 插到区间头部

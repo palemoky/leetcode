@@ -21,11 +21,11 @@ func reverseBetweenByHeadInsert(head *utils.ListNode, left int, right int) *util
 	//       left      right
 	cur := prev.Next
 	for range right - left {
-		// 头插法：每次将 cur.Next 移到 prev 后面
-		next := cur.Next      // 保存指针
-		cur.Next = next.Next  // 修改指针
-		next.Next = prev.Next //
-		prev.Next = next
+		// 头插法：保持 curr 不动，每次将 cur.Next 移到 prev 后面，画一步头插法的执行过程就是代码
+		next := cur.Next      // 暂存待移动节点
+		cur.Next = next.Next  // 从原位置摘下 next
+		next.Next = prev.Next // 将 next 接到区间头部
+		prev.Next = next      // 完成头插
 	}
 
 	return dummy.Next
