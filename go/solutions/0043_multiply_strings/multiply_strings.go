@@ -46,7 +46,7 @@ func multiply(num1 string, num2 string) string {
 	// 使用 strings.Builder 高效构建
 	var builder strings.Builder
 	for i := start; i < len(ans); i++ {
-		builder.WriteByte(byte(ans[i] + '0'))
+		builder.WriteByte(byte(ans[i] + '0')) //nolint:gosec // ans[i] is always 0-9
 	}
 
 	return builder.String()
