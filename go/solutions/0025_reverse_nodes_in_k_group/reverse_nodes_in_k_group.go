@@ -20,7 +20,7 @@ func reverseKGroup(head *utils.ListNode, k int) *utils.ListNode {
 		for range k {
 			tail = tail.Next
 			if tail == nil {
-				return dummy.Next // 不足 k 个，直接返回
+				return dummy.Next // 不足 k 个时结束反转
 			}
 		}
 

@@ -348,7 +348,20 @@
 
 === "#25 K个一组反转链表"
 
-    分组+局部反转
+    分组+局部反转（k=3）：
+
+    ```
+    // 反转前
+    // dummy -> A -> B -> C -> D -> E
+    //   ↑      ↑         ↑    ↑
+    // prev    cur      tail  nextGroup
+
+    // 反转后（第一组）
+    // dummy -> C -> B -> A -> D -> E
+    //          ↑         ↑    ↑
+    //         tail      cur  nextGroup
+    //                   prev
+    ```
 
     ```go
     func reverseKGroup(head *ListNode, k int) *ListNode {
@@ -360,13 +373,13 @@
             for range k {
                 tail = tail.Next
                 if tail == nil {
-                    return dummy.Next
+                    return dummy.Next // 不足 k 个时结束反转
                 }
             }
 
-            nextGroup := tail.Next
+            nextGroup := tail.Next // 下一组起始位置
 
-            // 局部反转链表
+            // 头插法局部反转链表
             cur := prev.Next
             for range k - 1 {
                 next := cur.Next
@@ -375,6 +388,7 @@
                 prev.Next = next
             }
 
+            // 区间反转完成后，准备下一组的反转，此时 curr 移动到了区间末尾
             cur.Next = nextGroup
             prev = cur
         }
