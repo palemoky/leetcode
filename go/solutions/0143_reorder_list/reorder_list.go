@@ -2,8 +2,8 @@ package reorder_list
 
 import "leetcode/go/solutions/utils"
 
-// Solution 1: 反转后半段
-// Time: O(nlogn), Space: O()
+// Solution 1: 反转后半段交叉合并
+// Time: O(n), Space: O(n)
 func reorderList(head *utils.ListNode) {
 	mid := middleNode(head)
 	reversedHead := reverseList(mid)
