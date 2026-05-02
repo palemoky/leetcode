@@ -302,6 +302,8 @@
 
 ## 链表
 
+### 基础必会
+
 === "#206 反转链表"
 
     ```go
@@ -345,6 +347,119 @@
     ```
 
     ![reverse_by_head_insert](../../data_structures/linked_list/reverse_by_head_insert.webp)
+
+=== "#876 链表的中间节点"
+
+    本题使用快慢指针求解，但要注意链表奇偶长度的处理
+
+    ```go
+    func middleNode(head *ListNode) *ListNode {
+        if head == nil {
+            return nil
+        }
+
+        slow, fast := head, head
+        for fast != nil && fast.Next != nil {
+            slow, fast = slow.Next, fast.Next.Next
+        }
+
+        return slow
+    }
+    ```
+
+=== "#141 判断环形链表"
+
+    快慢指针解法：快指针走两步，慢指针走一步，相遇则有环
+
+    ```go
+    func hasCycle(head *ListNode) bool {
+        slow, fast := head, head
+        for fast != nil && fast.Next != nil {
+            slow, fast = slow.Next, fast.Next.Next
+            if slow == fast {
+                return true
+            }
+        }
+
+        return false
+    }
+    ```
+
+=== "#142 找到环形链表的入口"
+
+    ```go
+    func detectCycle(head *ListNode) *ListNode {
+        seen := map[*ListNode]struct{}{}
+        for head != nil {
+            if _, ok := seen[head]; ok {
+                return head
+            }
+            seen[head] = struct{}{}
+            head = head.Next
+        }
+
+        return nil
+    }
+    ```
+
+=== "#160 相交链表"
+
+    本题可以使用哈希表来简单求解，也可以用双指针把空间复杂度优化到 $O(1)$
+
+    ```go
+    func getIntersectionNode(headA, headB *ListNode) *ListNode {
+        pA, pB := headA, headB
+        for pA != pB {
+            if pA == nil {
+                pA = headB
+            } else {
+                pA = pA.Next
+            }
+
+            if pB == nil {
+                pB = headA
+            } else {
+                pB = pB.Next
+            }
+        }
+
+        return pA // 没有相交时，遍历结束的链表最终指向 nil
+    }
+    ```
+
+=== "#21 合并两个有序链表"
+
+    ```go
+    func mergeSortedTwoLists(l1, l2 *ListNode) *ListNode {
+    	dummy := &ListNode{}
+    	current := dummy
+
+    	// 注意该遍历需同时操作3个链表
+    	for l1 != nil && l2 != nil { // 注意是 &&
+    		if l1.Val < l2.Val {     // 将较小的值挂载在新链表上
+    			current.Next = l1
+    			l1 = l1.Next         // 移动原链表
+    		} else {
+    			current.Next = l2
+    			l2 = l2.Next
+    		}
+    		current = current.Next   // 移动新链表
+    	}
+
+    	// 将链表剩余部分挂载，同时处理原链表为空
+    	if l1 != nil {
+    		current.Next = l1
+    	} else {
+    		current.Next = l2
+    	}
+
+    	// 注意返回的是 dummy.Next
+    	return dummy.Next
+    }
+    ```
+
+
+### 综合常考
 
 === "#25 K个一组反转链表"
 
@@ -392,72 +507,6 @@
             cur.Next = nextGroup
             prev = cur
         }
-    }
-    ```
-
-=== "#141 判断环形链表"
-
-    快慢指针解法：快指针走两步，慢指针走一步，相遇则有环
-
-    ```go
-    func hasCycle(head *ListNode) bool {
-        slow, fast := head, head
-        for fast != nil && fast.Next != nil {
-            slow, fast = slow.Next, fast.Next.Next
-            if slow == fast {
-                return true
-            }
-        }
-
-        return false
-    }
-    ```
-
-=== "#142 找到环形链表的入口"
-
-    ```go
-    func detectCycle(head *ListNode) *ListNode {
-        seen := map[*ListNode]struct{}{}
-        for head != nil {
-            if _, ok := seen[head]; ok {
-                return head
-            }
-            seen[head] = struct{}{}
-            head = head.Next
-        }
-
-        return nil
-    }
-    ```
-
-=== "#21 合并两个有序链表"
-
-    ```go
-    func mergeSortedTwoLists(l1, l2 *ListNode) *ListNode {
-    	dummy := &ListNode{}
-    	current := dummy
-
-    	// 注意该遍历需同时操作3个链表
-    	for l1 != nil && l2 != nil { // 注意是 &&
-    		if l1.Val < l2.Val { // 将较小的值挂载在新链表上
-    			current.Next = l1
-    			l1 = l1.Next // 移动原链表
-    		} else {
-    			current.Next = l2
-    			l2 = l2.Next
-    		}
-    		current = current.Next // 移动新链表
-    	}
-
-    	// 将链表剩余部分挂载，同时处理原链表为空
-    	if l1 != nil {
-    		current.Next = l1
-    	} else {
-    		current.Next = l2
-    	}
-
-    	// 注意返回的是 dummy.Next
-    	return dummy.Next
     }
     ```
 
@@ -544,88 +593,6 @@
     }
     ```
 
-=== "#160 相交链表"
-
-    本题可以使用哈希表来简单求解，也可以用双指针把空间复杂度优化到 $O(1)$
-
-    ```go
-    func getIntersectionNode(headA, headB *ListNode) *ListNode {
-        pA, pB := headA, headB
-        for pA != pB {
-            if pA == nil {
-                pA = headB
-            } else {
-                pA = pA.Next
-            }
-
-            if pB == nil {
-                pB = headA
-            } else {
-                pB = pB.Next
-            }
-        }
-
-        return pA // 没有相交时，遍历结束的链表最终指向 nil
-    }
-    ```
-
-=== "#143 重排链表"
-
-    利用快慢指针找中点并反转后半链表进行重排。
-
-    ```go
-    func reorderList(head *ListNode)  {
-        mid := middleNode(head)
-        reversedHead := reverseList(mid)
-        p1, p2 := head, reversedHead
-        for p2.Next != nil {                    // 注意结束条件
-            p1Next, p2Next := p1.Next, p2.Next  // 保存指针避免断链
-            p1.Next, p2.Next = p2, p1Next       // 交叉连接
-            p1, p2 = p1Next, p2Next             // 移动节点
-        }
-    }
-
-    func middleNode(head *ListNode) *ListNode {
-        slow, fast := head, head
-        for fast != nil && fast.Next != nil {
-            slow, fast = slow.Next, fast.Next.Next
-        }
-
-        return slow
-    }
-
-    func reverseList(head *ListNode) *ListNode {
-        var prev *ListNode
-        for head != nil {
-            next := head.Next
-            head.Next = prev
-            prev = head
-            head = next
-        }
-
-        return prev
-    }
-    ```
-
-=== "#876 链表的中间节点"
-
-    本题使用快慢指针求解，但要注意链表奇偶长度的处理
-
-    ```go
-    func middleNode(head *ListNode) *ListNode {
-        if head == nil {
-            return nil
-        }
-
-        slow, fast := head, head
-        for fast != nil && fast.Next != nil {
-            slow, fast = slow.Next, fast.Next.Next
-        }
-
-        return slow
-    }
-    ```
-
 === "#148 排序链表"
 
     本题与 #23 类似，采用归并排序，其中又用到了 #876 和 #21 来查找链表中点和进行链表排序
@@ -676,6 +643,44 @@
         }
 
         return dummy.Next
+    }
+    ```
+
+=== "#143 重排链表"
+
+    利用快慢指针找中点并反转后半链表进行重排。
+
+    ```go
+    func reorderList(head *ListNode)  {
+        mid := middleNode(head)
+        reversedHead := reverseList(mid)
+        p1, p2 := head, reversedHead
+        for p2.Next != nil {                    // 注意结束条件
+            p1Next, p2Next := p1.Next, p2.Next  // 保存指针避免断链
+            p1.Next, p2.Next = p2, p1Next       // 交叉连接
+            p1, p2 = p1Next, p2Next             // 移动节点
+        }
+    }
+
+    func middleNode(head *ListNode) *ListNode {
+        slow, fast := head, head
+        for fast != nil && fast.Next != nil {
+            slow, fast = slow.Next, fast.Next.Next
+        }
+
+        return slow
+    }
+
+    func reverseList(head *ListNode) *ListNode {
+        var prev *ListNode
+        for head != nil {
+            next := head.Next
+            head.Next = prev
+            prev = head
+            head = next
+        }
+
+        return prev
     }
     ```
 
