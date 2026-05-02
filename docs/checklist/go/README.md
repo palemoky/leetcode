@@ -461,6 +461,89 @@
     }
     ```
 
+=== "#23 合并K个升序链表"
+
+    本题有归并和最小堆两种解法，并且复杂度相同
+
+    归并解法：类似于锦标赛两两合并快速收敛
+
+    ```go
+    func mergeKListsByDivideAndConquer(lists []*utils.ListNode) *utils.ListNode {
+        if len(lists) == 0 {
+            return nil
+        }
+
+        return mergeRange(lists, 0, len(lists)-1)
+    }
+
+    func mergeRange(lists []*utils.ListNode, left, right int) *utils.ListNode {
+        if left == right {
+            return lists[left]
+        }
+
+        mid := left + (right-left)/2
+        l1 := mergeRange(lists, left, mid)
+        l2 := mergeRange(lists, mid+1, right)
+
+        return mergeTwoLists(l1, l2)
+    }
+
+    func mergeTwoLists(l1, l2 *utils.ListNode) *utils.ListNode {
+        dummy := &utils.ListNode{}
+        cur := dummy
+
+        for l1 != nil && l2 != nil {
+            if l1.Val <= l2.Val {
+                cur.Next = l1
+                l1 = l1.Next
+            } else {
+                cur.Next = l2
+                l2 = l2.Next
+            }
+            cur = cur.Next
+        }
+
+        if l1 != nil {
+            cur.Next = l1
+        } else {
+            cur.Next = l2
+        }
+
+        return dummy.Next
+    }
+    ```
+
+    最小堆：利用小顶堆排序
+
+    ```go
+    // 注意 Go 中需要实现 heap 接口
+    func mergeKListsByMinHeap(lists []*utils.ListNode) *utils.ListNode {
+        h := &listNodeHeap{}
+        heap.Init(h)
+
+        for _, node := range lists {
+            if node != nil {
+                heap.Push(h, node)
+            }
+        }
+
+        dummy := &utils.ListNode{}
+        cur := dummy
+
+        for h.Len() > 0 {
+            node := heap.Pop(h).(*utils.ListNode)
+            cur.Next = node
+            cur = cur.Next
+
+            if node.Next != nil {
+                heap.Push(h, node.Next)
+            }
+        }
+
+        return dummy.Next
+    }
+    ```
+
 === "#160 相交链表"
 
 === "#143 重排链表"
