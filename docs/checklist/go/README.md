@@ -571,9 +571,78 @@
 
 === "#143 重排链表"
 
+
+=== "#876 链表的中间节点"
+
+    本题使用快慢指针求解，但要注意链表奇偶长度的处理
+
+    ```go
+    func middleNode(head *ListNode) *ListNode {
+        if head == nil {
+            return nil
+        }
+
+        slow, fast := head, head
+        for fast != nil && fast.Next != nil {
+            slow, fast = slow.Next, fast.Next.Next
+        }
+
+        return slow
+    }
+    ```
+
 === "#148 排序链表"
 
-    归并排序
+    本题与 #23 类似，采用归并排序，其中又用到了 #876 和 #21 来查找链表中点和进行链表排序
+
+    ```go
+    func sortList(head *ListNode) *ListNode {
+        if head == nil || head.Next == nil {
+            return head
+        }
+
+        mid := split(head)
+        left := sortList(head)
+        right := sortList(mid)
+
+        return mergeTwoLists(left, right)
+    }
+
+    func split(head *ListNode) *ListNode {
+        prev, slow, fast := head, head, head
+        for fast != nil && fast.Next != nil {
+            prev, slow, fast = slow, slow.Next, fast.Next.Next
+        }
+
+        prev.Next = nil // 注意需要切断链表
+
+        return slow
+    }
+
+    func mergeTwoLists(l1, l2 *ListNode) *ListNode {
+        dummy := &ListNode{}
+        curr := dummy
+        for l1 != nil && l2 != nil {
+            if l1.Val < l2.Val {
+                curr.Next = l1
+                l1 = l1.Next
+            } else {
+                curr.Next = l2
+                l2 = l2.Next
+            }
+            curr = curr.Next
+        }
+
+        if l1 != nil {
+            curr.Next = l1
+        }
+        if l2 != nil {
+            curr.Next = l2
+        }
+
+        return dummy.Next
+    }
+    ```
 
 === "#146 LRU缓存"
 
