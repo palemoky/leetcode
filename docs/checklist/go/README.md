@@ -686,10 +686,10 @@
 
 === "#146 LRU缓存"
 
-    双向链表 + 哈希表
+    解题的核心在于哈希表 + 双向链表，其中哈希表可以在 $O(1)$ 找到链表的节点，双向链表可以在 $O(1)$ 删除节点。
 
     ```go
-    type Node struct {
+    type Node struct { // 内部实现，不允许外部访问
         key, value int
         prev, next *Node
     }
