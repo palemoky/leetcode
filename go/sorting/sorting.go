@@ -164,20 +164,20 @@ func merge(nums []int) []int {
 		return nums
 	}
 
-	mergeSortRecursive(nums, 0, len(nums)-1)
+	mergeRange(nums, 0, len(nums)-1)
 
 	return nums
 }
 
-// mergeSortRecursive 是递归的核心
-func mergeSortRecursive(nums []int, left, right int) {
+// mergeRange 是递归的核心
+func mergeRange(nums []int, left, right int) {
 	if left >= right {
 		return
 	}
 
 	mid := left + (right-left)/2
-	mergeSortRecursive(nums, left, mid)
-	mergeSortRecursive(nums, mid+1, right)
+	mergeRange(nums, left, mid)
+	mergeRange(nums, mid+1, right)
 	mergeHalves(nums, left, mid, right)
 }
 
