@@ -571,6 +571,41 @@
 
 === "#143 重排链表"
 
+    利用快慢指针找中点并反转后半链表进行重排。
+
+    ```go
+    func reorderList(head *ListNode)  {
+        mid := middleNode(head)
+        reversedHead := reverseList(mid)
+        p1, p2 := head, reversedHead
+        for p2.Next != nil {                    // 注意结束条件
+            p1Next, p2Next := p1.Next, p2.Next  // 保存指针避免断链
+            p1.Next, p2.Next = p2, p1Next       // 交叉连接
+            p1, p2 = p1Next, p2Next             // 移动节点
+        }
+    }
+
+    func middleNode(head *ListNode) *ListNode {
+        slow, fast := head, head
+        for fast != nil && fast.Next != nil {
+            slow, fast = slow.Next, fast.Next.Next
+        }
+
+        return slow
+    }
+
+    func reverseList(head *ListNode) *ListNode {
+        var prev *ListNode
+        for head != nil {
+            next := head.Next
+            head.Next = prev
+            prev = head
+            head = next
+        }
+
+        return prev
+    }
+    ```
 
 === "#876 链表的中间节点"
 
