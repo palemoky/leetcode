@@ -34,44 +34,21 @@ Python 中只有 `for-in` 和 `while`，没有普通的 `for`
 
 在Python中，字符串前用 `r` 表示原生输出字符串，`f` 表示格式化输出，可解析字符串中的变量，如`f"Hello, {full_name.title()}!"`
 
-Python中的序列分为
+Python中的序列分为：
+
 - 有序
-  - 列表：可以修改，支持运算
-  - 元组：不可修改
+    - 列表：可以修改，支持运算
+    - 元组：不可修改
 - 无序
-  - 字典
-  - 集合
+    - 字典
+    - 集合
 
 |  | 特点 | 查 | 增 | 改 | 删 | 备注 |
 | --- | --- | --- | --- | --- | --- | --- |
-| 列表 | 有序 | ・`.index(value, start, end)` 查找元素的索引
-・`.count()` 统计元素出现的次数 | ・`.append(value)`末尾整体追加元素
-・`.extend(value)`末尾逐个追加元素
-・`.insert(index, value)` 在指定位置整体插入元素
-・`+` 拼接列表 | ・根据下标修改；
-・通过切片修改； | ・`del listname[index]` 或`del listname[start : end]` 根据索引删除
-・`.pop(index)`根据索引删除
-・`.remove(value)` 根据元素值删除
-・`.clear()` 清空元素 | `range()` 函数的返回值并不直接是列表，而是 range |
-| 元组 | 有序、不可变 | ・通过索引
-・通过切片 | ・`()`
-・`tuple()` | 无 | `del tuplename` | 当创建的元组中只有一个字符串类型的元素时，该元素后面必须要加一个逗号 `,`，否则 Python 解释器会将它视为字符串。 |
-| 字典 | 无序、键值对 | ・`dictname[key]`通过索引查询，键不存在时报错
-・`dictname.get(key[, 键不存在时的默认值])` 键不存在时不报错，可设置默认值
-・`in`或`not in` 查询是否存在值
-・`for k in dictname.keys():` 或 `for k in dictname:` 获取所有键（`keys()`会返回一个列表）
-・`for v in dictname.values():` 获取所有值
-・`for k, v in dictname.items():` 来遍历字典 | ・`{}`
-・`dict()`
-・`fromkeys` 创建带默认值的字典
-・`dictname[key] = value` 通过键值对添加 | ・`dictname[key] = value` 通过键值对修改
-・`update` 包含则更新，否则添加 | ・`del dictname[key]` 根据键删除
-・`.pop()` 删除指定的键值对
-・`popitem()` 移除末尾的一个键值对
- | `setdefault`为不存在的 key 设置一个默认值 |
-| 集合 | 无序、唯一 | ・遍历读取 | ・`.add(value)` | 无 | ・`.remove()`不存在元素报错
-・`.discard()`不存在元素不报错
-・`.clear()` | `forzenset` 不允许变更元素，`set` 中变更元素的方法都不支持，不变更元素的方法都支持。 |
+| 列表 | 有序 | ・`.index(value, start, end)` 查找元素的索引<br>・`.count()` 统计元素出现的次数 | ・`.append(value)`末尾整体追加元素<br>・`.extend(value)`末尾逐个追加元素<br>・`.insert(index, value)` 在指定位置整体插入元素<br>・`+` 拼接列表 | ・根据下标修改；<br>・通过切片修改； | ・`del listname[index]` 或`del listname[start : end]` 根据索引删除<br>・`.pop(index)`根据索引删除<br>・`.remove(value)` 根据元素值删除<br>・`.clear()` 清空元素 | `range()` 函数的返回值并不直接是列表，而是 range |
+| 元组 | 有序、不可变 | ・通过索引<br>・通过切片 | ・`()`<br>・`tuple()` | 无 | `del tuplename` | 当创建的元组中只有一个字符串类型的元素时，该元素后面必须要加一个逗号 `,`，否则 Python 解释器会将它视为字符串。 |
+| 字典 | 无序、键值对 | ・`dictname[key]`通过索引查询，键不存在时报错<br>・`dictname.get(key[, 键不存在时的默认值])` 键不存在时不报错，可设置默认值<br>・`in`或`not in` 查询是否存在值<br>・`for k in dictname.keys():` 或 `for k in dictname:` 获取所有键（`keys()`会返回一个列表）<br>・`for v in dictname.values():` 获取所有值<br>・`for k, v in dictname.items():` 来遍历字典 | ・`{}`<br>・`dict()`<br>・`fromkeys` 创建带默认值的字典<br>・`dictname[key] = value` 通过键值对添加 | ・`dictname[key] = value` 通过键值对修改<br>・`update` 包含则更新，否则添加 | ・`del dictname[key]` 根据键删除<br>・`.pop()` 删除指定的键值对<br>・`popitem()` 移除末尾的一个键值对<br> | `setdefault`为不存在的 key 设置一个默认值 |
+| 集合 | 无序、唯一 | ・遍历读取 | ・`.add(value)` | 无 | ・`.remove()`不存在元素报错<br>・`.discard()`不存在元素不报错<br>・`.clear()` | `forzenset` 不允许变更元素，`set` 中变更元素的方法都不支持，不变更元素的方法都支持。 |
 
 # 推导式
 
@@ -101,4 +78,4 @@ if __name__ == '__main__':
 ```
 
 Python 的环境管理比较混乱，有 venv、poetry、uv 等，uv 则是目前最流行与方便的工具，不仅具有 rust 的高效，而且能自动管理虚拟环境，还有 ruff 生态。
-Python有强大的绘图工具Matplotlib，数学计算工具NumPy，游戏制作工具PyGame
+Python 有强大的绘图工具 Matplotlib，数学计算工具 NumPy，游戏制作工具 PyGame。
