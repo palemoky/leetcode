@@ -4,7 +4,7 @@
 
 排序的方法有 **插入**、**交换**、**选择**、**合并** 等。
 
-## 十大常用基础排序算法
+## 十大常用排序算法
 
 <table style="width: 100%;">
   <thead>
@@ -74,7 +74,7 @@
       <td>数组</td>
       <td rowspan="2">✓</td>
       <td rowspan="2">✓</td>
-      <td>$O(n \log n)$</td>
+      <td rowspan="2">$O(n \log n)$</td>
       <td>$O(n) + O(\log n)$</td>
       <td rowspan="2">递归分组，合并有序子数组</td>
       <td rowspan="2">把数据分为两段，从两段中逐个选最小的元素移入新数据段的末尾。可从上到下或从下到上进行。</td>
@@ -82,7 +82,6 @@
     </tr>
     <tr>
       <td>链表</td>
-      <td>$O(n \log n)$</td>
       <td>$O(1)$</td>
     </tr>
     <tr>
@@ -163,11 +162,8 @@
 
 !!! Tip "快速记忆口诀"
 
-    - 冒泡两两换，选择找最小，
-    - 插入往前挪，希尔改插入。
-    - 归并分两半，快排选基准，
-    - 堆排建大堆，计数靠统计。
-    - 桶排序分区，基数按位排。
+    - 冒泡两两换，选择找最小，插入往前挪，希尔改插入，归并分两半。
+    - 快排选基准，堆排建大堆，计数靠统计，桶排序分区，基数按位排。
 
 ### 复杂度
 
@@ -194,8 +190,334 @@
 
 稳定排序通常是通过相邻交换或辅助空间来实现的，比较温柔，不会乱跳。而不稳定排序则通常包含长距离交换实现，容易把顺序搞乱。
 
-稳定排序包括：冒泡排序、插入排序、归并排序、计数排序、桶排序、基数排序。
-不稳定排序包括：快速排序、选择排序、堆排序、希尔排序。
+- 稳定排序包括：冒泡排序、插入排序、归并排序、计数排序、桶排序、基数排序。
+- 不稳定排序包括：快速排序、选择排序、堆排序、希尔排序。
+
+## 排序算法实现
+
+=== "冒泡排序"
+
+    通过不断两两比较交换，直到所有元素有序。
+
+    优化点：已排序区可跳过；全部有序可提前结束遍历
+
+    ```python
+
+    # Time: O(n^2)
+    def bubble(nums: list[int]) -> list[int]:
+        n = len(nums)
+        if n < 2:
+            return nums
+
+        # 外层循环控制轮数，最后一个数不需要比较
+        for i in range(n - 1):
+            swapped = False
+
+            # 内层循环进行比较交换
+            # 由于每次外层循环结束后最大的元素会被移动到数组的末尾，因此内层循环的范围可以逐渐缩小
+            for j in range(1, n - i):
+                if nums[j - 1] > nums[j]:
+                    nums[j - 1], nums[j] = nums[j], nums[j - 1]
+                    swapped = True
+
+            # 未发生交换则已排好序，提前结束比较
+            if not swapped:
+                break
+
+        return nums
+    ```
+
+=== "选择排序"
+
+    在待排序区不停选择最小值，然后与待排序区首个元素交换（已排序区末尾或待排序区头部）。不断循环，即可对所有元素排序。
+
+    ```python
+    # Time: O(n^2)
+    def selection(nums: list[int]) -> list[int]:
+        n = len(nums)
+        if n < 2:
+            return nums
+
+        for i in range(n - 1):
+            min_idx = i
+            for j in range(i + 1, n):
+                if nums[j] < nums[min_idx]:
+                    min_idx = j
+            nums[i], nums[min_idx] = nums[min_idx], nums[i]
+
+        return nums
+    ```
+
+=== "插入排序"
+
+    像插扑克牌一样，从第二个元素开始，不断将之后的元素放在之前的已排序位置。
+
+    ```python
+    # Time: O(n^2)
+    def insertion(nums: list[int]) -> list[int]:
+        n = len(nums)
+        if n < 2:
+            return nums
+
+        # [0,i) 为已排序区，[i,n) 为待排序区
+        for i in range(1, n):
+            key = nums[i]  # key 为从桌上拿起的新牌
+            j = i - 1
+            # j 负责逆序遍历已排序区，为 key 找到插入位置
+            while j >= 0 and nums[j] > key:
+                # 向右移动元素，腾出插入空间
+                nums[j + 1] = nums[j]
+                j -= 1
+            # 将 key 插入正确位置
+            nums[j + 1] = key
+
+        return nums
+    ```
+
+=== "快速排序"
+
+    像军训整理队伍一样，根据基准点来排序。
+
+    ```python
+    # Time: 平均 O(n log n), 最坏 O(n^2)
+    def quick(nums: list[int]) -> list[int]:
+        if len(nums) < 2:
+            return nums
+
+        def partition(left: int, right: int) -> int:
+            # 三数取中，降低接近有序数据时的退化概率
+            mid = left + (right - left) // 2
+            if nums[mid] < nums[left]:
+                nums[left], nums[mid] = nums[mid], nums[left]
+            if nums[right] < nums[left]:
+                nums[left], nums[right] = nums[right], nums[left]
+            if nums[right] < nums[mid]:
+                nums[mid], nums[right] = nums[right], nums[mid]
+
+            nums[left], nums[mid] = nums[mid], nums[left]
+            pivot_value = nums[left]
+            left_ptr, right_ptr = left, right
+            while left_ptr < right_ptr:
+                # 从右向左找第一个小于 pivot 的数
+                while left_ptr < right_ptr and nums[right_ptr] >= pivot_value:
+                    right_ptr -= 1
+                nums[left_ptr] = nums[right_ptr]
+                # 从左向右找第一个大于 pivot 的数
+                while left_ptr < right_ptr and nums[left_ptr] <= pivot_value:
+                    left_ptr += 1
+                nums[right_ptr] = nums[left_ptr]
+            # 将 pivot 放回正确的位置
+            nums[left_ptr] = pivot_value
+            return left_ptr
+
+        def quick_sort_range(left: int, right: int) -> None:
+            if left >= right:
+                return
+            # 分区并拿到 pivot 的最终位置
+            pivot_index = partition(left, right)
+            # 递归地对左右两部分进行排序
+            quick_sort_range(left, pivot_index - 1)
+            quick_sort_range(pivot_index + 1, right)
+
+        quick_sort_range(0, len(nums) - 1)
+        return nums
+    ```
+
+=== "归并排序"
+
+    像锦标赛那样两两PK快速收敛。
+
+    ```python
+    # Time: O(nlogn)
+    def merge(nums: list[int]) -> list[int]:
+        if len(nums) < 2:
+            return nums
+
+        def merge_halves(left: int, mid: int, right: int) -> None:
+            # 创建一个临时列表来存储合并后的结果
+            merged = []
+            i, j = left, mid + 1
+            # 比较左右两部分，将较小的元素放入 merged
+            while i <= mid and j <= right:
+                if nums[i] <= nums[j]:
+                    merged.append(nums[i])
+                    i += 1
+                else:
+                    merged.append(nums[j])
+                    j += 1
+            # 将剩余的元素拷贝到 merged
+            while i <= mid:
+                merged.append(nums[i])
+                i += 1
+            while j <= right:
+                merged.append(nums[j])
+                j += 1
+            # 将排好序的 merged 内容拷贝回原始的 nums 列表的对应位置
+            nums[left:right + 1] = merged
+
+        def merge_sort_range(left: int, right: int) -> None:
+            if left >= right:
+                return
+            mid = left + (right - left) // 2
+            merge_sort_range(left, mid)
+            merge_sort_range(mid + 1, right)
+            merge_halves(left, mid, right)
+
+        merge_sort_range(0, len(nums) - 1)
+        return nums
+    ```
+
+=== "希尔排序"
+
+    插入排序的改进算法，又称递减增量排序算法。
+
+    ```python
+    def shell(nums: list[int]) -> list[int]:
+        n = len(nums)
+        if n < 2:
+            return nums
+
+        gap = n // 2
+        while gap > 0:
+            for i in range(gap, n):
+                temp = nums[i]
+                j = i
+                while j >= gap and nums[j - gap] > temp:
+                    nums[j] = nums[j - gap]
+                    j -= gap
+                nums[j] = temp
+            gap //= 2
+
+        return nums
+    ```
+
+=== "堆排序"
+
+    ```python
+    # Time: O(n log n), Space: O(1)
+    def heap_sorting(nums: list[int]) -> list[int]:
+        n = len(nums)
+        if n < 2:
+            return nums
+
+        def heapify_down(root: int, size: int) -> None:
+            """将 root 向下调整，维护最大堆性质"""
+            while True:
+                largest = root
+                left, right = 2 * root + 1, 2 * root + 2
+                if left < size and nums[left] > nums[largest]:
+                    largest = left
+                if right < size and nums[right] > nums[largest]:
+                    largest = right
+                if largest == root:
+                    break
+                nums[root], nums[largest] = nums[largest], nums[root]
+                root = largest
+
+        # 建堆：从最后一个非叶子节点开始向下调整
+        for i in range(n // 2 - 1, -1, -1):
+            heapify_down(i, n)
+
+        # 逐步将堆顶（最大值）移到末尾，缩小堆范围
+        for size in range(n - 1, 0, -1):
+            nums[0], nums[size] = nums[size], nums[0]
+            heapify_down(0, size)
+
+        return nums
+    ```
+
+=== "计数排序"
+
+    ```python
+    # 假设 nums 非负且最大值不大
+    # Time: O(n+m)
+    def counting(nums: list[int]) -> list[int]:
+        n = len(nums)
+        if n < 2:
+            return nums
+
+        max_val = max(nums)
+        counts = [0] * (max_val + 1)
+        for v in nums:
+            counts[v] += 1
+
+        idx = 0
+        for i, c in enumerate(counts):
+            while c > 0:
+                nums[idx] = i
+                idx += 1
+                c -= 1
+
+        return nums
+    ```
+
+=== "桶排序"
+
+    ```python
+    # 假设 nums 非负且分布均匀
+    # Time: 平均 O(n), 最坏 O(n^2)
+    import math
+
+    def bucket(nums: list[int]) -> list[int]:
+        n = len(nums)
+        if n < 2:
+            return nums
+
+        def insertion_sort(arr: list[int]) -> None:
+            for i in range(1, len(arr)):
+                key = arr[i]
+                j = i - 1
+                while j >= 0 and arr[j] > key:
+                    arr[j + 1] = arr[j]
+                    j -= 1
+                arr[j + 1] = key
+
+        max_val, min_val = max(nums), min(nums)
+        bucket_num = n
+        buckets: list[list[int]] = [[] for _ in range(bucket_num)]
+        interval = math.ceil((max_val - min_val + 1) / bucket_num)
+        for v in nums:
+            bucket_idx = (v - min_val) // interval
+            buckets[bucket_idx].append(v)
+
+        write_idx = 0
+        for b in buckets:
+            insertion_sort(b)
+            for v in b:
+                nums[write_idx] = v
+                write_idx += 1
+
+        return nums
+    ```
+
+=== "基数排序"
+
+    ```python
+    # 假设 nums 非负整数
+    # Time: O(k*n)
+    def radix(nums: list[int]) -> list[int]:
+        n = len(nums)
+        if n < 2:
+            return nums
+
+        max_val = max(nums)
+        exp = 1
+        buf = [0] * n
+        while max_val // exp > 0:
+            count = [0] * 10
+            for v in nums:
+                count[(v // exp) % 10] += 1
+            for i in range(1, 10):
+                count[i] += count[i - 1]
+            for i in range(n - 1, -1, -1):
+                digit = (nums[i] // exp) % 10
+                buf[count[digit] - 1] = nums[i]
+                count[digit] -= 1
+            nums[:] = buf
+            exp *= 10
+
+        return nums
+    ```
 
 ## 工程常用算法
 
