@@ -546,6 +546,29 @@
 
 === "#160 相交链表"
 
+    本题可以使用哈希表来简单求解，也可以用双指针把空间复杂度优化到 $O(1)$
+
+    ```go
+    func getIntersectionNode(headA, headB *ListNode) *ListNode {
+        pA, pB := headA, headB
+        for pA != pB {
+            if pA == nil {
+                pA = headB
+            } else {
+                pA = pA.Next
+            }
+
+            if pB == nil {
+                pB = headA
+            } else {
+                pB = pB.Next
+            }
+        }
+
+        return pA // 没有相交时，遍历结束的链表最终指向 nil
+    }
+    ```
+
 === "#143 重排链表"
 
 === "#148 排序链表"
