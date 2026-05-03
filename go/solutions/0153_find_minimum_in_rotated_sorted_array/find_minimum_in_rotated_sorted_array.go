@@ -7,9 +7,9 @@ func findMin(nums []int) int {
 	for left < right {
 		mid := left + (right-left)/2
 		if nums[mid] < nums[right] {
-			right = mid
+			right = mid // 最小值一定在 [left, mid]
 		} else {
-			left = mid + 1
+			left = mid + 1 // 最小值一定在 (mid, right]
 		}
 	}
 
