@@ -126,6 +126,7 @@ func (lc *LRUCache) Put(key int, value int) {
 
 // 辅助方法：将节点添加到头部
 func (lc *LRUCache) addToHead(node *Node) {
+	// 要基于稳定的 head 来操作
 	node.prev = lc.head
 	node.next = lc.head.next
 	lc.head.next.prev = node
