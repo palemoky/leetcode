@@ -1676,6 +1676,26 @@
     }
     ```
 
+=== "#69 x的平方根"
+
+    ```go
+    func mySqrt(x int) int {
+        l, r := 0, x
+        ans := -1
+        for l <= r {
+            mid := l + (r-l)/2
+            if mid*mid <= x { // 注意被截断的小数也符合要求
+                ans = mid
+                l = mid + 1
+            } else {
+                r = mid - 1
+            }
+        }
+
+        return ans
+    }
+    ```
+
 === "#153 寻找旋转排序数组中的最小值"
 
     ![Rotated Sorted Array](../imgs/rotated-sorted-array.png){ align=right width=50% }
