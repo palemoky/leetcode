@@ -458,7 +458,6 @@
     }
     ```
 
-
 ### 综合常考
 
 === "#25 K个一组反转链表"
@@ -1613,7 +1612,7 @@
 === "#704 二分查找"
 
     ```go
-    func searchIterative(nums []int, target int) int {
+    func search(nums []int, target int) int {
     	left, right := 0, len(nums)-1
 
     	// 这里的二分查找的核心在于每次搜索都是以 mid 为单位跳跃
@@ -1635,7 +1634,7 @@
 === "#35 搜索插入位置"
 
     ```go
-    func searchInsertLowerBound(nums []int, target int) int {
+    func searchInsert(nums []int, target int) int {
     	left, right := 0, len(nums)
     	for left < right {
     		mid := left + (right-left)/2
@@ -1650,7 +1649,46 @@
     }
     ```
 
+=== "#153 寻找旋转排序数组中的最小值"
+
+    ![Rotated Sorted Array](../imgs/rotated-sorted-array.png){ align=right width=50% }
+    如图所示，这道题目的本质是在有序数组中查找最值问题，只不过通过旋转数组来增加难度。
+
+    <div style="clear: both;"></div>
+
+    本题中，最小值就是断点，也就是「右侧有序段」的起点。
+    ```go
+    func findMin(nums []int) int {
+        left, right := 0, len(nums)-1
+        for left < right {
+            mid := left + (right-left)/2
+            if nums[mid] < nums[right] {
+                right = mid    // 最小值一定在 [left, mid]
+            } else {
+                left = mid + 1 // 最小值一定在 (mid, right]
+            }
+        }
+
+        return nums[left]
+    }
+    ```
+
+    如果要查找最大值，那么与最小值左侧相邻的即为最大值，只需要 `(left-1 + len(nums)) % len(nums)` 即可获取到最大值。
+
+    如果数组中包含重复元素，则
+    ```go
+    if nums[mid] > nums[right] {
+        left = mid + 1
+    } else if nums[mid] < nums[right] {
+        right = mid
+    } else {
+        right-- // 无法判断，缩小范围
+    }
+    ```
+
 === "#33 搜索旋转排序数组"
+
+    做本题前先做 #153，
 
 === "在排序数组中查找元素的第一个和最后一个位置"
 
