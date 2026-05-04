@@ -11,7 +11,6 @@ copyright = "Copyright &copy; <span id='copyright-year'>2026</span> Palemoky"
 extra_javascript = [
   "assets/javascripts/mathjax.js",
   "https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js",
-  "assets/javascripts/giscus.js",
   "assets/javascripts/width-toggle.js"
 ]
 
@@ -160,18 +159,3 @@ social = [
   { icon = "fontawesome/solid/feather", link = "https://poetry.palemoky.com" },
   # { icon = "fontawesome/solid/feather-pointed", link = "https://blog.palemoky.com" }
 ]
-
-[project.extra.comments]
-enabled = true
-repo = "palemoky/leetcode"
-repo_id = "R_kgDOJ7ukCg"
-category = "General"
-category_id = "DIC_kwDOJ7ukCs4C0vdC"
-mapping = "pathname"
-strict = "0"
-reactions_enabled = "1"
-emit_metadata = "0"
-input_position = "top"
-theme = "preferred_color_scheme"
-lang = "zh-CN"
-loading = "lazy"
