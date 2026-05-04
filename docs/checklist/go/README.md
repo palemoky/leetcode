@@ -803,34 +803,126 @@
 
 === "#102 层序遍历"
 
-    队列+双层循环（外循环控制深度，内循环控制宽度）
+    队列+双层循环（外循环控制深度，内循环控制宽度），以 `[1, 2, 3, 4, 5, 6, 7]` 为例，其层序遍历的执行过程如下：
+    <table style="text-align:center; width:100%; border-collapse: collapse;" border="1">
+        <thead>
+            <tr>
+                <th>层数</th>
+                <th>操作</th>
+                <th>queue</th>
+                <th>level</th>
+                <th>ans</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- 层数 0 -->
+            <tr>
+                <td>0</td>
+                <td>初始</td>
+                <td>[1]</td>
+                <td>[]</td>
+                <td rowspan="4">[]</td>
+            </tr>
+            <!-- 层数 1 -->
+            <tr>
+                <td rowspan="3">1</td>
+                <td>出队 1</td>
+                <td>[]</td>
+                <td rowspan="3">[1]</td>
+            </tr>
+            <tr>
+                <td>加子节点</td>
+                <td rowspan="2">[2,3]</td>
+            </tr>
+            <tr>
+                <td>层结束</td>
+            </tr>
+            <!-- 层数 2 -->
+            <tr>
+                <td rowspan="5">2</td>
+                <td>出队 2</td>
+                <td>[3]</td>
+                <td rowspan="2">[2]</td>
+                <td rowspan="5">[[1]]</td>
+            </tr>
+            <tr>
+                <td>加子节点</td>
+                <td>[3,4,5]</td>
+            </tr>
+            <tr>
+                <td>出队 3</td>
+                <td>[4,5]</td>
+                <td rowspan="3">[2,3]</td>
+            </tr>
+            <tr>
+                <td>加子节点</td>
+                <td rowspan="2">[4,5,6,7]</td>
+            </tr>
+            <tr>
+                <td>层结束</td>
+            </tr>
+            <!-- 层数 3 -->
+            <tr>
+                <td rowspan="5">3</td>
+                <td>出队 4</td>
+                <td>[5,6,7]</td>
+                <td>[4]</td>
+                <td rowspan="4">[[1],[2,3]]</td>
+            </tr>
+            <tr>
+                <td>出队 5</td>
+                <td>[6,7]</td>
+                <td>[4,5]</td>
+            </tr>
+            <tr>
+                <td>出队 6</td>
+                <td>[7]</td>
+                <td>[4,5,6]</td>
+            </tr>
+            <tr>
+                <td>出队 7</td>
+                <td rowspan="2">[]</td>
+                <td rowspan="2">[4,5,6,7]</td>
+            </tr>
+            <tr>
+                <td>层结束</td>
+                <td>[[1],[2,3],[4,5,6,7]]</td>
+            </tr>
+        </tbody>
+    </table>
+
 
     ```go
     func levelOrder(root *TreeNode) [][]int {
-      ans := [][]int{}
-      if root == nil {
-        return ans
-      }
-
-      queue := []*TreeNode{root}
-      for len(queue) > 0 {
-        level := make([]int, 0, len(queue))
-        for range len(queue) {
-          node := queue[0]
-          queue = queue[1:]
-
-          level = append(level, node.Val)
-          if node.Left != nil {
-            queue = append(queue, node.Left)
-          }
-          if node.Right != nil {
-            queue = append(queue, node.Right)
-          }
+        ans := [][]int{}
+        if root == nil {
+            return ans
         }
-        ans = append(ans, level)
-      }
 
-      return ans
+        queue := []*TreeNode{root} // 初始化队列，放入根节点
+        for len(queue) > 0 { // 遍历树的深度
+            level := make([]int, 0, len(queue))
+            for range len(queue) { // 遍历当前层的宽度
+                // 从队列头部弹出节点
+                node := queue[0]
+                queue = queue[1:]
+
+                // 收集当前层的值
+                level = append(level, node.Val)
+
+                // 将子节点加入队列
+                if node.Left != nil {
+                    queue = append(queue, node.Left)
+                }
+                if node.Right != nil {
+                    queue = append(queue, node.Right)
+                }
+            }
+
+            ans = append(ans, level)
+        }
+
+        return ans
     }
     ```
 
@@ -1698,7 +1790,7 @@
 
 === "#153 寻找旋转排序数组中的最小值"
 
-    ![Rotated Sorted Array](../imgs/rotated-sorted-array.png){ align=right width=50% }
+    ![Rotated Sorted Array](../imgs/rotated-sorted-array.webp){ align=right width=50% }
     如图所示，这道题目的本质是在有序数组中查找最值问题，只不过通过旋转数组来增加难度。
 
     <div style="clear: both;"></div>
@@ -1769,7 +1861,7 @@
     }
     ```
 
-=== "在排序数组中查找元素的第一个和最后一个位置"
+=== "#34 在排序数组中查找元素的第一个和最后一个位置"
 
 ## 动态规划
 
