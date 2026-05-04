@@ -25,6 +25,7 @@
 === "#49 字母异位词分组"
 
     <div class="grid cards" markdown>
+
     - <figure>
         ![排序解法](../imgs/group_anagrams/sort.webp)
         <figcaption>排序解法</figcaption>
@@ -33,6 +34,7 @@
         ![计数解法](../imgs/group_anagrams/count.webp)
         <figcaption>计数解法</figcaption>
     </figure>
+
     </div>
 
     ```go
@@ -1235,6 +1237,7 @@
 === "#236 最近公共祖先"
 
     <div class="grid cards" markdown>
+
     - <figure>
         ![LCA 示例](../imgs/LCA/lowest_common_ancestor_of_a_binary_tree.webp)
         <figcaption>最近公共祖先示例</figcaption>
@@ -1243,6 +1246,7 @@
         ![LCA 逻辑](../imgs/LCA/lca_logic.webp)
         <figcaption>LCA 判断逻辑</figcaption>
     </figure>
+
     </div>
 
     ```go
