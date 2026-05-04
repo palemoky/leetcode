@@ -893,6 +893,7 @@
         </tbody>
     </table>
 
+    可以看出，`queue` 中存放着每层的节点，通过遍历 `queue` 来使节点出队和入队，`level` 负责收集每层的节点，然后再交给 `ans`。
 
     ```go
     func levelOrder(root *TreeNode) [][]int {
@@ -993,60 +994,57 @@
 
     后序遍历的迭代实现由中序遍历演化而来，主要区别在于后序遍历需在右子树遍历完成后才处理根节点。因此，引入 `prev` 指针用于记录历史状态，防止右子树被重复访问。这一机制类似于回溯算法中利用 `used[]` 数组来标记路径是否已被使用。
 
-    !!! Note
+    以 `[1,2,3,4,5]` 为例，
 
-        以 `[1,2,3,4,5]` 为例，
+    ```
+        1
+       / \
+      2   3
+     / \
+    4   5
+    ```
 
-        ```
-            1
-           / \
-          2   3
-         / \
-        4   5
-        ```
+    第 1 次遇到节点 2（检查阶段）：
 
-        第 1 次遇到节点 2（检查阶段）：
+    ```go
+    // 一路向左：1 → 2 → 4
+    stack = [1, 2, 4]
 
-        ```go
-        // 一路向左：1 → 2 → 4
-        stack = [1, 2, 4]
+    // 访问完4后，回到节点2
+    curr = stack[1] = 2  // ← 第1次遇到节点2
 
-        // 访问完4后，回到节点2
-        curr = stack[1] = 2  // ← 第1次遇到节点2
+    // 判断
+    if curr.Right == nil || curr.Right == prev {
+        // 2.Right = 5, prev = 4
+        // 5 != 4 不满足条件
+    } else {
+        curr = curr.Right  // ← 转向右子树5，暂时不访问2
+    }
+    ```
 
-        // 判断
-        if curr.Right == nil || curr.Right == prev {
-            // 2.Right = 5, prev = 4
-            // 5 != 4 不满足条件
-        } else {
-            curr = curr.Right  // ← 转向右子树5，暂时不访问2
-        }
-        ```
+    第 2 次遇到节点 2（访问阶段）：
 
-        第 2 次遇到节点 2（访问阶段）：
+    ```go
+    // 访问完5后，再次回到节点2
+    stack = [1, 2]
+    curr = stack[1] = 2  // ← 第2次遇到节点2
 
-        ```go
-        // 访问完5后，再次回到节点2
-        stack = [1, 2]
-        curr = stack[1] = 2  // ← 第2次遇到节点2
+    // 判断
+    if curr.Right == nil || curr.Right == prev {
+        // 2.Right = 5, prev = 5
+        // 5 == 5 ✅ 满足条件（右子树已访问）
 
-        // 判断
-        if curr.Right == nil || curr.Right == prev {
-            // 2.Right = 5, prev = 5
-            // 5 == 5 ✅ 满足条件（右子树已访问）
+        stack = [1]
+        nums = append(nums, 2)  // ← 现在才真正访问节点2
+        prev = 2
+        curr = nil
+    }
+    ```
 
-            stack = [1]
-            nums = append(nums, 2)  // ← 现在才真正访问节点2
-            prev = 2
-            curr = nil
-        }
-        ```
+    每个节点可能被访问两次：
 
-        每个节点可能被访问两次：
-
-        - 检查右子树
-
-        - 右子树访问完后，才真正访问当前节点
+    - 检查右子树
+    - 右子树访问完后，才真正访问当前节点
 
     ```go
     func postOrderTraversal(root *TreeNode) []int {
