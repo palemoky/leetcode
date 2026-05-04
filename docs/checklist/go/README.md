@@ -1418,7 +1418,7 @@
     }
     ```
 
-=== "路径和"
+=== "#112 路径和"
 
     判断给定的树中是否有和为 targetSum 的路径存在。
 
@@ -1435,14 +1435,14 @@
 
         remainingSum := targetSum - root.Val
         // 只需要左、右子树其中一个满足条件即可
-      // 短路求值提前终止
+        // 短路求值提前终止
         return hasPathSum(root.Left, remainingSum) || hasPathSum(root.Right, remainingSum)
     }
     ```
 
 === "复制树"
 
-=== "序列化与反序列化"
+=== "#297 序列化与反序列化"
 
 ### 层序遍历题目
 
