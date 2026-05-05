@@ -931,7 +931,7 @@
 
 === "#144 前序遍历（最简单）"
 
-    栈：先压右再压左
+    与层序遍历很像，只不过是把queue换为stack。注意stack后进先出的特性需要**先压右再压左**
 
     ```go
     func preOrderTraversal(root *TreeNode) []int {
@@ -1137,29 +1137,29 @@
     }
 
     func isBalanced(root *TreeNode) bool {
-        return checkHeight(root) != -1
+        return dfs(root) != -1
     }
 
     // 返回树的高度，如果不平衡则返回 -1
     // 后序遍历：先递归左右子树，返回时处理当前节点
-    func checkHeight(root *TreeNode) int {
+    func dfs(root *TreeNode) int {
         if root == nil {
             return 0
         }
 
-        // 后序遍历：先检查左子树
-        leftHeight := checkHeight(root.Left)
+        // 先检查左子树
+        leftHeight := dfs(root.Left)
         if leftHeight == -1 {
             return -1 // 左子树不平衡，提前终止
         }
 
-        // 后序遍历：再检查右子树
-        rightHeight := checkHeight(root.Right)
+        // 再检查右子树
+        rightHeight := dfs(root.Right)
         if rightHeight == -1 {
             return -1 // 右子树不平衡，提前终止
         }
 
-        // 返回时处理：检查当前节点是否平衡
+        // 检查当前节点是否平衡
         if abs(leftHeight-rightHeight) > 1 {
             return -1 // 当前节点不平衡
         }
@@ -1358,6 +1358,8 @@
 
 === "#226 翻转二叉树"
 
+    递归交换左右节点即可，本题前序和后序递归都可以。
+
     ```go
     func invertTree(root *TreeNode) *TreeNode {
       if root == nil {
@@ -1382,7 +1384,6 @@
     对称树的定义：
 
     - 左子树的左节点 == 右子树的右节点
-
     - 左子树的右节点 == 右子树的左节点
     </div>
     <div markdown>![对称树示意图](../imgs/symmetric_tree.webp)</div>

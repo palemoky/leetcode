@@ -41,29 +41,29 @@ func height(root *utils.TreeNode) int {
 // 优点：每个节点只访问一次，时间复杂度 O(n)
 // Time: O(n), Space: O(h) 递归栈
 func isBalanced(root *utils.TreeNode) bool {
-	return checkHeight(root) != -1
+	return dfs(root) != -1
 }
 
 // 返回树的高度，如果不平衡则返回 -1
 // 后序遍历：先递归左右子树，返回时处理当前节点
-func checkHeight(root *utils.TreeNode) int {
+func dfs(root *utils.TreeNode) int {
 	if root == nil {
 		return 0
 	}
 
-	// 后序遍历：先检查左子树
-	leftHeight := checkHeight(root.Left)
+	// 先检查左子树
+	leftHeight := dfs(root.Left)
 	if leftHeight == -1 {
 		return -1 // 左子树不平衡，提前终止
 	}
 
-	// 后序遍历：再检查右子树
-	rightHeight := checkHeight(root.Right)
+	// 再检查右子树
+	rightHeight := dfs(root.Right)
 	if rightHeight == -1 {
 		return -1 // 右子树不平衡，提前终止
 	}
 
-	// 返回时处理：检查当前节点是否平衡
+	// 检查当前节点是否平衡
 	if abs(leftHeight-rightHeight) > 1 {
 		return -1 // 当前节点不平衡
 	}
