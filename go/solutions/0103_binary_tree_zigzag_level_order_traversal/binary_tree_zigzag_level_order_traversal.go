@@ -5,9 +5,9 @@ import "leetcode/go/solutions/utils"
 // Solution 1: 通过奇偶层来判断插入方向
 // Time: O(n), Space: O(n)
 func zigzagLevelOrder(root *utils.TreeNode) [][]int {
-	result := [][]int{}
+	ans := [][]int{}
 	if root == nil {
-		return result
+		return ans
 	}
 
 	leftToRight := true
@@ -21,11 +21,10 @@ func zigzagLevelOrder(root *utils.TreeNode) [][]int {
 			queue = queue[1:]
 
 			// 根据方向决定插入位置
-			index := i
 			if !leftToRight {
-				index = levelSize - 1 - i
+				i = levelSize - 1 - i
 			}
-			level[index] = node.Val
+			level[i] = node.Val
 
 			if node.Left != nil {
 				queue = append(queue, node.Left)
@@ -35,9 +34,9 @@ func zigzagLevelOrder(root *utils.TreeNode) [][]int {
 			}
 		}
 
-		result = append(result, level)
+		ans = append(ans, level)
 		leftToRight = !leftToRight
 	}
 
-	return result
+	return ans
 }

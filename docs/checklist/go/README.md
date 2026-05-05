@@ -49,12 +49,12 @@
             groups[key] = append(groups[key], str)
         }
 
-        result := make([][]string, 0, len(groups))
+        ans := make([][]string, 0, len(groups))
         for _, group := range groups {
-            result = append(result, group)
+            ans = append(ans, group)
         }
 
-        return result
+        return ans
     }
     ```
 
@@ -71,12 +71,12 @@
             groups[count] = append(groups[count], str)
         }
 
-        result := make([][]string, 0, len(groups))
+        ans := make([][]string, 0, len(groups))
         for _, group := range groups {
-            result = append(result, group)
+            ans = append(ans, group)
         }
 
-        return result
+        return ans
     }
     ```
 
@@ -893,7 +893,7 @@
         </tbody>
     </table>
 
-    可以看出，`queue` 中存放着每层的节点，通过遍历 `queue` 来使节点出队和入队，`level` 负责收集每层的节点，然后再交给 `ans`。
+    可以看出，`queue` 中存放着每层的节点，通过遍历 `queue` 来使节点入队和出队，`level` 负责收集每层的节点，然后再交给 `ans`。
 
     ```go
     func levelOrder(root *TreeNode) [][]int {
@@ -913,7 +913,7 @@
                 // 收集当前层的值
                 level = append(level, node.Val)
 
-                // 将子节点加入队列
+                // 将子节点加入队列，为下层遍历准备
                 if node.Left != nil {
                     queue = append(queue, node.Left)
                 }
@@ -1450,12 +1450,14 @@
 
 === "#103 锯齿形层序遍历"
 
+    本题的解题关键在于水平方向开关`leftToRight`
+
     ```go
     // Time: O(n), Space: O(n)
     func zigzagLevelOrder(root *utils.TreeNode) [][]int {
-    	result := [][]int{}
+    	ans := [][]int{}
     	if root == nil {
-    		return result
+    		return ans
     	}
 
     	leftToRight := true
@@ -1469,11 +1471,10 @@
     			queue = queue[1:]
 
     			// 根据方向决定插入位置
-    			index := i
     			if !leftToRight {
-    				index = levelSize - 1 - i
+    				i = levelSize - 1 - i
     			}
-    			level[index] = node.Val
+    			level[i] = node.Val
 
     			if node.Left != nil {
     				queue = append(queue, node.Left)
@@ -1483,11 +1484,11 @@
     			}
     		}
 
-    		result = append(result, level)
+    		ans = append(ans, level)
     		leftToRight = !leftToRight
     	}
 
-    	return result
+    	return ans
     }
     ```
 
@@ -1527,6 +1528,8 @@
 
 === "#111 最小深度"
 
+    找到第一个叶子节点（`node.Left == nil && node.Right == nil`）返回深度即可
+
     ```go
     func minDepth(root *TreeNode) int {
         if root == nil {
@@ -1558,36 +1561,6 @@
         }
 
         return depth
-    }
-    ```
-
-=== "#513 左下角"
-
-    ```go
-    // Time: O(n), Space: O(n)
-    func findBottomLeftValue(root *TreeNode) int {
-        firstNode := 0
-        queue := []*TreeNode{root}
-        for len(queue) > 0 {
-            for i := range len(queue) {
-                node := queue[0]
-                queue = queue[1:]
-
-                // 只记录每层的第一个节点
-                if i == 0 {
-                    firstNode = node.Val
-                }
-
-                if node.Left != nil {
-                    queue = append(queue, node.Left)
-                }
-                if node.Right != nil {
-                    queue = append(queue, node.Right)
-                }
-            }
-        }
-
-        return firstNode
     }
     ```
 
