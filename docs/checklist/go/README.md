@@ -803,6 +803,33 @@
 
 ### 遍历方式
 
+=== "DFS 递归解法"
+
+    ```go
+    func traversal(root *TreeNode) []int {
+        if root == nil {
+            return []int{}
+        }
+
+        // Preorder: 根 -> 左 -> 右
+        // nums := []int{root.Val}
+        // nums = append(nums, traversal(root.Left)...)
+        // nums = append(nums, traversal(root.Right)...)
+
+        // Inorder: 左 -> 根 -> 右
+        nums := traversal(root.Left)
+        nums = append(nums, root.Val)
+        nums = append(nums, traversal(root.Right)...)
+
+        // Postorder: 左 -> 右 -> 根
+        // nums := traversal(root.Left)
+        // nums = append(nums, traversal(root.Right)...)
+        // nums = append(nums, root.Val)
+
+        return nums
+    }
+    ```
+
 === "#102 层序遍历"
 
     队列+双层循环（外循环控制深度，内循环控制宽度），以 `[1, 2, 3, 4, 5, 6, 7]` 为例，其层序遍历的执行过程如下：
@@ -970,13 +997,13 @@
 
       curr := root
       for curr != nil || len(stack) > 0 {
-        // 把节点一路向左压入栈
+        // 把从根节点到叶节点的左节点都压入栈
         for curr != nil {
           stack = append(stack, curr)
           curr = curr.Left
         }
 
-        // 开始倒序处理栈中的节点（即从下往上遍历树）
+        // 弹出栈中的节点（即从下往上遍历树）
         curr = stack[len(stack)-1]
         stack = stack[:len(stack)-1]
 
@@ -992,59 +1019,125 @@
 
 === "#145 后序遍历（最复杂）"
 
-    后序遍历的迭代实现由中序遍历演化而来，主要区别在于后序遍历需在右子树遍历完成后才处理根节点。因此，引入 `prev` 指针用于记录历史状态，防止右子树被重复访问。这一机制类似于回溯算法中利用 `used[]` 数组来标记路径是否已被使用。
+    后序遍历的迭代实现由中序遍历演化而来，而区别在于，中序的`左 → 根 → 右`可以在每次弹出节点就直接访问，而后序的`左 → 右 → 根`则需要先访问右节点才能弹出根节点。
 
-    以 `[1,2,3,4,5]` 为例，
+    注意需要引入 `prev` 来记录前驱节点。
+
+    以 `[1,2,3,4,5]` 为例，其执行过程如下表：
 
     ```
-        1
-       / \
-      2   3
-     / \
-    4   5
+           1
+          / \
+         2   3
+        / \
+       4   5
+      / \ / \
+    nil nil nil
     ```
 
-    第 1 次遇到节点 2（检查阶段）：
+    <table>
+    <thead>
+        <tr>
+        <th>步骤</th>
+        <th>操作</th>
+        <th>curr</th>
+        <th>stack<br>(底→顶)</th>
+        <th>prev</th>
+        <th>nums</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <td>0</td>
+        <td>初始</td>
+        <td>1</td>
+        <td>[]</td>
+        <td rowspan="4">nil</td>
+        <td rowspan="4">[]</td>
+        </tr>
+        <tr>
+        <td>1</td>
+        <td>向左压栈 1</td>
+        <td>2</td>
+        <td>[1]</td>
+        </tr>
+        <tr>
+        <td>2</td>
+        <td>向左压栈 2</td>
+        <td>4</td>
+        <td>[1,2]</td>
+        </tr>
+        <tr>
+        <td>3</td>
+        <td>向左压栈 4</td>
+        <td rowspan="2">nil</td>
+        <td>[1,2,4]</td>
+        </tr>
+        <tr>
+        <td>4</td>
+        <td>看栈顶=4，右为空，弹出并访问</td>
+        <td rowspan="2">[1,2]</td>
+        <td rowspan="3">4</td>
+        <td rowspan="3">[4]</td>
+        </tr>
+        <tr>
+        <td>5</td>
+        <td>看栈顶=2，右=5 且 5≠prev(4)，转去右子树</td>
+        <td>5</td>
+        </tr>
+        <tr>
+        <td>6</td>
+        <td>向左压栈 5</td>
+        <td rowspan="3">nil</td>
+        <td>[1,2,5]</td>
+        </tr>
+        <tr>
+        <td>7</td>
+        <td>看栈顶=5，右为空，弹出并访问</td>
+        <td>[1,2]</td>
+        <td>5</td>
+        <td>[4,5]</td>
+        </tr>
+        <tr>
+        <td>8</td>
+        <td>看栈顶=2，右=5 且 5=prev，弹出并访问</td>
+        <td rowspan="2">[1]</td>
+        <td rowspan="3">2</td>
+        <td rowspan="3">[4,5,2]</td>
+        </tr>
+        <tr>
+        <td>9</td>
+        <td>看栈顶=1，右=3 且 3≠prev(2)，转去右子树</td>
+        <td>3</td>
+        </tr>
+        <tr>
+        <td>10</td>
+        <td>向左压栈 3</td>
+        <td rowspan="4">nil</td>
+        <td>[1,3]</td>
+        </tr>
+        <tr>
+        <td>11</td>
+        <td>看栈顶=3，右为空，弹出并访问</td>
+        <td>[1]</td>
+        <td>3</td>
+        <td>[4,5,2,3]</td>
+        </tr>
+        <tr>
+        <td>12</td>
+        <td>看栈顶=1，右=3 且 3=prev，弹出并访问</td>
+        <td rowspan="2">[]</td>
+        <td rowspan="2">1</td>
+        <td rowspan="2">[4,5,2,3,1]</td>
+        </tr>
+        <tr>
+        <td>13</td>
+        <td>结束（curr=nil 且 stack 空）</td>
+        </tr>
+    </tbody>
+    </table>
 
-    ```go
-    // 一路向左：1 → 2 → 4
-    stack = [1, 2, 4]
-
-    // 访问完4后，回到节点2
-    curr = stack[1] = 2  // ← 第1次遇到节点2
-
-    // 判断
-    if curr.Right == nil || curr.Right == prev {
-        // 2.Right = 5, prev = 4
-        // 5 != 4 不满足条件
-    } else {
-        curr = curr.Right  // ← 转向右子树5，暂时不访问2
-    }
-    ```
-
-    第 2 次遇到节点 2（访问阶段）：
-
-    ```go
-    // 访问完5后，再次回到节点2
-    stack = [1, 2]
-    curr = stack[1] = 2  // ← 第2次遇到节点2
-
-    // 判断
-    if curr.Right == nil || curr.Right == prev {
-        // 2.Right = 5, prev = 5
-        // 5 == 5 ✅ 满足条件（右子树已访问）
-
-        stack = [1]
-        nums = append(nums, 2)  // ← 现在才真正访问节点2
-        prev = 2
-        curr = nil
-    }
-    ```
-
-    每个节点可能被访问两次：
-
-    - 检查右子树
-    - 右子树访问完后，才真正访问当前节点
+    代码实现如下：
 
     ```go
     func postOrderTraversal(root *TreeNode) []int {
@@ -1066,40 +1159,13 @@
           stack = stack[:len(stack)-1]
           ans = append(ans, curr.Val)
           prev = curr
-          curr = nil
+          curr = nil // 重置，避免重复访问左子树
         } else {
           curr = curr.Right
         }
       }
 
       return ans
-    }
-    ```
-
-=== "DFS 递归解法"
-
-    ```go
-    func traversal(root *TreeNode) []int {
-        if root == nil {
-            return []int{}
-        }
-
-        // Preorder: 根 -> 左 -> 右
-        // nums := []int{root.Val}
-        // nums = append(nums, traversal(root.Left)...)
-        // nums = append(nums, traversal(root.Right)...)
-
-        // Inorder: 左 -> 根 -> 右
-        nums := traversal(root.Left)
-        nums = append(nums, root.Val)
-        nums = append(nums, traversal(root.Right)...)
-
-        // Postorder: 左 -> 右 -> 根
-        // nums := traversal(root.Left)
-        // nums = append(nums, traversal(root.Right)...)
-        // nums = append(nums, root.Val)
-
-        return nums
     }
     ```
 
@@ -1311,7 +1377,7 @@
 
 === "#98 验证二叉搜索树"
 
-    由于需要捕获外部变量，因此可以使用闭包避免二级指针
+    由于需要捕获外部变量，因此可以使用闭包避免二级指针。本题使用递归的系统栈来代替手动维护的栈。
 
     ```go
     func isValidBST(root *TreeNode) bool {

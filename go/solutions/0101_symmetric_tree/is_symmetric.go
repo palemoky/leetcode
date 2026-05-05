@@ -23,6 +23,7 @@ func isMirror(left, right *utils.TreeNode) bool {
 	if left == nil && right == nil {
 		return true
 	}
+
 	if left == nil || right == nil {
 		return false
 	}
