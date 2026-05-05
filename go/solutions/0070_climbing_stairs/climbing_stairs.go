@@ -54,7 +54,7 @@ func climbStairsDP(n int) int {
 // 解法三（推荐）：迭代求解，可将解法二的空间复杂度优化为O(1)
 // Time: O(n), Space: O(1)
 func climbStairsIterative(n int) int {
-	if n <= 2 {
+	if n < 3 {
 		return n
 	}
 

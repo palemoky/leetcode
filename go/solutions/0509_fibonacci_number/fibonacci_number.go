@@ -39,7 +39,7 @@ func fibMemoHelper(n int, memo map[int]int) int {
 	return memo[n]
 }
 
-// 解法二：递归求解
+// 解法二：动态归划解法
 // Time: O(n), Space: O(n)
 func fibDP(n int) int {
 	if n <= 1 {
