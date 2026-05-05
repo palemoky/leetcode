@@ -1109,7 +1109,7 @@
 
 === "#104 最大深度"
 
-    后序遍历的递归解法：**先钻到最底下，在返回时再做处理**
+    与递归翻转二叉树类似，只是这个需要后序遍历计算最大深度。
 
     ```go
     func maxDepth(root *TreeNode) int {
@@ -1147,25 +1147,20 @@
             return 0
         }
 
-        // 先检查左子树
-        leftHeight := dfs(root.Left)
-        if leftHeight == -1 {
-            return -1 // 左子树不平衡，提前终止
-        }
-
-        // 再检查右子树
-        rightHeight := dfs(root.Right)
-        if rightHeight == -1 {
-            return -1 // 右子树不平衡，提前终止
+        // 先检查左、右子树
+        left := dfs(root.Left)
+        right := dfs(root.Right)
+        if left == -1 || right == -1 {
+            return -1 // 左子树或右子树不平衡，提前终止
         }
 
         // 检查当前节点是否平衡
-        if abs(leftHeight-rightHeight) > 1 {
+        if abs(left-right) > 1 {
             return -1 // 当前节点不平衡
         }
 
         // 返回当前节点的高度（自底向上汇总信息）
-        return max(leftHeight, rightHeight) + 1
+        return max(left, right) + 1
     }
     ```
 
