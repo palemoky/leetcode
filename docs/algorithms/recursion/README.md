@@ -62,3 +62,90 @@
 
 - [70. 爬楼梯](https://github.com/palemoky/leetcode/blob/main/go/solutions/0070_climbing_stairs/climbing_stairs.go)
 - [509. 斐波那契数](https://github.com/palemoky/leetcode/blob/main/go/solutions/0509_fibonacci_number/fibonacci_number.go)
+
+## 实战应用：扁平列表转树形结构
+
+在实际业务中，数据库通常以扁平结构存储层级数据（如省市区、部门组织），每条记录通过 `parent_id` 指向父节点。API 层需要将其重组为树形结构以供前端渲染。这是递归在工程中最典型的应用场景之一。
+
+数据结构定义如下：
+
+```go
+type Area struct {
+	ID       int     `json:"id"`
+	ParentID int     `json:"parent_id"`
+	Name     string  `json:"name"`
+	Level    int     `json:"level"`
+	Children []*Area `json:"children,omitempty"`
+}
+```
+
+测试数据：
+
+```go
+flatData := []*Area{
+	{ID: 1, ParentID: 0, Name: "广东省", Level: 1},
+	{ID: 2, ParentID: 0, Name: "浙江省", Level: 1},
+	{ID: 3, ParentID: 1, Name: "广州市", Level: 2},
+	{ID: 4, ParentID: 1, Name: "深圳市", Level: 2},
+	{ID: 5, ParentID: 2, Name: "杭州市", Level: 2},
+	{ID: 6, ParentID: 3, Name: "天河区", Level: 3},
+	{ID: 7, ParentID: 3, Name: "番禺区", Level: 3},
+	{ID: 8, ParentID: 6, Name: "猎德街道", Level: 4},
+	{ID: 9, ParentID: 8, Name: "猎德村", Level: 5},
+}
+```
+
+### 方法一：递归（$O(n^2)$）
+
+思路直观：对每个节点，递归地从整个列表中筛选出其子节点，直到叶子节点为止（Base Case：当前节点无子节点，返回空切片）。
+
+```go
+// BuildTreeRecursive 递归构建树形结构
+// 每一层都需要线性扫描完整列表，时间复杂度 O(n^2)
+func BuildTreeRecursive(areas []*Area, parentID int) []*Area {
+	var tree []*Area
+
+	for _, area := range areas {
+		if area.ParentID == parentID {
+			area.Children = BuildTreeRecursive(areas, area.ID) // 递归挂载子节点
+			tree = append(tree, area)
+		}
+	}
+
+	return tree
+}
+
+// 调用：从 parentID=0 的顶级节点开始构建
+tree := BuildTreeRecursive(flatData, 0)
+```
+
+### 方法二：哈希表（$O(n)$）
+
+递归方案的瓶颈在于：每处理一个节点都要线性扫描整个列表。优化思路是先用哈希表建立 `ID → 节点` 的映射，将子节点查找从 $O(n)$ 降为 $O(1)$，整体只需两次线性遍历。
+
+```go
+// BuildTreeHashMap 使用哈希表构建树形结构
+// 两次线性遍历，时间复杂度 O(n)
+func BuildTreeHashMap(areas []*Area) []*Area {
+	var roots []*Area
+	areaMap := make(map[int]*Area, len(areas))
+
+	// 第一次遍历：建立 ID → 节点 的映射
+	for _, area := range areas {
+		areaMap[area.ID] = area
+	}
+
+	// 第二次遍历：将每个节点挂载到其父节点上
+	for _, area := range areas {
+		if area.ParentID == 0 {
+			roots = append(roots, area) // 顶级节点直接收集
+			continue
+		}
+		if parent, ok := areaMap[area.ParentID]; ok {
+			parent.Children = append(parent.Children, area)
+		}
+	}
+
+	return roots
+}
+```
