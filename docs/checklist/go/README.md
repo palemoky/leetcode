@@ -2012,7 +2012,7 @@
     | sum  | 0  | -2 | 3  | 2  | 3  | 0  |
     | ans  | -2 | -2 | 3  | 3  | 3  | 3  |
 
-    在以下解法中，用 `sum` 代替 `dp[i]`，上一轮的 `sum` 代替 `dp[i-1]`。
+    以下为 Kadane 算法，用 `sum` 代替 `dp[i]`，上一轮的 `sum` 代替 `dp[i-1]`。
     ```go
     func maxSubArray(nums []int) int {
         sum, ans := 0, nums[0]
@@ -2037,13 +2037,43 @@
 
 === "#1143 最长公共子序列"
 
-=== "最小路径和"
+=== "#64 最小路径和"
 
-=== "不同路径"
+=== "#62 不同路径"
 
-=== "打家劫舍"
+=== "#198 打家劫舍"
 
 === "#322 零钱兑换"
+
+    ```go
+    // Time: O(amount × len(coins)), Space: O(amount)
+    func coinChange(coins []int, amount int) int {
+        // dp[i] 表示凑成金额 i 所需的最少硬币数
+        dp := make([]int, amount+1)
+
+        // 初始化：dp[0]=0（凑成0元需要0枚硬币）
+        // 其他位置初始化为 amount+1（表示不可能，因为最多需要 amount 枚面值为1的硬币）
+        for i := 1; i <= amount; i++ {
+            dp[i] = amount + 1
+
+            // 尝试使用每一种硬币
+            for _, coin := range coins {
+                if i >= coin {
+                    // 状态转移：dp[i] = min(dp[i], dp[i-coin]+1)
+                    // 如果使用面值为 coin 的硬币，需要 dp[i-coin]+1 枚
+                    dp[i] = min(dp[i], dp[i-coin]+1)
+                }
+            }
+        }
+
+        // 如果 dp[amount] 仍然大于 amount，说明无法凑成
+        if dp[amount] > amount {
+            return -1
+        }
+
+        return dp[amount]
+    }
+    ```
 
 === "#42 接雨水"
 
