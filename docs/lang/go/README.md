@@ -448,3 +448,64 @@ func isValidBST(root *TreeNode) bool {
 !!! Note
 
     Go、Python、Java、JavaScript 等语言会 **隐式自动捕获** 外部变量，而 PHP、C++ 则需要 **显式声明** 被捕获的变量（如 PHP 的 `use (&$var)`，C++ 的 `[&var]`）。
+
+## 常用包
+
+### 标准库
+
+| 包名 | 主要用途 | 典型场景 |
+| :--- | :--- | :--- |
+| `fmt` | 格式化输入输出（Println、Printf、Sprintf等） | 日常打印、日志、字符串格式化 |
+| `os` | 操作系统交互（文件、环境变量、进程等） | 文件读写、命令行工具 |
+| `io` / `bufio` | I/O 操作和带缓冲的读写 | 文件、网络流处理 |
+| `net/http` | HTTP客户端和服务端 | Web服务器、API、爬虫 |
+| `encoding/json` | JSON 编解码 | API 数据交换 |
+| `encoding/xml` / `csv` | XML / CSV 处理 | 数据导入导出 |
+| `time` | 时间和日期处理 | 定时任务、日志时间戳 |
+| `strconv` | 字符串与基本类型转换 | 参数解析 |
+| `strings` / `bytes` | 字符串/字节切片操作 | 文本处理 |
+| `regexp` | 正则表达式 | 文本匹配、解析 |
+| `sync` | 并发同步原语（Mutex、WaitGroup等） | Goroutine 同步 |
+| `context` | 请求上下文（超时、取消） | HTTP 服务、数据库调用 |
+| `database/sql` | SQL 数据库操作 | 关系型数据库访问 |
+| `log` | 标准日志 | 简单日志记录 |
+| `flag` | 命令行参数解析 | CLI 工具 |
+| `testing` | 单元测试和基准测试 | 测试代码 |
+| `reflect` | 反射 | 框架/ORM 等高级场景 |
+
+### 第三方包
+
+Web 开发
+
+- `gin-gonic/gin`：最流行的 Web 框架，轻量高性能
+- `labstack/echo` 或 `go-chi/chi`：轻量级路由器
+- `gorilla/websocket`：WebSocket 支持
+
+CLI 工具
+
+- `spf13/cobra`：功能强大的命令行框架（Kubernetes 等项目在使用）
+- `urfave/cli`：轻量级 CLI
+
+配置管理：`spf13/viper`：支持多种格式（YAML、JSON、ENV 等）
+
+日志
+
+`uber-go/zap`：高性能结构化日志（推荐）
+`rs/zerolog`：另一个高性能选择
+`sirupsen/logrus`：经典日志库
+
+数据库 / ORM
+
+- `go-gorm/gorm`：最流行的 ORM
+- `jmoiron/sqlx`：增强 `database/sql` 驱动：`lib/pq`（PostgreSQL）、`go-sql-driver/mysql` 等
+
+测试：- `stretchr/testify`：断言、mock、suite 等增强测试
+
+其他常用工具包
+
+- `google/uuid`：UUID 生成
+- `go-redis/redis`：Redis 客户端
+- `aws/aws-sdk-go` / `minio/minio-go`：云服务
+- `grpc/grpc-go`：gRPC 支持
+- `swaggo/swag`：自动生成 Swagger 文档
+- `mitchellh/mapstructure`：map 转 struct
