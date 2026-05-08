@@ -246,21 +246,21 @@
 
 **基础必会**
 
-| #   | 题目                                                                                | 难度   | 备注 | 难度增强 |
-| --- | ----------------------------------------------------------------------------------- | ------ | ---- | -------- |
-| 121 | [买卖股票的最佳时机](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/) | Easy   |      |          |
-| 55  | [跳跃游戏](https://leetcode.cn/problems/jump-game/)                                 | Medium |      |          |
-| 455 | [分发饼干](https://leetcode.cn/problems/assign-cookies/)                            | Easy   |      |          |
+| #    | 题目                                                         | 难度   | 备注                                                         | 难度增强 |
+| ---- | ------------------------------------------------------------ | ------ | ------------------------------------------------------------ | -------- |
+| 121  | [买卖股票的最佳时机](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/)（一次交易） | Easy   | 把最低价初始值设置为极大值，遍历过程中通过 min() 找最低价，max() 找最大利润 |          |
+| 55   | [跳跃游戏](https://leetcode.cn/problems/jump-game/)          | Medium | 跳跃距离能覆盖最后的索引即可                                 |          |
+| 455  | [分发饼干](https://leetcode.cn/problems/assign-cookies/)     | Easy   | 每个饼干不可再分，把胃口和饼干排序后用双指针匹配             |          |
 
 **综合常考**
 
-| #   | 题目                                                                                      | 难度   | 备注 | 难度增强 |
-| --- | ----------------------------------------------------------------------------------------- | ------ | ---- | -------- |
-| 56  | [合并区间](https://leetcode.cn/problems/merge-intervals/)                                 | Medium |      |          |
-| 45  | [跳跃游戏 II](https://leetcode.cn/problems/jump-game-ii/)                                 | Medium |      |          |
-| 435 | [无重叠区间](https://leetcode.cn/problems/non-overlapping-intervals/)                     | Medium |      |          |
-| 122 | [买卖股票的最佳时机 II](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/) | Medium |      |          |
-| 763 | [划分字母区间](https://leetcode.cn/problems/partition-labels/)                            | Medium |      |          |
+| #    | 题目                                                         | 难度   | 备注                                                         | 难度增强 |
+| ---- | ------------------------------------------------------------ | ------ | ------------------------------------------------------------ | -------- |
+| 56   | [合并区间](https://leetcode.cn/problems/merge-intervals/)    | Medium |                                                              |          |
+| 45   | [跳跃游戏 II](https://leetcode.cn/problems/jump-game-ii/)（最小跳跃次数） | Medium | 同样用跳跃距离覆盖的思路，需要新增`curEnd`表示跳跃区间的右边界，当移动到右边界时更新`curEnd`为新的区间，并`jump++` |          |
+| 435  | [无重叠区间](https://leetcode.cn/problems/non-overlapping-intervals/) | Medium |                                                              |          |
+| 122  | [买卖股票的最佳时机 II](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/)（多次交易） | Medium | 由于不限制交易次数，只要今天比昨天涨了，就计算到利润         |          |
+| 763  | [划分字母区间](https://leetcode.cn/problems/partition-labels/) | Medium |                                                              |          |
 
 ---
 
