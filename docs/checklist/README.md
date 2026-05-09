@@ -4,7 +4,7 @@
 
 高：56、
 
-中：
+中：746、
 
 ## 数组/矩阵
 
@@ -268,6 +268,7 @@
 | 45   | [跳跃游戏 II](https://leetcode.cn/problems/jump-game-ii/)（最小跳跃次数） | Medium | 同样用跳跃距离覆盖的思路，需要新增`curEnd`表示跳跃区间的右边界，当移动到右边界时更新`curEnd`为新的区间，并`jump++` |          |
 | 122  | [买卖股票的最佳时机 II](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/)（多次交易） | Medium | 由于不限制交易次数，只要今天比昨天涨了，就计算到利润         |          |
 | 763  | [划分字母区间](https://leetcode.cn/problems/partition-labels/) | Medium |                                                              |          |
+| 135  | [分发糖果](https://leetcode.cn/problems/candy/)              | Hard   |                                                              |          |
 
 ---
 
@@ -275,13 +276,13 @@
 
 **基础必会**
 
-| #   | 题目                                                                                | 难度   | 备注 | 难度增强 |
-| --- | ----------------------------------------------------------------------------------- | ------ | ---- | -------- |
-| 70  | [爬楼梯](https://leetcode.cn/problems/climbing-stairs/)                             | Easy   |      |          |
-| 53  | [最大子数组和](https://leetcode.cn/problems/maximum-subarray/)                      | Medium |      |          |
-| 509 | [斐波那契数](https://leetcode.cn/problems/fibonacci-number/)                        | Easy   |      |          |
-| 746 | [使用最小花费爬楼梯](https://leetcode.cn/problems/min-cost-climbing-stairs/)        | Easy   |      |          |
-| 121 | [买卖股票的最佳时机](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/) | Easy   |      |          |
+| #    | 题目                                                         | 难度   | 备注                                                         | 难度增强 |
+| ---- | ------------------------------------------------------------ | ------ | ------------------------------------------------------------ | -------- |
+| 509  | [斐波那契数](https://leetcode.cn/problems/fibonacci-number/) | Easy   | 多种解法：递归、记忆递归、自底向上迭代                       |          |
+| 70   | [爬楼梯](https://leetcode.cn/problems/climbing-stairs/)      | Easy   | 斐波那契数                                                   |          |
+| 746  | [使用最小花费爬楼梯](https://leetcode.cn/problems/min-cost-climbing-stairs/)（类似背包问题） | Easy   | 状态转移方程`dp[i] = min(dp[i-1]+cost[i-1], dp[i-2]+cost[i-2])` |          |
+| 121  | [买卖股票的最佳时机](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/) | Easy   | 先把最低价初始为极大值，然后不断取最低价和最大利润即可       |          |
+| 53   | [最大子数组和](https://leetcode.cn/problems/maximum-subarray/) | Medium |                                                              |          |
 
 **综合常考**
 

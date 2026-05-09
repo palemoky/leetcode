@@ -2001,6 +2001,42 @@
     }
     ```
 
+=== "#746 最小花费爬楼梯"
+
+    状态转移方程：
+    ```
+    dp[i]=min(dp[i-1]+cost[i-1], dp[i-2]+cost[i-2])
+                  \______\__________/_________/
+                          v            v
+                 可以爬1个或2个台阶 对应台阶所需花费
+    ```
+
+    ```go
+    func minCostClimbingStairs(cost []int) int {
+        n := len(cost)
+        dp := make([]int, n+1) // 从 0 或 1 开始时，cost 为 0
+        for i := 2; i <= n; i++ { // 要爬到楼顶，因此要包含 n
+            // dp[i-1]代表累计花费，cost[i-1]代表当前门票
+            dp[i] = min(dp[i-1]+cost[i-1], dp[i-2]+cost[i-2])
+        }
+
+        return dp[n]
+    }
+    ```
+
+    上述代码主要依赖最近两个值，因此可以用滚动数组优化空间复杂度到 $O(1)$
+
+    ```go
+    func minCostClimbingStairsIterative(cost []int) int {
+        x, y := 0, 0
+        for i := 2; i <= len(cost); i++ {
+            x, y = y, min(y+cost[i-1], x+cost[i-2])
+        }
+
+        return y
+    }
+    ```
+
 === "#53 最大子数组和"
 
     状态转义方程为`dp[i] = max(nums[i], dp[i-1] + nums[i])`，其中`dp[i]` 表示以 `i` 结尾的最大子数组和。
