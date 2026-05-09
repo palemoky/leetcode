@@ -8,7 +8,6 @@ import (
 // Solution 1: 排序比较
 // Time: O(nlogn), Space: O(nlogn)
 func merge(intervals [][]int) [][]int {
-	// 判断区间重叠可以看前一个数组的 end 是否大于后一个数组的 start
 	ans := [][]int{}
 	if len(intervals) < 2 {
 		return intervals

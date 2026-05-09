@@ -449,6 +449,20 @@ func isValidBST(root *TreeNode) bool {
 
     Go、Python、Java、JavaScript 等语言会 **隐式自动捕获** 外部变量，而 PHP、C++ 则需要 **显式声明** 被捕获的变量（如 PHP 的 `use (&$var)`，C++ 的 `[&var]`）。
 
+## 二维数组排序
+
+`sort.Ints()` 只能处理一维数组，对于二维数组，在 Go 1.21+ 需要使用 `slices.SortFunc`
+
+```go
+slices.SortFunc(intervals, func(a, b[]int) int {
+    // cmp.Compare 会返回:
+    // -1 (如果 a[0] < b[0]) -> a 排前面
+    //  0 (如果 a[0] == b[0]) -> 保持原序
+    //  1 (如果 a[0] > b[0]) -> b 排前面
+    return cmp.Compare(a[0], b[0])
+})
+```
+
 ## 常用包
 
 ### 标准库
@@ -464,14 +478,14 @@ func isValidBST(root *TreeNode) bool {
 | `time` | 时间和日期处理 | 定时任务、日志时间戳 |
 | `strconv` | 字符串与基本类型转换 | 参数解析 |
 | `strings` / `bytes` | 字符串/字节切片操作 | 文本处理 |
-| `regexp` | 正则表达式 | 文本匹配、解析 |
+| `sort` | 排序 | 切片排序、查找 |
 | `sync` | 并发同步原语（Mutex、WaitGroup等） | Goroutine 同步 |
 | `context` | 请求上下文（超时、取消） | HTTP 服务、数据库调用 |
-| `database/sql` | SQL 数据库操作 | 关系型数据库访问 |
+| `math` | 数学函数 | 数学计算，如极值、常数、取整、四舍五入、绝对值（注意`math/rand/v2`和`math/big`不在`math`包里） |
 | `log` | 标准日志 | 简单日志记录 |
 | `flag` | 命令行参数解析 | CLI 工具 |
 | `testing` | 单元测试和基准测试 | 测试代码 |
-| `reflect` | 反射 | 框架/ORM 等高级场景 |
+| `crypto` | 加密 | 数据加密、解密、哈希、随机数等 |
 
 ### 第三方包
 
