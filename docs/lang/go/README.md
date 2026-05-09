@@ -105,7 +105,7 @@ for _, v := range nums {
 }
 ```
 
-### 二维切片初始化
+### 二维数组初始化
 
 **陷阱**：不能像 Python 那样 `[[0]*n]*m`（这是浅拷贝），Go 必须手动循环。
 
@@ -117,7 +117,19 @@ for i := range dp {
 }
 ```
 
----
+### 二维数组排序
+
+`sort.Ints()` 只能处理一维数组，对于二维数组，在 Go 1.21+ 需要使用 `slices.SortFunc`
+
+```go
+slices.SortFunc(intervals, func(a, b[]int) int {
+    // cmp.Compare 会返回:
+    // -1 (如果 a[0] < b[0]) -> a 排前面
+    //  0 (如果 a[0] == b[0]) -> 保持原序
+    //  1 (如果 a[0] > b[0]) -> b 排前面
+    return cmp.Compare(a[0], b[0]) // 使用 a[0]-b[0] 会有溢出问题
+})
+```
 
 ## LeetCode 实用技巧
 
@@ -449,19 +461,7 @@ func isValidBST(root *TreeNode) bool {
 
     Go、Python、Java、JavaScript 等语言会 **隐式自动捕获** 外部变量，而 PHP、C++ 则需要 **显式声明** 被捕获的变量（如 PHP 的 `use (&$var)`，C++ 的 `[&var]`）。
 
-## 二维数组排序
 
-`sort.Ints()` 只能处理一维数组，对于二维数组，在 Go 1.21+ 需要使用 `slices.SortFunc`
-
-```go
-slices.SortFunc(intervals, func(a, b[]int) int {
-    // cmp.Compare 会返回:
-    // -1 (如果 a[0] < b[0]) -> a 排前面
-    //  0 (如果 a[0] == b[0]) -> 保持原序
-    //  1 (如果 a[0] > b[0]) -> b 排前面
-    return cmp.Compare(a[0], b[0])
-})
-```
 
 ## 常用包
 
