@@ -1,5 +1,11 @@
 # 刷题清单
 
+## 二刷题目
+
+高：56、
+
+中：
+
 ## 数组/矩阵
 
 **基础必会**
@@ -64,10 +70,10 @@
 
 **综合常考**
 
-| #    | 题目                                                         | 难度   | 备注   | 难度增强 |
-| ---- | ------------------------------------------------------------ | ------ | ------ | -------- |
-| 49   | [字母异位词分组](https://leetcode.cn/problems/group-anagrams/) | Medium |        |          |
-| 128  | [最长连续序列](https://leetcode.cn/problems/longest-consecutive-sequence/) | Medium | 并查集 |          |
+| #   | 题目                                                                       | 难度   | 备注   | 难度增强 |
+| --- | -------------------------------------------------------------------------- | ------ | ------ | -------- |
+| 49  | [字母异位词分组](https://leetcode.cn/problems/group-anagrams/)             | Medium |        |          |
+| 128 | [最长连续序列](https://leetcode.cn/problems/longest-consecutive-sequence/) | Medium | 并查集 |          |
 
 ---
 
@@ -246,19 +252,19 @@
 
 **基础必会**
 
-| #    | 题目                                                         | 难度   | 备注                                                         | 难度增强 |
-| ---- | ------------------------------------------------------------ | ------ | ------------------------------------------------------------ | -------- |
-| 121  | [买卖股票的最佳时机](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/)（一次交易） | Easy   | 把最低价初始值设置为极大值，遍历过程中通过 min() 找最低价，max() 找最大利润 |          |
-| 55   | [跳跃游戏](https://leetcode.cn/problems/jump-game/)          | Medium | 跳跃距离能覆盖最后的索引即可                                 |          |
-| 455  | [分发饼干](https://leetcode.cn/problems/assign-cookies/)     | Easy   | 每个饼干不可再分，把胃口和饼干排序后用双指针匹配             |          |
+| #   | 题目                                                                                            | 难度   | 备注                                                                        | 难度增强 |
+| --- | ----------------------------------------------------------------------------------------------- | ------ | --------------------------------------------------------------------------- | -------- |
+| 121 | [买卖股票的最佳时机](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/)（一次交易） | Easy   | 把最低价初始值设置为极大值，遍历过程中通过 min() 找最低价，max() 找最大利润 |          |
+| 55  | [跳跃游戏](https://leetcode.cn/problems/jump-game/)                                             | Medium | 跳跃距离能覆盖最后的索引即可                                                |          |
+| 455 | [分发饼干](https://leetcode.cn/problems/assign-cookies/)（或运动员匹配教练）                    | Easy   | 每个饼干不可再分，把胃口和饼干排序后用双指针匹配                            |          |
 
 **综合常考**
 
 | #    | 题目                                                         | 难度   | 备注                                                         | 难度增强 |
 | ---- | ------------------------------------------------------------ | ------ | ------------------------------------------------------------ | -------- |
-| 56   | [合并区间](https://leetcode.cn/problems/merge-intervals/)    | Medium |                                                              |          |
+| 56   | [合并区间](https://leetcode.cn/problems/merge-intervals/)    | Medium | 先对二维数组排序，然后以`ans`中的最后一个区间为基准，比较`end`值即可 |          |
+| 435  | [无重叠区间](https://leetcode.cn/problems/non-overlapping-intervals/)（会议预定） | Medium | 转换思路，求最多不重叠区间                                   |          |
 | 45   | [跳跃游戏 II](https://leetcode.cn/problems/jump-game-ii/)（最小跳跃次数） | Medium | 同样用跳跃距离覆盖的思路，需要新增`curEnd`表示跳跃区间的右边界，当移动到右边界时更新`curEnd`为新的区间，并`jump++` |          |
-| 435  | [无重叠区间](https://leetcode.cn/problems/non-overlapping-intervals/) | Medium |                                                              |          |
 | 122  | [买卖股票的最佳时机 II](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/)（多次交易） | Medium | 由于不限制交易次数，只要今天比昨天涨了，就计算到利润         |          |
 | 763  | [划分字母区间](https://leetcode.cn/problems/partition-labels/) | Medium |                                                              |          |
 
@@ -278,18 +284,18 @@
 
 **综合常考**
 
-| #    | 题目                                                         | 难度   | 备注 | 难度增强 |
-| ---- | ------------------------------------------------------------ | ------ | ---- | -------- |
-| 322  | [零钱兑换](https://leetcode.cn/problems/coin-change/)        | Medium |      |          |
+| #    | 题目                                                                           | 难度   | 备注 | 难度增强 |
+| ---- | ------------------------------------------------------------------------------ | ------ | ---- | -------- |
+| 322  | [零钱兑换](https://leetcode.cn/problems/coin-change/)                          | Medium |      |          |
 | 300  | [最长递增子序列](https://leetcode.cn/problems/longest-increasing-subsequence/) | Medium |      |          |
-| 5    | [最长回文子串](https://leetcode.cn/problems/longest-palindromic-substring/) | Medium |      |          |
-| 1143 | [最长公共子序列](https://leetcode.cn/problems/longest-common-subsequence/) | Medium |      |          |
-| 72   | [编辑距离](https://leetcode.cn/problems/edit-distance/)      | Medium |      |          |
-| 198  | [打家劫舍](https://leetcode.cn/problems/house-robber/)       | Medium |      |          |
-| 62   | [不同路径](https://leetcode.cn/problems/unique-paths/)       | Medium |      |          |
-| 64   | [最小路径和](https://leetcode.cn/problems/minimum-path-sum/) | Medium |      |          |
-| 139  | [单词拆分](https://leetcode.cn/problems/word-break/)         | Medium |      |          |
-| 152  | [乘积最大子数组](https://leetcode.cn/problems/maximum-product-subarray/) | Medium |      |          |
+| 5    | [最长回文子串](https://leetcode.cn/problems/longest-palindromic-substring/)    | Medium |      |          |
+| 1143 | [最长公共子序列](https://leetcode.cn/problems/longest-common-subsequence/)     | Medium |      |          |
+| 72   | [编辑距离](https://leetcode.cn/problems/edit-distance/)                        | Medium |      |          |
+| 198  | [打家劫舍](https://leetcode.cn/problems/house-robber/)                         | Medium |      |          |
+| 62   | [不同路径](https://leetcode.cn/problems/unique-paths/)                         | Medium |      |          |
+| 64   | [最小路径和](https://leetcode.cn/problems/minimum-path-sum/)                   | Medium |      |          |
+| 139  | [单词拆分](https://leetcode.cn/problems/word-break/)                           | Medium |      |          |
+| 152  | [乘积最大子数组](https://leetcode.cn/problems/maximum-product-subarray/)       | Medium |      |          |
 
 ---
 

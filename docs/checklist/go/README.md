@@ -304,7 +304,7 @@
 
 ## 链表
 
-### 基础必会
+**基础必会**
 
 === "#206 反转链表"
 
@@ -460,7 +460,7 @@
     }
     ```
 
-### 综合常考
+**综合常考**
 
 === "#25 K个一组反转链表"
 
@@ -2095,6 +2095,8 @@
 
 ## 贪心
 
+**基础必会**
+
 === "#121 买卖股票的最佳时机"
 
     ```go
@@ -2135,11 +2137,47 @@
     }
     ```
 
-=== "#134 加油站"
+**综合常考**
+
+=== "#56 合并区间"
+
+    本题只要以 `ans` 最后一个区间为基准，并且比较 `end` 值即可，但注意在比较前需要对输入的二维数组排序
+
+    ```go
+    // Time: O(nlogn), Space: O(nlogn)
+    func merge(intervals [][]int) [][]int {
+        ans := [][]int{}
+        if len(intervals) < 2 {
+            return intervals
+        }
+
+        // 先对输入的二维数组排序
+        for range intervals {
+            slices.SortFunc(intervals, func(a, b []int) int {
+                return cmp.Compare(a[0], b[0])
+            })
+        }
+
+        // 以 ans 为基准比较
+        ans = append(ans, intervals[0])
+        for i := 1; i < len(intervals); i++ {
+            last := ans[len(ans)-1]
+            if last[1] < intervals[i][0] { // 不需要合并
+                ans = append(ans, intervals[i])
+            } else { // 只需考虑合并区间的 end 值即可
+                last[1] = max(last[1], intervals[i][1])
+            }
+        }
+
+        return ans
+    }
+    ```
 
 === "#11 盛最多水的容器"
 
-=== "分发糖果"
+=== "#134 加油站"
+
+=== "#135 分发糖果"
 
 ## 递归
 
