@@ -263,7 +263,8 @@
 | #    | 题目                                                         | 难度   | 备注                                                         | 难度增强 |
 | ---- | ------------------------------------------------------------ | ------ | ------------------------------------------------------------ | -------- |
 | 56   | [合并区间](https://leetcode.cn/problems/merge-intervals/)    | Medium | 先对二维数组排序，然后以`ans`中的最后一个区间为基准，比较`end`值即可 |          |
-| 435  | [无重叠区间](https://leetcode.cn/problems/non-overlapping-intervals/)（会议预定） | Medium | 转换思路，求最多不重叠区间                                   |          |
+| 435  | [无重叠区间](https://leetcode.cn/problems/non-overlapping-intervals/)（会议预定） | Medium | 转换思路，求最多不重叠区间，同样先排序（注意要按右边界排序，因为下一个区间的起点>当前区间的终点），然后找到最多不重叠区间，最后返回差值即为最少移除的区间数量 |          |
+| 452  | [用最少数量的箭引爆气球](https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/)（重叠区间个数） | Medium | 用 #435 即可求解                                             |          |
 | 45   | [跳跃游戏 II](https://leetcode.cn/problems/jump-game-ii/)（最小跳跃次数） | Medium | 同样用跳跃距离覆盖的思路，需要新增`curEnd`表示跳跃区间的右边界，当移动到右边界时更新`curEnd`为新的区间，并`jump++` |          |
 | 122  | [买卖股票的最佳时机 II](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/)（多次交易） | Medium | 由于不限制交易次数，只要今天比昨天涨了，就计算到利润         |          |
 | 763  | [划分字母区间](https://leetcode.cn/problems/partition-labels/) | Medium |                                                              |          |
