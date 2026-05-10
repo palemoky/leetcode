@@ -20,12 +20,12 @@ func containsDuplicateHashMap(nums []int) bool {
 // 解法一优化(推荐)：只要已经在哈希表中存在，即可认为存在重复元素
 // Time: O(n), Space: O(n)
 func containsDuplicateHashMapOptimized(nums []int) bool {
-	scaned := map[int]struct{}{}
+	scaned := map[int]bool{}
 	for _, num := range nums {
-		if _, ok := scaned[num]; ok {
+		if scaned[num] {
 			return true
 		}
-		scaned[num] = struct{}{}
+		scaned[num] = true
 	}
 
 	return false

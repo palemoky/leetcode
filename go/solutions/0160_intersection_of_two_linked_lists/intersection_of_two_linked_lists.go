@@ -5,14 +5,14 @@ import "leetcode/go/solutions/utils"
 // Solution 1: 哈希表扫描
 // Time: O(n), Space: O(n)
 func getIntersectionNodeHashMap(headA, headB *utils.ListNode) *utils.ListNode {
-	seen := map[*utils.ListNode]struct{}{}
+	seen := map[*utils.ListNode]bool{}
 	for headA != nil {
-		seen[headA] = struct{}{}
+		seen[headA] = true
 		headA = headA.Next
 	}
 
 	for headB != nil {
-		if _, ok := seen[headB]; ok {
+		if seen[headB] {
 			return headB
 		}
 		headB = headB.Next

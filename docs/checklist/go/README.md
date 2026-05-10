@@ -426,12 +426,12 @@
 
     ```go
     func detectCycle(head *ListNode) *ListNode {
-        seen := map[*ListNode]struct{}{}
+        seen := map[*ListNode]bool{}
         for head != nil {
-            if _, ok := seen[head]; ok {
+            if seen[head] {
                 return head
             }
-            seen[head] = struct{}{}
+            seen[head] = true
             head = head.Next
         }
 

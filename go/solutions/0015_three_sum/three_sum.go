@@ -18,7 +18,7 @@ func threeSumBruteForce(nums []int) [][]int {
 	// 因为可能有重复结果，因此先排序
 	sort.Ints(nums)
 
-	existed := map[string]struct{}{}
+	existed := map[string]bool{}
 	ans := [][]int{}
 	for i := 0; i < len(nums)-2; i++ {
 		for j := i + 1; j < len(nums)-1; j++ {
@@ -26,9 +26,9 @@ func threeSumBruteForce(nums []int) [][]int {
 				if nums[i]+nums[j]+nums[k] == 0 {
 					// 通过哈希表判断是否有重复结果，注意此处的 key 要用值，而不能是索引，因为是不同索引的值重复
 					key := fmt.Sprintf("%d,%d,%d", nums[i], nums[j], nums[k])
-					if _, ok := existed[key]; !ok {
+					if existed[key] {
 						ans = append(ans, []int{nums[i], nums[j], nums[k]})
-						existed[key] = struct{}{}
+						existed[key] = true
 					}
 				}
 			}

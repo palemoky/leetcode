@@ -6,12 +6,12 @@ import "leetcode/go/solutions/utils"
 // 优点：简单直观；缺点：使用额外空间
 // Time: O(n), Space: O(n)
 func hasCycleHashMap(head *utils.ListNode) bool {
-	m := make(map[*utils.ListNode]struct{})
+	m := make(map[*utils.ListNode]bool)
 	for head != nil {
-		if _, ok := m[head]; ok {
+		if m[head] {
 			return true
 		}
-		m[head] = struct{}{}
+		m[head] = true
 		head = head.Next
 	}
 

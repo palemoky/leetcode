@@ -4,12 +4,12 @@ import "leetcode/go/solutions/utils"
 
 // Time: O(n), Space: O(n)
 func findCycleEnteryHashMap(head *utils.ListNode) *utils.ListNode {
-	scanned := map[*utils.ListNode]struct{}{}
+	scanned := map[*utils.ListNode]bool{}
 	for head != nil {
-		if _, ok := scanned[head]; ok {
+		if scanned[head] {
 			return head
 		}
-		scanned[head] = struct{}{}
+		scanned[head] = true
 		head = head.Next
 	}
 

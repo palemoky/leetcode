@@ -67,8 +67,7 @@ if _, exists := set[1]; exists { ... }
 delete(set, 1)
 ```
 
-**为什么用 `struct{}`？**
-空结构体 `struct{}` 在 Go 中 **不占用内存空间**（size 为 0），比 `map[int]bool` 更节省内存。
+空结构体 `struct{}` 在 Go 中 **不占用内存空间**（size 为 0），比 `map[int]bool` 更节省内存。在 LeetCode 场景中，使用 `bool` 编写代码会更加方便。
 
 ---
 
