@@ -2,6 +2,8 @@
 
 ## 哈希表
 
+**基础必会**
+
 === "#1 两数之和"
 
     ```go
@@ -19,6 +21,37 @@
         }
 
         return []int{}
+    }
+    ```
+
+**综合常考**
+
+=== "128 最长连续序列"
+
+    在本题中，要求$O(n)$求解，排序后复杂度为$O(logn)$，不符合要求。因此需要把输入存入哈希表，然后遍历哈希表，如果取值的前一位不在哈希表，则当前值作为序列起始值；如果下一位在哈希表，则认为是连续序列。
+
+    ```go
+    func longestConsecutive(nums []int) int {
+        has := map[int]bool{} // 直接初始化为 bool 可以简化哈希表判断
+        for _, num := range nums {
+            has[num] = true
+        }
+
+        ans := 0
+        for num := range has {
+            prev, next := num-1, num+1
+            if has[prev] { // 上一个数存在于哈希表，说明 num 不是序列的起点
+                continue
+            }
+
+            for has[next] { // 不断查找下一个序列是否在哈希表中
+                next++
+            }
+
+            ans = max(ans, next-num)
+        }
+
+        return ans
     }
     ```
 
@@ -81,6 +114,33 @@
     ```
 
 ## 双指针
+
+**基础必会**
+
+=== "#88 合并两个有序数组"
+
+    双指针倒序填充
+
+    ```go
+    // Time: O(m+n), Space: O(1)
+    func merge(nums1 []int, m int, nums2 []int, n int) {
+    	p1, p2, tail := m-1, n-1, m+n-1
+
+    	// 只需检查 p2 >= 0，因为 nums2 处理完后，nums1 剩余元素已在正确位置
+    	for p2 >= 0 {
+    		if p1 >= 0 && nums1[p1] > nums2[p2] {
+    			nums1[tail] = nums1[p1]
+    			p1--
+    		} else {
+    			nums1[tail] = nums2[p2]
+    			p2--
+    		}
+    		tail--
+    	}
+    }
+    ```
+
+**综合常考**
 
 === "#3 无重复字符的最长子串"
 
@@ -242,31 +302,6 @@
     	}
     }
     ```
-
-=== "#88 合并两个有序数组"
-
-    双指针倒序填充
-
-    ```go
-    // Time: O(m+n), Space: O(1)
-    func merge(nums1 []int, m int, nums2 []int, n int) {
-    	p1, p2, tail := m-1, n-1, m+n-1
-
-    	// 只需检查 p2 >= 0，因为 nums2 处理完后，nums1 剩余元素已在正确位置
-    	for p2 >= 0 {
-    		if p1 >= 0 && nums1[p1] > nums2[p2] {
-    			nums1[tail] = nums1[p1]
-    			p1--
-    		} else {
-    			nums1[tail] = nums2[p2]
-    			p2--
-    		}
-    		tail--
-    	}
-    }
-    ```
-
-=== "合并区间"
 
 === "#165 比较版本号"
 
@@ -1902,6 +1937,8 @@
 
 ## 动态规划
 
+**基础必会**
+
 === "#509 斐波那契数"
 
     斐波那契数作为递归和动态规划的入门问题，必须掌握。
@@ -2000,6 +2037,8 @@
     	return y
     }
     ```
+
+**综合常考**
 
 === "#746 最小花费爬楼梯"
 
@@ -2121,6 +2160,8 @@
 
 ## 回溯
 
+**基础必会**
+**综合常考**
 === "#46 全排列"
 
 === "组合总和"

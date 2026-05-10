@@ -188,8 +188,6 @@ idx := sort.Search(len(nums), func(i int) bool {
 })
 ```
 
-#### 原理
-
 Go 的 `sort.Search` 相当于 C++ 的 `std::lower_bound`。只要 `f(i)` 满足单调性（先 `false` 后 `true`），它就能稳定找到 `true/false` 的临界点。
 
 ### 位运算黑科技 (`math/bits`)
@@ -266,6 +264,7 @@ func test() {
   - **解法**：使用 `copy` 复制所需数据到新切片。
 
 ### range 的坑
+
 1. Go 1.22 的 v 是循环变量复用，导致闭包捕获异常
 2. v 传递的是元素副本，无法被修改，需要通过索引来修改
 3. 遍历字符串时默认是 rune，而非 byte，以兼容所有字符集
@@ -309,11 +308,9 @@ if v := reflect.ValueOf(i); v.IsNil() { } // ✅ 正确判断
 | **send (ch <-)** | 永久阻塞    | panic                   | 阻塞直到由接收方      |
 | **recv (<- ch)** | 永久阻塞    | 立即返回零值 (v, false) | 阻塞直到有发送方      |
 
-
 ### 一切循环皆为 for
+
 Go 中没有 `while` 关键字，一切遍历和循环相关的操作皆由 `for` 实现。
-
-
 
 ---
 
@@ -461,31 +458,29 @@ func isValidBST(root *TreeNode) bool {
 
     Go、Python、Java、JavaScript 等语言会 **隐式自动捕获** 外部变量，而 PHP、C++ 则需要 **显式声明** 被捕获的变量（如 PHP 的 `use (&$var)`，C++ 的 `[&var]`）。
 
-
-
 ## 常用包
 
 ### 标准库
 
-| 包名 | 主要用途 | 典型场景 |
-| :--- | :--- | :--- |
-| `fmt` | 格式化输入输出（Println、Printf、Sprintf等） | 日常打印、日志、字符串格式化 |
-| `os` | 操作系统交互（文件、环境变量、进程等） | 文件读写、命令行工具 |
-| `io` / `bufio` | I/O 操作和带缓冲的读写 | 文件、网络流处理 |
-| `net/http` | HTTP客户端和服务端 | Web服务器、API、爬虫 |
-| `encoding/json` | JSON 编解码 | API 数据交换 |
-| `encoding/xml` / `csv` | XML / CSV 处理 | 数据导入导出 |
-| `time` | 时间和日期处理 | 定时任务、日志时间戳 |
-| `strconv` | 字符串与基本类型转换 | 参数解析 |
-| `strings` / `bytes` | 字符串/字节切片操作 | 文本处理 |
-| `sort` | 排序 | 切片排序、查找 |
-| `sync` | 并发同步原语（Mutex、WaitGroup等） | Goroutine 同步 |
-| `context` | 请求上下文（超时、取消） | HTTP 服务、数据库调用 |
-| `math` | 数学函数 | 数学计算，如极值、常数、取整、四舍五入、绝对值（注意`math/rand/v2`和`math/big`不在`math`包里） |
-| `log` | 标准日志 | 简单日志记录 |
-| `flag` | 命令行参数解析 | CLI 工具 |
-| `testing` | 单元测试和基准测试 | 测试代码 |
-| `crypto` | 加密 | 数据加密、解密、哈希、随机数等 |
+| 包名                   | 主要用途                                     | 典型场景                                                                                       |
+| :--------------------- | :------------------------------------------- | :--------------------------------------------------------------------------------------------- |
+| `fmt`                  | 格式化输入输出（Println、Printf、Sprintf等） | 日常打印、日志、字符串格式化                                                                   |
+| `os`                   | 操作系统交互（文件、环境变量、进程等）       | 文件读写、命令行工具                                                                           |
+| `io` / `bufio`         | I/O 操作和带缓冲的读写                       | 文件、网络流处理                                                                               |
+| `net/http`             | HTTP客户端和服务端                           | Web服务器、API、爬虫                                                                           |
+| `encoding/json`        | JSON 编解码                                  | API 数据交换                                                                                   |
+| `encoding/xml` / `csv` | XML / CSV 处理                               | 数据导入导出                                                                                   |
+| `time`                 | 时间和日期处理                               | 定时任务、日志时间戳                                                                           |
+| `strconv`              | 字符串与基本类型转换                         | 参数解析                                                                                       |
+| `strings` / `bytes`    | 字符串/字节切片操作                          | 文本处理                                                                                       |
+| `sort`                 | 排序                                         | 切片排序、查找                                                                                 |
+| `sync`                 | 并发同步原语（Mutex、WaitGroup等）           | Goroutine 同步                                                                                 |
+| `context`              | 请求上下文（超时、取消）                     | HTTP 服务、数据库调用                                                                          |
+| `math`                 | 数学函数                                     | 数学计算，如极值、常数、取整、四舍五入、绝对值（注意`math/rand/v2`和`math/big`不在`math`包里） |
+| `log`                  | 标准日志                                     | 简单日志记录                                                                                   |
+| `flag`                 | 命令行参数解析                               | CLI 工具                                                                                       |
+| `testing`              | 单元测试和基准测试                           | 测试代码                                                                                       |
+| `crypto`               | 加密                                         | 数据加密、解密、哈希、随机数等                                                                 |
 
 ### 第三方包
 
