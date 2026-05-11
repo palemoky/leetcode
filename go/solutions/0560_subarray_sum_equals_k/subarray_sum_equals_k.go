@@ -20,15 +20,14 @@ func subarraySumBruteForce(nums []int, k int) int {
 // Solution 2: 前缀和+哈希表
 // Time: O(n), Space: O(n)
 func subarraySumPrefixSum(nums []int, k int) int {
-	count, prefixSum := 0, 0
-	prefixSumMap := map[int]int{}
-	prefixSumMap[0] = 1
-	for i := range len(nums) {
-		prefixSum += nums[i] // 计算前缀和
-		if _, ok := prefixSumMap[prefixSum-k]; ok {
-			count += prefixSumMap[prefixSum-k]
+	count, currentSum := 0, 0
+	prefixSumMap := map[int]int{0: 1} // 兼容 nums=[3], k=3
+	for i := range nums {
+		currentSum += nums[i] // 计算前缀和
+		if _, ok := prefixSumMap[currentSum-k]; ok {
+			count += prefixSumMap[currentSum-k]
 		}
-		prefixSumMap[prefixSum]++ // 对前缀和值的出现次数统计
+		prefixSumMap[currentSum]++ // 对前缀和值的出现次数统计
 	}
 
 	return count

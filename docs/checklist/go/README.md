@@ -16,14 +16,13 @@
     ```go
     func subarraySum(nums []int, k int) int {
         count, prefixSum := 0, 0
-        prefixSumMap := map[int]int{}
-        prefixSumMap[0] = 1
-        for i := range len(nums) {
-            prefixSum += nums[i] // 计算前缀和
-            if _, ok := prefixSumMap[prefixSum - k]; ok {
-                count += prefixSumMap[prefixSum - k]
+        prefixSumMap := map[int]int{0:1} // 兼容 nums=[3], k=3
+        for i := range nums {
+            currentSum += nums[i] // 计算前缀和
+            if _, ok := prefixSumMap[currentSum-k]; ok { // 也可以利用 Go Map 的零值机制优化为一行代码
+                count += prefixSumMap[currentSum-k] // 累计频率
             }
-            prefixSumMap[prefixSum]++ // 对前缀和值的出现次数统计
+            prefixSumMap[currentSum]++ // 对前缀和值的出现次数统计
         }
 
         return count
