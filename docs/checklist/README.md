@@ -2,7 +2,7 @@
 
 ## 二刷题目
 
-高：56、53、134
+高：56、53、134、560
 
 中：746、
 
@@ -70,10 +70,10 @@
 
 **综合常考**
 
-| #   | 题目                                                                       | 难度   | 备注   | 难度增强 |
-| --- | -------------------------------------------------------------------------- | ------ | ------ | -------- |
-| 49  | [字母异位词分组](https://leetcode.cn/problems/group-anagrams/)             | Medium |        |          |
-| 128 | [最长连续序列](https://leetcode.cn/problems/longest-consecutive-sequence/) | Medium | 并查集 |          |
+| #   | 题目                                                                       | 难度   | 备注                                                               | 难度增强 |
+| --- | -------------------------------------------------------------------------- | ------ | ------------------------------------------------------------------ | -------- |
+| 49  | [字母异位词分组](https://leetcode.cn/problems/group-anagrams/)             | Medium |                                                                    |          |
+| 128 | [最长连续序列](https://leetcode.cn/problems/longest-consecutive-sequence/) | Medium | 先把输入放入哈希表，然后遍历哈希表取值的前一位和后一位判断是否连续 |          |
 
 ---
 
@@ -81,25 +81,25 @@
 
 **基础必会**
 
-| #    | 题目                                                         | 难度   | 备注           | 难度增强 |
-| ---- | ------------------------------------------------------------ | ------ | -------------- | -------- |
-| 283  | [移动零](https://leetcode.cn/problems/move-zeroes/)          | Easy   |                |          |
-| 125  | [验证回文串](https://leetcode.cn/problems/valid-palindrome/) | Easy   |                |          |
-| 167  | [两数之和 II](https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/) | Medium |                |          |
-| 344  | [反转字符串](https://leetcode.cn/problems/reverse-string/)   | Easy   |                |          |
-| 88   | [合并两个有序数组](https://leetcode.cn/problems/merge-sorted-array/) | Easy   | 双指针倒序填充 |          |
+| #   | 题目                                                                          | 难度   | 备注           | 难度增强 |
+| --- | ----------------------------------------------------------------------------- | ------ | -------------- | -------- |
+| 283 | [移动零](https://leetcode.cn/problems/move-zeroes/)                           | Easy   |                |          |
+| 125 | [验证回文串](https://leetcode.cn/problems/valid-palindrome/)                  | Easy   |                |          |
+| 167 | [两数之和 II](https://leetcode.cn/problems/two-sum-ii-input-array-is-sorted/) | Medium |                |          |
+| 344 | [反转字符串](https://leetcode.cn/problems/reverse-string/)                    | Easy   |                |          |
+| 88  | [合并两个有序数组](https://leetcode.cn/problems/merge-sorted-array/)          | Easy   | 双指针倒序填充 |          |
 
 **综合常考**
 
-| #   | 题目                                                                                                 | 难度   | 备注 | 难度增强 |
-| --- | ---------------------------------------------------------------------------------------------------- | ------ | ---- | -------- |
-| 3   | [无重复字符的最长子串](https://leetcode.cn/problems/longest-substring-without-repeating-characters/) | Medium |      |          |
-| 15  | [三数之和](https://leetcode.cn/problems/3sum/)                                                       | Medium |      |          |
-| 11  | [盛最多水的容器](https://leetcode.cn/problems/container-with-most-water/)                            | Medium |      |          |
-| 42  | [接雨水](https://leetcode.cn/problems/trapping-rain-water/)                                          | Hard   |      |          |
-| 76  | [最小覆盖子串](https://leetcode.cn/problems/minimum-window-substring/)                               | Hard   |      |          |
-| 5   | [最长回文子串](https://leetcode.cn/problems/longest-palindromic-substring/)                          | Medium |      |          |
-| 209 | [长度最小的子数组](https://leetcode.cn/problems/minimum-size-subarray-sum/)                          | Medium |      |          |
+| #   | 题目                                                                                                 | 难度   | 备注                                 | 难度增强 |
+| --- | ---------------------------------------------------------------------------------------------------- | ------ | ------------------------------------ | -------- |
+| 3   | [无重复字符的最长子串](https://leetcode.cn/problems/longest-substring-without-repeating-characters/) | Medium |                                      |          |
+| 15  | [三数之和](https://leetcode.cn/problems/3sum/)                                                       | Medium |                                      |          |
+| 11  | [盛最多水的容器](https://leetcode.cn/problems/container-with-most-water/)                            | Medium | 对撞指针计算面积，每次移动较矮的一边 |          |
+| 42  | [接雨水](https://leetcode.cn/problems/trapping-rain-water/)                                          | Hard   | 有动态规划、单调栈、双指针三种解法。 |          |
+| 76  | [最小覆盖子串](https://leetcode.cn/problems/minimum-window-substring/)                               | Hard   |                                      |          |
+| 5   | [最长回文子串](https://leetcode.cn/problems/longest-palindromic-substring/)                          | Medium |                                      |          |
+| 209 | [长度最小的子数组](https://leetcode.cn/problems/minimum-size-subarray-sum/)                          | Medium |                                      |          |
 
 ---
 
@@ -261,16 +261,16 @@
 
 **综合常考**
 
-| #    | 题目                                                         | 难度   | 备注                                                         | 难度增强 |
-| ---- | ------------------------------------------------------------ | ------ | ------------------------------------------------------------ | -------- |
-| 56   | [合并区间](https://leetcode.cn/problems/merge-intervals/)    | Medium | 先对二维数组排序，然后以`ans`中的最后一个区间为基准，比较`end`值即可 |          |
-| 435  | [无重叠区间](https://leetcode.cn/problems/non-overlapping-intervals/)（会议预定） | Medium | 转换思路，求最多不重叠区间，同样先排序（注意要按右边界排序，因为下一个区间的起点>当前区间的终点），然后找到最多不重叠区间，最后返回差值即为最少移除的区间数量 |          |
-| 452  | [用最少数量的箭引爆气球](https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/)（重叠区间个数） | Medium | 用 #435 即可求解                                             |          |
-| 45   | [跳跃游戏 II](https://leetcode.cn/problems/jump-game-ii/)（最小跳跃次数） | Medium | 同样用跳跃距离覆盖的思路，需要新增`curEnd`表示跳跃区间的右边界，当移动到右边界时更新`curEnd`为新的区间，并`jump++` |          |
-| 122  | [买卖股票的最佳时机 II](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/)（多次交易） | Medium | 由于不限制交易次数，只要今天比昨天涨了，就计算到利润         |          |
+| #   | 题目                                                                                                               | 难度   | 备注                                                                                                                                                          | 难度增强 |
+| --- | ------------------------------------------------------------------------------------------------------------------ | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
+| 56  | [合并区间](https://leetcode.cn/problems/merge-intervals/)                                                          | Medium | 先对二维数组排序，然后以`ans`中的最后一个区间为基准，比较`end`值即可                                                                                          |          |
+| 435 | [无重叠区间](https://leetcode.cn/problems/non-overlapping-intervals/)（会议预定）                                  | Medium | 转换思路，求最多不重叠区间，同样先排序（注意要按右边界排序，因为下一个区间的起点>当前区间的终点），然后找到最多不重叠区间，最后返回差值即为最少移除的区间数量 |          |
+| 452 | [用最少数量的箭引爆气球](https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/)（重叠区间个数） | Medium | 用 #435 即可求解                                                                                                                                              |          |
+| 45  | [跳跃游戏 II](https://leetcode.cn/problems/jump-game-ii/)（最小跳跃次数）                                          | Medium | 同样用跳跃距离覆盖的思路，需要新增`curEnd`表示跳跃区间的右边界，当移动到右边界时更新`curEnd`为新的区间，并`jump++`                                            |          |
+| 122 | [买卖股票的最佳时机 II](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/)（多次交易）              | Medium | 由于不限制交易次数，只要今天比昨天涨了，就计算到利润                                                                                                          |          |
 | 134  | [加油站](https://leetcode.cn/problems/gas-station/)          | Medium | 同样要以增益的思路计算剩余油量不<0                           |          |
-| 763  | [划分字母区间](https://leetcode.cn/problems/partition-labels/) | Medium |                                                              |          |
-| 135  | [分发糖果](https://leetcode.cn/problems/candy/)              | Hard   |                                                              |          |
+| 763 | [划分字母区间](https://leetcode.cn/problems/partition-labels/)                                                     | Medium |                                                                                                                                                               |          |
+| 135 | [分发糖果](https://leetcode.cn/problems/candy/)                                                                    | Hard   |                                                                                                                                                               |          |
 
 ---
 
@@ -278,19 +278,18 @@
 
 **基础必会**
 
-| #    | 题目                                                         | 难度   | 备注                                                         | 难度增强 |
-| ---- | ------------------------------------------------------------ | ------ | ------------------------------------------------------------ | -------- |
-| 509  | [斐波那契数](https://leetcode.cn/problems/fibonacci-number/) | Easy   | 多种解法：递归、记忆递归、自底向上迭代                       |          |
-| 70   | [爬楼梯](https://leetcode.cn/problems/climbing-stairs/)      | Easy   | 斐波那契数                                                   |          |
-| 746  | [使用最小花费爬楼梯](https://leetcode.cn/problems/min-cost-climbing-stairs/)（类似背包问题） | Easy   | 状态转移方程`dp[i] = min(dp[i-1]+cost[i-1], dp[i-2]+cost[i-2])` |          |
-| 121  | [买卖股票的最佳时机](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/) | Easy   | 先把最低价初始为极大值，然后不断取最低价和最大利润即可       |          |
-
+| #   | 题目                                                                                         | 难度   | 备注                                                            | 难度增强 |
+| --- | -------------------------------------------------------------------------------------------- | ------ | --------------------------------------------------------------- | -------- |
+| 509 | [斐波那契数](https://leetcode.cn/problems/fibonacci-number/)                                 | Easy   | 多种解法：递归、记忆递归、自底向上迭代                          |          |
+| 70  | [爬楼梯](https://leetcode.cn/problems/climbing-stairs/)                                      | Easy   | 斐波那契数                                                      |          |
+| 746 | [使用最小花费爬楼梯](https://leetcode.cn/problems/min-cost-climbing-stairs/)（类似背包问题） | Easy   | 状态转移方程`dp[i] = min(dp[i-1]+cost[i-1], dp[i-2]+cost[i-2])` |          |
+| 121 | [买卖股票的最佳时机](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/)          | Easy   | 先把最低价初始为极大值，然后不断取最低价和最大利润即可          |          |
+| 53  | [最大子数组和](https://leetcode.cn/problems/maximum-subarray/)                               | Medium |                                                                 |          |
 
 **综合常考**
 
 | #    | 题目                                                                           | 难度   | 备注 | 难度增强 |
 | ---- | ------------------------------------------------------------------------------ | ------ | ---- | -------- |
-| 53   | [最大子数组和](https://leetcode.cn/problems/maximum-subarray/) | Medium | 状态转义方程为`dp[i] = max(nums[i], dp[i-1] + nums[i])`。只对结果有增益的值进行累加 |          |
 | 322  | [零钱兑换](https://leetcode.cn/problems/coin-change/)                          | Medium |      |          |
 | 300  | [最长递增子序列](https://leetcode.cn/problems/longest-increasing-subsequence/) | Medium |      |          |
 | 5    | [最长回文子串](https://leetcode.cn/problems/longest-palindromic-substring/)    | Medium |      |          |

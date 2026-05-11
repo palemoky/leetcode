@@ -117,6 +117,28 @@
 
 **基础必会**
 
+=== "#11 盛水最多的容器"
+
+    对撞指针计算面积，只移动较矮的一边。
+
+    ```go
+    func maxArea(height []int) int {
+        maxArea, left, right := 0, 0, len(height)-1
+        for left < right {
+            area := (right - left) * min(height[left], height[right]) // 以较矮的作为高计算面积
+            maxArea = max(maxArea, area)
+            // 只移动较矮的一边
+            if height[left] < height[right] {
+                left++
+            } else {
+                right--
+            }
+        }
+
+        return maxArea
+    }
+    ```
+
 === "#88 合并两个有序数组"
 
     双指针倒序填充
