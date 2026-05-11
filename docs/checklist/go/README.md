@@ -1,5 +1,35 @@
 # Go 刷题清单
 
+## 数组
+
+**综合常考**
+
+=== "#560 和为 K 的子数组"
+
+    本题可用暴力枚举和前缀和两种方法求解。以 `nums=[1,-1,2,3,-2,4], k=3` 为例，满足条件的子数组共有 3 个，分别是 `[1,-1,2,3,-2]`、`[2,3,-2]` 和 `[3]`。其前缀和如下表所示。由于 `prefixSum[5]-prefixSum[0]=3`，说明区间 `[1,-1,2,3,-2]` 的元素和恰好为 3。因此，只要在遍历过程中查询哈希表中是否存在 `prefixSum-k`，并累加它的出现次数，就能统计出和为 `k` 的子数组个数。
+
+    | nums      |       | 1    | -1   | 2     | 3    | -2   | 4    |
+    | --------- | ----- | ---- | ---- | ----- | ---- | ---- | ---- |
+    | prefixSum | 0     | 1    | 0    | 2     | 5    | 3    | 7    |
+    | freq      | **2** | 1    |      | **1** | 1    | 1    | 1    |
+
+    ```go
+    func subarraySum(nums []int, k int) int {
+        count, prefixSum := 0, 0
+        prefixSumMap := map[int]int{}
+        prefixSumMap[0] = 1
+        for i := range len(nums) {
+            prefixSum += nums[i] // 计算前缀和
+            if _, ok := prefixSumMap[prefixSum - k]; ok {
+                count += prefixSumMap[prefixSum - k]
+            }
+            prefixSumMap[prefixSum]++ // 对前缀和值的出现次数统计
+        }
+
+        return count
+    }
+    ```
+
 ## 哈希表
 
 **基础必会**
