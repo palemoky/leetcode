@@ -26,7 +26,7 @@ func threeSumBruteForce(nums []int) [][]int {
 				if nums[i]+nums[j]+nums[k] == 0 {
 					// 通过哈希表判断是否有重复结果，注意此处的 key 要用值，而不能是索引，因为是不同索引的值重复
 					key := fmt.Sprintf("%d,%d,%d", nums[i], nums[j], nums[k])
-					if existed[key] {
+					if !existed[key] {
 						ans = append(ans, []int{nums[i], nums[j], nums[k]})
 						existed[key] = true
 					}
