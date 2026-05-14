@@ -36,15 +36,14 @@ func isPalindrome(s string) bool {
 func isPalindromeInPlace(s string) bool {
 	left, right := 0, len(s)-1
 	for left < right {
-		// 跳过非字母数字字符
-		// 跳过左侧非字母数字字符
-		for left < right && !isAlphanumeric(s[left]) {
+		// 过滤左右两侧的非字母数字
+		if !isAlphanumeric(s[left]) {
 			left++
+			continue
 		}
-
-		// 跳过右侧非字母数字字符
-		for left < right && !isAlphanumeric(s[right]) {
+		if !isAlphanumeric(s[right]) {
 			right--
+			continue
 		}
 
 		// 转小写后对比左右两侧的值
@@ -67,5 +66,6 @@ func toLower(char byte) byte {
 	if char >= 'A' && char <= 'Z' {
 		return char + ('a' - 'A') // or + 32
 	}
+
 	return char
 }
