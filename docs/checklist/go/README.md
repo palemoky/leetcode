@@ -191,6 +191,42 @@
     }
     ```
 
+=== "#283 移动零"
+
+    注意移动零时还要保持非零元素的相对位置，因此不能使用对撞指针，而应该用快慢指针不断交换零和非零元素
+
+    ```go
+    func moveZeroes(nums []int)  {
+        slow := 0 // 并不能确定 nums[0] 是否为非零值
+        for fast := range nums { // fast 要从0开始遍历，否则可能遗漏首位的零值交换。首位是非零值会发生自己和自己交换
+            if nums[fast] != 0 {
+                nums[slow], nums[fast] = nums[fast], nums[slow]
+                slow++
+            }
+        }
+    }
+    ```
+
+=== "#26 删除有序数组中的重复项"
+
+    题目描述不清楚，本意是想把`nums`中不重复的元素移动到数组左边，然后返回数组中不重复元素的个数，因此不能使用哈希表求解。
+
+    注意本题是有序数组，也就意味着重复项是相邻的，因此可以类似#283通过快慢指针把重复元素交换到尾部。注意#283为了避免遗漏首位的零值交换，`fast` 要从 0 开始，本题是判断重复元素，`fast` 可以从 1 开始
+
+    ```go
+    func removeDuplicates(nums []int) int {
+        slow := 0
+        for fast := 1; fast < len(nums); fast++ {
+            if nums[slow] != nums[fast] {
+                slow++ // // 注意要交换到 slow 的下一个位置
+                nums[slow] = nums[fast]
+            }
+        }
+
+        return slow+1 // 注意差1问题。Go 中 i++ 是语句，不是表达式，不能返回 i++
+    }
+    ```
+
 **综合常考**
 
 === "#3 无重复字符的最长子串"
