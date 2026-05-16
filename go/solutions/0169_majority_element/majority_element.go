@@ -36,17 +36,17 @@ func majorityElementHashMap(nums []int) int {
 // Time: O(n), Space: O(1)
 func majorityElementBoyerMoore(nums []int) int {
 	candidate := nums[0]
-	count := 0
+	vote := 0
 
 	for _, num := range nums {
-		if count == 0 {
+		if vote == 0 {
 			candidate = num
 		}
 
 		if num == candidate {
-			count++
+			vote++
 		} else {
-			count--
+			vote--
 		}
 	}
 
