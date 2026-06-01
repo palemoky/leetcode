@@ -16,9 +16,9 @@
 ## 基本策略（递归 + 双指针）
 
 1. 先对数组排序（升序）。
-2. 编写递归函数 kSum(nums, target, k, start)：
-   - 若 k == 2：用左右双指针在有序数组范围 [start, n-1] 查找两数之和等于 target。
-   - 否则：枚举 i 从 start 到 n-k，若 nums[i] 与 nums[i-1] 相同则跳过；否则固定 nums[i]，递归调用 (k-1)Sum 在 i+1 之后寻找 target-nums[i]，将 nums[i] 拼接到子解前加入结果。
+2. 编写递归函数 `kSum(nums, target, k, start)`：
+   - 若 `k == 2`：用左右双指针在有序数组范围 `[start, n-1]` 查找两数之和等于 target。
+   - 否则：枚举 `i` 从 `start` 到 `n-k`，若 `nums[i]` 与 `nums[i-1]` 相同则跳过；否则固定 `nums[i]`，递归调用 `(k-1)Sum` 在 `i+1` 之后寻找 `target-nums[i]`，将 `nums[i]` 拼接到子解前加入结果。
 3. 在递归中使用剪枝：
    - 若最小可能和（前 k 个数之和）大于 target 或最大可能和（后 k 个数之和）小于 target，则可以提前返回。
 4. 每次找到解后要跳过重复值以避免重复组合。
