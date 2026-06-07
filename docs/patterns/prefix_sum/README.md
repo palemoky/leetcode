@@ -33,7 +33,7 @@ func buildPrefixSum(nums []int) []int {
 
 // 查询区间 [left, right] 的和
 func rangeSum(prefixSum []int, left, right int) int {
-    return prefixSum[right+1] - prefixSum[left] // 闭区间需要+1
+    return prefixSum[right+1] - prefixSum[left] // 闭区间需要 +1
 }
 ```
 

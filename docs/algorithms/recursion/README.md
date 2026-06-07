@@ -22,12 +22,12 @@
       <td align="center" style="padding: 10px;">
         <pre style="text-align: left; background: var(--md-code-bg-color); padding: 15px; border-radius: 5px; font-family: monospace; border: 1px solid var(--md-default-fg-color--lightest);">
 🕳️ 地面
-└─ 👣 第1层：factorial(3)
-   └─ 👣 第2层：factorial(2)
-      └─ 👣 第3层：factorial(1)
+└─ 👣 第 1 层：factorial(3)
+   └─ 👣 第 2 层：factorial(2)
+      └─ 👣 第 3 层：factorial(1)
          └─ 🎯 触底：factorial(0)
              ↓
-         ┌─ ✅ 返回 1 （终止条件）
+         ┌─ ✅ 返回 1（终止条件）
       ┌─ 🔙 返回 1 × 1 = 1
    ┌─ 🔙 返回 2 × 1 = 2
 ┌─ 🔙 返回 3 × 2 = 6

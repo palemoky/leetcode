@@ -230,7 +230,7 @@ graph: list[list[int]]  # graph[i] 存储节点 i 的所有邻居节点
 ```python
 def is_bipartite(graph: list[list[int]]) -> bool:
     n = len(graph)
-    color = [0] * n  # 0: 未染色, 1: 颜色1, -1: 颜色2
+    color = [0] * n  # 0: 未染色, 1: 颜色 1, -1: 颜色 2
 
     def dfs(node: int, c: int) -> bool:
         color[node] = c

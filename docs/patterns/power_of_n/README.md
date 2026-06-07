@@ -81,7 +81,7 @@ func isPowerOfTwo(n int) bool {
 import "math"
 
 func isPowerOfN_MaxDiv(n, base int) bool {
-    maxPow := maxPowerLE(base, 2147483647) // 最大限制为2^31-1
+    maxPow := maxPowerLE(base, 2147483647) // 最大限制为 2^31-1
     return n > 0 && maxPow%n == 0
 }
 

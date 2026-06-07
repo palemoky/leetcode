@@ -277,7 +277,7 @@ func test() {
 ### Defer 的“三大天条”
 
 1.  **LIFO 执行**：后 `defer` 的先执行（栈顺序）。
-2.  **参数预计算**：`defer fmt.Println(i)` 会在 `defer`声明时**立即计算** `i` 的值并压栈。若要获取最终值，需使用闭包 `defer func() { fmt.Println(i) }()`。
+2.  **参数预计算**：`defer fmt.Println(i)` 会在 `defer` 声明时**立即计算** `i` 的值并压栈。若要获取最终值，需使用闭包 `defer func() { fmt.Println(i) }()`。
 3.  **修改返回值**：`defer` 可以读取并修改 **具名返回值**（Named Return Value）。
 
 ```go
@@ -304,7 +304,7 @@ if v := reflect.ValueOf(i); v.IsNil() { } // ✅ 正确判断
 | 操作             | nil channel | closed channel          | active channel        |
 | :--------------- | :---------- | :---------------------- | :-------------------- |
 | **close**        | panic       | panic                   | 成功关闭 (不能重复关) |
-| **send (ch <-)** | 永久阻塞    | panic                   | 阻塞直到由接收方      |
+| **send (ch <-)** | 永久阻塞    | panic                   | 阻塞直到有接收方      |
 | **recv (<- ch)** | 永久阻塞    | 立即返回零值 (v, false) | 阻塞直到有发送方      |
 
 ### 一切循环皆为 for
@@ -463,19 +463,19 @@ func isValidBST(root *TreeNode) bool {
 
 | 包名                   | 主要用途                                     | 典型场景                                                                                       |
 | :--------------------- | :------------------------------------------- | :--------------------------------------------------------------------------------------------- |
-| `fmt`                  | 格式化输入输出（Println、Printf、Sprintf等） | 日常打印、日志、字符串格式化                                                                   |
+| `fmt`                  | 格式化输入输出（Println、Printf、Sprintf 等） | 日常打印、日志、字符串格式化                                                                   |
 | `os`                   | 操作系统交互（文件、环境变量、进程等）       | 文件读写、命令行工具                                                                           |
 | `io` / `bufio`         | I/O 操作和带缓冲的读写                       | 文件、网络流处理                                                                               |
-| `net/http`             | HTTP客户端和服务端                           | Web服务器、API、爬虫                                                                           |
+| `net/http`             | HTTP 客户端和服务端                           | Web 服务器、API、爬虫                                                                           |
 | `encoding/json`        | JSON 编解码                                  | API 数据交换                                                                                   |
 | `encoding/xml` / `csv` | XML / CSV 处理                               | 数据导入导出                                                                                   |
 | `time`                 | 时间和日期处理                               | 定时任务、日志时间戳                                                                           |
 | `strconv`              | 字符串与基本类型转换                         | 参数解析                                                                                       |
 | `strings` / `bytes`    | 字符串/字节切片操作                          | 文本处理                                                                                       |
 | `sort`                 | 排序                                         | 切片排序、查找                                                                                 |
-| `sync`                 | 并发同步原语（Mutex、WaitGroup等）           | Goroutine 同步                                                                                 |
+| `sync`                 | 并发同步原语（Mutex、WaitGroup 等）           | Goroutine 同步                                                                                 |
 | `context`              | 请求上下文（超时、取消）                     | HTTP 服务、数据库调用                                                                          |
-| `math`                 | 数学函数                                     | 数学计算，如极值、常数、取整、四舍五入、绝对值（注意`math/rand/v2`和`math/big`不在`math`包里） |
+| `math`                 | 数学函数                                     | 数学计算，如极值、常数、取整、四舍五入、绝对值（注意 `math/rand/v2` 和 `math/big` 不在 `math` 包里） |
 | `log`                  | 标准日志                                     | 简单日志记录                                                                                   |
 | `flag`                 | 命令行参数解析                               | CLI 工具                                                                                       |
 | `testing`              | 单元测试和基准测试                           | 测试代码                                                                                       |

@@ -144,7 +144,7 @@
 
 | #   | 题目                                                                          | 难度   | 备注                                                      | 难度增强   |
 | --- | ----------------------------------------------------------------------------- | ------ | --------------------------------------------------------- | ---------- |
-| 146 | [LRU 缓存](https://leetcode.cn/problems/lru-cache/)                           | Medium | 哈希表（$O(1)$ 找到链表节点）+双向链表（$O(1)$ 删除节点） | 带TTL      |
+| 146 | [LRU 缓存](https://leetcode.cn/problems/lru-cache/)                           | Medium | 哈希表（$O(1)$ 找到链表节点）+双向链表（$O(1)$ 删除节点） | 带 TTL      |
 | 25  | [K 个一组翻转链表](https://leetcode.cn/problems/reverse-nodes-in-k-group/)    | Hard   | 分组+头插反转+下一组准备，画图梳理思路                    |            |
 | 23  | [合并 K 个升序链表](https://leetcode.cn/problems/merge-k-sorted-lists/)       | Hard   | 归并（基于合并两个链表）和小顶堆两种解法                  |            |
 | 148 | [排序链表](https://leetcode.cn/problems/sort-list/)                           | Medium | 归并+#876+#21                                             | 用快排实现 |
@@ -160,7 +160,7 @@
 | #   | 题目                                                                 | 难度 | 备注                        | 难度增强 |
 | --- | -------------------------------------------------------------------- | ---- | --------------------------- | -------- |
 | 704 | [二分查找](https://leetcode.cn/problems/binary-search/)              | Easy |                             |          |
-| 35  | [搜索插入位置](https://leetcode.cn/problems/search-insert-position/) | Easy | #704 解法上最后返回left即可 |          |
+| 35  | [搜索插入位置](https://leetcode.cn/problems/search-insert-position/) | Easy | #704 解法上最后返回 left 即可 |          |
 | 69  | [x 的平方根](https://leetcode.cn/problems/sqrtx/)                    | Easy |                             |          |
 | 278 | [第一个错误的版本](https://leetcode.cn/problems/first-bad-version/)  | Easy |                             |          |
 
@@ -181,7 +181,7 @@
 
 | #   | 题目                                                                                   | 难度   | 备注 | 难度增强 |
 | --- | -------------------------------------------------------------------------------------- | ------ | ---- | -------- |
-| 215 | [数组中的第K个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/) | Medium |      |          |
+| 215 | [数组中的第 K 个最大元素](https://leetcode.cn/problems/kth-largest-element-in-an-array/) | Medium |      |          |
 | 347 | [前 K 个高频元素](https://leetcode.cn/problems/top-k-frequent-elements/)               | Medium |      |          |
 
 **综合常考**
@@ -199,16 +199,16 @@
 
 | #   | 题目                                                                                             | 难度   | 备注                                                                                                      | 难度增强 |
 | --- | ------------------------------------------------------------------------------------------------ | ------ | --------------------------------------------------------------------------------------------------------- | -------- |
-| 102 | [二叉树的层序遍历](https://leetcode.cn/problems/binary-tree-level-order-traversal/)              | Medium | 队列`queue`中存放着每层节点，遍历过程中用临时变量`level`收集，最后汇总到`ans`                             |          |
+| 102 | [二叉树的层序遍历](https://leetcode.cn/problems/binary-tree-level-order-traversal/)              | Medium | 队列 `queue` 中存放着每层节点，遍历过程中用临时变量 `level` 收集，最后汇总到 `ans`                             |          |
 | 94  | [二叉树的中序遍历](https://leetcode.cn/problems/binary-tree-inorder-traversal/)                  | Easy   | 栈 + 一路向左，最后处理右节点                                                                             |          |
-| 104 | [二叉树的最大深度](https://leetcode.cn/problems/maximum-depth-of-binary-tree/)                   | Easy   | 后序 + 与翻转二叉树类似，递归返回左右节点中的最大深度+1                                                   |          |
+| 104 | [二叉树的最大深度](https://leetcode.cn/problems/maximum-depth-of-binary-tree/)                   | Easy   | 后序 + 与翻转二叉树类似，递归返回左右节点中的最大深度 +1                                                   |          |
 | 226 | [翻转二叉树](https://leetcode.cn/problems/invert-binary-tree/)                                   | Easy   | 递归交换左右节点                                                                                          |          |
 | 101 | [对称二叉树](https://leetcode.cn/problems/symmetric-tree/)                                       | Easy   | 前序 + 递归检查对称性                                                                                     |          |
 | 144 | [二叉树的前序遍历](https://leetcode.cn/problems/binary-tree-preorder-traversal/)                 | Easy   | 栈后进先出的特性需要**先压右再压左**                                                                      |          |
 | 145 | [二叉树的后序遍历](https://leetcode.cn/problems/binary-tree-postorder-traversal/)                | Easy   | 与中序很像，同样是栈+一路向左，但需要记录前驱节点                                                         |          |
-| 103 | [二叉树的锯齿形层序遍历](https://leetcode.cn/problems/binary-tree-zigzag-level-order-traversal/) | Medium | 层序 + `leftToRight`方向开关                                                                              |          |
+| 103 | [二叉树的锯齿形层序遍历](https://leetcode.cn/problems/binary-tree-zigzag-level-order-traversal/) | Medium | 层序 + `leftToRight` 方向开关                                                                              |          |
 | 199 | [二叉树的右视图](https://leetcode.cn/problems/binary-tree-right-side-view/)                      | Medium | 层序 + 每层最后一个节点                                                                                   |          |
-| 111 | [二叉树的最小深度](https://leetcode.cn/problems/minimum-depth-of-binary-tree/)                   | Easy   | 层序 + 找到第一个叶节点（`node.Left == nil && node.Right == nil`）返回深度即可，注意非空节点的最小深度为1 |          |
+| 111 | [二叉树的最小深度](https://leetcode.cn/problems/minimum-depth-of-binary-tree/)                   | Easy   | 层序 + 找到第一个叶节点（`node.Left == nil && node.Right == nil`）返回深度即可，注意非空节点的最小深度为 1 |          |
 
 **综合常考**
 
@@ -220,7 +220,7 @@
 | 124 | [二叉树中的最大路径和](https://leetcode.cn/problems/binary-tree-maximum-path-sum/)                                        | Hard   | 后序                                                                                |          |
 | 543 | [二叉树的直径](https://leetcode.cn/problems/diameter-of-binary-tree/)                                                     | Easy   | 后序                                                                                |          |
 | 662 | [二叉树最大宽度](https://leetcode.cn/problems/maximum-width-of-binary-tree/)                                              | Medium | 层序                                                                                |          |
-| 110 | [平衡二叉树](https://leetcode.cn/problems/balanced-binary-tree/)                                                          | Easy   | 后序递归遍历检查左右子树的高度差是否>1（用-1来代表不平衡）                          |          |
+| 110 | [平衡二叉树](https://leetcode.cn/problems/balanced-binary-tree/)                                                          | Easy   | 后序递归遍历检查左右子树的高度差是否>1（用 -1 来代表不平衡）                          |          |
 | 114 | [二叉树展开为链表](https://leetcode.cn/problems/flatten-binary-tree-to-linked-list/)                                      | Medium |                                                                                     |          |
 | 112 | [路径总和](https://leetcode.cn/problems/path-sum/)                                                                        | Easy   |                                                                                     |          |
 
@@ -263,10 +263,10 @@
 
 | #   | 题目                                                                                                               | 难度   | 备注                                                                                                                                                          | 难度增强 |
 | --- | ------------------------------------------------------------------------------------------------------------------ | ------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| 56  | [合并区间](https://leetcode.cn/problems/merge-intervals/)                                                          | Medium | 先对二维数组排序，然后以`ans`中的最后一个区间为基准，比较`end`值即可                                                                                          |          |
+| 56  | [合并区间](https://leetcode.cn/problems/merge-intervals/)                                                          | Medium | 先对二维数组排序，然后以 `ans` 中的最后一个区间为基准，比较 `end` 值即可                                                                                          |          |
 | 435 | [无重叠区间](https://leetcode.cn/problems/non-overlapping-intervals/)（会议预定）                                  | Medium | 转换思路，求最多不重叠区间，同样先排序（注意要按右边界排序，因为下一个区间的起点>当前区间的终点），然后找到最多不重叠区间，最后返回差值即为最少移除的区间数量 |          |
 | 452 | [用最少数量的箭引爆气球](https://leetcode.cn/problems/minimum-number-of-arrows-to-burst-balloons/)（重叠区间个数） | Medium | 用 #435 即可求解                                                                                                                                              |          |
-| 45  | [跳跃游戏 II](https://leetcode.cn/problems/jump-game-ii/)（最小跳跃次数）                                          | Medium | 同样用跳跃距离覆盖的思路，需要新增`curEnd`表示跳跃区间的右边界，当移动到右边界时更新`curEnd`为新的区间，并`jump++`                                            |          |
+| 45  | [跳跃游戏 II](https://leetcode.cn/problems/jump-game-ii/)（最小跳跃次数）                                          | Medium | 同样用跳跃距离覆盖的思路，需要新增 `curEnd` 表示跳跃区间的右边界，当移动到右边界时更新 `curEnd` 为新的区间，并 `jump++`                                            |          |
 | 122 | [买卖股票的最佳时机 II](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock-ii/)（多次交易）              | Medium | 由于不限制交易次数，只要今天比昨天涨了，就计算到利润                                                                                                          |          |
 | 134  | [加油站](https://leetcode.cn/problems/gas-station/)          | Medium | 同样要以增益的思路计算剩余油量不<0                           |          |
 | 763 | [划分字母区间](https://leetcode.cn/problems/partition-labels/)                                                     | Medium |                                                                                                                                                               |          |
@@ -282,7 +282,7 @@
 | --- | -------------------------------------------------------------------------------------------- | ------ | --------------------------------------------------------------- | -------- |
 | 509 | [斐波那契数](https://leetcode.cn/problems/fibonacci-number/)                                 | Easy   | 多种解法：递归、记忆递归、自底向上迭代                          |          |
 | 70  | [爬楼梯](https://leetcode.cn/problems/climbing-stairs/)                                      | Easy   | 斐波那契数                                                      |          |
-| 746 | [使用最小花费爬楼梯](https://leetcode.cn/problems/min-cost-climbing-stairs/)（类似背包问题） | Easy   | 状态转移方程`dp[i] = min(dp[i-1]+cost[i-1], dp[i-2]+cost[i-2])` |          |
+| 746 | [使用最小花费爬楼梯](https://leetcode.cn/problems/min-cost-climbing-stairs/)（类似背包问题） | Easy   | 状态转移方程 `dp[i] = min(dp[i-1]+cost[i-1], dp[i-2]+cost[i-2])` |          |
 | 121 | [买卖股票的最佳时机](https://leetcode.cn/problems/best-time-to-buy-and-sell-stock/)          | Easy   | 先把最低价初始为极大值，然后不断取最低价和最大利润即可          |          |
 | 53  | [最大子数组和](https://leetcode.cn/problems/maximum-subarray/)                               | Medium |                                                                 |          |
 

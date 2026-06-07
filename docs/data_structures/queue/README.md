@@ -111,8 +111,8 @@
 === "进阶题 (BFS)"
 
     - [102. Binary Tree Level Order Traversal](https://leetcode.cn/problems/binary-tree-level-order-traversal/) — 二叉树的层序遍历
-    - [200. Number of Islands](https://leetcode.cn/problems/number-of-islands/) — 岛屿数量 (BFS解法)
-    - [279. Perfect Squares](https://leetcode.cn/problems/perfect-squares/) — 完全平方数 (BFS求最短路径)
+    - [200. Number of Islands](https://leetcode.cn/problems/number-of-islands/) — 岛屿数量 (BFS 解法)
+    - [279. Perfect Squares](https://leetcode.cn/problems/perfect-squares/) — 完全平方数 (BFS 求最短路径)
     - [752. Open the Lock](https://leetcode.cn/problems/open-the-lock/) — 打开转盘锁
 
 === "高级题"
