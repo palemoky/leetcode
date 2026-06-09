@@ -15,8 +15,8 @@ func TestMySqrt(t *testing.T) {
 	}{
 		{name: "zero", input: 0, expected: 0},
 		{name: "one", input: 1, expected: 1},
-		{name: "perfect square", input: 4, expected: 2},
-		{name: "perfect square", input: 9, expected: 3},
+		{name: "perfect square 4", input: 4, expected: 2},
+		{name: "perfect square 9", input: 9, expected: 3},
 		{name: "truncated", input: 8, expected: 2},
 		{name: "large perfect square", input: 2147395600, expected: 46340},
 		{name: "max int", input: 2147483647, expected: 46340},
