@@ -10,12 +10,12 @@
   <table>
     <tr>
       <td align="center" style="padding: 20px;">
-        <img src=".github/assets/wechat_pay.png" alt="微信赞赏码" width="250" />
+        <img src="https://github.com/palemoky/leetcode/raw/main/.github/assets/wechat_pay.png" alt="微信赞赏码" width="250" />
         <br />
         微信
       </td>
       <td align="center" style="padding: 20px;">
-        <img src=".github/assets/alipay.png" alt="支付宝收款码" width="250" />
+        <img src="https://github.com/palemoky/leetcode/raw/main/.github/assets/alipay.png" alt="支付宝收款码" width="250" />
         <br />
         支付宝
       </td>
