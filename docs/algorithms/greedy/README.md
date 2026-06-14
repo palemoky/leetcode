@@ -95,7 +95,6 @@ def greedy_solve(intervals: list[list[int]]) -> int:
 - [406. 根据身高重建队列](https://leetcode.cn/problems/queue-reconstruction-by-height/)
 - [135. 分发糖果](https://leetcode.cn/problems/candy/)
 - [605. 种花问题](https://leetcode.cn/problems/can-place-flowers/)
--
 
 ## 参考资料
 

@@ -435,7 +435,7 @@
         var prev *ListNode
         // 暂存、反转、移动
         for head != nil {
-            next := head.next
+            next := head.Next
             head.Next = prev
             prev = head
             head = next
