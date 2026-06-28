@@ -1,5 +1,9 @@
 # 刷题清单
 
+- [LeetCode 热题 100](https://leetcode.cn/studyplan/top-100-liked/)
+- [LeetCode 面试经典 150 题](https://leetcode.cn/studyplan/top-interview-150/)
+- [互联网大厂面试高频题目汇总](https://codetop.cc/home)
+
 ## 二刷题目
 
 高：56、53、134、560

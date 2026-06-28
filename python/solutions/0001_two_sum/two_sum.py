@@ -8,6 +8,7 @@ class Solution:
 
         return []
 
+    # twoSumHashMap
     def twoSumHashMap(self, nums: list[int], target: int) -> list[int]:
         hashtable: dict[int, int] = {}
         for i, num in enumerate(nums):
