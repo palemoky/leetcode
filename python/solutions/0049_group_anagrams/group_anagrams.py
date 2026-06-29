@@ -2,7 +2,7 @@ class Solution:
     # Solution 1: 排序解法
     # Time: O(nlogn), Space: O(n)
     def groupAnagramsSort(self, strs: list[str]) -> list[list[str]]:
-        groups = {}
+        groups: dict[str, list[str]] = {}
         for s in strs:
             key = "".join(sorted(s))
             groups.setdefault(key, []).append(s)
@@ -12,7 +12,7 @@ class Solution:
     # Solution 2: 计数解法
     # Time: O(n), Space: O(n)
     def groupAnagramsCounter(self, strs: list[str]) -> list[list[str]]:
-        groups = {}
+        groups: dict[tuple[int, ...], list[str]] = {}
         for s in strs:
             count = [0] * 26
             for ch in s:
