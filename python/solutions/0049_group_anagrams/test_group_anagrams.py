@@ -3,12 +3,9 @@ from collections.abc import Callable
 import pytest
 from group_anagrams import Solution
 
-s = Solution()
-
-# 多解法时，把每个解法的绑定方法加进来即可。
 METHODS = [
-    pytest.param(s.groupAnagramsSort, id="sort"),
-    pytest.param(s.groupAnagramsCounter, id="counter"),
+    pytest.param(Solution().groupAnagramsSort, id="sort"),
+    pytest.param(Solution().groupAnagramsCounter, id="counter"),
 ]
 
 

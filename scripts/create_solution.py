@@ -247,11 +247,8 @@ def create_python_test_file(dir_path: Path, package_name: str) -> None:
 import pytest
 from {package_name} import Solution
 
-s = Solution()
-
-# 多解法时，把每个解法的绑定方法加进来即可。
 METHODS = [
-    pytest.param(s.solution, id="solution"),
+    pytest.param(Solution().solution, id="solution"),
 ]
 
 CASES = [

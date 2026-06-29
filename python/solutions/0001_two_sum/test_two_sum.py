@@ -3,12 +3,9 @@ from collections.abc import Callable
 import pytest
 from two_sum import Solution
 
-s = Solution()
-
-# 多解法时，把每个解法的绑定方法加进来即可。
 METHODS = [
-    pytest.param(s.twoSumBruteForce, id="brute_force"),
-    pytest.param(s.twoSumHashMap, id="hash_map"),
+    pytest.param(Solution().twoSumBruteForce, id="brute_force"),
+    pytest.param(Solution().twoSumHashMap, id="hash_map"),
 ]
 
 CASES = [
