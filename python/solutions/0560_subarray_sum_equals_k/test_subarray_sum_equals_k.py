@@ -1,5 +1,10 @@
 import pytest
-from solution import subarraySum
+from subarray_sum_equals_k import Solution
+
+
+@pytest.fixture
+def s() -> Solution:
+    return Solution()
 
 
 @pytest.mark.parametrize(
@@ -17,5 +22,5 @@ from solution import subarraySum
         ([-1, -1, 1], -1, 3),
     ],
 )
-def test_subarray_sum(nums: list[int], k: int, expected: int) -> None:
-    assert subarraySum(nums, k) == expected
+def test_subarray_sum(s: Solution, nums: list[int], k: int, expected: int) -> None:
+    assert s.subarraySum(nums, k) == expected
