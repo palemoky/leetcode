@@ -220,15 +220,16 @@ func solution() {{
     print(f"  ✓ Created {file_path.name}")
 
 
-def create_python_solution_file(dir_path: Path, title: str) -> None:
+def create_python_solution_file(dir_path: Path, package_name: str, title: str) -> None:
     """Create the main solution Python file."""
-    file_path = dir_path / "solution.py"
+    file_path = dir_path / f"{package_name}.py"
 
-    content = f"""# Solution 1:
-# Time: O(), Space: O()
-def solution():
-    # TODO: Implement solution
-    pass
+    content = f"""class Solution:
+    # Solution 1:
+    # Time: O(), Space: O()
+    def solution(self):
+        # TODO: Implement solution
+        pass
 """
 
     with open(file_path, "w", encoding="utf-8") as f:
@@ -237,18 +238,18 @@ def solution():
     print(f"  ✓ Created {file_path.name}")
 
 
-def create_python_test_file(dir_path: Path) -> None:
+def create_python_test_file(dir_path: Path, package_name: str) -> None:
     """Create the test Python file."""
-    file_path = dir_path / "test_solution.py"
+    file_path = dir_path / f"test_{package_name}.py"
 
-    content = """import pytest
-from solution import solution
+    content = f"""import pytest
+from {package_name} import Solution
 
 
 class TestSolution:
     def test_example_1(self):
         # TODO: Add test cases
-        assert solution() is not None
+        assert Solution().solution() is not None
 """
 
     with open(file_path, "w", encoding="utf-8") as f:
@@ -358,8 +359,8 @@ def create_solution_structure(problem_number: str, language: str = "go") -> None
 
     # Create solution and test files based on language
     if language == "py":
-        create_python_solution_file(target_dir, title)
-        create_python_test_file(target_dir)
+        create_python_solution_file(target_dir, title_slug, title)
+        create_python_test_file(target_dir, title_slug)
     else:  # go
         create_solution_file(target_dir, title_slug, title)
         create_test_file(target_dir, title_slug)
@@ -369,8 +370,8 @@ def create_solution_structure(problem_number: str, language: str = "go") -> None
     print(f"\nNext steps:")
 
     if language == "py":
-        print(f"  1. Open solution.py and implement the solution")
-        print(f"  2. Update test_solution.py with test cases")
+        print(f"  1. Open {title_slug}.py and implement the solution")
+        print(f"  2. Update test_{title_slug}.py with test cases")
         print(f"  3. Run: cd {target_dir.relative_to(project_root)} && uv run pytest -v")
     else:  # go
         print(f"  1. Open {title_slug}.go and implement the solution")
