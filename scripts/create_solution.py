@@ -242,14 +242,27 @@ def create_python_test_file(dir_path: Path, package_name: str) -> None:
     """Create the test Python file."""
     file_path = dir_path / f"test_{package_name}.py"
 
-    content = f"""import pytest
+    content = f"""from collections.abc import Callable
+
+import pytest
 from {package_name} import Solution
 
+# 多解法时，把每个解法的方法名都加进来即可。
+METHODS = ["solution"]
 
-class TestSolution:
-    def test_example_1(self):
-        # TODO: Add test cases
-        assert Solution().solution() is not None
+CASES = [
+    # pytest.param(input, expected, id="example_1"),
+]
+
+
+@pytest.fixture(params=METHODS)
+def solution(request: pytest.FixtureRequest) -> Callable[..., object]:
+    return getattr(Solution(), request.param)
+
+
+@pytest.mark.parametrize(("input", "expected"), CASES)
+def test_solution(solution: Callable[..., object], input: object, expected: object) -> None:
+    assert solution(input) == expected
 """
 
     with open(file_path, "w", encoding="utf-8") as f:

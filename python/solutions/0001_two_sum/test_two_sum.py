@@ -1,3 +1,5 @@
+from collections.abc import Callable
+
 import pytest
 from two_sum import Solution
 
@@ -10,18 +12,16 @@ CASES = [
 ]
 
 
-@pytest.fixture
-def s() -> Solution:
-    return Solution()
+@pytest.fixture(params=["twoSumBruteForce", "twoSumHashMap"])
+def two_sum(request: pytest.FixtureRequest) -> Callable[[list[int], int], list[int]]:
+    return getattr(Solution(), request.param)
 
 
 @pytest.mark.parametrize(("nums", "target", "expected"), CASES)
-def test_two_sum_brute_force(
-    s: Solution, nums: list[int], target: int, expected: list[int]
+def test_two_sum(
+    two_sum: Callable[[list[int], int], list[int]],
+    nums: list[int],
+    target: int,
+    expected: list[int],
 ) -> None:
-    assert s.twoSumBruteForce(nums, target) == expected
-
-
-@pytest.mark.parametrize(("nums", "target", "expected"), CASES)
-def test_two_sum_hash_map(s: Solution, nums: list[int], target: int, expected: list[int]) -> None:
-    assert s.twoSumHashMap(nums, target) == expected
+    assert two_sum(nums, target) == expected
