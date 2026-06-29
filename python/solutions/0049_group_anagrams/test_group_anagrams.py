@@ -3,10 +3,13 @@ from collections.abc import Callable
 import pytest
 from group_anagrams import Solution
 
+s = Solution()
 
-@pytest.fixture(params=["groupAnagramsSort", "groupAnagramsCounter"])
-def group_anagrams(request: pytest.FixtureRequest) -> Callable[[list[str]], list[list[str]]]:
-    return getattr(Solution(), request.param)
+# 多解法时，把每个解法的绑定方法加进来即可。
+METHODS = [
+    pytest.param(s.groupAnagramsSort, id="sort"),
+    pytest.param(s.groupAnagramsCounter, id="counter"),
+]
 
 
 def normalize(groups: list[list[str]]) -> set[frozenset[str]]:
@@ -28,6 +31,7 @@ CASES = [
 ]
 
 
+@pytest.mark.parametrize("group_anagrams", METHODS)
 @pytest.mark.parametrize(("strs", "expected"), CASES)
 def test_group_anagrams(
     group_anagrams: Callable[[list[str]], list[list[str]]],

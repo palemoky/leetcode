@@ -201,7 +201,7 @@ def sanitize_title_slug(title_slug: str) -> str:
     return slug
 
 
-def create_solution_file(dir_path: Path, package_name: str, title: str) -> None:
+def create_solution_file(dir_path: Path, package_name: str) -> None:
     """Create the main solution Go file."""
     file_path = dir_path / f"{package_name}.go"
 
@@ -220,11 +220,11 @@ func solution() {{
     print(f"  ✓ Created {file_path.name}")
 
 
-def create_python_solution_file(dir_path: Path, package_name: str, title: str) -> None:
+def create_python_solution_file(dir_path: Path, package_name: str) -> None:
     """Create the main solution Python file."""
     file_path = dir_path / f"{package_name}.py"
 
-    content = f"""class Solution:
+    content = """class Solution:
     # Solution 1:
     # Time: O(), Space: O()
     def solution(self):
@@ -247,19 +247,19 @@ def create_python_test_file(dir_path: Path, package_name: str) -> None:
 import pytest
 from {package_name} import Solution
 
-# 多解法时，把每个解法的方法名都加进来即可。
-METHODS = ["solution"]
+s = Solution()
+
+# 多解法时，把每个解法的绑定方法加进来即可。
+METHODS = [
+    pytest.param(s.solution, id="solution"),
+]
 
 CASES = [
-    # pytest.param(input, expected, id="example_1"),
+    # (input, expected),
 ]
 
 
-@pytest.fixture(params=METHODS)
-def solution(request: pytest.FixtureRequest) -> Callable[..., object]:
-    return getattr(Solution(), request.param)
-
-
+@pytest.mark.parametrize("solution", METHODS)
 @pytest.mark.parametrize(("input", "expected"), CASES)
 def test_solution(solution: Callable[..., object], input: object, expected: object) -> None:
     assert solution(input) == expected
@@ -358,7 +358,7 @@ def create_solution_structure(problem_number: str, language: str = "go") -> None
         sys.exit(1)
 
     # Display problem information
-    print(f"\nProblem Information:")
+    print("\nProblem Information:")
     print(f"  Number: {formatted_number}")
     print(f"  Title: {title}")
     print(f"  Slug: {title_slug}")
@@ -368,19 +368,19 @@ def create_solution_structure(problem_number: str, language: str = "go") -> None
 
     # Create directory
     target_dir.mkdir(parents=True, exist_ok=True)
-    print(f"  ✓ Created directory")
+    print("  ✓ Created directory")
 
     # Create solution and test files based on language
     if language == "py":
-        create_python_solution_file(target_dir, title_slug, title)
+        create_python_solution_file(target_dir, title_slug)
         create_python_test_file(target_dir, title_slug)
     else:  # go
-        create_solution_file(target_dir, title_slug, title)
+        create_solution_file(target_dir, title_slug)
         create_test_file(target_dir, title_slug)
 
     print(f"\n✅ Successfully created solution structure for problem {problem_number}")
     print(f"📁 Location: {target_dir.relative_to(project_root)}")
-    print(f"\nNext steps:")
+    print("\nNext steps:")
 
     if language == "py":
         print(f"  1. Open {title_slug}.py and implement the solution")
