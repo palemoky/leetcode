@@ -10,9 +10,9 @@ class Solution:
 
     # twoSumHashMap
     def twoSumHashMap(self, nums: list[int], target: int) -> list[int]:
-        hashtable: dict[int, int] = {}
+        seen: dict[int, int] = {}
         for i, num in enumerate(nums):
-            if target - num in hashtable:
-                return [hashtable[target - num], i]
-            hashtable[num] = i
+            if target - num in seen:
+                return [i, seen[target - num]]
+            seen[num] = i
         return []
