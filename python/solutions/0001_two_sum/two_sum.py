@@ -13,6 +13,6 @@ class Solution:
         seen: dict[int, int] = {}
         for i, num in enumerate(nums):
             if target - num in seen:
-                return [i, seen[target - num]]
+                return [seen[target - num], i]
             seen[num] = i
         return []
