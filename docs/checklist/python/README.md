@@ -14,6 +14,7 @@
     | count     | **2** | 1    |      | **1** | 1    | 1    | 1    |
 
     ```python
+    # Time: O(n), Space: O(n)
     def subarraySum(nums: list[int], k: int) -> int:
         count, prefix_sum = 0, 0
         prefix_sum_map = {0: 1}  # 兼容 nums=[3], k=3
@@ -33,6 +34,7 @@
 === "#1 两数之和"
 
     ```python
+    # Time: O(n), Space: O(n)
     def twoSum(nums: list[int], target: int) -> list[int]:
         # 哈希表记录出现的元素及索引
         # 遍历 nums，如果 target - num 在哈希表中，返回索引
@@ -54,6 +56,7 @@
     在本题中，要求 $O(n)$ 求解，排序后复杂度为 $O(logn)$，不符合要求。因此需要把输入存入哈希表，然后遍历哈希表，如果取值的前一位不在哈希表，则当前值作为序列起始值；如果下一位在哈希表，则认为是连续序列。
 
     ```python
+    # Time: O(n), Space: O(n)
     def longestConsecutive(nums: list[int]) -> int:
         has = set(nums)  # 使用集合简化判断
 
@@ -122,6 +125,7 @@
     对撞指针计算面积，只移动较矮的一边。
 
     ```python
+    # Time: O(n), Space: O(1)
     def maxArea(height: list[int]) -> int:
         max_area, left, right = 0, 0, len(height) - 1
         while left < right:
@@ -161,6 +165,7 @@
     注意移动零时还要保持非零元素的相对位置，因此不能使用对撞指针，而应该用快慢指针不断交换零和非零元素
 
     ```python
+    # Time: O(n), Space: O(1)
     def moveZeroes(nums: list[int]) -> None:
         slow = 0  # 并不能确定 nums[0] 是否为非零值
         for fast in range(len(nums)):  # fast 要从0开始遍历，否则可能遗漏首位的零值交换。首位是非零值会发生自己和自己交换
@@ -176,6 +181,7 @@
     注意本题是有序数组，也就意味着重复项是相邻的，因此可以类似 #283 通过快慢指针把重复元素交换到尾部。注意 #283 为了避免遗漏首位的零值交换，`fast` 要从 0 开始，本题是判断重复元素，`fast` 可以从 1 开始
 
     ```python
+    # Time: O(n), Space: O(1)
     def removeDuplicates(nums: list[int]) -> int:
         slow = 0
         for fast in range(1, len(nums)):
@@ -191,6 +197,7 @@
 === "#3 无重复字符的最长子串"
 
     ```python
+    # Time: O(n), Space: O(n)
     def lengthOfLongestSubstring(s: str) -> int:
         # 哈希表记录出现的元素及索引
         # 哈希表出现的元素，left 移动到哈希表中索引 +1 位置，否则右指针右移扩大窗口
@@ -212,6 +219,7 @@
 === "#15 三数之和"
 
     ```python
+    # Time: O(n²), Space: O(1)
     def threeSum(nums: list[int]) -> list[list[int]]:
         if len(nums) < 3:
             return []
@@ -363,6 +371,7 @@
 === "#206 反转链表"
 
     ```python
+    # Time: O(n), Space: O(1)
     def reverseList(head: ListNode) -> ListNode:
         prev = None
         # 暂存、反转、移动
@@ -380,6 +389,7 @@
     头插法，把 `curr.Next` 节点插入区间头部（即 `prev` 后）。
 
     ```python
+    # Time: O(n), Space: O(1)
     def reverseBetween(head: ListNode, left: int, right: int) -> ListNode:
         dummy = ListNode(next=head)  # 可能从头结点开始反转
 
@@ -404,6 +414,7 @@
     本题使用快慢指针求解，但要注意链表奇偶长度的处理
 
     ```python
+    # Time: O(n), Space: O(1)
     def middleNode(head: ListNode) -> ListNode:
         if not head:
             return None
@@ -420,6 +431,7 @@
     快慢指针解法：快指针走两步，慢指针走一步，相遇则有环
 
     ```python
+    # Time: O(n), Space: O(1)
     def hasCycle(head: ListNode) -> bool:
         slow, fast = head, head
         while fast and fast.next:
@@ -433,6 +445,7 @@
 === "#142 找到环形链表的入口"
 
     ```python
+    # Time: O(n), Space: O(n)
     def detectCycle(head: ListNode) -> ListNode:
         seen = set()
         while head:
@@ -449,6 +462,7 @@
     本题可以使用哈希表来简单求解，也可以用双指针把空间复杂度优化到 $O(1)$
 
     ```python
+    # Time: O(m+n), Space: O(1)
     def getIntersectionNode(headA: ListNode, headB: ListNode) -> ListNode:
         pA, pB = headA, headB
         while pA != pB:
@@ -461,6 +475,7 @@
 === "#21 合并两个有序链表"
 
     ```python
+    # Time: O(m+n), Space: O(1)
     def mergeTwoLists(l1: ListNode, l2: ListNode) -> ListNode:
         dummy = ListNode()
         current = dummy
@@ -502,6 +517,7 @@
     ```
 
     ```python
+    # Time: O(n), Space: O(1)
     def reverseKGroup(head: ListNode, k: int) -> ListNode:
         dummy = ListNode(next=head)
         prev = dummy
@@ -535,6 +551,8 @@
     归并解法：类似于锦标赛两两合并快速收敛
 
     ```python
+    # 归并解法
+    # Time: O(n·logk), Space: O(logk)
     def mergeKLists(lists: list[ListNode]) -> ListNode:
         if not lists:
             return None
@@ -572,7 +590,8 @@
     最小堆：利用小顶堆排序
 
     ```python
-    # Python 中使用 heapq 模块
+    # 最小堆
+    # Time: O(n·logk), Space: O(k)
     import heapq
 
     def mergeKLists(lists: list[ListNode]) -> ListNode:
@@ -600,6 +619,7 @@
     本题与 #23 类似，采用归并排序，其中又用到了 #876 和 #21 来查找链表中点和进行链表排序
 
     ```python
+    # Time: O(n·logn), Space: O(logn)
     def sortList(head: ListNode) -> ListNode:
         if not head or not head.next:
             return head
@@ -644,6 +664,7 @@
     利用快慢指针找中点并反转后半链表进行重排。
 
     ```python
+    # Time: O(n), Space: O(1)
     def reorderList(head: ListNode) -> None:
         mid = middleNode(head)
         reversed_head = reverseList(mid)
@@ -691,6 +712,7 @@
     ```
 
     ```python
+    # Time: O(1) per get/put, Space: O(capacity)
     class Node:  # 内部实现，不允许外部访问
         def __init__(self, key=0, value=0):
             self.key = key
@@ -764,6 +786,7 @@
 === "DFS 递归解法"
 
     ```python
+    # Time: O(n), Space: O(n)
     def traversal(root: TreeNode) -> list[int]:
         if not root:
             return []
@@ -871,6 +894,7 @@
     可以看出，`queue` 中存放着每层的节点，通过遍历 `queue` 来使节点入队和出队，`level` 负责收集每层的节点，然后再交给 `ans`。
 
     ```python
+    # Time: O(n), Space: O(n)
     from collections import deque
 
     def levelOrder(root: TreeNode) -> list[list[int]]:
@@ -904,6 +928,7 @@
     与层序遍历很像，只不过是把 queue 换为 stack。注意 stack 后进先出的特性需要**先压右再压左**
 
     ```python
+    # Time: O(n), Space: O(n)
     def preorderTraversal(root: TreeNode) -> list[int]:
         ans = []
         if not root:
@@ -928,6 +953,7 @@
     栈：一路向左，先处理完左子树再处理右子树
 
     ```python
+    # Time: O(n), Space: O(n)
     def inorderTraversal(root: TreeNode) -> list[int]:
         ans = []
         stack = []
@@ -1073,6 +1099,7 @@
     代码实现如下：
 
     ```python
+    # Time: O(n), Space: O(n)
     def postorderTraversal(root: TreeNode) -> list[int]:
         ans = []
         stack = []
@@ -1107,6 +1134,7 @@
     与递归翻转二叉树类似，只是这个需要后序遍历计算最大深度。
 
     ```python
+    # Time: O(n), Space: O(n)
     def maxDepth(root: TreeNode) -> int:
         if not root:
             return 0
@@ -1122,6 +1150,7 @@
     平衡树就是左右子树高度差不超过 1，所以要基于后序遍历的树深度来求解
 
     ```python
+    # Time: O(n), Space: O(n)
     def isBalanced(root: TreeNode) -> bool:
         return dfs(root) != -1
 
@@ -1148,6 +1177,7 @@
 === "#543 树的直径"
 
     ```python
+    # Time: O(n), Space: O(n)
     def diameterOfBinaryTree(root: TreeNode) -> int:
         max_diameter = 0
 
@@ -1176,6 +1206,7 @@
     与树的直径类似，对于每个节点，`路径和 = 左子树贡献 + 右子树贡献 + 当前节点值`
 
     ```python
+    # Time: O(n), Space: O(n)
     def maxPathSum(root: TreeNode) -> int:
         max_sum = float('-inf')  # 初始化为最小值，因为节点值可能为负
 
@@ -1218,6 +1249,7 @@
     </div>
 
     ```python
+    # Time: O(n), Space: O(n)
     def lowestCommonAncestor(root: TreeNode, p: TreeNode, q: TreeNode) -> TreeNode:
         # 递归终止条件：
         # 1. 搜到底了（None）
@@ -1279,6 +1311,7 @@
     由于需要捕获外部变量，因此可以使用闭包避免二级指针。本题使用递归的系统栈来代替手动维护的栈。
 
     ```python
+    # Time: O(n), Space: O(n)
     def isValidBST(root: TreeNode) -> bool:
         # prev 记录中序遍历中上一个访问的节点
         # 放在闭包外部，所有递归调用共享同一个变量
@@ -1316,6 +1349,7 @@
     递归交换左右节点即可，本题前序和后序递归都可以。
 
     ```python
+    # Time: O(n), Space: O(1)
     def invertTree(root: TreeNode) -> TreeNode:
         if not root:
             return None
@@ -1345,6 +1379,7 @@
     镜像递归
 
     ```python
+    # Time: O(n), Space: O(n)
     def isSymmetric(root: TreeNode) -> bool:
         if not root:
             return True
@@ -1373,6 +1408,7 @@
     判断给定的树中是否有和为 targetSum 的路径存在。
 
     ```python
+    # Time: O(n), Space: O(n)
     def hasPathSum(root: TreeNode, targetSum: int) -> bool:
         if not root:
             return False
@@ -1433,6 +1469,7 @@
 === "#199 右视图"
 
     ```python
+    # Time: O(n), Space: O(n)
     from collections import deque
 
     def rightSideView(root: TreeNode) -> list[int]:
@@ -1463,6 +1500,7 @@
     找到第一个叶子节点（`node.Left == nil && node.Right == nil`）返回深度即可
 
     ```python
+    # Time: O(n), Space: O(n)
     from collections import deque
 
     def minDepth(root: TreeNode) -> int:
@@ -1533,6 +1571,7 @@
     使用小顶堆，维护 K 个最大元素
 
     ```python
+    # Time: O(n·logk), Space: O(k)
     import heapq
 
     def findKthLargest(nums: list[int], k: int) -> int:
@@ -1586,6 +1625,7 @@
     ![单调递减栈](../imgs/daily_temperatures/monotonic_stack.webp)
 
     ```python
+    # Time: O(n), Space: O(n)
     def dailyTemperatures(temperatures: list[int]) -> list[int]:
         t_len = len(temperatures)
         ans = [0] * t_len
@@ -1614,6 +1654,7 @@
 === "#704 二分查找"
 
     ```python
+    # Time: O(logn), Space: O(1)
     def search(nums: list[int], target: int) -> int:
         left, right = 0, len(nums) - 1
 
@@ -1633,6 +1674,7 @@
 === "#35 搜索插入位置"
 
     ```python
+    # Time: O(logn), Space: O(1)
     def searchInsert(nums: list[int], target: int) -> int:
         left, right = 0, len(nums)
         while left < right:
@@ -1648,6 +1690,7 @@
 === "#69 x 的平方根"
 
     ```python
+    # Time: O(logn), Space: O(1)
     def mySqrt(x: int) -> int:
         l, r = 0, x
         ans = -1
@@ -1671,6 +1714,7 @@
 
     本题中，最小值就是断点，也就是「右侧有序段」的起点。
     ```python
+    # Time: O(logn), Space: O(1)
     def findMin(nums: list[int]) -> int:
         left, right = 0, len(nums) - 1
         while left < right:
@@ -1700,6 +1744,7 @@
     做本题前先做 #153
 
     ```python
+    # Time: O(logn), Space: O(1)
     def search(nums: list[int], target: int) -> int:
         left, right = 0, len(nums) - 1
 
@@ -1742,6 +1787,7 @@
 
     最简单的递归解法：
     ```python
+    # Time: O(2^n), Space: O(n)
     def fib(n: int) -> int:
         if n < 2:
             return n
@@ -1751,6 +1797,7 @@
 
     记忆优化的递归解法：
     ```python
+    # Time: O(n), Space: O(n)
     def fib_memo(n: int) -> int:
         memo = {}
 
@@ -1770,6 +1817,7 @@
 
     动态规划解法：
     ```python
+    # Time: O(n), Space: O(n)
     def fib_dp(n: int) -> int:
         if n < 2:
             return n
@@ -1784,6 +1832,7 @@
 
     自底向上的迭代解法：
     ```python
+    # Time: O(n), Space: O(1)
     def fib_iterative(n: int) -> int:
         if n < 2:
             return n
@@ -1827,6 +1876,7 @@
     ```
 
     ```python
+    # Time: O(n), Space: O(n)
     def minCostClimbingStairs(cost: list[int]) -> int:
         n = len(cost)
         dp = [0] * (n + 1)  # 从 0 或 1 开始时，cost 为 0
@@ -1840,6 +1890,7 @@
     上述代码主要依赖最近两个值，因此可以用滚动数组优化空间复杂度到 $O(1)$
 
     ```python
+    # Time: O(n), Space: O(1)
     def minCostClimbingStairsIterative(cost: list[int]) -> int:
         x, y = 0, 0
         for i in range(2, len(cost) + 1):
@@ -1861,6 +1912,7 @@
 
     以下为 Kadane 算法，用 `sum` 代替 `dp[i]`，上一轮的 `sum` 代替 `dp[i-1]`。
     ```python
+    # Time: O(n), Space: O(1)
     def maxSubArray(nums: list[int]) -> int:
         total, ans = 0, nums[0]
         for num in nums:
@@ -1945,6 +1997,7 @@
 === "#121 买卖股票的最佳时机"
 
     ```python
+    # Time: O(n), Space: O(1)
     def maxProfit(prices: list[int]) -> int:
         min_price, max_profit = float('inf'), 0
         for price in prices:
@@ -1959,6 +2012,7 @@
     解题思路：可跳跃范围覆盖最后一个元素的索引即可
 
     ```python
+    # Time: O(n), Space: O(1)
     def canJump(nums: list[int]) -> bool:
         cover = 0
         for i, jump in enumerate(nums):
