@@ -58,15 +58,15 @@
     ```python
     # Time: O(n), Space: O(n)
     def longestConsecutive(nums: list[int]) -> int:
-        has = set(nums)  # 使用集合简化判断
+        has = set(nums)  # 使用Python特有的集合简化判断
 
         ans = 0
         for num in has:
-            if num - 1 in has:  # 上一个数存在于哈希表，说明 num 不是序列的起点
+            if num - 1 in has:  # 上一个数存在于集合，说明 num 不是序列的起点
                 continue
 
             next_num = num + 1
-            while next_num in has:  # 不断查找下一个序列是否在哈希表中
+            while next_num in has:  # 不断查找下一个序列是否在集合中
                 next_num += 1
 
             ans = max(ans, next_num - num)
