@@ -218,6 +218,18 @@
 
 === "#15 三数之和"
 
+    题目要求如下：
+
+    - 三数之和为0 -> 固定第一个数，在剩余区间找另外两个不重复的数之和与第一个数的和为0
+    - 三个索引不能重复 -> 跳过重复的相邻元素
+
+    由于顺序并不重要，因此可以**排序后用对撞指针求解**，本题有多个细节：
+
+    - 先对原数组排序
+    - 通过 `i>0` 来避免 `nums[i-1]` 为负数
+    - 固定第一个数时要遍历剩余区间时要 `len(nums)-2`
+    - 需要用 `while` 去除每个重复的数
+
     ```python
     # Time: O(n²), Space: O(1)
     def threeSum(nums: list[int]) -> list[list[int]]:
@@ -229,12 +241,13 @@
         ans = []
         # 先固定第一个数
         for i in range(len(nums) - 2):
-            # 提前剪枝：如果第一个数已经大于0，后面都是正数，不可能和为0
+            # 提前剪枝：如果排序后第一个数已经大于0，后面都是正数，不可能和为0
             if nums[i] > 0:
                 break
 
+            # 跳过重复的第一个值
             if i > 0 and nums[i] == nums[i - 1]:
-                continue  # 跳过重复的第一个数
+                continue
 
             # 用双指针让剩余两数之和与第一个数的和为0
             left, right = i + 1, len(nums) - 1
@@ -249,16 +262,14 @@
                 else:  # 和为 0
                     ans.append([nums[i], nums[left], nums[right]])
 
-                    # 跳过重复的第二个数
-                    while left < right and nums[left] == nums[left + 1]:
+                    left_curr, right_curr = nums[left], nums[right]
+                    # 跳过left的重复值
+                    while left < right and nums[left] == left_curr:
                         left += 1
 
-                    # 跳过重复的第三个数
-                    while left < right and nums[right] == nums[right - 1]:
+                    # 跳过right的重复值
+                    while left < right and nums[right] == right_curr:
                         right -= 1
-
-                    left += 1
-                    right -= 1
 
         return ans
     ```
