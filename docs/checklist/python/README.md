@@ -232,7 +232,7 @@
         left, right, max_win = 0, 0, 0
         while right < len(s):
             if s[right] in seen:
-                left = seen[s[right]] + 1
+                left = max(left, seen[s[right]] + 1)
 
             seen[s[right]] = right
             right += 1

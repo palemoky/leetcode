@@ -233,23 +233,21 @@
 
     ```go
     func lengthOfLongestSubstring(s string) int {
-        // 哈希表记录出现的元素及索引
-        // 哈希表出现的元素，left 移动到哈希表中索引 +1 位置，否则右指针右移扩大窗口
+        lastSeen := map[rune]int{} // 反向映射哈希表
 
-        seen := map[byte]int{}
-        left, right, maxWin := 0, 0, 0
-        for right < len(s) {
-            if prevIndex, ok := seen[s[right]]; ok {
-                left = prevIndex + 1
+        left, maxLen := 0, 0
+        for right, char := range s {
+            // 注意检查 prev >= left，防止左指针回退
+            if prev, seen := lastSeen[char]; seen && prev >= left {
+                left = prev + 1 // 出现重复字符时，将左指针移动到重复字符索引的 +1 位置
             }
 
-            seen[s[right]] = right
-            right++
+            lastSeen[char] = right
 
-            maxWin = max(maxWin, right-left)
+            maxLen = max(maxLen, right-left+1) // 差值计算的是区间，注意计数需 +1
         }
 
-        return maxWin
+        return maxLen
     }
     ```
 
