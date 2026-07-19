@@ -122,7 +122,7 @@
 
 === "#11 盛水最多的容器"
 
-    对撞指针计算面积，只移动较矮的一边。
+    盛水最多，即为面积最大，因此可以使用**对撞指针计算面积，只移动较矮的一边**。
 
     ```python
     # Time: O(n), Space: O(1)
@@ -138,6 +138,32 @@
                 right -= 1
 
         return max_area
+    ```
+
+=== "#42 接雨水"
+
+    本题与 #11 类似，同样是面积问题，#11 是一个简单的最大面积，而本题则是不规则面积求和。同样采用对撞指针，把左右指针扫过区域的面积累计即可。
+    对撞指针为最优解，本题另有单调栈和动态规划解法。
+
+    ```python
+    # Time: O(n), Space: O(1)
+    def trap(height: list[int]) -> int:
+        left, right = 0, len(height) - 1
+        left_max, right_max = 0, 0  # 分别代表左侧和右侧已扫描区域最高的柱子
+        water = 0
+        while left < right:
+            left_max = max(left_max, height[left])
+            right_max = max(right_max, height[right])
+
+            # 移动较矮的一边，并累加该处的水量
+            if height[left] < height[right]:
+                water += left_max - height[left]
+                left += 1
+            else:
+                water += right_max - height[right]
+                right -= 1
+
+        return water
     ```
 
 === "#88 合并两个有序数组"
@@ -1652,6 +1678,39 @@
         return ans
     ```
 
+=== "#42 接雨水"
+
+    本题的最优解法是对撞指针。
+
+    ```python
+    # Time: O(n), Space: O(n)
+    def trap(height: list[int]) -> int:
+        stack = []
+        water = 0
+        for i, h in enumerate(height):
+            # 当前柱子高度大于栈顶柱子高度时，说明形成了低洼处，可以接水
+            while stack and h > height[stack[-1]]:
+                # 弹出低洼处的坑底索引
+                top = stack.pop()
+
+                # 如果栈空了，说明左边没有更高的柱子，无法形成凹槽挡水
+                if not stack:
+                    break
+
+                # 左边界的索引
+                left = stack[-1]
+
+                # 计算凹槽的宽度和水的高度
+                wd = i - left - 1
+                ht = min(height[left], h) - height[top]
+                # 累加当前层接到的雨水量
+                water += ht * wd
+
+            stack.append(i)
+
+        return water
+    ```
+
 === "#84 柱状图中最大的矩形"
 
 === "#394 字符串解码"
@@ -2067,8 +2126,6 @@
 
         return ans
     ```
-
-=== "#11 盛最多水的容器"
 
 === "#134 加油站"
 
