@@ -270,48 +270,42 @@
 
     像军训整理队伍一样，根据基准点来排序。
 
+    pivot 对该算法的复杂度有很大的影响，取中间值可以降低有序的影响，随机取pivot可以降低最值的影响。
+
     ```python
     # Time: 平均 O(n log n), 最坏 O(n^2)
+    # Space: 由于递归带来的栈空间开销，O(log n)
     def quick(nums: list[int]) -> list[int]:
         if len(nums) < 2:
             return nums
 
         def partition(left: int, right: int) -> int:
-            # 三数取中，降低接近有序数据时的退化概率
-            mid = left + (right - left) // 2
-            if nums[mid] < nums[left]:
-                nums[left], nums[mid] = nums[mid], nums[left]
-            if nums[right] < nums[left]:
-                nums[left], nums[right] = nums[right], nums[left]
-            if nums[right] < nums[mid]:
-                nums[mid], nums[right] = nums[right], nums[mid]
-
-            nums[left], nums[mid] = nums[mid], nums[left]
-            pivot_value = nums[left]
-            left_ptr, right_ptr = left, right
-            while left_ptr < right_ptr:
-                # 从右向左找第一个小于 pivot 的数
-                while left_ptr < right_ptr and nums[right_ptr] >= pivot_value:
-                    right_ptr -= 1
-                nums[left_ptr] = nums[right_ptr]
+            pivot = nums[left]
+            l, r = left, right
+            # 挖坑法：左右区间不断挖坑填坑
+            while l < r:
+                # 从右向左找第一个小于 pivot 的数，因为pivot保存了最左侧的值，移动right比较可以填充左侧的空位
+                while l < r and nums[r] >= pivot:
+                    r -= 1
+                nums[l] = nums[r]
                 # 从左向右找第一个大于 pivot 的数
-                while left_ptr < right_ptr and nums[left_ptr] <= pivot_value:
-                    left_ptr += 1
-                nums[right_ptr] = nums[left_ptr]
+                while l < r and nums[l] <= pivot:
+                    l += 1
+                nums[r] = nums[l]
             # 将 pivot 放回正确的位置
-            nums[left_ptr] = pivot_value
-            return left_ptr
+            nums[l] = pivot
+            return l
 
-        def quick_sort_range(left: int, right: int) -> None:
+        def sort(left: int, right: int) -> None:
             if left >= right:
                 return
             # 分区并拿到 pivot 的最终位置
             pivot_index = partition(left, right)
             # 递归地对左右两部分进行排序
-            quick_sort_range(left, pivot_index - 1)
-            quick_sort_range(pivot_index + 1, right)
+            sort(left, pivot_index - 1)
+            sort(pivot_index + 1, right)
 
-        quick_sort_range(0, len(nums) - 1)
+        sort(0, len(nums) - 1)
         return nums
     ```
 

@@ -101,10 +101,6 @@ func insertion(nums []int) []int {
 func quick(nums []int) []int {
 	n := len(nums)
 	if n < 2 {
-		if n == 0 {
-			return []int{}
-		}
-
 		return nums
 	}
 
