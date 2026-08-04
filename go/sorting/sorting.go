@@ -107,28 +107,26 @@ func quick(nums []int) []int {
 	// partition 通过闭包捕获 nums
 	partition := func(left, right int) int {
 		pivotValue := nums[left]
-		l, r := left, right
-
-		for l < r {
+		for left < right {
 			// 从右向左找第一个小于 pivot 的数
-			for l < r && nums[r] >= pivotValue {
-				r--
+			for left < right && nums[right] >= pivotValue {
+				right--
 			}
 
-			nums[l] = nums[r]
+			nums[left] = nums[right]
 
 			// 从左向右找第一个大于 pivot 的数
-			for l < r && nums[l] <= pivotValue {
-				l++
+			for left < right && nums[left] <= pivotValue {
+				left++
 			}
 
-			nums[r] = nums[l]
+			nums[right] = nums[left]
 		}
 
 		// 将 pivot 放回正确的位置
-		nums[l] = pivotValue
+		nums[left] = pivotValue
 
-		return l
+		return left
 	}
 
 	// sort 通过闭包捕获 nums 和 partition

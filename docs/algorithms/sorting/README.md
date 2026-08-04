@@ -276,25 +276,21 @@
     # Time: 平均 O(n log n), 最坏 O(n^2)
     # Space: 由于递归带来的栈空间开销，O(log n)
     def quick(nums: list[int]) -> list[int]:
-        if len(nums) < 2:
-            return nums
-
         def partition(left: int, right: int) -> int:
             pivot = nums[left]
-            l, r = left, right
             # 挖坑法：左右区间不断挖坑填坑
-            while l < r:
+            while left < right:
                 # 从右向左找第一个小于 pivot 的数，因为pivot保存了最左侧的值，移动right比较可以填充左侧的空位
-                while l < r and nums[r] >= pivot:
-                    r -= 1
-                nums[l] = nums[r]
+                while left < right and nums[right] >= pivot:
+                    right -= 1
+                nums[left] = nums[right]
                 # 从左向右找第一个大于 pivot 的数
-                while l < r and nums[l] <= pivot:
-                    l += 1
-                nums[r] = nums[l]
+                while left < right and nums[left] <= pivot:
+                    left += 1
+                nums[right] = nums[left]
             # 将 pivot 放回正确的位置
-            nums[l] = pivot
-            return l
+            nums[left] = pivot
+            return left
 
         def sort(left: int, right: int) -> None:
             if left >= right:
