@@ -36,7 +36,7 @@ func TestSortingAlgorithms(t *testing.T) {
 		{
 			name: "Empty",
 			nums: []int{},
-			want: []int{},
+			want: nil,
 		},
 		{
 			name: "Single element",
