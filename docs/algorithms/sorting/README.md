@@ -321,19 +321,19 @@
         def merge(left: int, mid: int, right: int) -> None:
             # 创建一个临时列表来存储合并后的结果
             result = []
-            left_idx, right_idx = left, mid + 1
+            l_idx, r_idx = left, mid + 1
             # 比较左右两部分，将较小的元素放入 result
-            while left_idx <= mid and right_idx <= right:
-                if nums[left_idx] <= nums[right_idx]:
-                    result.append(nums[left_idx])
-                    left_idx += 1
+            while l_idx <= mid and r_idx <= right:
+                if nums[l_idx] <= nums[r_idx]:
+                    result.append(nums[l_idx])
+                    l_idx += 1
                 else:
-                    result.append(nums[right_idx])
-                    right_idx += 1
+                    result.append(nums[r_idx])
+                    r_idx += 1
 
             # 将剩余的元素拷贝到 result
-            result.extend(nums[left_idx:mid + 1])
-            result.extend(nums[right_idx:right + 1])
+            result.extend(nums[l_idx:mid + 1])
+            result.extend(nums[r_idx:right + 1])
 
             # 将排好序的 result 内容拷贝回原始的 nums 列表的对应位置
             nums[left:right + 1] = result
