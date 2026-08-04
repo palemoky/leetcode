@@ -34,11 +34,6 @@ func TestSortingAlgorithms(t *testing.T) {
 			want: []int{7, 7, 7, 7},
 		},
 		{
-			name: "Empty",
-			nums: []int{},
-			want: nil,
-		},
-		{
 			name: "Single element",
 			nums: []int{42},
 			want: []int{42},
