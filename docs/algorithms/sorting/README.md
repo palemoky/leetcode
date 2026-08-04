@@ -275,79 +275,82 @@
     ```python
     # Time: 平均 O(n log n), 最坏 O(n^2)
     # Space: 由于递归带来的栈空间开销，O(log n)
-    def quick(nums: list[int]) -> list[int]:
+    def quickSort(nums: list[int]) -> list[int]:
         def partition(left: int, right: int) -> int:
-            pivot = nums[left]
+            pivot_val = nums[left]
             # 挖坑法：左右区间不断挖坑填坑
             while left < right:
-                # 从右向左找第一个小于 pivot 的数，因为pivot保存了最左侧的值，移动right比较可以填充左侧的空位
-                while left < right and nums[right] >= pivot:
+                # 从右向左找第一个小于 pivot 的数，此时左侧有空位
+                while left < right and nums[right] >= pivot_val:
                     right -= 1
                 nums[left] = nums[right]
 
-                # 从左向右找第一个大于 pivot 的数
-                while left < right and nums[left] <= pivot:
+                # 从左向右找第一个大于 pivot 的数，此时右侧有空位
+                while left < right and nums[left] <= pivot_val:
                     left += 1
                 nums[right] = nums[left]
 
-            # 将 pivot 放回正确的位置
-            nums[left] = pivot
+            # 把 pivot 放到最后一个坑位
+            nums[left] = pivot_val  # 此时的left==right
+
             return left
 
         def sort(left: int, right: int) -> None:
             if left >= right:
                 return
-            # 分区并拿到 pivot 的最终位置
-            pivot_index = partition(left, right)
+
+            # 分区排序
+            pivot_idx = partition(left, right)
             # 递归地对左右两部分进行排序
-            sort(left, pivot_index - 1)
-            sort(pivot_index + 1, right)
+            sort(left, pivot_idx - 1)
+            sort(pivot_idx + 1, right)
 
         sort(0, len(nums) - 1)
+
         return nums
     ```
 
 === "归并排序"
 
-    像锦标赛那样两两 PK 快速收敛。
+    每次将A和B数组中最小的元素放入结果集C中。
 
     ```python
     # Time: O(nlogn)
-    def merge(nums: list[int]) -> list[int]:
-        if len(nums) < 2:
-            return nums
-
-        def merge_halves(left: int, mid: int, right: int) -> None:
+    # Space: 临时数组占用的 O(n)
+    def mergeSort(nums: list[int]) -> list[int]:
+        def merge(left: int, mid: int, right: int) -> None:
             # 创建一个临时列表来存储合并后的结果
-            merged = []
-            i, j = left, mid + 1
-            # 比较左右两部分，将较小的元素放入 merged
-            while i <= mid and j <= right:
-                if nums[i] <= nums[j]:
-                    merged.append(nums[i])
-                    i += 1
+            result = []
+            l, r = left, mid + 1
+            # 比较左右两部分，将较小的元素放入 result
+            while l <= mid and r <= right:
+                if nums[l] <= nums[r]:
+                    result.append(nums[l])
+                    l += 1
                 else:
-                    merged.append(nums[j])
-                    j += 1
-            # 将剩余的元素拷贝到 merged
-            while i <= mid:
-                merged.append(nums[i])
-                i += 1
-            while j <= right:
-                merged.append(nums[j])
-                j += 1
-            # 将排好序的 merged 内容拷贝回原始的 nums 列表的对应位置
-            nums[left:right + 1] = merged
+                    result.append(nums[r])
+                    r += 1
 
-        def merge_sort_range(left: int, right: int) -> None:
+            # 将剩余的元素拷贝到 result
+            result.extend(nums[l:mid + 1])
+            result.extend(nums[r:right + 1])
+
+            # 将排好序的 result 内容拷贝回原始的 nums 列表的对应位置
+            nums[left:right + 1] = result
+
+        def sort(left: int, right: int) -> None:
             if left >= right:
                 return
-            mid = left + (right - left) // 2
-            merge_sort_range(left, mid)
-            merge_sort_range(mid + 1, right)
-            merge_halves(left, mid, right)
 
-        merge_sort_range(0, len(nums) - 1)
+            # 递归切分
+            mid = left + (right - left) // 2
+            sort(left, mid)
+            sort(mid + 1, right)
+
+            # 合并
+            merge(left, mid, right)
+
+        sort(0, len(nums) - 1)
         return nums
     ```
 
