@@ -284,10 +284,12 @@
                 while left < right and nums[right] >= pivot:
                     right -= 1
                 nums[left] = nums[right]
+
                 # 从左向右找第一个大于 pivot 的数
                 while left < right and nums[left] <= pivot:
                     left += 1
                 nums[right] = nums[left]
+
             # 将 pivot 放回正确的位置
             nums[left] = pivot
             return left
