@@ -108,50 +108,51 @@ func quick(nums []int) []int {
 		return nums
 	}
 
-	// 调用私有的递归辅助函数
-	quickSortRecursive(nums, 0, n-1)
+	// partition 通过闭包捕获 nums
+	partition := func(left, right int) int {
+		pivotValue := nums[left]
+		l, r := left, right
+
+		for l < r {
+			// 从右向左找第一个小于 pivot 的数
+			for l < r && nums[r] >= pivotValue {
+				r--
+			}
+
+			nums[l] = nums[r]
+
+			// 从左向右找第一个大于 pivot 的数
+			for l < r && nums[l] <= pivotValue {
+				l++
+			}
+
+			nums[r] = nums[l]
+		}
+
+		// 将 pivot 放回正确的位置
+		nums[l] = pivotValue
+
+		return l
+	}
+
+	// sort 通过闭包捕获 nums 和 partition
+	var sort func(left, right int)
+	sort = func(left, right int) {
+		if left >= right {
+			return
+		}
+
+		// 分区，并拿到 pivot 的最终位置
+		pivotIndex := partition(left, right)
+
+		// 递归地对左右两部分进行排序
+		sort(left, pivotIndex-1)
+		sort(pivotIndex+1, right)
+	}
+
+	sort(0, n-1)
 
 	return nums
-}
-
-// quickSortRecursive 是递归的核心
-func quickSortRecursive(nums []int, left, right int) {
-	if left >= right {
-		return
-	}
-
-	// 分区，并拿到 pivot 的最终位置
-	pivotIndex := quickSortPartition(nums, left, right)
-
-	// 递归地对左右两部分进行排序
-	quickSortRecursive(nums, left, pivotIndex-1)
-	quickSortRecursive(nums, pivotIndex+1, right)
-}
-
-// quickSortPartition 负责分区操作，并返回 pivot 的索引
-func quickSortPartition(nums []int, left, right int) int {
-	pivotValue := nums[left] // 选择第一个元素作为 pivot
-	l, r := left, right
-
-	for l < r {
-		// 从右向左找第一个小于 pivot 的数
-		for l < r && nums[r] >= pivotValue {
-			r--
-		}
-
-		nums[l] = nums[r]
-		// 从左向右找第一个大于 pivot 的数
-		for l < r && nums[l] <= pivotValue {
-			l++
-		}
-
-		nums[r] = nums[l]
-	}
-
-	// 将 pivot 放回正确的位置
-	nums[l] = pivotValue
-
-	return l
 }
 
 // 归并排序
@@ -164,56 +165,57 @@ func merge(nums []int) []int {
 		return nums
 	}
 
-	mergeRange(nums, 0, len(nums)-1)
+	// mergeHalves 通过闭包捕获 nums
+	mergeHalves := func(left, mid, right int) {
+		// 创建一个临时切片来存储合并后的结果
+		tmp := make([]int, right-left+1)
+		i, j, k := left, mid+1, 0
 
-	return nums
-}
+		// 比较左右两部分，将较小的元素放入 tmp
+		for i <= mid && j <= right {
+			if nums[i] <= nums[j] {
+				tmp[k] = nums[i]
+				i++
+			} else {
+				tmp[k] = nums[j]
+				j++
+			}
+			k++
+		}
 
-// mergeRange 是递归的核心
-func mergeRange(nums []int, left, right int) {
-	if left >= right {
-		return
-	}
-
-	mid := left + (right-left)/2
-	mergeRange(nums, left, mid)
-	mergeRange(nums, mid+1, right)
-	mergeHalves(nums, left, mid, right)
-}
-
-// mergeHalves 负责合并两个已排序的子数组
-func mergeHalves(nums []int, left, mid, right int) {
-	// 创建一个临时切片来存储合并后的结果
-	tmp := make([]int, right-left+1)
-	i, j, k := left, mid+1, 0
-
-	// 比较左右两部分，将较小的元素放入 tmp
-	for i <= mid && j <= right {
-		if nums[i] <= nums[j] {
+		// 将剩余的元素（如果 L 或 R 部分有剩下）拷贝到 tmp
+		for i <= mid {
 			tmp[k] = nums[i]
 			i++
-		} else {
+			k++
+		}
+
+		for j <= right {
 			tmp[k] = nums[j]
 			j++
+			k++
 		}
-		k++
+
+		// 将排好序的 tmp 内容拷贝回原始的 nums 切片的对应位置
+		copy(nums[left:right+1], tmp)
 	}
 
-	// 将剩余的元素（如果 L 或 R 部分有剩下）拷贝到 tmp
-	for i <= mid {
-		tmp[k] = nums[i]
-		i++
-		k++
+	// sort 通过闭包捕获 nums 和 mergeHalves
+	var sort func(left, right int)
+	sort = func(left, right int) {
+		if left >= right {
+			return
+		}
+
+		mid := left + (right-left)/2
+		sort(left, mid)
+		sort(mid+1, right)
+		mergeHalves(left, mid, right)
 	}
 
-	for j <= right {
-		tmp[k] = nums[j]
-		j++
-		k++
-	}
+	sort(0, len(nums)-1)
 
-	// 将排好序的 tmp 内容拷贝回原始的 nums 切片的对应位置
-	copy(nums[left:right+1], tmp)
+	return nums
 }
 
 // 希尔排序
