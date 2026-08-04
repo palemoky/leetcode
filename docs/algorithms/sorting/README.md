@@ -274,7 +274,7 @@
 
     ```python
     # Time: 平均 O(n log n), 最坏 O(n^2)
-    # Space: 由于递归带来的栈空间开销，O(log n)
+    # Space: O(log n)，递归的栈开销
     def quickSort(nums: list[int]) -> list[int]:
         def partition(left: int, right: int) -> int:
             pivot_val = nums[left]
@@ -316,24 +316,24 @@
 
     ```python
     # Time: O(nlogn)
-    # Space: 临时数组占用的 O(n)
+    # Space: O(n)，临时数组开销
     def mergeSort(nums: list[int]) -> list[int]:
         def merge(left: int, mid: int, right: int) -> None:
             # 创建一个临时列表来存储合并后的结果
             result = []
-            l, r = left, mid + 1
+            left_start, right_start = left, mid + 1
             # 比较左右两部分，将较小的元素放入 result
-            while l <= mid and r <= right:
-                if nums[l] <= nums[r]:
-                    result.append(nums[l])
-                    l += 1
+            while left_start <= mid and right_start <= right:
+                if nums[left_start] <= nums[right_start]:
+                    result.append(nums[left_start])
+                    left_start += 1
                 else:
-                    result.append(nums[r])
-                    r += 1
+                    result.append(nums[right_start])
+                    right_start += 1
 
             # 将剩余的元素拷贝到 result
-            result.extend(nums[l:mid + 1])
-            result.extend(nums[r:right + 1])
+            result.extend(nums[left_start:mid + 1])
+            result.extend(nums[right_start:right + 1])
 
             # 将排好序的 result 内容拷贝回原始的 nums 列表的对应位置
             nums[left:right + 1] = result
