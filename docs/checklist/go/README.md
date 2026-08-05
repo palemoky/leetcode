@@ -616,17 +616,17 @@
             nextGroup := tail.Next // 下一组起始位置
 
             // 头插法局部反转链表
-            cur := prev.Next
+            curr := prev.Next
             for range k - 1 {
-                next := cur.Next
-                cur.Next = next.Next
+                next := curr.Next
+                curr.Next = next.Next
                 next.Next = prev.Next
                 prev.Next = next
             }
 
             // 区间反转完成后，准备下一组的反转，此时 curr 移动到了区间末尾
-            cur.Next = nextGroup
-            prev = cur
+            curr.Next = nextGroup
+            prev = curr
         }
     }
     ```

@@ -628,23 +628,26 @@
 
     ```python
     # 最小堆
-    # Time: O(n·logk), Space: O(k)
+    # Time: O(nlogk), Space: O(k)
     import heapq
 
     def mergeKLists(lists: list[ListNode]) -> ListNode:
         heap = []
+        # 把每个链表的头结点放入小顶堆
         for i, node in enumerate(lists):
             if node:
                 heapq.heappush(heap, (node.val, i, node))
 
         dummy = ListNode()
-        cur = dummy
+        curr = dummy
 
+        # 从堆中弹出节点，并挂载到新的链表
         while heap:
             val, i, node = heapq.heappop(heap)
-            cur.next = node
-            cur = cur.next
+            curr.next = node
+            curr = curr.next
 
+            # 把链表的下一个节点放入堆中
             if node.next:
                 heapq.heappush(heap, (node.next.val, i, node.next))
 
