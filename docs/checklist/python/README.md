@@ -512,24 +512,42 @@ float('-inf') < -10**18            # True
 
 === "#3 无重复字符的最长子串"
 
+    易于理解版本：窗口内出现重复元素时，从左边开始逐个删除直到没有重复元素（收缩窗口），然后加入新的重复元素。这种方法缺点是遍历删除效率较低。
+
     ```python
     # Time: O(n), Space: O(n)
-    def lengthOfLongestSubstring(s: str) -> int:
-        # 哈希表记录出现的元素及索引
-        # 哈希表出现的元素，left 移动到哈希表中索引 +1 位置，否则右指针右移扩大窗口
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        ans = left = 0
+        window = set()  # 维护从下标 left 到下标 right 的字符
+        for right, c in enumerate(s):
+            # 如果窗口内已经包含 c，那么再加入一个 c 会导致窗口内有重复元素
+            # 所以要在加入 c 之前，先移出窗口内的 c
+            while c in window:  # 窗口内有 c
+                window.remove(s[left])
+                left += 1  # 缩小窗口
+            window.add(c)  # 加入 c
+            ans = max(ans, right - left + 1)  # 更新窗口长度最大值
+        return ans
+    ```
 
-        seen = {}
-        left, right, max_win = 0, 0, 0
-        while right < len(s):
-            if s[right] in seen:
-                left = max(left, seen[s[right]] + 1)
+    高效改良版本：直接记录元素的索引，left直接跳跃到重复元素的上一个位置
 
-            seen[s[right]] = right
-            right += 1
+    ```python
+    # Time: O(n), Space: O(n)
+    def lengthOfLongestSubstring(self, s: str) -> int:
+        ans = left = 0
+        last_seen = {}  # 记录字符 c 上一次出现的下标
 
-            max_win = max(max_win, right - left)
+        for right, c in enumerate(s):
+            if c in last_seen:
+                # 核心逻辑：防止指针回退
+                # 如果 c 上一次出现的位置在 left 左侧，left 保持不变；如果在 right 窗口内，left 直接跳跃
+                left = max(left, last_seen[c] + 1)
 
-        return max_win
+            last_seen[c] = right  # 更新字符 c 的最新下标
+            ans = max(ans, right - left + 1)  # 更新最大长度
+
+        return ans
     ```
 
 === "#15 三数之和"
