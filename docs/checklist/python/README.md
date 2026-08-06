@@ -1,5 +1,295 @@
 # Python 刷题清单
 
+## 语法速查
+
+### 数据类型与初始化
+
+```python
+# 整数：Python 整数无上限，不需要担心溢出
+x = 0
+big = 10**18              # 大整数
+
+# 浮点数
+inf = float('inf')        # 正无穷，常用于初始化最小值比较
+neg_inf = float('-inf')   # 负无穷，常用于初始化最大值比较
+
+# 布尔值
+True, False               # 首字母大写
+not x                     # 取反（Go: !x）
+```
+
+### 列表（数组）
+
+```python
+# 初始化
+nums = []                          # 空列表
+nums = [0] * n                     # 长度为 n，初始值为 0
+dp = [[0] * cols for _ in range(rows)]  # 二维数组（不能用 [[0]*cols]*rows，浅拷贝陷阱）
+
+# 基本操作
+nums.append(x)                     # 尾部追加 O(1)
+nums.pop()                         # 弹出末尾 O(1)
+nums.pop(0)                        # 弹出首位 O(n)，需要频繁操作头部时用 deque
+nums.insert(i, x)                  # 在索引 i 处插入 O(n)
+del nums[i]                        # 删除索引 i 的元素
+len(nums)                          # 长度
+
+# 切片（创建新列表，O(k)）
+nums[1:3]                          # [索引1, 索引3)
+nums[::-1]                         # 反转（创建新列表）
+nums.reverse()                     # 原地反转
+
+# 排序
+nums.sort()                        # 原地排序（升序）
+nums.sort(reverse=True)            # 原地排序（降序）
+nums.sort(key=lambda x: x[0])     # 按自定义规则排序
+sorted(nums)                       # 返回新列表，不修改原列表
+
+# 解构赋值（多变量同时赋值）
+a, b = b, a                        # 交换，无需临时变量（Go 也支持）
+a, b, c = 1, 2, 3
+first, *rest = [1, 2, 3, 4]        # first=1, rest=[2,3,4]
+
+# 遍历
+for num in nums:                   # 遍历元素
+for i in range(len(nums)):         # 遍历索引
+for i, num in enumerate(nums):     # 同时获取索引和值（Go: for i, num := range nums）
+for i in range(len(nums) - 1, -1, -1):  # 倒序遍历
+
+# 列表推导式
+squares = [x**2 for x in range(10)]
+evens = [x for x in nums if x % 2 == 0]
+flat = [x for row in matrix for x in row]  # 二维展平
+```
+
+### 字符串
+
+```python
+# 字符串不可变，修改需转为列表
+s = "hello"
+s[0]                               # 'h'（索引访问）
+s[1:3]                             # 'el'（切片）
+len(s)                             # 长度
+
+# 常用操作
+s.split('.')                       # 按分隔符拆分 → ['hello']
+'.'.join(['a', 'b'])               # 拼接 → 'a.b'
+''.join(sorted(s))                 # 排序字符
+s.lower() / s.upper()             # 大小写转换
+s.isdigit() / s.isalpha()         # 判断数字/字母
+s.startswith('he') / s.endswith('lo')
+
+# 字符与 ASCII
+ord('a')                           # 97（字符 → ASCII）
+chr(97)                            # 'a'（ASCII → 字符）
+ord(ch) - ord('a')                 # 字符映射到 0-25（常用于计数数组）
+
+# 遍历
+for ch in s:                       # 遍历字符
+for i, ch in enumerate(s):         # 同时获取索引
+```
+
+### 哈希表（字典）
+
+```python
+# 初始化
+d = {}                             # 空字典
+d = {0: 1}                        # 带初始值
+d = dict.fromkeys(['a','b'], 0)   # {'a': 0, 'b': 0}
+
+# 基本操作
+d[key] = value                     # 设置
+d[key]                             # 获取（不存在会 KeyError）
+d.get(key, default)                # 安全获取（不存在返回 default）
+key in d                           # 判断 key 是否存在（Go: _, ok := d[key]）
+del d[key]                         # 删除
+len(d)                             # 长度
+
+# 常用模式
+d[key] = d.get(key, 0) + 1        # 计数（Go: d[key]++）
+d.setdefault(key, []).append(val)  # 分组（Go: d[key] = append(d[key], val)）
+
+# 遍历
+for key in d:                      # 遍历 key
+for key, val in d.items():         # 遍历 key-value
+```
+
+### 集合
+
+```python
+# 初始化
+s = set()                          # 空集合（注意：{} 是空字典）
+s = set(nums)                      # 从列表创建（去重）
+s = {1, 2, 3}                     # 字面量
+
+# 基本操作
+s.add(x)                           # 添加 O(1)
+s.remove(x)                        # 删除（不存在会 KeyError）
+s.discard(x)                       # 删除（不存在不报错）
+x in s                             # 判断存在 O(1)
+len(s)                             # 长度
+```
+
+### 数学运算
+
+```python
+abs(x)                             # 绝对值
+max(a, b) / min(a, b)             # 最大/最小值
+max(nums) / min(nums)             # 列表最大/最小值
+sum(nums)                          # 求和
+
+# 除法
+7 // 2                             # 3（整除，向下取整）
+7 % 2                              # 1（取余）
+divmod(7, 2)                       # (3, 1)（同时获取商和余数）
+
+# 幂运算
+2 ** 10                            # 1024
+pow(2, 10, mod)                    # 快速幂取模
+
+# 注意：Python 的整除是向下取整（负数时与 Go/C++ 不同）
+-7 // 2                            # -4（Python 向下取整）
+int(-7 / 2)                        # -3（截断除法，等价于 Go 的 -7/2）
+```
+
+### 常用标准库
+
+=== "heapq（最小堆）"
+
+    Python 的 `heapq` 默认是**最小堆**，如需最大堆，存入负值即可。
+
+    ```python
+    import heapq
+
+    heap = []
+    heapq.heappush(heap, val)          # 入堆 O(logn)
+    heapq.heappop(heap)                # 弹出最小值 O(logn)
+    heap[0]                            # 查看堆顶（最小值）O(1)
+
+    # 最大堆：存入负值
+    heapq.heappush(heap, -val)
+    -heapq.heappop(heap)
+
+    # 自定义排序：使用元组，按第一个元素排序
+    heapq.heappush(heap, (priority, index, value))
+
+    # 从列表建堆 O(n)
+    nums = [3, 1, 4, 1, 5]
+    heapq.heapify(nums)
+
+    # 前 K 个最小/最大元素
+    heapq.nsmallest(k, nums)
+    heapq.nlargest(k, nums)
+    ```
+
+=== "collections"
+
+    ```python
+    from collections import deque, defaultdict, Counter
+
+    # deque: 双端队列，两端操作均为 O(1)
+    q = deque()
+    q = deque([1, 2, 3])
+    q.append(x)                        # 右端入队
+    q.appendleft(x)                    # 左端入队
+    q.pop()                            # 右端出队
+    q.popleft()                        # 左端出队（list.pop(0) 是 O(n)）
+
+    # defaultdict: 带默认值的字典
+    d = defaultdict(int)               # 默认值 0
+    d = defaultdict(list)              # 默认值 []
+    d[key] += 1                        # 无需判断 key 是否存在
+
+    # Counter: 计数器
+    cnt = Counter("aabbc")             # {'a': 2, 'b': 2, 'c': 1}
+    cnt = Counter(nums)
+    cnt.most_common(k)                 # 前 k 个高频元素
+    ```
+
+=== "functools（记忆化搜索）"
+
+    ```python
+    from functools import cache, lru_cache
+
+    # @cache: 自动缓存递归结果（Python 3.9+）
+    @cache
+    def dfs(i, j):
+        if i == 0:
+            return 0
+        return min(dfs(i-1, j), dfs(i, j-1)) + grid[i][j]
+
+    # @lru_cache: 带容量限制的缓存（Python 3.2+）
+    @lru_cache(maxsize=None)           # None 表示无限缓存
+    def fib(n):
+        if n < 2:
+            return n
+        return fib(n-1) + fib(n-2)
+
+    # 注意：参数必须是可哈希类型（不能传 list，可以传 tuple）
+    ```
+
+=== "bisect（二分查找）"
+
+    ```python
+    import bisect
+
+    # 在有序列表中查找插入位置
+    bisect.bisect_left(nums, target)   # 第一个 >= target 的位置
+    bisect.bisect_right(nums, target)  # 第一个 > target 的位置
+
+    # 插入并保持有序
+    bisect.insort(nums, val)
+    ```
+
+=== "itertools"
+
+    ```python
+    from itertools import accumulate, combinations, permutations
+
+    # 前缀和
+    list(accumulate(nums))             # [1, 3, 6, 10]（输入 [1,2,3,4]）
+
+    # 组合与排列
+    list(combinations([1,2,3], 2))     # [(1,2), (1,3), (2,3)]
+    list(permutations([1,2,3], 2))     # [(1,2), (1,3), (2,1), ...]
+    ```
+
+### Python 刷题常用技巧
+
+```python
+# 1. nonlocal：在嵌套函数中修改外部变量（Go 闭包直接捕获）
+def outer():
+    count = 0
+    def inner():
+        nonlocal count
+        count += 1
+    inner()
+
+# 2. 三元表达式
+x = a if condition else b          # Go: 没有三元运算符
+
+# 3. 链式比较
+if 0 <= x < n:                    # 等价于 0 <= x and x < n
+
+# 4. any / all
+any(x > 0 for x in nums)          # 是否存在正数
+all(x > 0 for x in nums)          # 是否全为正数
+
+# 5. zip：并行遍历多个序列
+for a, b in zip(list1, list2):
+    pass
+
+# 6. 用 list 模拟栈
+stack = []
+stack.append(x)                    # push
+stack.pop()                        # pop
+stack[-1]                          # peek（查看栈顶）
+
+# 7. 无穷大比较
+float('inf') > 10**18              # True
+float('-inf') < -10**18            # True
+```
+
 ## 数组
 
 **综合常考**
