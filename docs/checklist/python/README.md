@@ -1073,6 +1073,7 @@ float('-inf') < -10**18            # True
         def __init__(self, capacity: int):
             self.capacity = capacity
             self.cache = {}               # 哈希表：key -> 链表节点
+            # 哨兵节点
             self.head = Node()            # 虚拟头节点（最近使用）
             self.tail = Node()            # 虚拟尾节点（最久未使用）
             self.head.next = self.tail
@@ -1137,6 +1138,94 @@ float('-inf') < -10**18            # True
             node = self.tail.prev
             self._remove_node(node)
             return node
+    ```
+
+    带 TTL 的 LRU 实现：
+    如果要求“能够高效按过期时间先后淘汰”，可以额外维护一个按 expire_time 排序的最小堆（Min-Heap）。但注意，这样 put 操作的时间复杂度会从 $O(1)$ 变到 $O(log N)$
+
+    ```python
+    import time
+
+    class Node:
+        def __init__(self, key=0, value=0, expire_time=0):
+            self.key = key
+            self.value = value
+            self.expire_time = expire_time  # 过期截止时间戳
+            self.prev = None
+            self.next = None
+
+    class LRUCacheWithTTL:
+        def __init__(self, capacity: int):
+            self.capacity = capacity
+            self.cache = {}
+            # 哨兵节点
+            self.head = Node()
+            self.tail = Node()
+            self.head.next = self.tail
+            self.tail.prev = self.head
+
+        def _remove_node(self, node: Node):
+            node.prev.next = node.next
+            node.next.prev = node.prev
+
+        def _add_to_head(self, node: Node):
+            node.prev = self.head
+            node.next = self.head.next
+            self.head.next.prev = node
+            self.head.next = node
+
+        def _move_to_head(self, node: Node):
+            self._remove_node(node)
+            self._add_to_head(node)
+
+        def _is_expired(self, node: Node) -> bool:
+            return time.time() > node.expire_time
+
+        def get(self, key: int) -> int:
+            if key not in self.cache:
+                return -1
+
+            node = self.cache[key]
+            # 检查是否过期（惰性删除）
+            if self._is_expired(node):
+                self._remove_node(node)
+                del self.cache[key]
+                return -1
+
+            self._move_to_head(node)
+            return node.value
+
+        def put(self, key: int, value: int, ttl: float) -> None:
+            expire_time = time.time() + ttl
+
+            if key in self.cache:
+                node = self.cache[key]
+                node.value = value
+                node.expire_time = expire_time
+                self._move_to_head(node)
+            else:
+                # 容量满时，优先清除过期的尾部节点，若无过期节点则剔除最久未使用的尾节点
+                if len(self.cache) >= self.capacity:
+                    self._evict_or_remove_tail()
+
+                new_node = Node(key, value, expire_time)
+                self.cache[key] = new_node
+                self._add_to_head(new_node)
+
+        def _evict_or_remove_tail(self):
+            curr = self.tail.prev
+            # 尝试从尾部向前找已过期的节点删除
+            while curr != self.head:
+                if self._is_expired(curr):
+                    self._remove_node(curr)
+                    del self.cache[curr.key]
+                    return
+                curr = curr.prev
+
+            # 若没有已过期的节点，按常规 LRU 删除尾节点
+            tail_node = self.tail.prev
+            self._remove_node(tail_node)
+            del self.cache[tail_node.key]
     ```
 
 ## 二叉树
