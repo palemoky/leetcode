@@ -579,7 +579,7 @@ float('-inf') < -10**18            # True
             if nums[i] > 0:
                 break
 
-            # 跳过重复的第1个数
+            # 对第1个数去重
             if i > 0 and nums[i] == nums[i - 1]:
                 continue
 
@@ -594,13 +594,11 @@ float('-inf') < -10**18            # True
                 else:  # 和为 0
                     ans.append([nums[i], nums[l], nums[r]])
 
-                    # 记录当前找到的两个数的值，用于后续去重
-                    left_curr, right_curr = nums[l], nums[r]
-                    # 跳过重复的第2个数
-                    while l < r and nums[l] == left_curr:
+                    # 对第2、3个数去重
+                    l_val, r_val = nums[l], nums[r]
+                    while l < r and nums[l] == l_val:
                         l += 1
-                    # 跳过重复的第3个数
-                    while l < r and nums[r] == right_curr:
+                    while l < r and nums[r] == r_val:
                         r -= 1
 
         return ans
