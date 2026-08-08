@@ -198,8 +198,6 @@
     # Time: O(n^2)
     def bubble(nums: list[int]) -> list[int]:
         n = len(nums)
-        if n < 2:
-            return nums
 
         # 外层循环控制轮数，最后一个数不需要比较
         for i in range(n - 1):
@@ -207,9 +205,9 @@
 
             # 内层循环进行比较交换
             # 由于每次外层循环结束后最大的元素会被移动到数组的末尾，因此内层循环的范围可以逐渐缩小
-            for j in range(1, n - i):
-                if nums[j - 1] > nums[j]:
-                    nums[j - 1], nums[j] = nums[j], nums[j - 1]
+            for j in range(n - i - 1):
+                if nums[j] > nums[j + 1]:
+                    nums[j], nums[j + 1] = nums[j + 1], nums[j]
                     swapped = True
 
             # 未发生交换则已排好序，提前结束比较
