@@ -463,7 +463,7 @@ float('-inf') < -10**18            # True
     ```python
     # Time: O(m+n), Space: O(1)
     def merge(nums1: list[int], m: int, nums2: list[int], n: int) -> None:
-        p1, p2, tail = m - 1, n - 1, m + n - 1
+        p1, p2, tail = m - 1, n - 1, len(nums1) - 1
 
         # 只需检查 p2 >= 0，因为 nums2 处理完后，nums1 剩余元素已在正确位置
         while p2 >= 0:
@@ -619,11 +619,12 @@ float('-inf') < -10**18            # True
 
         # 从中心向两侧扩展，返回回文长度
         def expand(l: int, r: int) -> None:
-            nonlocal start, max_len
             while l >= 0 and r < len(s) and s[l] == s[r]:
                 l -= 1
                 r += 1
-            # 此时 [l+1, r-1] 是回文
+
+            # 此时 [l+1, r-1] 是回文，注意while中的l和r已经越界，因此下方要-1
+            nonlocal start, max_len
             if r - l - 1 > max_len:
                 start = l + 1
                 max_len = r - l - 1
@@ -1104,6 +1105,17 @@ float('-inf') < -10**18            # True
 
         # 辅助方法：将节点添加到头部
         # 画一个三角插入图形理解分析：先把新节点与左右节点相连，再把右侧节点指向新节点，最后把head指向新节点。插入头部的节点操作要基于 head。
+        #               ┌──────┐          node.prev        ┌──────┐
+        #               │ head │◀╌╌╌╌╌╌╌╌╌╳╌╌╌╌╌╌╌╳╌╌╌╌╌╌╌╌│ node │
+        #               └─▲─┬──┘╌╌╌╌╌╌╌╌╌╌╳╌╌╌╌╌╌╌╳╌╌╌╌╌╌╌▶└──▲─┬─┘
+        #                 │ │             head.next           │ │
+        #                 │ │                                 │ │
+        # 1. newNode.prev │ │                 2. newNode.next │ │ 3. head.next.prev
+        #                 │ │ 4. head.next                    │ │
+        #                 │ │                                 │ │
+        #                 │ ╰──────────▶ ┌─────────┐ ─────────╯ │
+        #                 ╰───────────── │ newNode │ ◀──────────╯
+        #                                └─────────┘
         def _add_to_head(self, node: Node) -> None:
             node.prev = self.head
             node.next = self.head.next
