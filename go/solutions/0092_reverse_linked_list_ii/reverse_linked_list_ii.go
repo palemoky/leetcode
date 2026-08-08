@@ -19,11 +19,11 @@ func reverseBetweenByHeadInsert(head *utils.ListNode, left int, right int) *util
 	// prev -> 1 -> 2 -> 3 -> 4 -> 5
 	//         ↑         ↑
 	//       left      right
-	cur := prev.Next
+	curr := prev.Next
 	for range right - left {
-		// 头插法：保持 curr 不动，每次将 cur.Next 移到 prev 后面，画一步头插法的执行过程就是代码
-		next := cur.Next      // 暂存待移动节点
-		cur.Next = next.Next  // 从原位置摘下 next
+		// 头插法：保持 curr 不动，每次将 curr.Next 移到 prev 后面，画一步头插法的执行过程就是代码
+		next := curr.Next     // 暂存待移动节点
+		curr.Next = next.Next // 从原位置摘下 next
 		next.Next = prev.Next // 将 next 接到区间头部
 		prev.Next = next      // 完成头插
 	}
@@ -91,6 +91,6 @@ func reverseBetweenByIteration(head *utils.ListNode, left int, right int) *utils
 // 头插法：像抽扑克牌，依次把牌插到头部（prev后面）
 // prev→1→2→3→4
 //      ↑
-//     cur
+//     curr
 // prev→2→1→3→4 (把2插到prev后) => prev→3→2→1→4 (把3插到prev后)
 // 适合：局部反转（92. 反转链表 II）

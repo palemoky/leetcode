@@ -107,10 +107,10 @@ func kSum(nums []int, target, k, start int) [][]int {
         }
         sub := kSum(nums, target-nums[i], k-1, i+1)
         for _, comb := range sub {
-            cur := make([]int, 0, len(comb)+1)
-            cur = append(cur, nums[i])
-            cur = append(cur, comb...)
-            res = append(res, cur)
+            curr := make([]int, 0, len(comb)+1)
+            curr = append(curr, nums[i])
+            curr = append(curr, comb...)
+            res = append(res, curr)
         }
     }
     return res

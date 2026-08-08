@@ -590,13 +590,13 @@
     // 反转前
     // dummy -> A -> B -> C -> D -> E
     //   ↑      ↑         ↑    ↑
-    // prev    cur      tail  nextGroup
+    // prev    curr      tail  nextGroup
 
     // 反转后（第一组）
     // dummy -> C -> B -> A -> D -> E
     //          ↑         ↑    ↑
-    //         tail      cur  nextGroup
-    //                   prev
+    //         tail     curr  nextGroup
+    //                  prev
     ```
 
     ```go
@@ -660,23 +660,23 @@
 
     func mergeTwoLists(l1, l2 *utils.ListNode) *utils.ListNode {
         dummy := &utils.ListNode{}
-        cur := dummy
+        curr := dummy
 
         for l1 != nil && l2 != nil {
             if l1.Val <= l2.Val {
-                cur.Next = l1
+                curr.Next = l1
                 l1 = l1.Next
             } else {
-                cur.Next = l2
+                curr.Next = l2
                 l2 = l2.Next
             }
-            cur = cur.Next
+            curr = curr.Next
         }
 
         if l1 != nil {
-            cur.Next = l1
+            curr.Next = l1
         } else {
-            cur.Next = l2
+            curr.Next = l2
         }
 
         return dummy.Next
@@ -698,12 +698,12 @@
         }
 
         dummy := &utils.ListNode{}
-        cur := dummy
+        curr := dummy
 
         for h.Len() > 0 {
             node := heap.Pop(h).(*utils.ListNode)
-            cur.Next = node
-            cur = cur.Next
+            curr.Next = node
+            curr = curr.Next
 
             if node.Next != nil {
                 heap.Push(h, node.Next)

@@ -849,13 +849,13 @@ float('-inf') < -10**18            # True
     // 反转前
     // dummy -> A -> B -> C -> D -> E
     //   ↑      ↑         ↑    ↑
-    // prev    cur      tail  nextGroup
+    // prev    curr     tail  nextGroup
 
     // 反转后（第一组）
     // dummy -> C -> B -> A -> D -> E
     //          ↑         ↑    ↑
-    //         tail      cur  nextGroup
-    //                   prev
+    //         tail     curr  nextGroup
+    //                  prev
     ```
 
     ```python
@@ -874,16 +874,16 @@ float('-inf') < -10**18            # True
             next_group = tail.next  # 下一组起始位置
 
             # 头插法局部反转链表
-            cur = prev.next
+            curr = prev.next
             for _ in range(k - 1):
-                next_node = cur.next
-                cur.next = next_node.next
+                next_node = curr.next
+                curr.next = next_node.next
                 next_node.next = prev.next
                 prev.next = next_node
 
             # 区间反转完成后，准备下一组的反转，此时 curr 移动到了区间末尾
-            cur.next = next_group
-            prev = cur
+            curr.next = next_group
+            prev = curr
     ```
 
 === "#23 合并 K 个升序链表"
@@ -913,18 +913,18 @@ float('-inf') < -10**18            # True
 
     def merge_two_lists(l1: ListNode, l2: ListNode) -> ListNode:
         dummy = ListNode()
-        cur = dummy
+        curr = dummy
 
         while l1 and l2:
             if l1.val <= l2.val:
-                cur.next = l1
+                curr.next = l1
                 l1 = l1.next
             else:
-                cur.next = l2
+                curr.next = l2
                 l2 = l2.next
-            cur = cur.next
+            curr = curr.next
 
-        cur.next = l1 if l1 else l2
+        curr.next = l1 if l1 else l2
 
         return dummy.next
     ```

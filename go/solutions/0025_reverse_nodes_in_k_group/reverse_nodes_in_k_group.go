@@ -8,7 +8,7 @@ import "leetcode/go/solutions/utils"
 
 // nil -> 1 -> 2 -> 3 -> 4 -> 5 (k=3)
 //  ↑     ↑    ↑    ↑    ↑
-// pre   cur  next tail nextGroup
+// prev curr  next tail nextGroup
 
 func reverseKGroup(head *utils.ListNode, k int) *utils.ListNode {
 	dummy := &utils.ListNode{Next: head}
@@ -28,18 +28,18 @@ func reverseKGroup(head *utils.ListNode, k int) *utils.ListNode {
 		nextGroup := tail.Next
 
 		// 3. 反转这 k 个节点（使用头插法，类似92题）
-		cur := prev.Next
+		curr := prev.Next
 		for range k - 1 {
-			next := cur.Next
-			cur.Next = next.Next
+			next := curr.Next
+			curr.Next = next.Next
 			next.Next = prev.Next
 			prev.Next = next
 		}
 
 		// 4. 移动到下一组
 		// 反转后，原来的第一个节点变成了最后一个节点
-		cur.Next = nextGroup
-		prev = cur
+		curr.Next = nextGroup
+		prev = curr
 	}
 }
 
@@ -57,17 +57,17 @@ func reverseKGroupByRecursion(head *utils.ListNode, k int) *utils.ListNode {
 	}
 
 	// 2. 递归处理后续部分
-	pre := reverseKGroupByRecursion(dummy, k)
+	prev := reverseKGroupByRecursion(dummy, k)
 
 	// 3. 反转当前 k 个节点
 	// 利用 Go 的多重赋值，一行完成三个操作：
 	// - next := head.Next  (保存下一个节点)
-	// - head.Next = pre    (反转指针)
-	// - pre = head         (移动 pre)
-	// - head = next        (移动 head)
+	// - head.Next = prev    (反转指针)
+	// - prev = head         (移动 prev)
+	// - head = next         (移动 head)
 	for ; cnt > 0; cnt-- {
-		head.Next, pre, head = pre, head, head.Next
+		head.Next, prev, head = prev, head, head.Next
 	}
 
-	return pre
+	return prev
 }

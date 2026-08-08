@@ -19,11 +19,11 @@ func buildIntersectedLists(aVals, bVals, sharedVals []int) (headA, headB, inters
 	// 构造 A 的私有前缀，尾部接上共享链
 	if len(aVals) > 0 {
 		headA = utils.NewList(aVals)
-		cur := headA
-		for cur.Next != nil {
-			cur = cur.Next
+		curr := headA
+		for curr.Next != nil {
+			curr = curr.Next
 		}
-		cur.Next = intersection
+		curr.Next = intersection
 	} else {
 		headA = intersection
 	}
@@ -31,11 +31,11 @@ func buildIntersectedLists(aVals, bVals, sharedVals []int) (headA, headB, inters
 	// 构造 B 的私有前缀，尾部接上共享链
 	if len(bVals) > 0 {
 		headB = utils.NewList(bVals)
-		cur := headB
-		for cur.Next != nil {
-			cur = cur.Next
+		curr := headB
+		for curr.Next != nil {
+			curr = curr.Next
 		}
-		cur.Next = intersection
+		curr.Next = intersection
 	} else {
 		headB = intersection
 	}

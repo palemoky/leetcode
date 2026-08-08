@@ -210,7 +210,7 @@
                     nums[j], nums[j + 1] = nums[j + 1], nums[j]
                     swapped = True
 
-            # 未发生交换则已排好序，提前结束比较
+            # 扫描一遍未发生交换则已有序，提前剪枝
             if not swapped:
                 break
 
