@@ -15,10 +15,10 @@ class Solution:
         curr = prev.next
         assert curr is not None
         for _ in range(left, right):
-            next_node = curr.next
-            assert next_node is not None
-            curr.next = next_node.next
-            next_node.next = prev.next
-            prev.next = next_node
+            nxt = curr.next
+            assert nxt is not None
+            curr.next = nxt.next
+            nxt.next = prev.next
+            prev.next = nxt
 
         return dummy.next

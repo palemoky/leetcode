@@ -718,10 +718,10 @@ float('-inf') < -10**18            # True
         prev = None
         # 暂存、反转、移动
         while head:
-            next_node = head.next
+            nxt = head.next
             head.next = prev
             prev = head
-            head = next_node
+            head = nxt
 
         return prev
     ```
@@ -741,10 +741,10 @@ float('-inf') < -10**18            # True
 
         curr = prev.next
         for _ in range(left, right):  # 这段代码画个步骤图就出来了
-            next_node = curr.next      # 暂存操作节点的移动路径
-            curr.next = next_node.next # 摘下节点
-            next_node.next = prev.next # 插到区间头部
-            prev.next = next_node      # 移动操作的节点
+            nxt = curr.next      # 暂存操作节点的移动路径
+            curr.next = nxt.next # 摘下节点
+            nxt.next = prev.next # 插到区间头部
+            prev.next = nxt      # 移动操作的节点
 
         return dummy.next
     ```
@@ -876,10 +876,10 @@ float('-inf') < -10**18            # True
             # 头插法局部反转链表
             curr = prev.next
             for _ in range(k - 1):
-                next_node = curr.next
-                curr.next = next_node.next
-                next_node.next = prev.next
-                prev.next = next_node
+                nxt = curr.next
+                curr.next = nxt.next
+                nxt.next = prev.next
+                prev.next = nxt
 
             # 区间反转完成后，准备下一组的反转，此时 curr 移动到了区间末尾
             curr.next = next_group
@@ -1029,10 +1029,10 @@ float('-inf') < -10**18            # True
     def reverseList(head: ListNode) -> ListNode:
         prev = None
         while head:
-            next_node = head.next
+            nxt = head.next
             head.next = prev
             prev = head
-            head = next_node
+            head = nxt
 
         return prev
     ```

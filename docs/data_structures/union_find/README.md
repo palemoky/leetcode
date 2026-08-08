@@ -69,9 +69,9 @@ class UnionFind:
 
             # 路径压缩：将路径上所有节点直接连接到根节点
             while x != root:
-                next_node = self.parent[x]
+                nxt = self.parent[x]
                 self.parent[x] = root
-                x = next_node
+                x = nxt
 
             return root
         ```
