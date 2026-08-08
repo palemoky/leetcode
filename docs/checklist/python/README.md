@@ -579,31 +579,29 @@ float('-inf') < -10**18            # True
             if nums[i] > 0:
                 break
 
-            # 跳过重复的第一个值
+            # 跳过重复的第1个数
             if i > 0 and nums[i] == nums[i - 1]:
                 continue
 
             # 用双指针让剩余两数之和与第一个数的和为0
-            left, right = i + 1, len(nums) - 1
-            while left < right:
-                total = nums[i] + nums[left] + nums[right]
-
-                # 注意此时已经排序
-                if total < 0:  # 和太小，需要右移靠近较大数
-                    left += 1
-                elif total > 0:  # 和太大，需要左移靠近较小数
-                    right -= 1
+            l, r = i + 1, len(nums) - 1
+            while l < r:
+                sum = nums[i] + nums[l] + nums[r]
+                if sum < 0:  # 和太小，需要右移靠近较大数
+                    l += 1
+                elif sum > 0:  # 和太大，需要左移靠近较小数
+                    r -= 1
                 else:  # 和为 0
-                    ans.append([nums[i], nums[left], nums[right]])
+                    ans.append([nums[i], nums[l], nums[r]])
 
-                    left_curr, right_curr = nums[left], nums[right]
-                    # 跳过left的重复值
-                    while left < right and nums[left] == left_curr:
-                        left += 1
-
-                    # 跳过right的重复值
-                    while left < right and nums[right] == right_curr:
-                        right -= 1
+                    # 记录当前找到的两个数的值，用于后续去重
+                    left_curr, right_curr = nums[l], nums[r]
+                    # 跳过重复的第2个数
+                    while l < r and nums[l] == left_curr:
+                        l += 1
+                    # 跳过重复的第3个数
+                    while l < r and nums[r] == right_curr:
+                        r -= 1
 
         return ans
     ```
