@@ -1094,15 +1094,16 @@ float('-inf') < -10**18            # True
                 node.value = value
                 self._move_to_head(node)
             else:
+                # 溢出时清理
+                if len(self.cache) >= self.capacity:
+                    tail_node = self.tail.prev
+                    self._remove_node(tail_node)
+                    del self.cache[tail_node.key]
+
                 # 创建新节点
                 new_node = Node(key, value)
                 self.cache[key] = new_node
                 self._add_to_head(new_node)
-
-                # 检查容量，必要时删除最久未使用的节点
-                if len(self.cache) > self.capacity:
-                    removed = self._remove_tail()
-                    del self.cache[removed.key]
 
         # 辅助方法：将节点添加到头部
         # 画一个三角插入图形理解分析：先把新节点与左右节点相连，再把右侧节点指向新节点，最后把head指向新节点。插入头部的节点操作要基于 head。
@@ -1132,12 +1133,6 @@ float('-inf') < -10**18            # True
         def _move_to_head(self, node: Node) -> None:
             self._remove_node(node)
             self._add_to_head(node)
-
-        # 辅助方法：移除尾部节点
-        def _remove_tail(self) -> Node:
-            node = self.tail.prev
-            self._remove_node(node)
-            return node
     ```
 
     带 TTL 的 LRU 实现：
@@ -1206,26 +1201,23 @@ float('-inf') < -10**18            # True
             else:
                 # 容量满时，优先清除过期的尾部节点，若无过期节点则剔除最久未使用的尾节点
                 if len(self.cache) >= self.capacity:
-                    self._evict_or_remove_tail()
+                    curr = self.tail.prev
+                    # 尝试从尾部向前找已过期的节点删除
+                    while curr != self.head:
+                        if self._is_expired(curr):
+                            self._remove_node(curr)
+                            del self.cache[curr.key]
+                            break  # 只删除一个节点
+                        curr = curr.prev
+
+                    # 若没有已过期的节点，按常规 LRU 删除尾节点
+                    tail_node = self.tail.prev
+                    self._remove_node(tail_node)
+                    del self.cache[tail_node.key]
 
                 new_node = Node(key, value, expire_time)
                 self.cache[key] = new_node
                 self._add_to_head(new_node)
-
-        def _evict_or_remove_tail(self):
-            curr = self.tail.prev
-            # 尝试从尾部向前找已过期的节点删除
-            while curr != self.head:
-                if self._is_expired(curr):
-                    self._remove_node(curr)
-                    del self.cache[curr.key]
-                    return
-                curr = curr.prev
-
-            # 若没有已过期的节点，按常规 LRU 删除尾节点
-            tail_node = self.tail.prev
-            self._remove_node(tail_node)
-            del self.cache[tail_node.key]
     ```
 
 ## 二叉树
