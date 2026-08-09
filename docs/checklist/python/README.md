@@ -1053,6 +1053,30 @@ float('-inf') < -10**18            # True
         return prev
     ```
 
+=== "#82 删除排序链表中的重复元素"
+
+    本题与 #83 类似，但是需要删除所有重复的元素，而不仅仅是保留一个。解题思路是固定第一个节点值，并与后边节点的值比较删除。
+
+    ```python
+    # Time: O(n), Space: O(1)
+    def deleteDuplicates(self, head: Optional[ListNode]) -> Optional[ListNode]:
+        dummy = ListNode(next=head)
+        curr = dummy
+
+        while curr.next and curr.next.next:
+            # 取出第一个节点的值作为基准，比较后边是否存在连续重复的值
+            val = curr.next.val
+            # 下一个与下下个节点值相同，说明存在重复
+            if val == curr.next.next.val:
+                # 不断取下一个节点与第一个节点比较，相同则删除
+                while curr.next and curr.next.val == val:
+                    curr.next = curr.next.next
+            else:
+                curr = curr.next
+
+        return dummy.next
+    ```
+
 === "#146 LRU 缓存"
 
     LRU 模型如下，哈希表中的 Key 和双向链表中的 Key 是完全一样的，这主要提供了淘汰链表数据时同步更新哈希表，避免哈希表的内存泄露。
