@@ -839,6 +839,22 @@ float('-inf') < -10**18            # True
         return dummy.next
     ```
 
+=== "#83 删除排序链表中的重复元素"
+
+    由于链表已经排序，因此重复元素一定相邻
+
+    ```python
+    def deleteDuplicates(head: ListNode) -> ListNode:
+        curr = head
+        while curr and curr.next:
+            if curr.val == curr.next.val:
+                curr.next = curr.next.next
+            else:
+                curr = curr.next
+
+        return head
+    ```
+
 **综合常考**
 
 === "#25 K 个一组反转链表"
