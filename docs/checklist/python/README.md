@@ -42,7 +42,7 @@ nums.reverse()                     # 原地反转
 # 排序
 nums.sort()                        # 原地排序（升序）
 nums.sort(reverse=True)            # 原地排序（降序）
-nums.sort(key=lambda x: x[0])     # 按自定义规则排序
+nums.sort(key=lambda x: x[0])      # 按自定义规则排序
 sorted(nums)                       # 返回新列表，不修改原列表
 
 # 解构赋值（多变量同时赋值）
