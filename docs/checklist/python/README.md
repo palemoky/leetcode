@@ -1022,27 +1022,35 @@ float('-inf') < -10**18            # True
 
 === "#143 重排链表"
 
-    利用快慢指针找中点并反转后半链表进行重排。
+    找中点、断开链表、反转后半部分、合并链表。
+    注意找中点是时slow需要停在中点的前一个节点，以便断开链表。
 
     ```python
     # Time: O(n), Space: O(1)
     def reorderList(head: ListNode) -> None:
-        mid = middleNode(head)
-        reversed_head = reverseList(mid)
-        p1, p2 = head, reversed_head
-        while p2.next:                             # 注意结束条件
-            p1_next, p2_next = p1.next, p2.next    # 保存指针避免断链
-            p1.next, p2.next = p2, p1_next         # 交叉连接
-            p1, p2 = p1_next, p2_next              # 移动节点
+        # 找中点
+        mid = middle(head)
 
-    def middleNode(head: ListNode) -> ListNode:
-        slow, fast = head, head
-        while fast and fast.next:
+        # 断开链表
+        l1 = head
+        l2 = mid.next
+        mid.next = None
+
+        # 反转后半部分
+        l2 = reverse(l2)
+
+        # 合并链表
+        merge(l1, l2)
+
+    def middle(head: ListNode) -> ListNode:
+        slow = fast = head
+        # 由于找到中点后要断开，因此 slow 要停在中点的前一个节点，要用 fast.next 和 fast.next.next
+        while fast.next and fast.next.next:
             slow, fast = slow.next, fast.next.next
 
         return slow
 
-    def reverseList(head: ListNode) -> ListNode:
+    def reverse(head: ListNode) -> ListNode:
         prev = None
         while head:
             nxt = head.next
@@ -1051,6 +1059,17 @@ float('-inf') < -10**18            # True
             head = nxt
 
         return prev
+
+    def merge(l1: ListNode, l2: ListNode) -> None:
+        while l1 and l2:
+            l1_next = l1.next
+            l2_next = l2.next
+
+            l1.next = l2
+            l1 = l1_next
+
+            l2.next = l1
+            l2 = l2_next
     ```
 
 === "#82 删除排序链表中的重复元素"
@@ -2157,7 +2176,8 @@ float('-inf') < -10**18            # True
 
 ## 队列
 
-=== "滑动窗口最大值"
+=== "#239 滑动窗口最大值"
+
 
 ## 二分查找
 
