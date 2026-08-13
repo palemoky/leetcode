@@ -1134,33 +1134,6 @@ float('-inf') < -10**18            # True
             self.head.next = self.tail
             self.tail.prev = self.head
 
-        def get(self, key: int) -> int:
-            if key in self.cache:
-                node = self.cache[key]
-                # 将节点移到头部（标记为最近使用）
-                self._move_to_head(node)
-                return node.value
-            return -1
-
-        def put(self, key: int, value: int) -> None:
-            if key in self.cache:
-                # 更新已存在的节点
-                node = self.cache[key]
-                node.value = value
-                self._move_to_head(node)
-            else:
-                # 溢出时清理
-                if len(self.cache) >= self.capacity:
-                    tail_node = self.tail.prev
-                    self._remove_node(tail_node)
-                    del self.cache[tail_node.key]
-
-                # 创建新节点
-                new_node = Node(key, value)
-                self.cache[key] = new_node
-                self._add_to_head(new_node)
-
-        # 辅助方法：将节点添加到头部
         # 画一个三角插入图形理解分析：先把新节点与左右节点相连，再把右侧节点指向新节点，最后把head指向新节点。插入头部的节点操作要基于 head。
         #               ┌──────┐          node.prev        ┌──────┐
         #               │ head │◀╌╌╌╌╌╌╌╌╌╳╌╌╌╌╌╌╌╳╌╌╌╌╌╌╌╌│ node │
@@ -1179,15 +1152,39 @@ float('-inf') < -10**18            # True
             self.head.next.prev = node
             self.head.next = node
 
-        # 辅助方法：移除节点
         def _remove_node(self, node: Node) -> None:
             node.prev.next = node.next
             node.next.prev = node.prev
 
-        # 辅助方法：将节点移到头部
         def _move_to_head(self, node: Node) -> None:
             self._remove_node(node)
             self._add_to_head(node)
+
+        def get(self, key: int) -> int:
+            if key in self.cache:
+                node = self.cache[key]
+                # 将节点移到头部（标记为最近使用）
+                self._move_to_head(node)
+                return node.value
+            return -1
+
+        def put(self, key: int, value: int) -> None:
+            if key in self.cache:
+                # 更新已存在的节点
+                node = self.cache[key]
+                node.value = value
+                self._move_to_head(node)
+            else:
+                # 溢出时清理
+                if len(self.cache) >= self.capacity:
+                    tail = self.tail.prev
+                    self._remove_node(tail)
+                    del self.cache[tail.key]
+
+                # 创建新节点
+                new_node = Node(key, value)
+                self.cache[key] = new_node
+                self._add_to_head(new_node)
     ```
 
     带 TTL 的 LRU 实现：
@@ -1214,15 +1211,15 @@ float('-inf') < -10**18            # True
             self.head.next = self.tail
             self.tail.prev = self.head
 
-        def _remove_node(self, node: Node):
-            node.prev.next = node.next
-            node.next.prev = node.prev
-
         def _add_to_head(self, node: Node):
             node.prev = self.head
             node.next = self.head.next
             self.head.next.prev = node
             self.head.next = node
+
+        def _remove_node(self, node: Node):
+            node.prev.next = node.next
+            node.next.prev = node.prev
 
         def _move_to_head(self, node: Node):
             self._remove_node(node)
