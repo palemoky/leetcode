@@ -1163,12 +1163,12 @@ float('-inf') < -10**18            # True
             self._add_to_head(node)
 
         def get(self, key: int) -> int:
-            if key in self.cache:
-                node = self.cache[key]
-                # 将节点移到头部（标记为最近使用）
-                self._move_to_head(node)
-                return node.value
-            return -1
+            if key not in self.cache:
+                return -1
+
+            node = self.cache[key]
+            self._move_to_head(node)
+            return node.value
 
         def put(self, key: int, value: int) -> None:
             if key in self.cache:
@@ -1256,18 +1256,21 @@ float('-inf') < -10**18            # True
                 # 容量满时，优先清除过期的尾部节点，若无过期节点则剔除最久未使用的尾节点
                 if len(self.cache) >= self.capacity:
                     curr = self.tail.prev
+                    found = False
                     # 尝试从尾部向前找已过期的节点删除
                     while curr != self.head:
                         if self._is_expired(curr):
                             self._remove_node(curr)
                             del self.cache[curr.key]
+                            found = True
                             break  # 只删除一个节点
                         curr = curr.prev
 
                     # 若没有已过期的节点，按常规 LRU 删除尾节点
-                    tail_node = self.tail.prev
-                    self._remove_node(tail_node)
-                    del self.cache[tail_node.key]
+                    if not found:
+                        tail_node = self.tail.prev
+                        self._remove_node(tail_node)
+                        del self.cache[tail_node.key]
 
                 new_node = Node(key, value, expire_time)
                 self.cache[key] = new_node
