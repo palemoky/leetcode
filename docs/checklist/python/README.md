@@ -1117,7 +1117,8 @@ float('-inf') < -10**18            # True
 
     ```python
     # Time: O(1) per get/put, Space: O(capacity)
-    class Node:  # 内部实现，不允许外部访问
+    class Node:
+        # 定义双向链表
         def __init__(self, key=0, value=0):
             self.key = key
             self.value = value
@@ -1126,9 +1127,10 @@ float('-inf') < -10**18            # True
 
     class LRUCache:
         def __init__(self, capacity: int):
+            # 初始化哈希表
             self.capacity = capacity
             self.cache = {}               # 哈希表：key -> 链表节点
-            # 哨兵节点
+            # 初始化节点
             self.head = Node()            # 虚拟头节点（最近使用）
             self.tail = Node()            # 虚拟尾节点（最久未使用）
             self.head.next = self.tail
